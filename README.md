@@ -1,10 +1,10 @@
-# Lab 118
+# 🧪 Lab 118
 
 **Construtor Atômico**
 
 Jogo educativo em pixel art em que o jogador monta átomos com prótons, nêutrons e elétrons para destrancar os 118 elementos da tabela periódica.
 
-## Sobre o jogo
+## 🎮 Sobre o jogo
 
 - **Mapa:** a tela principal é a tabela periódica. Cada elemento começa trancado e é destrancado quando o jogador monta o átomo correspondente no laboratório.
 - **Estrelas:** cada elemento tem 3 estrelas: descobrir o elemento, montar um isótopo e montar um íon. São 354 estrelas no total (118 x 3).
@@ -18,11 +18,19 @@ Jogo educativo em pixel art em que o jogador monta átomos com prótons, nêutro
 
 O progresso fica salvo no navegador (`localStorage`).
 
-## Capturas de tela
+## 📸 Capturas de tela
 
-<!-- adicione prints em docs/img -->
+<!--
+Para adicionar prints: salve as imagens em docs/img e tire os marcadores de comentário
+das linhas abaixo, ajustando os nomes dos arquivos.
 
-## Como rodar
+![Tela inicial](docs/img/inicio.png)
+![Mapa da tabela periódica](docs/img/mapa.png)
+![Laboratório](docs/img/laboratorio.png)
+![Ficha de um elemento](docs/img/ficha.png)
+-->
+
+## 🚀 Como rodar
 
 Requisitos: Node.js 20 ou superior e npm.
 
@@ -35,7 +43,7 @@ npm run build   # build de produção em .output/
 
 Depois do build, `npm run preview` serve a versão de produção localmente.
 
-## Estrutura do projeto
+## 🗂️ Estrutura do projeto
 
 ```
 src/
@@ -56,7 +64,7 @@ public/
 
 Tecnologias: React, TypeScript, TanStack Start (com TanStack Router), Tailwind CSS v4, Vite e Vitest.
 
-## Dados e fontes
+## 📚 Dados e fontes
 
 Os dados da tabela periódica vêm de `src/dados/elements.json`. As referências usadas são:
 
@@ -67,22 +75,19 @@ Os dados da tabela periódica vêm de `src/dados/elements.json`. As referências
 
 Os isótopos partem da base NUBASE.
 
-Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) são autorais e estão em revisão pela equipe.
+Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) são autorais e estão em revisão.
 
-## Equipe
+## 🎓 Contexto acadêmico
 
-[preencher: nomes]
+- **Disciplina:** Software Educativo
+- **Professor:** Gidevaldo Novais
+- **Semestre:** 6º semestre
 
-## Contexto acadêmico
+## 📄 Licença
 
-- Disciplina, professor e instituição: [preencher: disciplina, professor e instituição]
-- Semestre: [preencher: semestre]
+Projeto acadêmico. Ainda não há uma licença de uso definida, então todos os direitos ficam reservados aos autores.
 
-## Licença
-
-[preencher]
-
-## Créditos
+## ⭐ Créditos
 
 Fontes tipográficas (todas sob a SIL Open Font License 1.1, detalhes em `public/fonts/LICENCAS.txt`):
 
