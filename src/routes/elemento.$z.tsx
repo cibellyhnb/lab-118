@@ -1,9 +1,20 @@
+/*******************************************************************************
+ * elemento.$z.tsx
+ * funcao principal: rota /elemento/$z, que mostra a ficha do elemento de
+ * numero atomico z.
+ ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
 import { elementoPorZ } from "@/motor";
 import { Ficha } from "@/interface/Ficha";
 
+/*******************************************************************************
+ * Route
+ * funcao: registra a rota /elemento/$z. o titulo e a descricao usam o nome
+ * do elemento quando o z existe.
+ ******************************************************************************/
 export const Route = createFileRoute("/elemento/$z")({
   head: ({ params }) => {
+    // z vem da url como texto
     const el = elementoPorZ(Number(params.z));
     const t = el ? `${el.nome} (${el.simbolo}) - Ficha do elemento` : "Ficha do elemento";
     return {
@@ -18,6 +29,11 @@ export const Route = createFileRoute("/elemento/$z")({
   component: Pagina,
 });
 
+/*******************************************************************************
+ * Pagina
+ * funcao: le o z da url e abre a ficha.
+ * recebe: nada. retorna: o componente Ficha do elemento.
+ ******************************************************************************/
 function Pagina() {
   const { z } = Route.useParams();
   return <Ficha z={Number(z)} />;

@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * CerimoniaFamilia.tsx
+ * funcao principal: cerimonia estilo RPG que aparece quando o jogador
+ * completa uma familia da tabela: raios, simbolos voando, brasao, titulo e
+ * a Zula contando curiosidades e convidando para o quiz da familia.
+ ******************************************************************************/
 import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { familiaPorId, membros, type Categoria } from "@/motor";
@@ -6,15 +12,23 @@ import { Dialogo } from "./Dialogo";
 import { Emblema } from "./Emblema";
 import { sons, useProgresso } from "./store";
 
-/** Posição de cada runa (símbolo de elemento) em volta do brasão: anel de dentro e anel de fora. */
+/*******************************************************************************
+ * posicoes
+ * funcao: calcula onde fica cada runa (simbolo de elemento) em volta do
+ * brasao. ate 14 vao no anel de dentro; o resto vai no anel de fora.
+ * recebe: n (quantos elementos a familia tem).
+ * retorna: lista com a direcao (ux, uy, entre -1 e 1) e o anel de cada runa.
+ ******************************************************************************/
 function posicoes(n: number): { ux: number; uy: number; anel: 1 | 2 }[] {
   const dentro = Math.min(n, 14);
   const fora = n - dentro;
   const lista: { ux: number; uy: number; anel: 1 | 2 }[] = [];
+  // anel de dentro: comeca no topo (-PI/2) e da a volta inteira
   for (let i = 0; i < dentro; i++) {
     const a = (i / dentro) * Math.PI * 2 - Math.PI / 2;
     lista.push({ ux: Math.cos(a), uy: Math.sin(a), anel: 1 });
   }
+  // anel de fora: meio passo deslocado para nao alinhar com o de dentro
   for (let i = 0; i < fora; i++) {
     const a = ((i + 0.5) / fora) * Math.PI * 2 - Math.PI / 2;
     lista.push({ ux: Math.cos(a), uy: Math.sin(a), anel: 2 });
@@ -22,20 +36,26 @@ function posicoes(n: number): { ux: number; uy: number; anel: 1 | 2 }[] {
   return lista;
 }
 
-/**
- * Cerimônia de família completa, no estilo RPG:
- * 1) escurece e os raios de luz giram; 2) os símbolos dos elementos voam para o centro;
- * 3) flash, o brasão da família sobe e o título aparece; 4) a Zula conta curiosidades e convida para o quiz.
- */
+/*******************************************************************************
+ * CerimoniaFamilia
+ * funcao: cerimonia de familia completa, em fases: 0) escurece e os raios
+ * giram; 1) os simbolos dos elementos voam para o centro; 2) flash, o
+ * brasao sobe e o titulo aparece; 3) a Zula conta curiosidades e convida
+ * para o quiz.
+ * recebe: familia (Categoria) e onFechar (chamado ao sair).
+ * retorna: a tela cheia da cerimonia.
+ ******************************************************************************/
 export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; onFechar: () => void }) {
   const { tocar } = useProgresso();
   const info = familiaPorId(familia);
   const lista = useMemo(() => membros(familia), [familia]);
   const pos = useMemo(() => posicoes(lista.length), [lista.length]);
-  const [fase, setFase] = useState(0); // 0 raios · 1 runas voam · 2 brasão e título · 3 diálogo
+  const [fase, setFase] = useState(0); // 0 raios, 1 runas voam, 2 brasao e titulo, 3 dialogo
   const [pagina, setPagina] = useState(0);
+  // paginas do dialogo: abertura, uma por fato e o convite para o quiz
   const total = 1 + info.fatos.length + 1;
 
+  // avanca as fases sozinho; a fanfarra toca junto com o brasao
   useEffect(() => {
     const t1 = window.setTimeout(() => setFase(1), 500);
     const t2 = window.setTimeout(() => {
@@ -46,10 +66,12 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
     return () => [t1, t2, t3].forEach((t) => window.clearTimeout(t));
   }, [tocar]);
 
+  // PULAR vai direto para o dialogo
   const pular = () => {
     setFase(3);
   };
 
+  // texto da pagina atual do dialogo
   const texto =
     pagina === 0
       ? `Incrível! Você reuniu todos os ${info.nome}: ${lista.length} ${lista.length === 1 ? "elemento descoberto" : "elementos descobertos"}. Eles ficam ${info.onde}.`
@@ -61,7 +83,7 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
 
   return (
     <div role="dialog" aria-modal="true" aria-label={`Família completa: ${info.titulo}`} className="fixed inset-0 z-[60] overflow-hidden" style={{ background: "color-mix(in oklab, var(--ink) 97%, transparent)" }}>
-      {/* raios de luz girando atrás do brasão */}
+      {/* raios de luz girando atras do brasao */}
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-[46%] h-[170vmax] w-[170vmax] -translate-x-1/2 -translate-y-1/2">
         <div
           className="anim-raios h-full w-full"
@@ -84,13 +106,14 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
         ))}
       </div>
 
+      {/* botao de pular a animacao */}
       {fase < 3 && (
         <button type="button" className="pixel-btn btn-parchment absolute right-3 top-3 z-10 text-xs" onClick={pular}>
           PULAR ▶▶
         </button>
       )}
 
-      {/* título */}
+      {/* titulo */}
       {fase >= 2 && (
         <div className="anim-slide-up absolute inset-x-0 top-[5%] z-10 flex flex-col items-center gap-2 px-4 text-center">
           <p className="font-display text-[10px] text-gold sm:text-xs">★ FAMÍLIA COMPLETA ★</p>
@@ -101,11 +124,12 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
         </div>
       )}
 
-      {/* palco central: brasão e runas */}
+      {/* palco central: brasao e runas. --r e o raio do anel, que encolhe em telas pequenas */}
       <div className="absolute left-1/2 top-[46%] h-0 w-0" style={{ ["--r" as string]: "min(40vw, 185px, 26vh)" }}>
         {fase >= 1 &&
           lista.map((el, i) => {
             const p = pos[i]!;
+            // com dois aneis, o de dentro fica menor
             const raio = p.anel === 1 && lista.length > 14 ? "calc(var(--r) * 0.76)" : "var(--r)";
             return (
               <span
@@ -118,6 +142,7 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
                   background: cor,
                   boxShadow: "inset 0 -3px 0 color-mix(in oklab, " + cor + " 60%, black)",
                   animationDelay: `${(i * 70) % 1800}ms`,
+                  // ponto de partida do voo, bem longe na mesma direcao
                   ["--sx" as string]: `${(p.ux * 520).toFixed(0)}px`,
                   ["--sy" as string]: `${(p.uy * 520).toFixed(0)}px`,
                 }}
@@ -128,6 +153,7 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
             );
           })}
 
+        {/* flash, confete e o brasao subindo */}
         {fase >= 2 && (
           <>
             <div aria-hidden className="anim-flash pointer-events-none fixed inset-0 bg-cloud" />
@@ -139,6 +165,7 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
         )}
       </div>
 
+      {/* dialogo da Zula; na ultima pagina troca o PROXIMO pelos botoes do quiz */}
       {fase >= 3 && (
         <Dialogo
           texto={texto}

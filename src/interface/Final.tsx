@@ -1,3 +1,8 @@
+/*******************************************************************************
+ * Final.tsx
+ * funcao principal: cena de encerramento quando o jogador descobre os 118
+ * elementos: a tabela acende, fogos estouram e a Zula agradece.
+ ******************************************************************************/
 import { useEffect, useMemo, useState } from "react";
 import { ELEMENTOS, FAMILIAS, contarTotais, progressoFamilia } from "@/motor";
 import { Confete } from "./Celebracao";
@@ -6,16 +11,24 @@ import { catStyle } from "./comuns";
 import { TituloLab } from "./Titulo";
 import { sons, useProgresso } from "./store";
 
+// cores das faiscas dos fogos
 const CORES = ["#ffd24a", "#ff7a59", "#6fd3ff", "#9be36b", "#c59bff", "#ff8ac4"];
 
+// um fogo na tela: id para a key e posicao em % da tela
 type Fogo = { id: number; x: number; y: number; cor: string };
 
-/** Uma explosão de faíscas pixeladas. */
+/*******************************************************************************
+ * Estouro
+ * funcao: uma explosao de 16 faiscas pixeladas.
+ * recebe: x e y (posicao em % da tela) e cor.
+ * retorna: as faiscas animadas (decorativas).
+ ******************************************************************************/
 function Estouro({ x, y, cor }: { x: number; y: number; cor: string }) {
   return (
     <div aria-hidden className="pointer-events-none absolute" style={{ left: `${x}%`, top: `${y}%` }}>
       {Array.from({ length: 16 }, (_, i) => {
         const ang = (i / 16) * Math.PI * 2;
+        // faiscas alternam entre perto e longe; uma em cada 4 e quase branca
         const dist = 60 + (i % 2) * 28;
         return (
           <span
@@ -29,22 +42,25 @@ function Estouro({ x, y, cor }: { x: number; y: number; cor: string }) {
   );
 }
 
-/**
- * Final do jogo (118 elementos descobertos):
- * 1) a tabela se acende elemento por elemento, com notinhas subindo; 2) flash, confete, fogos e uma onda de brilho;
- * 3) a Zula agradece e mostra o que o jogador conquistou.
- */
+/*******************************************************************************
+ * Final
+ * funcao: final do jogo, em fases: 1) a tabela acende elemento por
+ * elemento, com notinhas subindo; 2) flash, confete, fogos e uma onda de
+ * brilho; 3) a Zula agradece e mostra o que o jogador conquistou.
+ * recebe: onFechar (volta para o mapa).
+ * retorna: a cena em tela cheia.
+ ******************************************************************************/
 export function Final({ onFechar }: { onFechar: () => void }) {
   const { estado, tocar } = useProgresso();
   const tot = contarTotais(estado);
   const familias = FAMILIAS.filter((f) => progressoFamilia(estado, f.id).completa).length;
   const lista = useMemo(() => [...ELEMENTOS].sort((a, b) => a.z - b.z), []);
   const [revelados, setRevelados] = useState(0);
-  const [fase, setFase] = useState<1 | 2 | 3>(1); // 1 acendendo · 2 explosão · 3 diálogo
+  const [fase, setFase] = useState<1 | 2 | 3>(1); // 1 acendendo, 2 explosao, 3 dialogo
   const [pagina, setPagina] = useState(0);
   const [fogos, setFogos] = useState<Fogo[]>([]);
 
-  // 1) acende um elemento a cada 40 ms
+  // fase 1: acende um elemento a cada 40 ms, cada um com uma nota
   useEffect(() => {
     if (fase !== 1) return;
     const id = window.setInterval(() => {
@@ -57,6 +73,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     return () => window.clearInterval(id);
   }, [fase, lista.length, tocar]);
 
+  // todos acesos: meio segundo depois passa para a fase 2
   useEffect(() => {
     if (fase === 1 && revelados >= lista.length) {
       const t = window.setTimeout(() => setFase(2), 500);
@@ -65,6 +82,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     return undefined;
   }, [fase, revelados, lista.length]);
 
+  // fase 2: fanfarra e, 2,6 s depois, o dialogo
   useEffect(() => {
     if (fase !== 2) return;
     tocar(sons.fanfarra);
@@ -72,13 +90,14 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     return () => window.clearTimeout(t);
   }, [fase, tocar]);
 
-  // 2) e 3) fogos durante o resto da cena
+  // fases 2 e 3: solta um fogo a cada 750 ms ate a cena fechar
   useEffect(() => {
     if (fase < 2) return;
     let n = 0;
     const solta = () => {
       n++;
       const f: Fogo = { id: n, x: 8 + ((n * 37) % 84), y: 8 + ((n * 23) % 38), cor: CORES[n % CORES.length]! };
+      // guarda so os 6 ultimos para nao acumular elementos na tela
       setFogos((l) => [...l.slice(-5), f]);
       tocar(sons.estouro);
     };
@@ -87,11 +106,13 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     return () => window.clearInterval(id);
   }, [fase, tocar]);
 
+  // PULAR acende tudo e vai direto para o dialogo
   const pular = () => {
     setRevelados(lista.length);
     setFase(3);
   };
 
+  // falas da Zula, uma por pagina
   const paginas = [
     "Você conseguiu! Os 118 elementos estão acesos, do Hidrogênio ao Oganessônio. Olha só como o laboratório ficou lindo!",
     "Sabe o que você montou? A água, o ar, o seu celular, as estrelas e até você são feitos dessas mesmas peças. Tudo o que existe vem dessa tabelinha.",
@@ -102,6 +123,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
 
   return (
     <div role="dialog" aria-modal="true" aria-label="Final do jogo: tabela completa" className="fixed inset-0 z-[65] overflow-hidden" style={{ background: "var(--ink)" }}>
+      {/* flash e confete a partir da fase 2 */}
       {fase >= 2 && <div aria-hidden className="anim-flash pointer-events-none fixed inset-0 bg-cloud" />}
       {fase >= 2 && <Confete />}
 
@@ -116,10 +138,12 @@ export function Final({ onFechar }: { onFechar: () => void }) {
         ))}
       </div>
 
+      {/* fogos de artificio */}
       {fogos.map((f) => (
         <Estouro key={f.id} x={f.x} y={f.y} cor={f.cor} />
       ))}
 
+      {/* botao de pular a animacao */}
       {fase < 3 && (
         <button type="button" className="pixel-btn btn-parchment absolute right-3 top-3 z-10 text-xs" onClick={pular}>
           PULAR ▶▶
@@ -127,7 +151,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
       )}
 
       <div className="relative flex h-full flex-col items-center gap-3 px-3 pt-[3vh]">
-        {/* título: contador enquanto acende, depois o nome do jogo */}
+        {/* titulo: contador enquanto acende, depois o nome do jogo */}
         <div className="flex h-[17vh] flex-col items-center justify-center gap-2 text-center">
           {fase === 1 ? (
             <>
@@ -162,6 +186,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
                   ...catStyle(el.categoria),
                   gridRow: el.posicao.linha,
                   gridColumn: el.posicao.coluna,
+                  // na fase 2 o brilho anda em onda pela diagonal
                   ...(fase >= 2 ? { animationDelay: `${(el.posicao.linha + el.posicao.coluna) * 80}ms` } : {}),
                 }}
               >
@@ -172,6 +197,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
         </div>
       </div>
 
+      {/* dialogo final; na ultima pagina mostra os totais e os botoes */}
       {fase >= 3 && (
         <Dialogo
           texto={paginas[pagina]!}
@@ -185,6 +211,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
                   {tot.elementos}/118 ELEMENTOS · {tot.estrelas}/354 ★ · {familias}/{FAMILIAS.length} FAMÍLIAS
                 </p>
                 <div className="flex flex-wrap justify-end gap-2">
+                  {/* VER DE NOVO zera tudo e recomeca da fase 1 */}
                   <button type="button" className="pixel-btn btn-parchment" onClick={() => { setPagina(0); setRevelados(0); setFogos([]); setFase(1); }}>
                     VER DE NOVO
                   </button>

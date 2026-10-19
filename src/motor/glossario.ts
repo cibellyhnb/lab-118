@@ -1,8 +1,14 @@
-// Glossário do jogo: termos que aparecem nas missões, no painel, nas fichas e na tabela.
-// Texto pensado para estudantes do ensino médio: curto, direto e com a dúvida mais comum de cada termo.
+/*******************************************************************************
+ * glossario.ts
+ * funcao principal: termos que aparecem nas missoes, no painel, nas fichas e
+ * na tabela, com definicao, exemplo e a duvida mais comum, e a busca que a
+ * tela de glossario usa. texto pensado para estudantes do ensino medio.
+ ******************************************************************************/
 
+// as abas da tela de glossario
 export type CategoriaGlossario = "particulas" | "numeros" | "variantes" | "tabela" | "jogo";
 
+// nome de cada aba como aparece para o jogador
 export const NOME_CATEGORIA_GLOSSARIO: Record<CategoriaGlossario, string> = {
   particulas: "Partículas e átomo",
   numeros: "Números do painel",
@@ -14,21 +20,27 @@ export const NOME_CATEGORIA_GLOSSARIO: Record<CategoriaGlossario, string> = {
 export type TermoGlossario = {
   id: string;
   termo: string;
-  /** Sigla ou símbolo usado no painel, se houver (Z, N, A, q...). */
+  // sigla ou simbolo usado no painel, se houver (Z, N, A, q...)
   sigla?: string;
   categoria: CategoriaGlossario;
   definicao: string;
   exemplo?: string;
-  /** A confusão mais comum sobre o termo, já respondida. */
+  // a confusao mais comum sobre o termo, ja respondida
   duvida?: string;
-  /** ids de termos relacionados. */
+  // ids de termos relacionados
   ver?: string[];
-  /** outras palavras que o jogador pode procurar (sem acento não precisa: a busca ignora acentos). */
+  // outras palavras que o jogador pode procurar (nao precisa da versao sem
+  // acento: a busca ignora acentos)
   sinonimos?: string[];
 };
 
+/*******************************************************************************
+ * GLOSSARIO
+ * funcao: lista de todos os termos, agrupados por categoria na ordem em que
+ * aparecem na tela.
+ ******************************************************************************/
 export const GLOSSARIO: TermoGlossario[] = [
-  // ───────── Partículas e átomo ─────────
+  // ----- particulas e atomo -----
   {
     id: "atomo",
     termo: "Átomo",
@@ -99,7 +111,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     ver: ["carga", "proton", "eletron"],
   },
 
-  // ───────── Números do painel ─────────
+  // ----- numeros do painel -----
   {
     id: "numero-atomico",
     termo: "Número atômico",
@@ -176,7 +188,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     sinonimos: ["simbolo"],
   },
 
-  // ───────── Isótopos e íons ─────────
+  // ----- isotopos e ions -----
   {
     id: "elemento",
     termo: "Elemento químico",
@@ -280,7 +292,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     ver: ["nuclideo"],
   },
 
-  // ───────── Tabela periódica ─────────
+  // ----- tabela periodica -----
   {
     id: "tabela",
     termo: "Tabela periódica",
@@ -403,7 +415,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     sinonimos: ["superpesado", "artificial"],
   },
 
-  // ───────── No jogo ─────────
+  // ----- no jogo -----
   {
     id: "estrela",
     termo: "Estrelas",
@@ -449,8 +461,14 @@ export const GLOSSARIO: TermoGlossario[] = [
   },
 ];
 
-/** Tira acentos e deixa tudo em minúsculas, para a busca achar "eletron" ao digitar "elétron". */
+/*******************************************************************************
+ * normalizar
+ * funcao: tira acentos e espacos das pontas e deixa tudo em minusculas, para
+ * a busca achar "eletron" mesmo quando o jogador digita com acento.
+ * recebe: t (string). retorna: o texto normalizado.
+ ******************************************************************************/
 export function normalizar(t: string): string {
+  // NFD separa a letra do acento; o replace apaga os acentos soltos
   return t
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
@@ -458,15 +476,28 @@ export function normalizar(t: string): string {
     .trim();
 }
 
+/*******************************************************************************
+ * termoPorId
+ * funcao: acha um termo pelo id.
+ * recebe: id (string). retorna: o TermoGlossario, ou undefined.
+ ******************************************************************************/
 export function termoPorId(id: string): TermoGlossario | undefined {
   return GLOSSARIO.find((t) => t.id === id);
 }
 
-/** Busca por termo, sigla, sinônimo ou trecho da definição. Termo e sinônimos pesam mais. */
+/*******************************************************************************
+ * buscarGlossario
+ * funcao: busca por termo, sigla, sinonimo ou trecho da definicao. termo e
+ * sigla pesam mais, depois sinonimos, por ultimo a definicao.
+ * recebe: consulta (texto digitado) e categoria (aba escolhida, opcional).
+ * retorna: os termos encontrados, do mais relevante para o menos; com
+ * consulta vazia, todos os termos da categoria.
+ ******************************************************************************/
 export function buscarGlossario(consulta: string, categoria?: CategoriaGlossario | null): TermoGlossario[] {
   const q = normalizar(consulta);
   const base = categoria ? GLOSSARIO.filter((t) => t.categoria === categoria) : GLOSSARIO;
   if (!q) return base;
+  // pontuacao de cada termo: 3 no nome ou sigla, 2 em sinonimo, 1 na definicao
   const pontos = (t: TermoGlossario): number => {
     if (normalizar(t.termo).includes(q)) return 3;
     if (t.sigla && normalizar(t.sigla) === q) return 3;
@@ -474,6 +505,7 @@ export function buscarGlossario(consulta: string, categoria?: CategoriaGlossario
     if (normalizar(t.definicao).includes(q)) return 1;
     return 0;
   };
+  // tira quem nao pontuou e ordena do maior para o menor
   return base
     .map((t) => ({ t, p: pontos(t) }))
     .filter((x) => x.p > 0)

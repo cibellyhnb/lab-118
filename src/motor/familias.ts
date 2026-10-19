@@ -1,20 +1,31 @@
+/*******************************************************************************
+ * familias.ts
+ * funcao principal: textos de cada familia da tabela para a cerimonia que
+ * acontece quando o jogador descobre todos os membros dela, e as contas de
+ * progresso que dizem quando essa cerimonia deve aparecer.
+ ******************************************************************************/
 import { ELEMENTOS, NOME_CATEGORIA } from "./dados";
 import { descoberto } from "./progresso";
 import type { Categoria, Elemento, Progresso } from "./tipos";
 
-/** Uma "família" do jogo é uma categoria da tabela (as mesmas cores do mapa). */
+// uma "familia" do jogo e uma categoria da tabela (as mesmas cores do mapa)
 export type FamiliaInfo = {
   id: Categoria;
-  /** Plural com artigo, para frases: "os halogênios". */
+  // plural com artigo, para frases: "os halogenios"
   nome: string;
-  /** Título de RPG da cerimônia. */
+  // titulo de RPG da cerimonia
   titulo: string;
-  /** Onde fica na tabela, já com a preposição ("no grupo 17, ..."). */
+  // onde fica na tabela, ja com a preposicao ("no grupo 17, ...")
   onde: string;
-  /** Três curiosidades que a Zula conta na cerimônia (e que o quiz da família retoma). */
+  // tres curiosidades que a Zula conta na cerimonia (e que o quiz da familia retoma)
   fatos: [string, string, string];
 };
 
+/*******************************************************************************
+ * FAMILIAS
+ * funcao: textos da cerimonia de cada uma das 10 familias, na ordem em que
+ * sao conferidas por familiaPendente.
+ ******************************************************************************/
 export const FAMILIAS: FamiliaInfo[] = [
   {
     id: "metal_alcalino",
@@ -128,33 +139,68 @@ export const FAMILIAS: FamiliaInfo[] = [
   },
 ];
 
+/*******************************************************************************
+ * familiaPorId
+ * funcao: acha os textos de uma familia.
+ * recebe: id (Categoria).
+ * retorna: o FamiliaInfo; lanca erro se a categoria nao estiver em FAMILIAS.
+ ******************************************************************************/
 export function familiaPorId(id: Categoria): FamiliaInfo {
   const f = FAMILIAS.find((x) => x.id === id);
   if (!f) throw new Error(`Família desconhecida: ${id}`);
   return f;
 }
 
+/*******************************************************************************
+ * nomeFamilia
+ * funcao: nome da familia no singular, ex: "Halogenio".
+ * recebe: id (Categoria). retorna: string.
+ ******************************************************************************/
 export function nomeFamilia(id: Categoria): string {
   return NOME_CATEGORIA[id];
 }
 
+/*******************************************************************************
+ * membros
+ * funcao: todos os elementos de uma familia.
+ * recebe: id (Categoria). retorna: lista de Elemento, em ordem de Z.
+ ******************************************************************************/
 export function membros(id: Categoria): Elemento[] {
   return ELEMENTOS.filter((e) => e.categoria === id);
 }
 
+/*******************************************************************************
+ * progressoFamilia
+ * funcao: conta quantos membros da familia o jogador ja descobriu.
+ * recebe: estado (Progresso) e id (Categoria).
+ * retorna: { descobertos, total, completa }; completa so e true quando
+ * todos os membros foram descobertos.
+ ******************************************************************************/
 export function progressoFamilia(estado: Progresso, id: Categoria): { descobertos: number; total: number; completa: boolean } {
   const lista = membros(id);
   const descobertos = lista.filter((e) => descoberto(estado, e.z)).length;
+  // lista.length > 0 evita dar uma familia vazia como completa
   return { descobertos, total: lista.length, completa: lista.length > 0 && descobertos === lista.length };
 }
 
+// texto guardado em conquistas para lembrar que a cerimonia ja aconteceu
 const marca = (id: Categoria) => `familia:${id}`;
 
+/*******************************************************************************
+ * familiaJaCelebrada
+ * funcao: diz se a cerimonia da familia ja foi mostrada.
+ * recebe: estado (Progresso) e id (Categoria). retorna: boolean.
+ ******************************************************************************/
 export function familiaJaCelebrada(estado: Progresso, id: Categoria): boolean {
   return estado.conquistas.includes(marca(id));
 }
 
-/** A primeira família completa que ainda não teve cerimônia, ou null. */
+/*******************************************************************************
+ * familiaPendente
+ * funcao: procura a primeira familia completa que ainda nao teve cerimonia.
+ * recebe: estado (Progresso).
+ * retorna: a Categoria dessa familia, ou null se nao houver nenhuma.
+ ******************************************************************************/
 export function familiaPendente(estado: Progresso): Categoria | null {
   for (const f of FAMILIAS) {
     if (progressoFamilia(estado, f.id).completa && !familiaJaCelebrada(estado, f.id)) return f.id;
@@ -162,6 +208,13 @@ export function familiaPendente(estado: Progresso): Categoria | null {
   return null;
 }
 
+/*******************************************************************************
+ * registrarFamilia
+ * funcao: marca a cerimonia da familia como vista.
+ * recebe: estado (Progresso) e id (Categoria).
+ * retorna: um novo Progresso com a marca em conquistas; se ja estava
+ * marcada, devolve o mesmo estado.
+ ******************************************************************************/
 export function registrarFamilia(estado: Progresso, id: Categoria): Progresso {
   if (familiaJaCelebrada(estado, id)) return estado;
   return { ...estado, conquistas: [...estado.conquistas, marca(id)] };

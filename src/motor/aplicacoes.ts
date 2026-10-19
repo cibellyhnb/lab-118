@@ -1,7 +1,14 @@
-/**
- * Onde cada elemento é usado ou encontrado (chave = número atômico Z). Texto autoral.
- * Formato de cada linha: "Tema: explicação curta". A ficha destaca o que vem antes dos dois-pontos.
- */
+/*******************************************************************************
+ * aplicacoes.ts
+ * funcao principal: textos de onde cada elemento e usado ou encontrado, para
+ * a ficha. so dados, escritos a mao.
+ ******************************************************************************/
+
+/*******************************************************************************
+ * APLICACOES
+ * funcao: para cada numero atomico Z, uma lista de frases no formato
+ * "Tema: explicacao curta". a ficha destaca o que vem antes dos dois-pontos.
+ ******************************************************************************/
 export const APLICACOES: Record<number, string[]> = {
   1: ["Foguetes e energia: combustível de foguetes e de células a combustível.", "Fertilizantes: matéria-prima da amônia, usada para fazer adubos.", "Na natureza: está na água e abastece as estrelas, como o Sol."],
   2: ["Balões: mais leve que o ar e não pega fogo.", "Ressonância magnética: resfria os ímãs supercondutores do aparelho.", "Mergulho profundo: entra na mistura de gases dos cilindros dos mergulhadores."],

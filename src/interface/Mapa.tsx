@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * Mapa.tsx
+ * funcao principal: tela do mapa, a tabela periodica com o progresso do
+ * jogador: blocos trancados ou abertos, estrelas, brasoes das familias,
+ * proxima missao e o final do jogo quando a tabela fica completa.
+ ******************************************************************************/
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
@@ -21,17 +27,28 @@ import { TituloLab } from "./Titulo";
 import { SoundToggle, Stars, catStyle } from "./comuns";
 import { useProgresso } from "./store";
 
+/*******************************************************************************
+ * Bloco
+ * funcao: um bloco da tabela. trancado, mostra cadeado e leva para a
+ * missao; aberto, mostra numero, simbolo e estrelas e leva para a ficha.
+ * recebe: el (Elemento).
+ * retorna: o bloco como link.
+ ******************************************************************************/
 function Bloco({ el }: { el: Elemento }) {
   const { estado } = useProgresso();
   const prog = estado.elementos[String(el.z)];
   const aberto = !!prog?.estrelas[0];
+  // com as 3 estrelas o bloco fica dourado
   const ouro = dominado(estado, el.z);
+  // coluna + 1 porque a primeira coluna da grade e a dos rotulos "Mundo"
   const estilo = { ...catStyle(el.categoria), gridRow: el.posicao.linha, gridColumn: el.posicao.coluna + 1 };
   const classe = `pixel-block aspect-square flex flex-col items-center justify-center ${aberto ? "block-open" : "block-locked"} ${ouro ? "block-gold" : ""} hover:brightness-110 focus-visible:z-10`;
+  // quadradinho claro no canto marca os elementos da Trilha essencial
   const trilha = el.trilha_essencial && (
     <span aria-hidden className="absolute left-0 top-0 h-1.5 w-1.5 bg-parchment" style={{ boxShadow: "1px 1px 0 var(--ink)" }} />
   );
 
+  // trancado: o nome fica escondido, so periodo e grupo no aria-label
   if (!aberto) {
     return (
       <Link
@@ -66,7 +83,13 @@ function Bloco({ el }: { el: Elemento }) {
   );
 }
 
-/** Faixa com o brasão de cada família: apagado até completar; depois vira atalho para o quiz e mostra o selo. */
+/*******************************************************************************
+ * Familias
+ * funcao: faixa com o brasao de cada familia: apagado ate completar;
+ * depois vira atalho para o quiz e mostra o selo.
+ * recebe: nada.
+ * retorna: a lista de brasoes com a contagem ou o selo de cada um.
+ ******************************************************************************/
 function Familias() {
   const { estado } = useProgresso();
   return (
@@ -76,6 +99,7 @@ function Familias() {
         {FAMILIAS.map((f) => {
           const pr = progressoFamilia(estado, f.id);
           const selo = seloConquistado(estado, f.id);
+          // embaixo do brasao: contagem, "QUIZ" ou as estrelas do selo
           const corpo = (
             <>
               <Emblema familia={f.id} scale={2} apagado={!pr.completa} />
@@ -103,29 +127,39 @@ function Familias() {
   );
 }
 
+// rotulo de cada linha da grade; a 8a e o espaco antes de lantanideos e actinideos
 const ROTULOS_LINHA = ["Mundo 1", "Mundo 2", "Mundo 3", "Mundo 4", "Mundo 5", "Mundo 6", "Mundo 7", "", "Lant.", "Actin."];
 
+/*******************************************************************************
+ * Mapa
+ * funcao: tela do mapa. manda para o tutorial quem ainda nao fez, e abre
+ * o final do jogo na primeira vez que a tabela fica completa.
+ * recebe: nada.
+ * retorna: cabecalho com progresso e familias, a tabela e a legenda.
+ ******************************************************************************/
 export function Mapa() {
   const { estado, avisoCorrompido, carregado } = useProgresso();
   const navegar = useNavigate();
+  // quem ainda nao fez o tutorial vai para ele
   useEffect(() => {
     if (carregado && !estado.tutorialConcluido) void navegar({ to: "/tutorial" });
   }, [carregado, estado.tutorialConcluido, navegar]);
   const tot = contarTotais(estado);
   const [final, setFinal] = useState(false);
-  // abre o final sozinho na primeira vez que a tabela fica completa (e guarda que já viu)
+  // abre o final sozinho na primeira vez que a tabela fica completa (e guarda que ja viu)
   useEffect(() => {
     if (!carregado || tot.elementos < ELEMENTOS.length) return;
     try {
       if (!localStorage.getItem("lab118:final")) setFinal(true);
     } catch {
-      /* sem armazenamento: não abre sozinho */
+      /* sem armazenamento: nao abre sozinho */
     }
   }, [carregado, tot.elementos]);
-  // TESTE (remover depois): abrir /?final=1 mostra o final mesmo sem a tabela completa
+  // TESTE (remover depois): abrir /mapa?final=1 mostra o final mesmo sem a tabela completa
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("final") === "1") setFinal(true);
   }, []);
+  // ao fechar o final, marca que ja foi visto
   const fecharFinal = () => {
     setFinal(false);
     try {
@@ -135,11 +169,13 @@ export function Mapa() {
     }
   };
   const proxima = gerarMissao(estado, 0);
+  // porcentagem da barra de progresso
   const pct = Math.round((tot.elementos / 118) * 100);
 
   return (
     <main className="flex min-h-screen flex-col justify-center">
-      {/* em telas baixas, cabeçalho e tabela encolhem juntos para a tabela caber inteira sem rolar (a grade tem ~1,9 de largura para 1 de altura) */}
+      {/* em telas baixas, cabecalho e tabela encolhem juntos para a tabela caber inteira
+          sem rolar (a grade tem ~1,9 de largura para 1 de altura) */}
       <div className="mx-auto w-full" style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}>
       <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -156,6 +192,7 @@ export function Mapa() {
             <p className="font-display mt-2 text-[8px] tracking-widest text-parchment-shade sm:text-[10px]">CONSTRUTOR ATÔMICO</p>
             </div>
           </div>
+          {/* atalhos; o botao FINAL so aparece com a tabela completa */}
           <div className="flex gap-2">
             <Link to="/quiz" className="pixel-btn btn-parchment">
               QUIZ
@@ -172,6 +209,7 @@ export function Mapa() {
             <BotaoAjuda />
           </div>
         </div>
+        {/* painel de progresso: contagens, barra, proxima missao e familias */}
         <div className="pixel-panel flex flex-col gap-2 p-3">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <p className="font-display text-[11px]">Elementos {tot.elementos}/118</p>
@@ -191,6 +229,7 @@ export function Mapa() {
         </div>
       </header>
 
+      {/* aviso quando o progresso salvo estava estragado */}
       {avisoCorrompido && (
         <p role="alert" className="pixel-panel mx-auto mt-4 max-w-3xl p-3">
           Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo antigo foi guardada.
@@ -202,6 +241,7 @@ export function Mapa() {
           className="grid gap-[3px]"
           style={{ gridTemplateColumns: "minmax(36px,auto) repeat(18, minmax(0,1fr))", gridTemplateRows: "repeat(7, auto) 12px auto auto" }}
         >
+          {/* rotulos das linhas */}
           {ROTULOS_LINHA.map((r, i) =>
             r ? (
               <span key={i} className="font-display flex items-center pr-1 text-[7px] text-parchment-shade sm:text-[9px]" style={{ gridRow: i + 1, gridColumn: 1 }}>
@@ -209,6 +249,7 @@ export function Mapa() {
               </span>
             ) : null,
           )}
+          {/* casas tracejadas que indicam onde entram lantanideos e actinideos */}
           {[6, 7].map((linha) => (
             <span
               key={linha}
@@ -224,6 +265,7 @@ export function Mapa() {
           ))}
         </div>
 
+        {/* legenda das cores */}
         <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Legenda das famílias">
           {(Object.keys(NOME_CATEGORIA) as Categoria[]).map((c) => (
             <li key={c} className="pixel-block block-open flex items-center gap-1.5 px-1.5 py-0.5 text-xs" style={catStyle(c)}>

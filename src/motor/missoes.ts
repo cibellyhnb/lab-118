@@ -1,15 +1,32 @@
+/*******************************************************************************
+ * missoes.ts
+ * funcao principal: cria as missoes de cada elemento (M1 descobrir, M2
+ * isotopo, M3 ion), escolhe a proxima missao sugerida e confere se uma
+ * montagem cumpre a missao, com a mensagem que o jogador ve.
+ ******************************************************************************/
 import { ELEMENTOS, elementoPorZ } from "./dados";
 import { notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
 import { descoberto } from "./progresso";
 import type { Classificacao, Missao, Progresso } from "./tipos";
 
-/** Pista de nível 1 da missão: autoral nos fáceis, descritiva nos médios e direta nos difíceis (ver dicas.ts). */
+/*******************************************************************************
+ * pistaGerada
+ * funcao: texto da pista de nivel 1 da missao de descoberta. varia com a
+ * dificuldade do elemento (ver dicas.ts).
+ * recebe: z (numero atomico).
+ * retorna: o texto da pista, ou "" se o Z nao existir.
+ ******************************************************************************/
 export function pistaGerada(z: number): string {
   return gerarDicas(z)[0]?.texto ?? "";
 }
 
-/** Missão M1 (descoberta). Nesta entrega só M1 está implementada. */
+/*******************************************************************************
+ * missaoDescoberta
+ * funcao: monta a missao M1, de descobrir o elemento montando o atomo neutro.
+ * recebe: z (numero atomico).
+ * retorna: a Missao, com a pista no enunciado e as 4 dicas.
+ ******************************************************************************/
 export function missaoDescoberta(z: number): Missao {
   const dicas = gerarDicas(z);
   const pista = dicas[0]?.texto ?? "";
@@ -23,17 +40,26 @@ export function missaoDescoberta(z: number): Missao {
   };
 }
 
+// escreve a carga com sinal: +2, -1
 const sinal = (q: number) => (q > 0 ? `+${q}` : `${q}`);
 
-/** M2: monte um isótopo do catálogo que o jogador ainda não registrou (prefere os mais abundantes). */
+/*******************************************************************************
+ * missaoIsotopo
+ * funcao: monta a missao M2, de montar um isotopo do catalogo que o jogador
+ * ainda nao registrou. prefere os mais abundantes.
+ * recebe: estado (Progresso) e z (numero atomico).
+ * retorna: a Missao, ou null se todos os isotopos ja foram feitos.
+ ******************************************************************************/
 export function missaoIsotopo(estado: Progresso, z: number): Missao | null {
   const el = elementoPorZ(z);
   if (!el) return null;
   const feitos = estado.elementos[String(z)]?.isotopos ?? [];
+  // ordena por abundancia (sem abundancia vai para o fim) e pega o primeiro
   const alvo = [...el.isotopos]
     .filter((i) => !feitos.includes(i.a))
     .sort((x, y) => (y.abundancia_pct ?? -1) - (x.abundancia_pct ?? -1))[0];
   if (!alvo) return null;
+  // neutrons que o jogador precisa colocar
   const n = alvo.a - z;
   return {
     id: `M2-${z}-${alvo.a}`,
@@ -49,12 +75,20 @@ export function missaoIsotopo(estado: Progresso, z: number): Missao | null {
   };
 }
 
-/** M3: transforme o elemento em um íon (carga comum do elemento, se houver). */
+/*******************************************************************************
+ * missaoIon
+ * funcao: monta a missao M3, de transformar o elemento em ion. pede a
+ * primeira carga comum que o jogador ainda nao fez.
+ * recebe: estado (Progresso) e z (numero atomico).
+ * retorna: a Missao; se nao sobrar carga comum, uma missao que aceita
+ * qualquer carga diferente de zero. null se o Z nao existir.
+ ******************************************************************************/
 export function missaoIon(estado: Progresso, z: number): Missao | null {
   const el = elementoPorZ(z);
   if (!el) return null;
   const feitos = estado.elementos[String(z)]?.ions ?? [];
   const q = el.ions_comuns.find((c) => !feitos.includes(c));
+  // sem carga comum pendente: missao generica, sem carga no criterio
   if (q === undefined) {
     return {
       id: `M3-${z}`,
@@ -69,6 +103,7 @@ export function missaoIon(estado: Progresso, z: number): Missao | null {
       criterio: { tipo: "ION", z },
     };
   }
+  // carga positiva quer dizer que o atomo perdeu eletrons
   const perdeu = q > 0;
   const mod = Math.abs(q);
   return {
@@ -85,10 +120,17 @@ export function missaoIon(estado: Progresso, z: number): Missao | null {
   };
 }
 
-/** Missão do elemento z: descobrir (M1), depois isótopo (M2), depois íon (M3). Nula quando as 3 estrelas já foram ganhas. */
+/*******************************************************************************
+ * missaoParaElemento
+ * funcao: escolhe a missao do elemento na ordem descobrir (M1), isotopo
+ * (M2) e ion (M3), conforme as estrelas que faltam.
+ * recebe: estado (Progresso) e z (numero atomico).
+ * retorna: a Missao, ou null quando as 3 estrelas ja foram ganhas.
+ ******************************************************************************/
 export function missaoParaElemento(estado: Progresso, z: number): Missao | null {
   if (!descoberto(estado, z)) return missaoDescoberta(z);
   const est = estado.elementos[String(z)]?.estrelas ?? [false, false, false];
+  // se nao sobrar isotopo para pedir, cai para a missao de ion
   if (!est[1]) {
     const m = missaoIsotopo(estado, z);
     if (m) return m;
@@ -97,22 +139,37 @@ export function missaoParaElemento(estado: Progresso, z: number): Missao | null 
   return null;
 }
 
-/** Sugere a próxima missão: Trilha essencial primeiro, em ordem crescente de Z. */
+/*******************************************************************************
+ * gerarMissao
+ * funcao: sugere a proxima missao de descoberta: Trilha essencial primeiro,
+ * depois o resto, sempre em ordem crescente de Z.
+ * recebe: estado (Progresso) e _semente (nao usada hoje).
+ * retorna: a Missao M1, ou null se tudo ja foi descoberto.
+ ******************************************************************************/
 export function gerarMissao(estado: Progresso, _semente: number): Missao | null {
   const pendentes = ELEMENTOS.filter((el) => !descoberto(estado, el.z));
   const alvo = pendentes.find((el) => el.trilha_essencial) ?? pendentes[0];
   return alvo ? missaoDescoberta(alvo.z) : null;
 }
 
+/*******************************************************************************
+ * avaliarMissao
+ * funcao: confere se a montagem cumpre a missao e escreve a resposta para
+ * o jogador (acerto ou o que ajustar).
+ * recebe: m (Missao) e c (Classificacao da montagem).
+ * retorna: { cumprida, mensagem }; mensagem vazia se a montagem for invalida.
+ ******************************************************************************/
 export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean; mensagem: string } {
   if (!c.valido || !c.elemento) return { cumprida: false, mensagem: "" };
   const el = elementoPorZ(m.z);
   const nome = el?.nome ?? "";
+  // M2: precisa ser o mesmo elemento com o numero de massa pedido
   if (m.criterio.tipo === "ISOTOPO") {
     if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com o ${nome.toLowerCase()} (${m.z} prótons).` };
     if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Missão cumprida! Você montou o ${nome}-${c.a}: mesmo elemento, massa diferente.` };
     return { cumprida: false, mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.` };
   }
+  // M3: qualquer carga diferente de zero, ou a carga exata quando a missao pede uma
   if (m.criterio.tipo === "ION") {
     if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com o ${nome.toLowerCase()} (${m.z} prótons).` };
     const alvoQ = m.criterio.carga;
@@ -122,6 +179,7 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
     if (c.carga === 0) return { cumprida: false, mensagem: "Átomo neutro, com carga 0. Mude a quantidade de elétrons." };
     return { cumprida: false, mensagem: `A carga agora é ${sinal(c.carga)}, mas o alvo é ${sinal(alvoQ ?? 0)}. Ajuste os elétrons.` };
   }
+  // M1: o elemento certo e neutro
   const cumprida = c.z === m.z && c.especie === "atomo_neutro";
   if (cumprida) return { cumprida, mensagem: `Isso! Você descobriu o ${c.elemento.nome}!` };
   if (c.z === m.z) {
@@ -130,6 +188,7 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
       mensagem: `Isso é um íon de ${c.elemento.nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`,
     };
   }
+  // elemento errado: diz se o alvo tem mais ou menos protons
   const direcao = m.z > c.z ? "mais" : "menos";
   return {
     cumprida,

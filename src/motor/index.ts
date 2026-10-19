@@ -1,3 +1,8 @@
+/*******************************************************************************
+ * index.ts
+ * funcao principal: junta tudo o que o motor exporta num lugar so, para a
+ * interface importar de "motor" sem saber em qual arquivo cada coisa esta.
+ ******************************************************************************/
 export * from "./tipos";
 export * from "./dados";
 export * from "./classificar";

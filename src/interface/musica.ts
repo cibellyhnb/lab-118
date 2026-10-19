@@ -1,28 +1,35 @@
-// Música 8-bit gerada em código (Web Audio). Nenhum arquivo de áudio, nenhuma melodia de terceiros:
-// as duas trilhas abaixo são originais e curtas, feitas só de ondas de pulso, triangular e ruído.
+/*******************************************************************************
+ * musica.ts
+ * funcao principal: musica de fundo 8 bits gerada em codigo com a Web Audio
+ * API. as trilhas sao originais e curtas, feitas so de ondas de pulso,
+ * triangular e ruido; nenhum arquivo de audio nem melodia de terceiros.
+ ******************************************************************************/
 import { audio } from "./som";
 
+// trilhas disponiveis; cada tela pede uma pelo useMusica
 export type Trilha = "historia" | "laboratorio" | "ambiente";
 
-type Nota = number | null; // número MIDI ou pausa
+type Nota = number | null; // numero MIDI ou pausa
+// converte numero MIDI em frequencia (69 = la de 440 Hz)
 const hz = (m: number) => 440 * 2 ** ((m - 69) / 12);
 
 type Definicao = {
-  bpm: number; // cada passo é uma colcheia
+  bpm: number; // cada passo e uma colcheia
   melodia: Nota[];
   baixo: Nota[];
   acordes: number[][]; // um acorde por compasso (8 passos)
   arpejo: boolean;
   bateria: boolean;
-  /** Trilha suave: acordes longos (pad) com eco, melodia esparsa e volume baixo. */
+  // trilha suave: acordes longos (pad) com eco, melodia esparsa e volume baixo
   suave?: boolean;
-  /** Chiado leve no contratempo (sem bumbo). */
+  // chiado leve no contratempo (sem bumbo)
   chiado?: boolean;
-  /** Multiplicador de volume da trilha (1 = normal). */
+  // multiplicador de volume da trilha (1 = normal)
   vol?: number;
 };
 
-// Trilha da história: lá menor, calma e misteriosa, terminando mais esperançosa (Am - F - C - G).
+// trilha da historia: la menor, calma e misteriosa, terminando mais esperancosa (Am - F - C - G).
+// melodia e baixo tem 8 passos por compasso, 4 compassos
 const HISTORIA: Definicao = {
   bpm: 84,
   arpejo: true,
@@ -47,7 +54,7 @@ const HISTORIA: Definicao = {
   ],
 };
 
-// Trilha do laboratório: dó maior, animada (C - G - Am - F), com bateria de ruído.
+// trilha do laboratorio: do maior, animada (C - G - Am - F), com bateria de ruido
 const LABORATORIO: Definicao = {
   bpm: 124,
   arpejo: false,
@@ -73,8 +80,9 @@ const LABORATORIO: Definicao = {
 };
 
 
-// Trilha ambiente (fundo do jogo todo): aconchegante e alegre, mas baixinha para não cansar.
-// Dó maior, 104 bpm, 8 compassos (C - Am - F - G - C - Em - F - G): arpejo suave, melodia pentatônica saltitante e um chiado leve no contratempo.
+// trilha ambiente (fundo do jogo todo): aconchegante e alegre, mas baixinha para nao cansar.
+// do maior, 104 bpm, 8 compassos (C - Am - F - G - C - Em - F - G): arpejo suave,
+// melodia pentatonica saltitante e um chiado leve no contratempo
 const AMBIENTE: Definicao = {
   bpm: 104,
   arpejo: true,
@@ -101,12 +109,20 @@ const AMBIENTE: Definicao = {
     77, null, 81, null, 84, 81, 79, 77,
     79, null, 74, null, 76, 74, 71, null,
   ],
+  // baixo gerado: para cada nota raiz, o padrao raiz, quinta, raiz, quinta no compasso
   baixo: [48, 45, 41, 43, 48, 40, 41, 43].flatMap((r) => [r, null, r + 7, null, r, null, r + 7, null] as Nota[]),
 };
 
+// liga o nome de cada trilha a sua definicao
 const TRILHAS: Record<Trilha, Definicao> = { historia: HISTORIA, laboratorio: LABORATORIO, ambiente: AMBIENTE };
 
-/** Onda de pulso com ciclo de trabalho `d` (0,25 = som clássico de 8 bits). */
+/*******************************************************************************
+ * onda
+ * funcao: cria uma onda de pulso com ciclo de trabalho d, somando 48
+ * harmonicos (serie de Fourier). d = 0,25 da o som classico de 8 bits.
+ * recebe: a (AudioContext) e d (entre 0 e 1).
+ * retorna: a PeriodicWave pronta para usar num oscilador.
+ ******************************************************************************/
 function onda(a: AudioContext, d: number): PeriodicWave {
   const N = 48;
   const real = new Float32Array(N);
@@ -118,6 +134,12 @@ function onda(a: AudioContext, d: number): PeriodicWave {
   return a.createPeriodicWave(real, imag);
 }
 
+/*******************************************************************************
+ * Player
+ * funcao: tocador de musica. agenda as notas um pouco a frente do tempo
+ * atual (a cada 30 ms) para a musica nao engasgar, e liga/desliga o volume
+ * sem perder o ponto da musica.
+ ******************************************************************************/
 class Player {
   private a: AudioContext | null = null;
   private master: GainNode | null = null;
@@ -132,19 +154,29 @@ class Player {
   private eco: GainNode | null = null;
   private volTrilha = 1;
 
+  // qual trilha esta tocando agora, ou null
   tocando(): Trilha | null {
     return this.timer !== null ? this.trilha : null;
   }
 
+  /*****************************************************************************
+   * preparar
+   * funcao: monta os nos de audio na primeira vez (volume geral, eco, ondas
+   * de pulso e o buffer de ruido da bateria).
+   * recebe: nada.
+   * retorna: false se nao houver audio no navegador.
+   ****************************************************************************/
   private preparar(): boolean {
     const a = audio();
     if (!a) return false;
+    // so remonta se o contexto de audio for novo
     if (!this.a || this.a !== a) {
       this.a = a;
       this.master = a.createGain();
       this.master.gain.value = this.ligada ? 0.9 : 0;
       this.master.connect(a.destination);
-      // eco suave (usado só pela trilha ambiente): atraso com realimentação e filtro que escurece cada repetição
+      // eco suave (usado so pelas trilhas com suave: true): atraso com realimentacao
+      // e filtro que escurece cada repeticao
       const atraso = a.createDelay(1.5);
       atraso.delayTime.value = 0.7;
       const volta = a.createGain();
@@ -161,6 +193,7 @@ class Player {
       filtro.connect(this.master);
       this.pulso25 = onda(a, 0.25);
       this.pulso50 = onda(a, 0.5);
+      // 0,1 s de ruido branco para o chiado e a bateria
       const len = Math.floor(a.sampleRate * 0.1);
       this.ruido = a.createBuffer(1, len, a.sampleRate);
       const d = this.ruido.getChannelData(0);
@@ -169,7 +202,14 @@ class Player {
     return true;
   }
 
-  /** Precisa ser chamado depois de um toque/clique do jogador (regra de autoplay dos navegadores). */
+  /*****************************************************************************
+   * iniciar
+   * funcao: comeca a tocar a trilha do inicio. se ela ja estiver tocando, so
+   * retoma o audio. precisa vir depois de um toque ou clique do jogador
+   * (regra de autoplay dos navegadores).
+   * recebe: trilha (Trilha).
+   * retorna: nada.
+   ****************************************************************************/
   iniciar(trilha: Trilha) {
     if (!this.preparar() || !this.a) return;
     if (this.timer !== null && this.trilha === trilha) {
@@ -180,29 +220,49 @@ class Player {
     void this.a.resume();
     this.trilha = trilha;
     this.passo = 0;
+    // primeira nota sai 80 ms depois, para dar tempo de agendar
     this.proximo = this.a.currentTime + 0.08;
     this.timer = window.setInterval(() => this.agendar(), 30);
   }
 
+  /*****************************************************************************
+   * parar
+   * funcao: para de agendar notas (as ja agendadas terminam sozinhas).
+   * recebe: nada. retorna: nada.
+   ****************************************************************************/
   parar() {
     if (this.timer !== null) window.clearInterval(this.timer);
     this.timer = null;
     this.trilha = null;
   }
 
-  /** Liga/desliga o volume sem perder o ponto da música. */
+  /*****************************************************************************
+   * definirLigada
+   * funcao: liga ou desliga o volume sem perder o ponto da musica.
+   * recebe: ligada (boolean).
+   * retorna: nada.
+   ****************************************************************************/
   definirLigada(ligada: boolean) {
     this.ligada = ligada;
+    // setTargetAtTime faz o volume mudar suave, sem estalo
     if (this.master && this.a) this.master.gain.setTargetAtTime(ligada ? 0.9 : 0, this.a.currentTime, 0.05);
   }
 
+  /*****************************************************************************
+   * agendar
+   * funcao: chamada a cada 30 ms; agenda todas as notas que caem nos
+   * proximos 0,4 s.
+   * recebe: nada. retorna: nada.
+   ****************************************************************************/
   private agendar() {
     const a = this.a;
     if (!a || !this.trilha) return;
     const t = TRILHAS[this.trilha];
     this.volTrilha = t.vol ?? 1;
+    // duracao de uma colcheia em segundos
     const dur = 60 / t.bpm / 2;
-    // se o navegador travou a aba por um tempo (aba em segundo plano, tela pesada), não despeja as notas atrasadas de uma vez
+    // se o navegador travou a aba por um tempo (aba em segundo plano, tela pesada),
+    // nao despeja as notas atrasadas de uma vez
     if (this.proximo < a.currentTime - 0.25) this.proximo = a.currentTime + 0.05;
     while (this.proximo < a.currentTime + 0.4) {
       this.tocarPasso(t, this.passo % t.melodia.length, this.proximo, dur);
@@ -211,6 +271,14 @@ class Player {
     }
   }
 
+  /*****************************************************************************
+   * nota
+   * funcao: toca uma nota com ataque curto e queda ate o silencio.
+   * recebe: freq (Hz), ini (momento de inicio), dur (segundos), vol, tipo de
+   * onda (pulso 25%, pulso 50% ou triangular), ataque (segundos) e eco
+   * (se tambem manda o som para o eco).
+   * retorna: nada.
+   ****************************************************************************/
   private nota(freq: number, ini: number, dur: number, vol: number, tipo: "p25" | "p50" | "tri", ataque = 0.008, eco = false) {
     const a = this.a;
     if (!a || !this.master) return;
@@ -228,6 +296,13 @@ class Player {
     o.stop(ini + dur + 0.02);
   }
 
+  /*****************************************************************************
+   * bateria
+   * funcao: toca uma batida: bumbo (triangular caindo de 150 para 45 Hz) ou
+   * chiado (ruido filtrado so nos agudos).
+   * recebe: ini (momento de inicio) e tipo ("bumbo" ou "chiado").
+   * retorna: nada.
+   ****************************************************************************/
   private bateria(ini: number, tipo: "bumbo" | "chiado") {
     const a = this.a;
     if (!a || !this.master) return;
@@ -244,6 +319,7 @@ class Player {
       o.stop(ini + 0.16);
       return;
     }
+    // chiado
     const src = a.createBufferSource();
     src.buffer = this.ruido;
     const f = a.createBiquadFilter();
@@ -257,7 +333,16 @@ class Player {
     src.stop(ini + 0.06);
   }
 
+  /*****************************************************************************
+   * tocarPasso
+   * funcao: toca tudo o que cai num passo da trilha: melodia, baixo, acordes
+   * ou arpejo e bateria.
+   * recebe: t (Definicao), i (indice do passo), ini (momento de inicio) e dur
+   * (duracao de um passo).
+   * retorna: nada.
+   ****************************************************************************/
   private tocarPasso(t: Definicao, i: number, ini: number, dur: number) {
+    // modo suave: notas longas com eco e um acorde inteiro no inicio de cada compasso
     if (t.suave) {
       const m = t.melodia[i];
       if (m != null) this.nota(hz(m), ini, dur * 4, 0.03, "p50", 0.05, true);
@@ -269,15 +354,18 @@ class Player {
       }
       return;
     }
+    // modo normal: melodia em pulso 25% e baixo triangular
     const m = t.melodia[i];
     if (m != null) this.nota(hz(m), ini, dur * 1.8, 0.055, "p25");
     const b = t.baixo[i];
     if (b != null) this.nota(hz(b), ini, dur * 3.4, 0.11, "tri");
+    // arpejo: sobe e desce pelas notas do acorde do compasso, uma oitava acima
     if (t.arpejo) {
       const acorde = t.acordes[Math.floor(i / 8) % t.acordes.length]!;
       const ordem = [0, 1, 2, 1, 0, 1, 2, 1][i % 8]!;
       this.nota(hz(acorde[ordem]! + 12), ini, dur * 0.9, 0.022, "p50");
     }
+    // bumbo a cada 4 passos e chiado nos contratempos
     if (t.bateria) {
       if (i % 4 === 0) this.bateria(ini, "bumbo");
       if (i % 2 === 1) this.bateria(ini, "chiado");
@@ -286,7 +374,12 @@ class Player {
   }
 }
 
+/*******************************************************************************
+ * musica
+ * funcao: o unico tocador do jogo, usado pelo useMusica.
+ ******************************************************************************/
 export const musica = new Player();
 
-// Em desenvolvimento, ao salvar este arquivo o Vite criaria um segundo player (o antigo continuaria tocando sem controle). Recarrega a página.
+// em desenvolvimento, ao salvar este arquivo o Vite criaria um segundo player (o antigo
+// continuaria tocando sem controle); por isso recarrega a pagina
 if (import.meta.hot) import.meta.hot.accept(() => window.location.reload());

@@ -1,6 +1,15 @@
+/*******************************************************************************
+ * mapa.tsx
+ * funcao principal: rota /mapa, a tabela periodica com o progresso do
+ * jogador.
+ ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
 import { Mapa } from "@/interface/Mapa";
 
+/*******************************************************************************
+ * Route
+ * funcao: registra a rota /mapa com os metadados e a tela Mapa.
+ ******************************************************************************/
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [

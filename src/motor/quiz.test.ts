@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * quiz.test.ts
+ * funcao principal: testa as familias (cobertura dos 118 elementos e a
+ * cerimonia pendente) e o quiz (perguntas, embaralhamento, rodadas e
+ * selos).
+ ******************************************************************************/
 import { describe, expect, it } from "vitest";
 import {
   ELEMENTOS,
@@ -20,12 +26,20 @@ import {
   type Progresso,
 } from "./index";
 
+/*******************************************************************************
+ * descobrirTodos
+ * funcao: descobre varios elementos de uma vez, montando cada um neutro
+ * com n = z.
+ * recebe: base (Progresso) e zs (numeros atomicos).
+ * retorna: o Progresso depois de todas as montagens.
+ ******************************************************************************/
 function descobrirTodos(base: Progresso, zs: number[]): Progresso {
   let s = base;
   for (const z of zs) s = construir(s, { p: z, n: z, e: z }).estado;
   return s;
 }
 
+// familias da tabela e quando a cerimonia deve aparecer
 describe("famílias", () => {
   it("as 10 famílias cobrem os 118 elementos, sem repetir", () => {
     const zs = FAMILIAS.flatMap((f) => membros(f.id).map((e) => e.z));
@@ -38,10 +52,12 @@ describe("famílias", () => {
   it("completar uma família gera uma única cerimônia pendente", () => {
     let s = progressoInicial();
     expect(familiaPendente(s)).toBeNull();
+    // descobre todos os halogenios menos o ultimo: ainda nao ha cerimonia
     const hal = membros("halogenio").map((e) => e.z);
     s = descobrirTodos(s, hal.slice(0, -1));
     expect(progressoFamilia(s, "halogenio")).toMatchObject({ descobertos: hal.length - 1, total: hal.length, completa: false });
     expect(familiaPendente(s)).toBeNull();
+    // o ultimo completa a familia
     s = descobrirTodos(s, hal.slice(-1));
     expect(progressoFamilia(s, "halogenio").completa).toBe(true);
     expect(familiaPendente(s)).toBe("halogenio");
@@ -51,6 +67,7 @@ describe("famílias", () => {
   });
 });
 
+// banco de perguntas, montagem das rodadas e selos
 describe("quiz", () => {
   it("cada família tem 5 perguntas e o geral tem pelo menos 12", () => {
     for (const f of FAMILIAS) expect(perguntasDoQuiz(f.id).length, f.id).toBe(5);
@@ -68,6 +85,7 @@ describe("quiz", () => {
   });
 
   it("embaralhar mantém a resposta certa em algum lugar e o índice aponta para ela", () => {
+    // semente fixa para o embaralhamento ser sempre o mesmo
     const r = rng(7);
     for (const p of PERGUNTAS) {
       const pronta = prepararPergunta(p, r);
@@ -85,6 +103,7 @@ describe("quiz", () => {
 
   it("selos: terminar vale 1, 60% vale 2, tudo certo vale 3, e o melhor fica guardado", () => {
     expect(seloDoResultado(0, 5)).toBe(1);
+    // limites: 2 de 5 (40%) ainda e 1; 3 de 5 (60%) ja e 2
     expect(seloDoResultado(2, 5)).toBe(1);
     expect(seloDoResultado(3, 5)).toBe(2);
     expect(seloDoResultado(5, 5)).toBe(3);
@@ -94,11 +113,12 @@ describe("quiz", () => {
     expect(r).toMatchObject({ selo: 2, novoRecorde: true });
     s = r.estado;
     expect(s.quiz.rodadas).toBe(1);
-    r = registrarQuiz(s, "halogenio", 1, 5); // pior que o anterior: não rebaixa
+    r = registrarQuiz(s, "halogenio", 1, 5); // pior que o anterior: nao rebaixa
     expect(r.novoRecorde).toBe(false);
     expect(seloConquistado(r.estado, "halogenio")).toBe(2);
     r = registrarQuiz(r.estado, "halogenio", 5, 5);
     expect(seloConquistado(r.estado, "halogenio")).toBe(3);
+    // ao subir de selo a marca antiga e trocada, nao acumulada
     expect(r.estado.conquistas.filter((c) => c.startsWith("quiz:halogenio:")).length).toBe(1);
     expect(r.estado.quiz.melhor).toBe(100);
   });

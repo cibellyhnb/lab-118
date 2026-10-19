@@ -1,9 +1,16 @@
-/**
- * Curiosidade / uso do dia a dia de cada elemento (chave = número atômico Z).
- * Texto autoral. Nenhuma frase diz o nome do elemento: a dica 1 da missão junta esta frase
- * com a família e o período/grupo (e, nos elementos difíceis, também com o nome e a massa).
- * Para ajustar um texto, edite só a frase correspondente.
- */
+/*******************************************************************************
+ * curiosidades.ts
+ * funcao principal: uma curiosidade do dia a dia para cada elemento, usada na
+ * primeira dica das missoes de descoberta. so dados, escritos a mao.
+ ******************************************************************************/
+
+/*******************************************************************************
+ * CURIOSIDADES
+ * funcao: frase de cada elemento, indexada pelo numero atomico Z. nenhuma
+ * frase diz o nome do elemento: a dica 1 junta esta frase com a familia e o
+ * periodo/grupo (nos elementos dificeis, tambem com o nome e a massa). para
+ * ajustar um texto, basta editar a frase correspondente.
+ ******************************************************************************/
 export const CURIOSIDADES: Record<number, string> = {
   1: "O elemento mais abundante do universo: abastece as estrelas e está na água.",
   2: "Gás mais leve que o ar que não pega fogo: enche balões e deixa a voz fininha.",

@@ -1,9 +1,20 @@
+/*******************************************************************************
+ * glossario.tsx
+ * funcao principal: rota /glossario. aceita ?termo= na url para abrir ja
+ * num termo especifico.
+ ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
 import { Glossario } from "@/interface/Glossario";
 
+// parametros aceitos na url
 type Busca = { termo?: string };
 
+/*******************************************************************************
+ * Route
+ * funcao: registra a rota /glossario e os metadados da pagina.
+ ******************************************************************************/
 export const Route = createFileRoute("/glossario")({
+  // so aceita termo se for texto; qualquer outra coisa e ignorada
   validateSearch: (s: Record<string, unknown>): Busca => (typeof s["termo"] === "string" ? { termo: s["termo"] } : {}),
   head: () => ({
     meta: [
@@ -16,6 +27,11 @@ export const Route = createFileRoute("/glossario")({
   component: Pagina,
 });
 
+/*******************************************************************************
+ * Pagina
+ * funcao: le o termo da url e abre o glossario nele.
+ * recebe: nada. retorna: o componente Glossario.
+ ******************************************************************************/
 function Pagina() {
   const { termo } = Route.useSearch();
   return <Glossario termoInicial={termo} />;

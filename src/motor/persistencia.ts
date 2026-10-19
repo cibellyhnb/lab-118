@@ -1,35 +1,63 @@
+/*******************************************************************************
+ * persistencia.ts
+ * funcao principal: salva e carrega o progresso do jogador num armazenamento
+ * do tipo localStorage, guardando a parte se o dado salvo estiver
+ * corrompido.
+ ******************************************************************************/
 import { progressoInicial } from "./progresso";
 import type { Progresso } from "./tipos";
 
+// chave usada no armazenamento
 export const CHAVE = "construtor-atomico:progresso";
 
+// so o que o codigo usa do Storage; nos testes da para passar um objeto simples
 type Armazenamento = Pick<Storage, "getItem" | "setItem">;
 
+/*******************************************************************************
+ * valido
+ * funcao: confere por cima se o objeto lido tem cara de Progresso
+ * (versao numerica e elementos como objeto).
+ * recebe: x (qualquer valor vindo do JSON).
+ * retorna: true se parece um Progresso.
+ ******************************************************************************/
 function valido(x: unknown): x is Progresso {
   if (!x || typeof x !== "object") return false;
   const o = x as Record<string, unknown>;
   return typeof o["versao"] === "number" && !!o["elementos"] && typeof o["elementos"] === "object";
 }
 
-/** Carrega o progresso. Dado corrompido vai para CHAVE + ":corrompido". */
+/*******************************************************************************
+ * carregar
+ * funcao: le o progresso salvo. se o dado estiver estragado, copia ele para
+ * CHAVE + ":corrompido" e comeca do zero.
+ * recebe: arm (armazenamento com getItem e setItem).
+ * retorna: { estado, corrompido }, com o progresso e se houve corrupcao.
+ ******************************************************************************/
 export function carregar(arm: Armazenamento): { estado: Progresso; corrompido: boolean } {
   const bruto = arm.getItem(CHAVE);
+  // nada salvo ainda: jogo novo
   if (!bruto) return { estado: progressoInicial(), corrompido: false };
   try {
     const obj: unknown = JSON.parse(bruto);
     if (!valido(obj)) throw new Error("formato");
-    // Migração: só existe a versão 1; campos ausentes recebem o padrão.
+    // migracao: so existe a versao 1; campos que faltam recebem o valor padrao
     const base = progressoInicial();
     return {
       estado: { ...base, ...obj, versao: 1, config: { ...base.config, ...obj.config }, quiz: { ...base.quiz, ...obj.quiz } },
       corrompido: false,
     };
   } catch {
+    // JSON quebrado ou formato errado: guarda o texto original e recomeca
     arm.setItem(`${CHAVE}:corrompido`, bruto);
     return { estado: progressoInicial(), corrompido: true };
   }
 }
 
+/*******************************************************************************
+ * salvar
+ * funcao: grava o progresso em JSON na CHAVE.
+ * recebe: arm (armazenamento) e estado (Progresso). retorna: nada.
+ ******************************************************************************/
 export function salvar(arm: Armazenamento, estado: Progresso): void {
   arm.setItem(CHAVE, JSON.stringify(estado));
 }

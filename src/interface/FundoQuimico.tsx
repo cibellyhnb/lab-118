@@ -1,15 +1,29 @@
+/*******************************************************************************
+ * FundoQuimico.tsx
+ * funcao principal: enfeites de fundo das telas: frascos, ceu estrelado,
+ * formulas flutuando, atomo girando, predio do Instituto Zero, as cenas
+ * montadas com eles e a mini tabela do progresso.
+ ******************************************************************************/
 import { useMemo } from "react";
 import { ELEMENTOS } from "@/motor";
 import { PixelArt } from "./PixelArt";
 import { catStyle } from "./comuns";
 import { useProgresso } from "./store";
 
-// ───────── peças de pixel art ─────────
+// ----- pecas de pixel art -----
+// k = contorno do vidro, w = vidro, l = liquido, h = brilho do liquido
 const ERLEN = ["...kkkkk...", "...kwwwk...", "...kwwwk...", "...kwwwk...", "..kwwwwwk..", "..kwwwwwk..", ".kwwllllwk.", ".kwllhllwk.", "kwwlllllwwk", "kwlllhlllwk", "kwlllllllwk", "kwwlllllwwk", ".kkkkkkkkk."];
 const TUBO = ["kkkkk", "kwwwk", "kwwwk", "kwwwk", "kllhk", "kllhk", "kllhk", "kllhk", ".klhk", ".kkk."];
 const BECHER = ["kkkkkkkkk", "kwwwwwwwk", "kwwwwwwwk", "kllllllhk", "kllllllhk", "kllhlllhk", "kllllllhk", "kllllllhk", "kkkkkkkkk"];
 const FORMAS = { erlen: ERLEN, tubo: TUBO, becher: BECHER };
 
+/*******************************************************************************
+ * Frasco
+ * funcao: um frasco de vidro com liquido colorido e bolhas subindo.
+ * recebe: forma ("erlen", "tubo" ou "becher"), cor do liquido, scale e
+ * bolhas (liga as bolhas).
+ * retorna: o frasco em pixel art.
+ ******************************************************************************/
 export function Frasco({ forma, cor, scale = 4, bolhas = true }: { forma: keyof typeof FORMAS; cor: string; scale?: number; bolhas?: boolean }) {
   const rows = FORMAS[forma];
   const larg = Math.max(...rows.map((r) => r.length)) * scale;
@@ -33,9 +47,16 @@ export function Frasco({ forma, cor, scale = 4, bolhas = true }: { forma: keyof 
   );
 }
 
+// cores de liquido usadas em sequencia nas fileiras
 const LIQUIDOS = ["var(--cat-halogenio)", "var(--cat-metal_alcalino)", "var(--cat-gas_nobre)", "var(--cat-nao_metal)", "var(--cat-metal_transicao)", "var(--cat-semimetal)"];
 
-/** Um grupo de frascos em fila. */
+/*******************************************************************************
+ * FileiraFrascos
+ * funcao: um grupo de frascos em fila, alternando forma e cor.
+ * recebe: n (quantos frascos), scale e desde (desloca a sequencia de formas
+ * e cores, para fileiras vizinhas nao ficarem iguais).
+ * retorna: a fileira.
+ ******************************************************************************/
 export function FileiraFrascos({ n = 3, scale = 4, desde = 0 }: { n?: number; scale?: number; desde?: number }) {
   const formas: (keyof typeof FORMAS)[] = ["erlen", "tubo", "becher", "tubo", "erlen"];
   return (
@@ -47,8 +68,16 @@ export function FileiraFrascos({ n = 3, scale = 4, desde = 0 }: { n?: number; sc
   );
 }
 
-// ───────── céu ─────────
+// ----- ceu -----
+/*******************************************************************************
+ * CeuEstrelado
+ * funcao: 70 estrelinhas piscando, duas estrelas cadentes e, se pedir,
+ * faixas de aurora.
+ * recebe: aurora (boolean).
+ * retorna: a camada de ceu (decorativa).
+ ******************************************************************************/
 export function CeuEstrelado({ aurora = false }: { aurora?: boolean }) {
+  // posicoes calculadas sem sorteio, para o ceu ser sempre igual
   const pts = useMemo(
     () => Array.from({ length: 70 }, (_, i) => ({ x: (i * 53 + 7) % 100, y: (i * 37 + 3) % 78, s: 2 + (i % 3), d: (i % 9) * 0.35 })),
     [],
@@ -70,6 +99,7 @@ export function CeuEstrelado({ aurora = false }: { aurora?: boolean }) {
       {pts.map((p, i) => (
         <span key={i} className="anim-twinkle absolute bg-cloud" style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s, animationDelay: `${p.d}s` }} />
       ))}
+      {/* estrelas cadentes */}
       {[0, 1].map((i) => (
         <span key={i} className="anim-cadente absolute block h-[3px] w-[70px] bg-cloud" style={{ left: `${30 + i * 40}%`, top: `${6 + i * 10}%`, animationDelay: `${i * 5.5 + 1}s`, boxShadow: "14px 0 0 color-mix(in oklab, white 55%, transparent), 28px 0 0 color-mix(in oklab, white 30%, transparent)" }} />
       ))}
@@ -77,7 +107,8 @@ export function CeuEstrelado({ aurora = false }: { aurora?: boolean }) {
   );
 }
 
-// ───────── fórmulas flutuando ─────────
+// ----- formulas flutuando -----
+// texto, posicao x (%), atraso (s) e duracao (s) de cada formula
 const FORMULAS: { t: React.ReactNode; x: number; d: number; dur: number }[] = [
   { t: <>H<sub>2</sub>O</>, x: 6, d: 0, dur: 16 },
   { t: <>CO<sub>2</sub></>, x: 17, d: 5, dur: 19 },
@@ -90,6 +121,11 @@ const FORMULAS: { t: React.ReactNode; x: number; d: number; dur: number }[] = [
   { t: "E=mc²", x: 47, d: 15, dur: 23 },
 ];
 
+/*******************************************************************************
+ * Formulas
+ * funcao: formulas quimicas subindo devagar no fundo.
+ * recebe: nada. retorna: a camada de formulas (decorativa).
+ ******************************************************************************/
 export function Formulas() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -97,6 +133,7 @@ export function Formulas() {
         <span
           key={i}
           className="anim-flutuar font-display absolute bottom-0 text-[9px] text-sky-light sm:text-[11px]"
+          // atraso negativo: a formula ja aparece no meio do caminho
           style={{ left: `${f.x}%`, animationDelay: `${-f.d}s`, animationDuration: `${f.dur}s` }}
         >
           {f.t}
@@ -106,8 +143,16 @@ export function Formulas() {
   );
 }
 
-// ───────── átomo orbitando ─────────
+// ----- atomo orbitando -----
+/*******************************************************************************
+ * AtomoFundo
+ * funcao: atomo decorativo com tres orbitas elipticas e um eletron
+ * andando em cada uma.
+ * recebe: className.
+ * retorna: o <svg> do atomo.
+ ******************************************************************************/
 export function AtomoFundo({ className = "" }: { className?: string }) {
+  // caminho da elipse, para o animateMotion seguir
   const caminho = "M -150 0 a 150 52 0 1 0 300 0 a 150 52 0 1 0 -300 0";
   return (
     <svg aria-hidden viewBox="-170 -170 340 340" shapeRendering="crispEdges" className={`pointer-events-none ${className}`}>
@@ -119,6 +164,7 @@ export function AtomoFundo({ className = "" }: { className?: string }) {
           </rect>
         </g>
       ))}
+      {/* nucleo: quatro quadradinhos e um no meio */}
       {[[-8, -8, "var(--proton)"], [0, -8, "var(--neutron, var(--sky-light))"], [-8, 0, "var(--neutron, var(--sky-light))"], [0, 0, "var(--proton)"], [-4, -4, "var(--gold)"]].map(([x, y, c], i) => (
         <rect key={i} x={x as number} y={y as number} width="8" height="8" fill={c as string} stroke="var(--ink)" strokeWidth="1" />
       ))}
@@ -126,11 +172,18 @@ export function AtomoFundo({ className = "" }: { className?: string }) {
   );
 }
 
-// ───────── prédio do Instituto Zero ─────────
+// ----- predio do Instituto Zero -----
+/*******************************************************************************
+ * Predio
+ * funcao: silhueta de predios no pe da tela, com janelas acesas e algumas
+ * piscando.
+ * recebe: nada. retorna: o <svg> dos predios (decorativo).
+ ******************************************************************************/
 export function Predio() {
   const blocos = useMemo(() => {
     const larg = [7, 5, 9, 6, 11, 5, 8, 7, 6, 10, 5, 8];
     const alt = [9, 14, 11, 17, 12, 8, 15, 10, 13, 9, 16, 11];
+    // empilha os blocos da esquerda para a direita, com 1 de espaco entre eles
     let x = 0;
     return larg.map((w, i) => {
       const b = { x, w, h: alt[i]! };
@@ -147,6 +200,7 @@ export function Predio() {
           <rect x={b.x} y={20 - b.h} width={b.w} height="1" fill="var(--panel)" />
           {Array.from({ length: Math.floor((b.h - 2) / 2) }, (_, r) =>
             Array.from({ length: Math.floor((b.w - 1) / 2) }, (_, c) => {
+              // escolhe as janelas acesas por conta, sem sorteio
               const acesa = (i * 7 + r * 3 + c * 5) % 4 === 0;
               return acesa ? (
                 <rect key={`${r}-${c}`} x={b.x + 1 + c * 2} y={20 - b.h + 2 + r * 2} width="1" height="1" fill="var(--gold)" className={(i + r + c) % 5 === 0 ? "anim-twinkle" : ""} style={{ animationDelay: `${(i + r) * 0.4}s` }} />
@@ -159,9 +213,15 @@ export function Predio() {
   );
 }
 
-// ───────── cenas ─────────
+// ----- cenas -----
 export type CenaDecor = "titulo" | "ceu" | "tabela" | "lab" | "atomo";
 
+/*******************************************************************************
+ * Prateleira
+ * funcao: prateleira de madeira com frascos, presa num dos lados da tela.
+ * recebe: lado ("esq" ou "dir"), topo (posicao vertical), n e desde.
+ * retorna: a prateleira (decorativa).
+ ******************************************************************************/
 function Prateleira({ lado, topo, n, desde }: { lado: "esq" | "dir"; topo: string; n: number; desde: number }) {
   return (
     <div aria-hidden className="absolute z-[1]" style={{ top: topo, [lado === "esq" ? "left" : "right"]: "4%" }}>
@@ -171,13 +231,20 @@ function Prateleira({ lado, topo, n, desde }: { lado: "esq" | "dir"; topo: strin
   );
 }
 
-/** Enfeites de fundo de cada cena. Fica atrás do resto: o chão e os personagens continuam sendo da própria cena. */
+/*******************************************************************************
+ * DecorCena
+ * funcao: enfeites de fundo de cada cena. fica atras do resto: o chao e os
+ * personagens continuam sendo da propria cena.
+ * recebe: cena ("titulo", "ceu", "tabela", "lab" ou "atomo").
+ * retorna: as camadas de fundo daquela cena.
+ ******************************************************************************/
 export function DecorCena({ cena }: { cena: CenaDecor }) {
   return (
     <>
       <CeuEstrelado />
       {cena !== "lab" && <Formulas />}
       {cena === "ceu" && <Predio />}
+      {/* tela inicial: atomo grande, bancada e frascos dos dois lados */}
       {cena === "titulo" && (
         <>
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -192,9 +259,10 @@ export function DecorCena({ cena }: { cena: CenaDecor }) {
           </div>
         </>
       )}
+      {/* laboratorio: janela, frascos na bancada e prateleiras */}
       {cena === "lab" && (
         <>
-          {/* janela com o céu da noite */}
+          {/* janela com o ceu da noite */}
           <div aria-hidden className="absolute left-1/2 top-[7%] z-[1] h-[22vh] w-[min(44vw,300px)] -translate-x-1/2 border-[6px] border-ink bg-ink" style={{ boxShadow: "0 0 0 4px var(--wood), 0 0 0 7px var(--ink)" }}>
             <div className="relative h-full w-full overflow-hidden" style={{ background: "linear-gradient(to bottom, var(--ink), var(--night))" }}>
               <CeuEstrelado aurora={false} />
@@ -218,14 +286,21 @@ export function DecorCena({ cena }: { cena: CenaDecor }) {
   );
 }
 
-// ───────── mini tabela do progresso ─────────
-/** A tabela em miniatura: os elementos já descobertos acendem e brilham em onda. */
+// ----- mini tabela do progresso -----
+/*******************************************************************************
+ * MiniTabela
+ * funcao: tabela em miniatura; os elementos ja descobertos acendem e
+ * brilham em onda.
+ * recebe: className.
+ * retorna: a grade com os 118 quadradinhos.
+ ******************************************************************************/
 export function MiniTabela({ className = "" }: { className?: string }) {
   const { estado } = useProgresso();
   return (
     <div
       aria-hidden
       className={`grid gap-[2px] ${className}`}
+      // 7 linhas, uma linha fina de folga e as 2 linhas de lantanideos e actinideos
       style={{ gridTemplateColumns: "repeat(18, minmax(0,1fr))", gridTemplateRows: "repeat(7, auto) 6px auto auto" }}
     >
       {ELEMENTOS.map((el) => {
@@ -239,6 +314,7 @@ export function MiniTabela({ className = "" }: { className?: string }) {
               gridRow: el.posicao.linha,
               gridColumn: el.posicao.coluna,
               background: aceso ? "var(--cat)" : "color-mix(in oklab, var(--cat) 22%, var(--ink))",
+              // atraso pela diagonal faz o brilho andar em onda
               animationDelay: `${(el.posicao.linha + el.posicao.coluna) * 90}ms`,
             }}
           />

@@ -1,6 +1,14 @@
+/*******************************************************************************
+ * index.tsx
+ * funcao principal: rota / (tela inicial do jogo).
+ ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
 import { Inicio } from "@/interface/Inicio";
 
+/*******************************************************************************
+ * Route
+ * funcao: registra a rota / com os metadados e a tela Inicio.
+ ******************************************************************************/
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [

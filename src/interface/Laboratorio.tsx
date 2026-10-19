@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Laboratorio.tsx
+ * funcao principal: tela do laboratorio, onde o jogador monta o atomo
+ * (arrastando particulas ou usando os contadores), le o painel e aperta
+ * CONSTRUIR para registrar descobertas, isotopos e ions. tambem roda dentro
+ * do tutorial, com um progresso de treino.
+ ******************************************************************************/
 import { Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -26,33 +33,49 @@ import { NOME_PARTICULA, ParticleSprite, type TipoParticula } from "./Particula"
 import { Stars, TopBar } from "./comuns";
 import { sons, useProgresso } from "./store";
 
+// maximo de protons no contador
 const MAX_P = 118;
 
+// texto para cada codigo de erro do motor
 const MSG_ERRO: Record<string, string> = {
   SEM_PROTONS: "Sem prótons não há elemento. Adicione ao menos 1 próton.",
   Z_ACIMA_DE_118: "Ainda não conhecemos elementos com tantos prótons.",
   ELETRONS_FORA_DO_LIMITE: "Elétrons demais para esse número de prótons.",
   NEUTRONS_FORA_DO_LIMITE: "Nêutrons demais para o laboratório.",
 };
+// nomes do status do nuclideo e da especie, como aparecem no painel
 const MSG_STATUS = { estavel: "Estável", radioativo: "Radioativo", nao_catalogado: "Não catalogado" } as const;
 const ROTULO_ESPECIE = { atomo_neutro: "Átomo neutro", cation: "Cátion (carga positiva)", anion: "Ânion (carga negativa)" } as const;
 
-/** Modo tutorial: usa um progresso de treino (não mexe no jogo salvo) e avisa o guia do que acontece. */
+/*******************************************************************************
+ * Guia
+ * funcao: modo tutorial. com guia, o laboratorio usa um progresso de
+ * treino (nao mexe no jogo salvo) e avisa o tutorial de cada mudanca e de
+ * cada construcao.
+ ******************************************************************************/
 export type Guia = {
   onMudar: (v: Particulas) => void;
   onConstruir: (r: { classificacao: Classificacao; eventos: Evento[]; particulas: Particulas }) => void;
 };
 
+// etiqueta de cada tipo de missao
 const ROTULO_MISSAO = { M1: "DESCOBRIR", M2: "ISÓTOPO", M3: "ÍON" } as const;
 
+// mensagens mostradas depois de construir; o tom muda a cor do painel
 type Feedback = { tom: "bom" | "info" | "aviso"; linhas: string[] };
 
+/*******************************************************************************
+ * LabScene
+ * funcao: cenario atras do atomo: parede, janela, prateleiras com frascos
+ * e bancada, tudo em pixels.
+ * recebe: nada. retorna: o <svg> do cenario (decorativo).
+ ******************************************************************************/
 function LabScene() {
-  // Cenário: janela, prateleiras e frascos em pixels (decorativo)
   return (
     <svg aria-hidden viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" shapeRendering="crispEdges">
       <rect width="160" height="90" fill="var(--panel)" />
       <rect y="0" width="160" height="2" fill="var(--ink)" />
+      {/* listras da parede */}
       {Array.from({ length: 16 }, (_, i) => (
         <rect key={i} x={i * 10} y="0" width="1" height="62" fill="var(--night)" opacity="0.5" />
       ))}
@@ -71,6 +94,7 @@ function LabScene() {
           <rect x="112" y={y + 2} width="42" height="1" fill="var(--wood-dark)" />
         </g>
       ))}
+      {/* frascos: [x, y, cor do liquido]; tampa, vidro e liquido */}
       {[
         [115, 10, "var(--proton)"],
         [123, 8, "var(--cat-nao_metal)"],
@@ -90,6 +114,7 @@ function LabScene() {
       <rect y="62" width="160" height="3" fill="var(--ink)" />
       <rect y="65" width="160" height="5" fill="var(--wood)" />
       <rect y="70" width="160" height="20" fill="var(--wood-dark)" />
+      {/* frestas da madeira da bancada */}
       {Array.from({ length: 8 }, (_, i) => (
         <rect key={i} x={i * 20 + 6} y="72" width="1" height="18" fill="var(--ink)" opacity="0.4" />
       ))}
@@ -97,6 +122,14 @@ function LabScene() {
   );
 }
 
+/*******************************************************************************
+ * Contador
+ * funcao: botoes - e + com um campo numerico para uma particula. segurar
+ * o botao repete de 5 em 5; Shift + clique ou Shift + seta tambem soma 5.
+ * recebe: tipo (particula), valor, max e onChange (novo valor, ja limitado
+ * entre 0 e max).
+ * retorna: os controles da particula.
+ ******************************************************************************/
 function Contador({
   tipo,
   valor,
@@ -109,21 +142,26 @@ function Contador({
   onChange: (v: number) => void;
 }) {
   const timer = useRef<number | null>(null);
+  // marca se o clique veio de um toque longo, para nao somar de novo no onClick
   const longo = useRef(false);
   const clamp = (v: number) => Math.max(0, Math.min(max, v));
   const parar = () => {
     if (timer.current) window.clearInterval(timer.current);
     timer.current = null;
   };
+  // para o timer se o componente sair da tela
   useEffect(() => parar, []);
+  // valor mais novo para o setInterval, que nao ve o valor atualizado
   const valorRef = useRef(valor);
   valorRef.current = valor;
 
+  // monta o botao de somar (delta 1) ou tirar (delta -1)
   const botao = (delta: 1 | -1, rotulo: string) => (
     <button
       type="button"
       className="pixel-btn btn-parchment w-8 px-0 text-sm lg:w-10"
       aria-label={`${delta > 0 ? "Adicionar" : "Remover"} ${NOME_PARTICULA[tipo].toLowerCase()} (Shift: 5)`}
+      // segurou 450 ms: passa a repetir de 5 em 5 a cada 180 ms
       onPointerDown={() => {
         longo.current = false;
         timer.current = window.setTimeout(() => {
@@ -150,7 +188,9 @@ function Contador({
         min={0}
         max={max}
         value={valor}
+        // texto invalido vira 0
         onChange={(ev) => onChange(clamp(Number(ev.target.value) || 0))}
+        // setas tratadas aqui para o Shift funcionar e o limite ser respeitado
         onKeyDown={(ev) => {
           if (ev.key === "ArrowUp" || ev.key === "ArrowDown") {
             ev.preventDefault();
@@ -165,11 +205,21 @@ function Contador({
   );
 }
 
+/*******************************************************************************
+ * Laboratorio
+ * funcao: tela do laboratorio.
+ * recebe: alvoZ (elemento da missao pedida pela url, opcional) e guia (so no
+ * tutorial).
+ * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
+ * e as janelas de descoberta e de cerimonia de familia.
+ ******************************************************************************/
 export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
   const store = useProgresso();
+  // no tutorial, tudo acontece num progresso de treino separado do jogo salvo
   const [treino, setTreino] = useState(progressoInicial);
   const estado = guia ? treino : store.estado;
   const tocar = store.tocar;
+  // construir de verdade (store) ou no treino (tutorial)
   const construir = (pt: Particulas) => {
     if (!guia) return store.construir(pt);
     const r = construirMotor(treino, pt);
@@ -178,21 +228,28 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   };
   const guiaRef = useRef(guia);
   guiaRef.current = guia;
+  // quantidade de cada particula no atomo
   const [p, setP] = useState(0);
   const [n, setN] = useState(0);
   const [e, setE] = useState(0);
+  // muda a cada particula nova, para o nucleo balancar
   const [wobble, setWobble] = useState(0);
+  // particula sendo arrastada e a posicao do ponteiro
   const [drag, setDrag] = useState<{ tipo: TipoParticula; x: number; y: number } | null>(null);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [celebrar, setCelebrar] = useState<{ z: number; msg: string } | null>(null);
   const [animarEstrelas, setAnimar] = useState<number[]>([]);
+  // area do atomo, onde soltar a particula conta
   const palco = useRef<HTMLDivElement>(null);
 
   const [cerimonia, setCerimonia] = useState<Categoria | null>(null);
+  // mensagem de missao M2/M3 cumprida e o confete que vem junto
   const [cumprida, setCumprida] = useState<string | null>(null);
   const [festa, setFesta] = useState(false);
+  // missao atual: a do elemento pedido na url ou a proxima sugerida; nenhuma no tutorial
   const missao = guia ? null : (alvoZ ? missaoParaElemento(estado, alvoZ) : null) ?? gerarMissao(estado, 0);
-  // quando a última peça de uma família é descoberta, a cerimônia aparece depois do cartão de "novo elemento"
+  // quando o ultimo elemento de uma familia e descoberto, a cerimonia aparece depois do
+  // cartao de "novo elemento" (por isso espera celebrar ficar null)
   const pendente = guia || celebrar || cerimonia ? null : familiaPendente(estado);
   useEffect(() => {
     if (!pendente) return;
@@ -200,10 +257,12 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     store.registrarFamilia(pendente);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendente]);
+  // leitura ao vivo do que esta montado, antes mesmo de construir
   const c = classificar({ p, n, e });
   const elVivo = c.elemento ? elementoPorZ(c.z) : undefined;
 
-  /** Toda mudança de contador (botão +, digitação ou arrastar) que aumenta a quantidade faz o mesmo som e animação. */
+  // toda mudanca de contador (botao +, digitacao ou arrastar) que aumenta a quantidade
+  // faz o mesmo som e animacao
   const mudar = (t: TipoParticula, atual: number, novo: number, set: (n: number) => void) => {
     if (novo > atual) {
       tocar(() => sons.soltar(t));
@@ -212,6 +271,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     set(novo);
   };
 
+  // soma uma particula (soltar no palco ou Enter no botao), respeitando os limites
   const adicionar = useCallback(
     (tipo: TipoParticula) => {
       if (tipo === "p") setP((v) => Math.min(MAX_P, v + 1));
@@ -223,16 +283,18 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     [p, tocar],
   );
 
+  // avisa o tutorial a cada mudanca
   useEffect(() => {
     guiaRef.current?.onMudar({ p, n, e });
   }, [p, n, e]);
 
-  // limite REG-06 quando prótons diminuem
+  // REG-06: se os protons diminuirem, corta os eletrons que passarem do limite
   useEffect(() => {
     if (e > maxEletrons(p)) setE(maxEletrons(p));
   }, [p, e]);
 
-  // arrastar com eventos de ponteiro (mouse e toque)
+  // arrastar com eventos de ponteiro (mouse e toque): segue o ponteiro e, ao soltar
+  // dentro do palco, adiciona a particula
   useEffect(() => {
     if (!drag) return;
     const mover = (ev: PointerEvent) => setDrag((d) => (d ? { ...d, x: ev.clientX, y: ev.clientY } : d));
@@ -249,11 +311,20 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     };
   }, [drag, adicionar]);
 
+  /*****************************************************************************
+   * aoConstruir
+   * funcao: botao CONSTRUIR. registra a montagem, confere a missao, mostra o
+   * retorno, anima as estrelas ganhas e abre a celebracao se descobriu um
+   * elemento novo.
+   * recebe: nada. retorna: nada.
+   ****************************************************************************/
   const aoConstruir = () => {
     tocar(sons.construir);
+    // guarda se ja era descoberto antes, para o texto do retorno
     const antes = c.valido ? descoberto(estado, c.z) : false;
     const missaoAntes = missao;
     const r = construir({ p, n, e });
+    // M2 e M3 sao conferidas aqui; a M1 aparece na celebracao de descoberta
     if (missaoAntes && missaoAntes.tipo !== "M1") {
       const av = avaliarMissao(missaoAntes, r.classificacao);
       if (av.cumprida) {
@@ -265,22 +336,33 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     }
     guia?.onConstruir({ ...r, particulas: { p, n, e } });
     setFeedback(montarFeedback(r.classificacao, r.eventos, antes));
+    // quais estrelas (1, 2 ou 3) foram ganhas agora
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
     setAnimar(estrelas);
     if (estrelas.length) tocar(sons.estrela);
     const desc = r.eventos.find((ev) => ev.tipo === "ELEMENTO_DESCOBERTO");
+    // descobriu elemento: som, vibracao no celular e cartao de celebracao (fora do tutorial)
     if (desc) {
       tocar(sons.descoberta);
       if (navigator.vibrate) navigator.vibrate(60);
       const nome = r.classificacao.elemento?.nome ?? "";
       let msg = `Você montou ${nome} com ${r.classificacao.z} ${r.classificacao.z === 1 ? "próton" : "prótons"}: o número de prótons define o elemento.`;
+      // descobriu outro elemento que nao era o da missao
       if (missao && missao.z !== desc.z) msg = `Você descobriu ${nome} por acaso. A missão ainda está de pé.`;
       else if (missao) msg = avaliarMissao(missao, r.classificacao).mensagem + " " + msg;
       if (!guia) setCelebrar({ z: desc.z, msg });
     }
   };
 
+  /*****************************************************************************
+   * montarFeedback
+   * funcao: monta as frases do painel de retorno depois de construir.
+   * recebe: cl (Classificacao), eventos e jaDescoberto (se o elemento ja
+   * estava descoberto antes).
+   * retorna: Feedback com o tom (bom, info ou aviso) e as linhas de texto.
+   ****************************************************************************/
   function montarFeedback(cl: Classificacao, eventos: Evento[], jaDescoberto: boolean): Feedback {
+    // montagem invalida: so a mensagem de erro (e o aviso do neutron livre)
     if (!cl.valido) {
       const l = [MSG_ERRO[cl.erro ?? ""] ?? ""];
       if (cl.avisos.includes("NEUTRON_LIVRE_INSTAVEL")) l.push("Um nêutron sozinho é instável: dura em média alguns minutos.");
@@ -288,22 +370,27 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     }
     const nome = cl.elemento?.nome ?? "";
     const l: string[] = [];
+    // uma frase para cada coisa nova registrada
     for (const ev of eventos) {
       if (ev.tipo === "ISOTOPO_REGISTRADO") l.push(`Isótopo registrado: ${nome}-${ev.a}.`);
       if (ev.tipo === "ION_REGISTRADO") l.push(`Íon registrado: ${cl.notacao}.`);
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 2) l.push("Estrela do isótopo! Nêutrons mudam a massa, não o elemento.");
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 3) l.push("Estrela do íon! Elétrons mudam a carga, não o elemento.");
     }
+    // ion de elemento ainda nao descoberto: lembra que a descoberta pede atomo neutro;
+    // atomo neutro de outro elemento ja conhecido: repete a dica da missao
     if (cl.especie !== "atomo_neutro" && !jaDescoberto && !eventos.some((x) => x.tipo === "ELEMENTO_DESCOBERTO"))
       l.push(`Isso é um íon de ${nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`);
     else if (missao && cl.especie === "atomo_neutro" && cl.z !== missao.z && jaDescoberto) l.push(avaliarMissao(missao, cl).mensagem);
     if (cl.nuclideo?.status === "nao_catalogado")
       l.push("Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.");
     if (cl.avisos.includes("CARGA_RARA")) l.push("Cargas tão extremas só aparecem em condições muito especiais, como no interior de estrelas.");
+    // nada novo num elemento conhecido: sugere mudar neutrons ou eletrons
     if (eventos.length === 0 && jaDescoberto) l.push(`Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`);
     return { tom: eventos.length ? "bom" : "info", linhas: l };
   }
 
+  // progresso do elemento que esta montado agora, para as estrelas do painel
   const progEl = c.valido ? estado.elementos[String(c.z)] : undefined;
 
   return (
@@ -311,6 +398,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
         <TopBar titulo="LABORATÓRIO" compacto />
 
+        {/* aviso de missao M2/M3 cumprida */}
         {cumprida && (
           <section role="status" className="pixel-panel anim-pop flex flex-wrap items-center gap-3 border-gold bg-gold p-3">
             <span className="font-display text-[10px]">★ CUMPRIDA</span>
@@ -321,6 +409,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
           </section>
         )}
         {festa && <Confete />}
+        {/* missao atual e dicas; a key reinicia as dicas quando a missao muda */}
         {missao && (
           <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Missão">
             <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{ROTULO_MISSAO[missao.tipo]}</span>
@@ -331,6 +420,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
 
         <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="flex flex-col gap-3">
+            {/* palco: cenario e o atomo desenhado. data-tut marca o que o tutorial destaca */}
             <div ref={palco} data-tut="palco" className="relative aspect-[4/3] max-h-[40svh] min-h-[150px] w-full overflow-hidden border-[3px] border-ink lg:max-h-[calc(100svh-24.5rem)] lg:min-h-[180px]" style={{ boxShadow: "var(--drop)" }}>
               <LabScene />
               <div className="absolute inset-[6%] mx-auto aspect-square" style={{ maxHeight: "88%" }}>
@@ -341,8 +431,11 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
               </p>
             </div>
 
+            {/* no celular os controles ficam presos no pe da tela; no tutorial e no
+                computador ficam no fluxo normal */}
             <div className={guia ? "flex flex-col gap-3 lg:flex-row lg:items-stretch" : "fixed inset-x-0 bottom-0 z-30 flex flex-col gap-2 border-t-[3px] border-ink bg-night p-2 lg:static lg:z-auto lg:flex-row lg:items-stretch lg:gap-3 lg:border-0 lg:bg-transparent lg:p-0"}>
               <div data-tut="particulas" className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-6 lg:px-6 lg:py-3">
+                {/* uma coluna por particula: botao de arrastar e contador */}
                 {(
                   [
                     ["p", p, MAX_P, setP],
@@ -355,6 +448,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                       type="button"
                       className="pixel-btn btn-parchment flex touch-none flex-col items-center gap-0.5 px-2 py-1 text-[9px] lg:flex-row lg:gap-2 lg:text-sm"
                       aria-label={`${NOME_PARTICULA[t]}: arraste para o átomo ou aperte Enter para adicionar`}
+                      // so o botao esquerdo comeca a arrastar
                       onPointerDown={(ev) => {
                         if (ev.button !== 0) return;
                         ev.preventDefault();
@@ -376,6 +470,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                 ))}
               </div>
               <div className="mx-auto flex w-full max-w-2xl gap-2 lg:w-44 lg:max-w-none lg:flex-col lg:gap-3">
+                {/* CONSTRUIR e LIMPAR */}
                 <button type="button" data-tut="construir" className="pixel-btn btn-gold flex-1 whitespace-nowrap px-2 py-2 text-xs lg:py-4" onClick={aoConstruir}>
                   <span aria-hidden className="text-base leading-none">★</span> CONSTRUIR
                 </button>
@@ -396,6 +491,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
           </div>
 
           <aside className="flex flex-col gap-3">
+            {/* painel de leitura: carta do elemento, especie, numeros Z N E A q e status */}
             <section data-tut="painel" className="pixel-panel p-4" aria-live="polite" aria-label="Painel de leitura">
               <div className="flex items-start gap-3">
                 <div className="pixel-block block-open flex h-24 w-24 shrink-0 flex-col items-center justify-center" style={{ ["--cat" as string]: elVivo ? `var(--cat-${elVivo.categoria})` : "var(--parchment-shade)" }}>
@@ -403,6 +499,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                     <>
                       <span className="font-display text-[9px]">{c.a}</span>
                       <span className="font-display text-2xl">{c.elemento?.simbolo}</span>
+                      {/* so a parte da carga da notacao, ex: "²⁺" */}
                       <span className="font-display text-[9px]">{c.carga === 0 ? "" : c.notacao?.replace(c.elemento?.simbolo ?? "", "")}</span>
                     </>
                   ) : (
@@ -435,6 +532,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                   Nuclídeo {c.nuclideo.rotulo}: <strong>{MSG_STATUS[c.nuclideo.status]}</strong>
                 </p>
               )}
+              {/* erro so aparece se algo ja foi montado */}
               {!c.valido && (p > 0 || n > 0 || e > 0) && <p className="mt-3">{MSG_ERRO[c.erro ?? ""]}</p>}
               {progEl && (
                 <div className="mt-3 flex items-center gap-2">
@@ -444,6 +542,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
               )}
             </section>
 
+            {/* retorno do ultimo CONSTRUIR */}
             {feedback && feedback.linhas.length > 0 && (
               <section role="status" className={`pixel-panel p-4 ${feedback.tom === "aviso" ? "bg-parchment-shade" : ""}`}>
                 {feedback.linhas.map((l, i) => (
@@ -462,11 +561,13 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         </div>
       </div>
 
+      {/* particula seguindo o ponteiro durante o arraste */}
       {drag && (
         <div aria-hidden className="pointer-events-none fixed z-50" style={{ left: drag.x - 24, top: drag.y - 24 }}>
           <ParticleSprite tipo={drag.tipo} size={48} />
         </div>
       )}
+      {/* janelas por cima da tela */}
       {cerimonia && <CerimoniaFamilia familia={cerimonia} onFechar={() => setCerimonia(null)} />}
       {celebrar && <Celebracao z={celebrar.z} mensagem={celebrar.msg} onFechar={() => setCelebrar(null)} />}
     </main>

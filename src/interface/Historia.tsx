@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * Historia.tsx
+ * funcao principal: abertura do jogo antes do tutorial: tela de titulo
+ * (escolha com ou sem som) e a historia contada em dialogos, com um fundo
+ * diferente para cada cena.
+ ******************************************************************************/
 import { useEffect, useMemo, useState } from "react";
 import { ELEMENTOS } from "@/motor";
 import { Atomo } from "./Atomo";
@@ -9,9 +15,14 @@ import { useProgresso } from "./store";
 import { DecorCena } from "./FundoQuimico";
 import { TituloLab } from "./Titulo";
 
+// cenarios da historia e o formato de cada fala
 type Cena = "ceu" | "tabela" | "lab" | "atomo";
 type Fala = { cena: Cena; autor: string; texto: string; humor?: "normal" | "feliz" };
 
+/*******************************************************************************
+ * FALAS
+ * funcao: as falas da historia, em ordem, com a cena de fundo de cada uma.
+ ******************************************************************************/
 const FALAS: Fala[] = [
   {
     cena: "ceu",
@@ -52,6 +63,12 @@ const FALAS: Fala[] = [
   },
 ];
 
+/*******************************************************************************
+ * Estrelas
+ * funcao: 46 estrelinhas piscando no fundo. hoje nao e usada em nenhum
+ * lugar (o ceu vem do DecorCena).
+ * recebe: nada. retorna: a camada de estrelas (decorativa).
+ ******************************************************************************/
 function Estrelas() {
   const pts = useMemo(
     () =>
@@ -82,6 +99,13 @@ function Estrelas() {
   );
 }
 
+/*******************************************************************************
+ * TabelaApagando
+ * funcao: a tabela periodica inteira com os blocos piscando, como se
+ * estivessem se apagando.
+ * recebe: acesa (true deixa tudo aceso, sem piscar).
+ * retorna: a grade de blocos (decorativa).
+ ******************************************************************************/
 function TabelaApagando({ acesa }: { acesa: boolean }) {
   return (
     <div
@@ -97,6 +121,7 @@ function TabelaApagando({ acesa }: { acesa: boolean }) {
             gridRow: el.posicao.linha,
             gridColumn: el.posicao.coluna,
             background: `var(--cat-${el.categoria})`,
+            // atrasos diferentes para os blocos nao piscarem juntos
             animationDelay: `${(el.z % 17) * 0.15}s`,
             opacity: acesa ? 1 : undefined,
           }}
@@ -106,6 +131,13 @@ function TabelaApagando({ acesa }: { acesa: boolean }) {
   );
 }
 
+/*******************************************************************************
+ * Fundo
+ * funcao: monta o cenario de cada fala: ceu com predios, tabela apagando,
+ * laboratorio com a Zula ou o atomo de hidrogenio.
+ * recebe: cena (Cena).
+ * retorna: o fundo em tela cheia.
+ ******************************************************************************/
 function Fundo({ cena }: { cena: Cena }) {
   return (
     <div
@@ -117,6 +149,7 @@ function Fundo({ cena }: { cena: Cena }) {
     >
       <DecorCena cena={cena} />
       {cena === "tabela" && <TabelaApagando acesa={false} />}
+      {/* bancada de madeira nas cenas do laboratorio */}
       {(cena === "lab" || cena === "atomo") && (
         <div
           aria-hidden
@@ -139,12 +172,23 @@ function Fundo({ cena }: { cena: Cena }) {
   );
 }
 
+/*******************************************************************************
+ * Historia
+ * funcao: tela de titulo e, depois, a historia em dialogos. Esc ou PULAR
+ * encerram a historia.
+ * recebe: onFim (chamado quando a historia acaba ou e pulada).
+ * retorna: a tela de titulo ou a cena atual com o dialogo.
+ ******************************************************************************/
 export function Historia({ onFim }: { onFim: () => void }) {
   const { estado, alternarSom } = useProgresso();
   const [fase, setFase] = useState<"titulo" | "conto">("titulo");
+  // indice da fala atual
   const [i, setI] = useState(0);
+  // na tela de titulo a musica so toca se o som ja estiver ligado
   useMusica(fase === "titulo" && !estado.config.som ? null : "historia");
 
+  // botoes COM SOM / SEM SOM: ajusta o som e comeca a historia.
+  // o clique tambem serve para o navegador liberar o audio
   const escolher = (som: boolean) => {
     if (estado.config.som !== som) alternarSom();
     if (som) {
@@ -154,6 +198,7 @@ export function Historia({ onFim }: { onFim: () => void }) {
     setFase("conto");
   };
 
+  // durante a historia, Esc pula tudo
   useEffect(() => {
     if (fase !== "conto") return;
     const tecla = (ev: KeyboardEvent) => {
@@ -163,6 +208,7 @@ export function Historia({ onFim }: { onFim: () => void }) {
     return () => window.removeEventListener("keydown", tecla);
   }, [fase, onFim]);
 
+  // tela de titulo
   if (fase === "titulo") {
     return (
       <main className="relative flex min-h-screen flex-col items-center justify-center gap-8 overflow-hidden bg-ink p-4 text-center">
@@ -205,6 +251,7 @@ export function Historia({ onFim }: { onFim: () => void }) {
     );
   }
 
+  // historia: fundo da cena, botao de pular e o dialogo da fala atual
   const f = FALAS[i]!;
   const ultima = i === FALAS.length - 1;
   return (
@@ -218,6 +265,7 @@ export function Historia({ onFim }: { onFim: () => void }) {
         PULAR ▶▶
       </button>
       <Dialogo
+        // key muda a cada fala para o dialogo recomecar a digitar
         key={i}
         texto={f.texto}
         autor={f.autor}

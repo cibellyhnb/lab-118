@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * Tutorial.tsx
+ * funcao principal: tutorial do jogo: primeiro a historia de abertura, depois
+ * o laboratorio guiado passo a passo pela Zula, com a tela escurecida em
+ * volta do que o jogador deve mexer.
+ ******************************************************************************/
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Particulas } from "@/motor";
@@ -9,23 +15,31 @@ import type { Humor } from "./Zula";
 import { sons, useProgresso } from "./store";
 import { useMusica } from "./useMusica";
 
+// o que o laboratorio manda para o tutorial a cada CONSTRUIR
 type Montagem = Parameters<Guia["onConstruir"]>[0];
 
+// um passo do tutorial; alvo lista os data-tut que ficam iluminados
 type Passo = {
   texto: string;
   alvo: string[];
   humor?: Humor;
-  /** Se existir, o passo avança sozinho quando a condição for cumprida. Sem ela, mostra o botão. */
+  // se existir, o passo avanca sozinho quando a condicao for cumprida; sem ela, mostra o botao
   auto?: (v: Particulas, m: Montagem | null) => boolean;
-  /** Aviso extra quando o jogador passa do ponto. */
+  // aviso extra quando o jogador passa do ponto
   dica?: (v: Particulas) => string | null;
   rotulo?: string;
   confete?: boolean;
 };
 
+// confere se a ultima montagem construida tem exatamente p, n, e e foi valida
 const igual = (m: Montagem | null, p: number, n: number, e: number) =>
   !!m && m.particulas.p === p && m.particulas.n === n && m.particulas.e === e && m.classificacao.valido;
 
+/*******************************************************************************
+ * PASSOS
+ * funcao: os passos do tutorial, em ordem: painel, proton, eletron,
+ * construir o H, neutron (deuterio), ion H+ e o desafio do helio.
+ ******************************************************************************/
 const PASSOS: Passo[] = [
   {
     texto: "Este é o laboratório! No painel você acompanha o que está montando: nome, símbolo e os números do átomo. Por enquanto ele mostra '?', porque a bancada está vazia.",
@@ -95,8 +109,16 @@ const PASSOS: Passo[] = [
   },
 ];
 
+// retangulo na tela (posicao e tamanho em pixels)
 type Ret = { top: number; left: number; w: number; h: number };
 
+/*******************************************************************************
+ * achar
+ * funcao: acha os elementos marcados com data-tut e calcula um retangulo
+ * que envolve todos eles, com 6 px de folga.
+ * recebe: alvos (valores de data-tut).
+ * retorna: o retangulo, ou null se nenhum alvo estiver na tela.
+ ******************************************************************************/
 function achar(alvos: string[]): Ret | null {
   let t = Infinity;
   let l = Infinity;
@@ -116,25 +138,36 @@ function achar(alvos: string[]): Ret | null {
   return { top: Math.max(0, t - m), left: Math.max(0, l - m), w: r - l + 2 * m, h: b - t + 2 * m };
 }
 
-/** Escurece a tela, deixando um "buraco" iluminado em volta dos alvos. Cliques fora dele são bloqueados. */
+/*******************************************************************************
+ * Foco
+ * funcao: escurece a tela, deixando um "buraco" iluminado em volta dos
+ * alvos. cliques fora dele sao bloqueados.
+ * recebe: alvos (valores de data-tut).
+ * retorna: quatro faixas escuras em volta do buraco, a moldura dourada e a
+ * seta; sem alvo, a tela inteira escura.
+ ******************************************************************************/
 function Foco({ alvos }: { alvos: string[] }) {
   const [ret, setRet] = useState<Ret | null>(null);
+  // texto que so muda quando a lista de alvos muda, para usar nas deps do efeito
   const chave = alvos.join("|");
 
   useEffect(() => {
     let vivo = true;
     let ajustado = false;
     let ant = "";
+    // a cada quadro, recalcula onde estao os alvos (a tela pode rolar ou mudar de tamanho)
     const laco = () => {
       if (!vivo) return;
       const n = achar(alvos);
       if (n && !ajustado) {
-        // rola a página para o alvo ficar visível, acima da caixa de diálogo (que ocupa ~230px embaixo)
+        // rola a pagina uma vez para o alvo ficar visivel, acima da caixa de dialogo
+        // (que ocupa ~230px embaixo)
         ajustado = true;
         const excesso = n.top + n.h - (window.innerHeight - 230);
         if (excesso > 0) window.scrollBy(0, Math.min(excesso, Math.max(0, n.top - 10)));
         else if (n.top < 10) window.scrollBy(0, n.top - 10);
       }
+      // so atualiza o estado se o retangulo mudou, para nao redesenhar a toa
       const s = n ? `${n.top},${n.left},${n.w},${n.h}` : "";
       if (s !== ant) {
         ant = s;
@@ -143,6 +176,7 @@ function Foco({ alvos }: { alvos: string[] }) {
       requestAnimationFrame(laco);
     };
     laco();
+    // limpeza: para o laco
     return () => {
       vivo = false;
     };
@@ -155,10 +189,12 @@ function Foco({ alvos }: { alvos: string[] }) {
   const dir = ret.left + ret.w;
   return (
     <div aria-hidden>
+      {/* faixas escuras: em cima, embaixo, a esquerda e a direita do buraco */}
       <div className="fixed inset-x-0 top-0 z-[60]" style={{ height: ret.top, background: escuro }} />
       <div className="fixed inset-x-0 z-[60]" style={{ top: fundo, bottom: 0, background: escuro }} />
       <div className="fixed left-0 z-[60]" style={{ top: ret.top, height: ret.h, width: ret.left, background: escuro }} />
       <div className="fixed right-0 z-[60]" style={{ top: ret.top, height: ret.h, left: dir, background: escuro }} />
+      {/* moldura dourada e seta apontando para o alvo */}
       <div className="anim-shine pointer-events-none fixed z-[61] border-[4px] border-gold" style={{ top: ret.top, left: ret.left, width: ret.w, height: ret.h }} />
       <span
         className="font-display anim-arrow pointer-events-none fixed z-[61] text-xl text-gold"
@@ -170,11 +206,20 @@ function Foco({ alvos }: { alvos: string[] }) {
   );
 }
 
+/*******************************************************************************
+ * Guiado
+ * funcao: laboratorio do tutorial com os passos da Zula. passos com auto
+ * avancam sozinhos quando o jogador faz o que foi pedido.
+ * recebe: nada.
+ * retorna: o laboratorio em modo treino, o foco, o dialogo e o botao de
+ * pular.
+ ******************************************************************************/
 function Guiado() {
   const { concluirTutorial, tocar } = useProgresso();
   const navegar = useNavigate();
   useMusica("laboratorio");
   const [passo, setPasso] = useState(0);
+  // particulas atuais e ultima montagem construida, vindas do laboratorio
   const [v, setV] = useState<Particulas>({ p: 0, n: 0, e: 0 });
   const [montagem, setMontagem] = useState<Montagem | null>(null);
   const passoRef = useRef(passo);
@@ -182,11 +227,13 @@ function Guiado() {
 
   const p = PASSOS[passo]!;
 
+  // vai para o proximo passo e esquece a montagem anterior
   const avancar = useCallback(() => {
     setMontagem(null);
     setPasso((x) => Math.min(PASSOS.length - 1, x + 1));
   }, []);
 
+  // condicao do passo cumprida: som de acerto e avanca depois de 650 ms
   useEffect(() => {
     if (!p.auto || !p.auto(v, montagem)) return;
     tocar(sons.acerto);
@@ -194,15 +241,18 @@ function Guiado() {
     return () => window.clearTimeout(id);
   }, [v, montagem, p, avancar, tocar]);
 
+  // passos de comemoracao tocam o som de descoberta
   useEffect(() => {
     if (p.confete) tocar(sons.descoberta);
   }, [p, tocar]);
 
+  // fecha o tutorial: concluindo (leva H e He para a tabela real) ou pulando
   const terminar = (conceder: boolean) => {
     concluirTutorial(conceder);
     void navegar({ to: "/" });
   };
 
+  // ligacao com o laboratorio
   const guia: Guia = {
     onMudar: setV,
     onConstruir: (r) => setMontagem(r),
@@ -224,6 +274,7 @@ function Guiado() {
         texto={p.texto}
         humor={p.humor ?? "normal"}
         rotulo={p.rotulo ?? "PRÓXIMO ▶"}
+        // passo com auto nao tem botao; o ultimo passo conclui o tutorial
         onAvancar={p.auto ? undefined : ultimo ? () => terminar(true) : avancar}
         extra={dica ? <p className="font-display text-[9px] text-proton">{dica}</p> : undefined}
       />
@@ -231,6 +282,12 @@ function Guiado() {
   );
 }
 
+/*******************************************************************************
+ * Tutorial
+ * funcao: tela do tutorial: mostra a historia e, quando ela acaba ou e
+ * pulada, o laboratorio guiado.
+ * recebe: nada. retorna: Historia ou Guiado.
+ ******************************************************************************/
 export function Tutorial() {
   const [fase, setFase] = useState<"historia" | "lab">("historia");
   if (fase === "historia") return <Historia onFim={() => setFase("lab")} />;

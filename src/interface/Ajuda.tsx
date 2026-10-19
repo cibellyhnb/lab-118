@@ -1,6 +1,12 @@
+/*******************************************************************************
+ * Ajuda.tsx
+ * funcao principal: botao "?" que abre o painel de ajuda com as regras de
+ * ouro, as 3 estrelas e o significado das siglas do painel.
+ ******************************************************************************/
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
+// sigla do painel e sua explicacao, na ordem em que aparecem
 const SIGLAS: [string, string][] = [
   ["Z", "número atômico: quantos prótons. É o que define o elemento."],
   ["N", "nêutrons: ficam no núcleo e mudam só a massa."],
@@ -9,11 +15,18 @@ const SIGLAS: [string, string][] = [
   ["q", "carga: prótons menos elétrons. Zero é átomo neutro."],
 ];
 
-/** Botão "?" e painel de ajuda disponível em todas as telas. */
+/*******************************************************************************
+ * BotaoAjuda
+ * funcao: botao "?" e o painel de ajuda que ele abre, usado em todas as
+ * telas.
+ * recebe: nada.
+ * retorna: o botao e, quando aberto, o painel por cima da tela.
+ ******************************************************************************/
 export function BotaoAjuda() {
   const [aberto, setAberto] = useState(false);
   const fechar = useRef<HTMLButtonElement>(null);
 
+  // com o painel aberto: foca o botao FECHAR e deixa o Esc fechar
   useEffect(() => {
     if (!aberto) return;
     fechar.current?.focus();
@@ -27,6 +40,7 @@ export function BotaoAjuda() {
       <button type="button" className="pixel-btn btn-gold px-4" aria-label="Ajuda" title="Ajuda" onClick={() => setAberto(true)}>
         ?
       </button>
+      {/* fundo escuro: clicar fora do painel fecha */}
       {aberto && (
         <div
           role="dialog"
@@ -37,6 +51,7 @@ export function BotaoAjuda() {
           onClick={() => setAberto(false)}
         >
           <div className="pixel-panel anim-pop max-h-[90vh] w-full max-w-md overflow-y-auto p-4" onClick={(e) => e.stopPropagation()}>
+            {/* stopPropagation acima: clique dentro do painel nao fecha */}
             <h2 className="font-display mb-3 text-sm">AJUDA</h2>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">3 REGRAS DE OURO</h3>
             <ul className="mb-3 list-disc pl-5">
@@ -55,6 +70,7 @@ export function BotaoAjuda() {
                 </div>
               ))}
             </dl>
+            {/* acoes: rever tutorial, abrir glossario ou fechar */}
             <div className="flex flex-wrap gap-2">
               <Link to="/tutorial" className="pixel-btn btn-sky" onClick={() => setAberto(false)}>
                 REVER TUTORIAL

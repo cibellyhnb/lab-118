@@ -1,8 +1,14 @@
+/*******************************************************************************
+ * Zula.tsx
+ * funcao principal: sprite da Zula, a robo-assistente do jogo, que pisca
+ * sozinha e mexe a boca enquanto fala.
+ ******************************************************************************/
 import { useEffect, useState } from "react";
 import { C, PixelArt } from "./PixelArt";
 
-// ZULA, o robô-assistente do Laboratório Atômico (personagem original). O "Z" é de número atômico.
-// Cabeça 16x16: w = metal claro, s = sombra, k = contorno, c = brilho da tela, r = luz da antena.
+// ZULA, robo-assistente do Laboratorio Atomico (personagem original). o "Z" e de numero atomico.
+// cabeca 16x16: w = metal claro, s = sombra, k = contorno, c = brilho da tela, r = luz da antena
+// antena e topo da cabeca
 const TOPO = [
   "................",
   "......wwww......",
@@ -12,7 +18,9 @@ const TOPO = [
   "..kkkkkkkkkkkk..",
   ".kwwwwwwwwwwwsk.",
 ];
+// poe as bordas da cabeca em volta de cada linha do rosto
 const lado = (miolo: string) => ".kww" + miolo + "ssk.";
+// o rosto (tela) em cada expressao: olhos e boca
 const MIOLOS: Record<"normal" | "pisca" | "fala" | "feliz", string[]> = {
   normal: ["kkkkkkkk", "kcckkcck", "kcckkcck", "kkkkkkkk", "kckkkkck", "kkcccckk", "kkkkkkkk"],
   pisca: ["kkkkkkkk", "kkkkkkkk", "kcckkcck", "kkkkkkkk", "kckkkkck", "kkcccckk", "kkkkkkkk"],
@@ -25,17 +33,30 @@ const ROSTO = {
   fala: MIOLOS.fala.map(lado),
   feliz: MIOLOS.feliz.map(lado),
 };
+// parte de baixo da cabeca
 const BASE = [".kssssssssssssk.", "..kkkkkkkkkkkk.."];
 
 export type Humor = keyof typeof ROSTO;
 
+/*******************************************************************************
+ * linhasZula
+ * funcao: monta o desenho inteiro da Zula numa expressao.
+ * recebe: humor ("normal", "pisca", "fala" ou "feliz").
+ * retorna: as linhas do desenho.
+ ******************************************************************************/
 export function linhasZula(humor: Humor): string[] {
   return [...TOPO, ...ROSTO[humor], ...BASE];
 }
 
 const PALETA = { k: C.ink, w: C.cloud, s: "var(--parchment-shade)", c: "var(--sky-light)", r: "var(--proton)" };
 
-/** Sprite do ZULA. `falando` alterna a boca; pisca sozinho de tempos em tempos. */
+/*******************************************************************************
+ * Zula
+ * funcao: sprite da Zula. falando alterna a boca; pisca sozinha de tempos
+ * em tempos.
+ * recebe: falando, humor (expressao parada), className e scale.
+ * retorna: a Zula em pixel art.
+ ******************************************************************************/
 export function Zula({
   falando = false,
   humor = "normal",
@@ -50,6 +71,7 @@ export function Zula({
   const [pisca, setPisca] = useState(false);
   const [boca, setBoca] = useState(false);
 
+  // piscada de 160 ms a cada 3,2 s
   useEffect(() => {
     const id = window.setInterval(() => {
       setPisca(true);
@@ -58,6 +80,7 @@ export function Zula({
     return () => window.clearInterval(id);
   }, []);
 
+  // enquanto fala, abre e fecha a boca a cada 140 ms
   useEffect(() => {
     if (!falando) {
       setBoca(false);
@@ -67,6 +90,7 @@ export function Zula({
     return () => window.clearInterval(id);
   }, [falando]);
 
+  // prioridade: boca aberta, depois piscada, depois o humor pedido
   const atual: Humor = falando && boca ? "fala" : pisca ? "pisca" : humor;
   return <PixelArt rows={linhasZula(atual)} palette={PALETA} scale={scale} className={className} title="ZULA, o robô-assistente" />;
 }

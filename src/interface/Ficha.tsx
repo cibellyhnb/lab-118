@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Ficha.tsx
+ * funcao principal: ficha de um elemento descoberto, com ilustracao, dados
+ * da tabela, usos, comparacao entre o atomo montado e a massa atomica,
+ * isotopos, ions e curiosidades. elemento nao descoberto mostra a ficha
+ * trancada.
+ ******************************************************************************/
 import { Link } from "@tanstack/react-router";
 import { APLICACOES, CURIOSIDADES, NOME_CATEGORIA, classificar, descoberto, elementoPorZ, isotoposNecessarios } from "@/motor";
 import { Stars, TopBar, catStyle } from "./comuns";
@@ -6,9 +13,17 @@ import { useProgresso } from "./store";
 import { PixelArt } from "./PixelArt";
 import { PALETA_ILUS, ilustracaoDe } from "./ilus";
 
+// fase do JSON escrita para a tela
 const FASE = { solido: "Sólido", liquido: "Líquido", gasoso: "Gasoso", desconhecido: "Desconhecido" } as const;
+// numero no formato brasileiro (virgula decimal), com ate 6 casas
 const fmt = (x: number) => x.toLocaleString("pt-BR", { maximumFractionDigits: 6 });
 
+/*******************************************************************************
+ * Secao
+ * funcao: painel com titulo usado em cada parte da ficha.
+ * recebe: titulo e children (conteudo).
+ * retorna: a <section> com o titulo em cima.
+ ******************************************************************************/
 function Secao({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
     <section className="pixel-panel p-4">
@@ -18,6 +33,7 @@ function Secao({ titulo, children }: { titulo: string; children: React.ReactNode
   );
 }
 
+// estrela desenhada no botao de buscar as estrelas que faltam
 const ESTRELA_BTN = [
   "....k....",
   "....k....",
@@ -30,6 +46,13 @@ const ESTRELA_BTN = [
   ".kk...kk.",
 ];
 
+/*******************************************************************************
+ * Ficha
+ * funcao: tela da ficha do elemento.
+ * recebe: z (numero atomico).
+ * retorna: a ficha completa; a versao trancada se o elemento nao foi
+ * descoberto; ou um aviso se o z nao existir.
+ ******************************************************************************/
 export function Ficha({ z }: { z: number }) {
   const { estado, ultimoMontado } = useProgresso();
   const el = elementoPorZ(z);
@@ -37,6 +60,7 @@ export function Ficha({ z }: { z: number }) {
   const prog = estado.elementos[String(z)];
   const aberto = descoberto(estado, z);
 
+  // ainda nao descoberto: so o aviso e o atalho para a missao
   if (!aberto) {
     return (
       <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-4 p-4">
@@ -52,19 +76,24 @@ export function Ficha({ z }: { z: number }) {
     );
   }
 
+  // ultima montagem valida deste elemento, para comparar com a tabela
   const montado = ultimoMontado[z];
   const cMontado = montado ? classificar(montado) : null;
   const maisLongevo = el.massa_atomica?.tipo === "isotopo_mais_longevo";
   const f = el.ficha;
   const ilus = ilustracaoDe(z);
+  // textos do motor tem prioridade; o JSON fica de reserva
   const aplicacoes = APLICACOES[z] ?? f.usos ?? [];
+  // curiosidades do JSON; sem elas, usa a frase do motor
   const curiosidades = f.curiosidades?.length ? f.curiosidades : CURIOSIDADES[z] ? [CURIOSIDADES[z]!] : [];
+  // grupos 1, 2 e 13 a 18: so neles o jogo mostra eletrons de valencia fixos
   const principal = el.grupo !== null && (el.grupo <= 2 || el.grupo >= 13);
 
   return (
     <main className="mx-auto flex min-h-screen max-w-4xl flex-col gap-4 p-3 sm:p-5">
       <TopBar titulo="FICHA" />
 
+      {/* cabecalho: ilustracao (ou carta simples), nome, familia, fase e estrelas */}
       <header className="anim-flip pixel-block block-open flex flex-wrap items-center gap-5 p-5" style={catStyle(el.categoria)}>
         {ilus ? (
           <div className="pixel-block flex w-40 flex-col items-center gap-1 bg-parchment p-2 sm:w-44">
@@ -87,6 +116,7 @@ export function Ficha({ z }: { z: number }) {
             {NOME_CATEGORIA[el.categoria]} · Período {el.periodo}
             {el.grupo ? ` · Grupo ${el.grupo}` : ""}
           </p>
+          {/* do 104 em diante a fase e so prevista, nunca foi medida */}
           <p>Estado físico à temperatura ambiente: {el.z >= 104 && el.fase_ambiente !== "desconhecido" ? `${FASE[el.fase_ambiente]} (previsto)` : FASE[el.fase_ambiente]}</p>
           <Stars estrelas={prog?.estrelas ?? [false, false, false]} scale={4} />
         </div>
@@ -98,6 +128,7 @@ export function Ficha({ z }: { z: number }) {
         </Secao>
       )}
 
+      {/* atalho para o laboratorio enquanto faltar alguma estrela */}
       {prog && !prog.estrelas.every(Boolean) && (
         <Link
           to="/laboratorio"
@@ -109,14 +140,17 @@ export function Ficha({ z }: { z: number }) {
         </Link>
       )}
 
+      {/* usos: cada linha "Tema: texto" vira um cartao com o tema em destaque */}
       {aplicacoes.length > 0 && (
         <Secao titulo="ONDE É USADO E ENCONTRADO">
           <ul className="grid gap-3 sm:grid-cols-2">
             {aplicacoes.map((linha, k) => {
+              // separa o tema do texto; sem dois-pontos, o tema vira "Uso"
               const n = linha.indexOf(": ");
               const tema = n > 0 ? linha.slice(0, n) : "Uso";
               const resto = n > 0 ? linha.slice(n + 2) : linha;
               const texto = resto.charAt(0).toUpperCase() + resto.slice(1);
+              // se sobrar um cartao sozinho na ultima linha, ele ocupa as duas colunas
               const sozinho = aplicacoes.length % 2 === 1 && k === aplicacoes.length - 1;
               return (
                 <li key={linha} className={`flex flex-col border-[3px] border-ink bg-parchment-shade ${sozinho ? "sm:col-span-2" : ""}`}>
@@ -132,6 +166,7 @@ export function Ficha({ z }: { z: number }) {
         </Secao>
       )}
 
+      {/* comparacao: numero de massa do atomo montado x massa atomica da tabela */}
       <Secao titulo="SEU ÁTOMO × TABELA">
         <div className="mb-3 grid gap-3 sm:grid-cols-2">
           <div className="border-[3px] border-ink bg-cloud p-3">
@@ -162,6 +197,7 @@ export function Ficha({ z }: { z: number }) {
         )}
       </Secao>
 
+      {/* eletrons de valencia: numero fixo nos grupos principais, "varia" nos outros */}
       {principal && el.eletrons_valencia !== null && (
         <Secao titulo="ELÉTRONS DE VALÊNCIA">
           <p>
@@ -175,6 +211,7 @@ export function Ficha({ z }: { z: number }) {
         </Secao>
       )}
 
+      {/* isotopos do catalogo; os ja registrados ficam dourados */}
       {el.isotopos.length > 0 && (
         <Secao titulo="ISÓTOPOS CATALOGADOS">
           <ul className="grid gap-2 sm:grid-cols-2">
@@ -199,6 +236,7 @@ export function Ficha({ z }: { z: number }) {
         </Secao>
       )}
 
+      {/* o que o jogador ja registrou e os ions comuns do elemento */}
       <Secao titulo="SUAS VARIANTES">
         <p>Isótopos: {prog?.isotopos.length ? prog.isotopos.map((a) => `${el.simbolo}-${a}`).join(", ") : "nenhum ainda"}</p>
         <p>Íons: {prog?.ions.length ? prog.ions.map((q) => notacaoIon(el.simbolo, q)).join(", ") : "nenhum ainda"}</p>

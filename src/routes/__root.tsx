@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * __root.tsx
+ * funcao principal: rota raiz do app. monta o html da pagina, os metadados
+ * gerais, as telas de erro e 404 e os provedores que envolvem todas as
+ * telas (progresso, musica e efeitos).
+ ******************************************************************************/
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -16,6 +22,12 @@ import { ProgressoProvider } from "../interface/store";
 import { useMusica } from "../interface/useMusica";
 import { Efeitos } from "../interface/Efeitos";
 
+/*******************************************************************************
+ * NotFoundComponent
+ * funcao: tela de pagina nao encontrada (404).
+ * recebe: nada.
+ * retorna: aviso centralizado com um link para voltar ao inicio.
+ ******************************************************************************/
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -38,6 +50,12 @@ function NotFoundComponent() {
   );
 }
 
+/*******************************************************************************
+ * ErrorComponent
+ * funcao: tela mostrada quando uma rota quebra ao carregar.
+ * recebe: error (o erro lancado) e reset (tenta renderizar de novo).
+ * retorna: aviso com os botoes "Tentar de novo" e "Voltar ao inicio".
+ ******************************************************************************/
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
@@ -54,6 +72,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
+              // recarrega os dados da rota antes de tentar renderizar outra vez
               router.invalidate();
               reset();
             }}
@@ -73,6 +92,12 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+/*******************************************************************************
+ * Route
+ * funcao: rota raiz. define metadados padrao (titulo, descricao, icones,
+ * tags de compartilhamento), o css global e quais componentes desenham o
+ * shell, a tela normal, o 404 e o erro.
+ ******************************************************************************/
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -115,6 +140,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+/*******************************************************************************
+ * RootShell
+ * funcao: esqueleto html de todas as paginas.
+ * recebe: children (a tela da rota atual).
+ * retorna: <html> com o head gerado pelo roteador e o conteudo no body.
+ ******************************************************************************/
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
@@ -129,13 +160,26 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-/** Música de fundo do jogo todo. No /tutorial a história e o treino têm as próprias trilhas, então ela espera. */
+/*******************************************************************************
+ * MusicaAmbiente
+ * funcao: toca a musica de fundo do jogo todo. no /tutorial ela fica
+ * parada, porque a historia e o treino tem trilhas proprias.
+ * recebe: nada.
+ * retorna: nada na tela (null); so controla a musica.
+ ******************************************************************************/
 function MusicaAmbiente() {
   const caminho = useRouterState({ select: (r) => r.location.pathname });
   useMusica(caminho.startsWith("/tutorial") ? null : "ambiente");
   return null;
 }
 
+/*******************************************************************************
+ * RootComponent
+ * funcao: envolve todas as telas com o cliente do react-query e o
+ * ProgressoProvider, e liga a musica e os efeitos globais.
+ * recebe: nada (le o queryClient do contexto da rota).
+ * retorna: os provedores com a tela da rota atual no Outlet.
+ ******************************************************************************/
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 

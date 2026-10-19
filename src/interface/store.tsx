@@ -1,3 +1,9 @@
+/*******************************************************************************
+ * store.tsx
+ * funcao principal: guarda o progresso do jogador num contexto do React,
+ * carrega e salva no localStorage e oferece as acoes do jogo (construir,
+ * ligar o som, concluir tutorial, registrar familia e quiz) para as telas.
+ ******************************************************************************/
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   carregar,
@@ -17,6 +23,7 @@ import {
 } from "@/motor";
 import { sons } from "./som";
 
+// tudo o que as telas recebem de useProgresso()
 type Ctx = {
   estado: Progresso;
   carregado: boolean;
@@ -30,19 +37,30 @@ type Ctx = {
   registrarQuiz: (quiz: IdQuiz, acertos: number, total: number) => { selo: Selo; novoRecorde: boolean };
 };
 
+// ultima montagem valida de cada elemento, salva separada do progresso
 const CHAVE_ULTIMO = "construtor-atomico:ultimo-montado";
 
 const ProgressoCtx = createContext<Ctx | null>(null);
 
+/*******************************************************************************
+ * ProgressoProvider
+ * funcao: componente que segura o estado do jogo e repassa para as telas
+ * pelo contexto.
+ * recebe: children (as telas do app).
+ * retorna: o provedor do contexto envolvendo children.
+ ******************************************************************************/
 export function ProgressoProvider({ children }: { children: ReactNode }) {
   const [estado, setEstado] = useState<Progresso>(progressoInicial);
   const [carregado, setCarregado] = useState(false);
   const [avisoCorrompido, setAviso] = useState(false);
   const [ultimoMontado, setUltimo] = useState<Record<number, Particulas>>({});
+  // as refs guardam o valor mais novo para as funcoes de useCallback, que sao
+  // criadas uma vez so e nao enxergariam o estado atualizado
   const ultimoRef = useRef<Record<number, Particulas>>({});
   const ref = useRef(estado);
   ref.current = estado;
 
+  // ao abrir o jogo (so no navegador): le a ultima montagem e o progresso salvos
   useEffect(() => {
     try {
       const bruto = window.localStorage.getItem(CHAVE_ULTIMO);
@@ -54,7 +72,7 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
         }
       }
     } catch {
-      /* sem último átomo salvo: segue vazio */
+      /* sem ultimo atomo salvo: segue vazio */
     }
     const r = carregar(window.localStorage);
     setEstado(r.estado);
@@ -62,16 +80,18 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     setCarregado(true);
   }, []);
 
+  // troca o estado na tela e grava no localStorage
   const persistir = (s: Progresso) => {
     ref.current = s;
     setEstado(s);
     try {
       salvar(window.localStorage, s);
     } catch {
-      /* armazenamento indisponível: segue em memória */
+      /* armazenamento indisponivel: segue em memoria */
     }
   };
 
+  // roda a montagem no motor; se for valida, lembra ela como a ultima do elemento
   const construir = useCallback((p: Particulas) => {
     const r = construirMotor(ref.current, p);
     persistir(r.estado); // salva depois de cada construir()
@@ -82,12 +102,13 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
       try {
         window.localStorage.setItem(CHAVE_ULTIMO, JSON.stringify(ultimoRef.current));
       } catch {
-        /* armazenamento indisponível: segue em memória */
+        /* armazenamento indisponivel: segue em memoria */
       }
     }
     return { classificacao: r.classificacao, eventos: r.eventos };
   }, []);
 
+  // liga e desliga o som (efeitos e musica)
   const alternarSom = useCallback(() => {
     const s = ref.current;
     persistir({ ...s, config: { ...s.config, som: !s.config.som } });
@@ -97,6 +118,7 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     persistir(concluirTutorialMotor(ref.current, conceder));
   }, []);
 
+  // so toca o efeito se o som estiver ligado
   const tocar = useCallback((f: () => void) => {
     if (ref.current.config.som) f();
   }, []);
@@ -111,6 +133,7 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     return { selo: r.selo, novoRecorde: r.novoRecorde };
   }, []);
 
+  // useMemo evita redesenhar quem usa o contexto quando nada mudou
   const valor = useMemo(
     () => ({ estado, carregado, avisoCorrompido, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz }),
     [estado, carregado, avisoCorrompido, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz],
@@ -118,10 +141,17 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
   return <ProgressoCtx.Provider value={valor}>{children}</ProgressoCtx.Provider>;
 }
 
+/*******************************************************************************
+ * useProgresso
+ * funcao: hook para as telas lerem o progresso e chamarem as acoes.
+ * recebe: nada.
+ * retorna: o Ctx; lanca erro se usado fora do ProgressoProvider.
+ ******************************************************************************/
 export function useProgresso(): Ctx {
   const c = useContext(ProgressoCtx);
   if (!c) throw new Error("useProgresso fora do ProgressoProvider");
   return c;
 }
 
+// reexporta os sons para as telas importarem tudo daqui
 export { sons };
