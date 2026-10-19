@@ -220,9 +220,9 @@ export function Mapa() {
         {/* painel de progresso: contagens, barra, proxima missao e familias */}
         <div className="pixel-panel flex flex-col gap-2 p-3">
           {/* uma linha so, sem quebrar: textos fixos, barra com o espaco que sobra e o
-              botao compacto no fim. a largura do mapa depende da altura da janela, entao
-              em janelas baixas a linha fica estreita e antes o botao caia para baixo */}
-          <div className="flex items-center gap-x-4">
+              botao no fim. a largura do mapa depende da altura da janela, entao em janelas
+              baixas a linha fica estreita; nesse caso o botao vai para o cabecalho */}
+          <div className="flex items-center gap-x-6">
             <p className="font-display shrink-0 whitespace-nowrap text-[11px]">Elementos {tot.elementos}/118</p>
             <p className="font-display flex shrink-0 items-center gap-2 whitespace-nowrap text-[11px]">
               <Star filled scale={2} /> Estrelas {tot.estrelas}/354
@@ -231,10 +231,9 @@ export function Mapa() {
               <div className="h-full bg-gold" style={{ width: `${pct}%`, boxShadow: "inset 0 -3px 0 var(--wood)" }} />
             </div>
             {proxima && (
-              // compacto: 29 px de altura, e a margem negativa faz ele ocupar menos que os
-              // 20 px da barra, para o painel nao ficar mais alto por causa dele. some em
-              // areas estreitas, onde o botao do cabecalho toma o lugar
-              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold -my-[5px] shrink-0 whitespace-nowrap px-[10px] py-[6px] @max-[52rem]:hidden">
+              // tamanho normal dos botoes do jogo; some em areas estreitas, onde o botao do
+              // cabecalho toma o lugar
+              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold shrink-0 whitespace-nowrap @max-[52rem]:hidden">
                 ▶ PRÓXIMA MISSÃO
               </Link>
             )}
