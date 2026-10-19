@@ -228,9 +228,13 @@ class Player {
   /*****************************************************************************
    * parar
    * funcao: para de agendar notas (as ja agendadas terminam sozinhas).
-   * recebe: nada. retorna: nada.
+   * recebe: trilha (opcional). com ela, so para se for essa a trilha que esta
+   * tocando, para uma tela que sai nao calar a trilha que a tela nova acabou
+   * de iniciar. sem ela, para qualquer trilha.
+   * retorna: nada.
    ****************************************************************************/
-  parar() {
+  parar(trilha?: Trilha) {
+    if (trilha !== undefined && this.trilha !== trilha) return;
     if (this.timer !== null) window.clearInterval(this.timer);
     this.timer = null;
     this.trilha = null;
