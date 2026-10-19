@@ -176,8 +176,9 @@ export function Mapa() {
   return (
     <main className="flex min-h-screen flex-col justify-center">
       {/* em telas baixas, cabecalho e tabela encolhem juntos para a tabela caber inteira
-          sem rolar (a grade tem ~1,9 de largura para 1 de altura) */}
-      <div className="mx-auto w-full" style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}>
+          sem rolar (a grade tem ~1,9 de largura para 1 de altura). @container deixa o
+          botao PROXIMA MISSAO escolher o lugar pela largura que sobrou */}
+      <div className="@container mx-auto w-full" style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}>
       <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-4">
@@ -193,8 +194,14 @@ export function Mapa() {
             <p className="font-display mt-2 text-[8px] tracking-widest text-parchment-shade sm:text-[10px]">CONSTRUTOR ATÔMICO</p>
             </div>
           </div>
-          {/* atalhos; o botao FINAL so aparece com a tabela completa */}
+          {/* atalhos; o botao FINAL so aparece com a tabela completa. em areas estreitas
+              (menos de 52rem) a PROXIMA MISSAO vem para ca, para nao espremer a barra */}
           <div className="flex gap-2">
+            {proxima && (
+              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold hidden @max-[52rem]:inline">
+                ▶ PRÓXIMA MISSÃO
+              </Link>
+            )}
             <Link to="/quiz" className="pixel-btn btn-parchment">
               QUIZ
             </Link>
@@ -212,16 +219,22 @@ export function Mapa() {
         </div>
         {/* painel de progresso: contagens, barra, proxima missao e familias */}
         <div className="pixel-panel flex flex-col gap-2 p-3">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <p className="font-display text-[11px]">Elementos {tot.elementos}/118</p>
-            <p className="font-display flex items-center gap-2 text-[11px]">
+          {/* uma linha so, sem quebrar: textos fixos, barra com o espaco que sobra e o
+              botao compacto no fim. a largura do mapa depende da altura da janela, entao
+              em janelas baixas a linha fica estreita e antes o botao caia para baixo */}
+          <div className="flex items-center gap-x-4">
+            <p className="font-display shrink-0 whitespace-nowrap text-[11px]">Elementos {tot.elementos}/118</p>
+            <p className="font-display flex shrink-0 items-center gap-2 whitespace-nowrap text-[11px]">
               <Star filled scale={2} /> Estrelas {tot.estrelas}/354
             </p>
-            <div className="h-5 min-w-40 flex-1 border-[3px] border-ink bg-panel" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso da tabela">
+            <div className="h-5 min-w-0 flex-1 border-[3px] border-ink bg-panel" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso da tabela">
               <div className="h-full bg-gold" style={{ width: `${pct}%`, boxShadow: "inset 0 -3px 0 var(--wood)" }} />
             </div>
             {proxima && (
-              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold">
+              // compacto: 29 px de altura, e a margem negativa faz ele ocupar menos que os
+              // 20 px da barra, para o painel nao ficar mais alto por causa dele. some em
+              // areas estreitas, onde o botao do cabecalho toma o lugar
+              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold -my-[5px] shrink-0 whitespace-nowrap px-[10px] py-[6px] @max-[52rem]:hidden">
                 ▶ PRÓXIMA MISSÃO
               </Link>
             )}
