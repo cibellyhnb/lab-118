@@ -1,0 +1,243 @@
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import {
+  ELEMENTOS,
+  FAMILIAS,
+  NOME_CATEGORIA,
+  SIGLA_CATEGORIA,
+  contarTotais,
+  dominado,
+  gerarMissao,
+  progressoFamilia,
+  seloConquistado,
+  type Categoria,
+  type Elemento,
+} from "@/motor";
+import { C, LOCK, PixelArt, Star } from "./PixelArt";
+import { BotaoAjuda } from "./Ajuda";
+import { Emblema } from "./Emblema";
+import { Final } from "./Final";
+import { TituloLab } from "./Titulo";
+import { SoundToggle, Stars, catStyle } from "./comuns";
+import { useProgresso } from "./store";
+
+function Bloco({ el }: { el: Elemento }) {
+  const { estado } = useProgresso();
+  const prog = estado.elementos[String(el.z)];
+  const aberto = !!prog?.estrelas[0];
+  const ouro = dominado(estado, el.z);
+  const estilo = { ...catStyle(el.categoria), gridRow: el.posicao.linha, gridColumn: el.posicao.coluna + 1 };
+  const classe = `pixel-block aspect-square flex flex-col items-center justify-center ${aberto ? "block-open" : "block-locked"} ${ouro ? "block-gold" : ""} hover:brightness-110 focus-visible:z-10`;
+  const trilha = el.trilha_essencial && (
+    <span aria-hidden className="absolute left-0 top-0 h-1.5 w-1.5 bg-parchment" style={{ boxShadow: "1px 1px 0 var(--ink)" }} />
+  );
+
+  if (!aberto) {
+    return (
+      <Link
+        to="/laboratorio"
+        search={{ z: el.z }}
+        className={classe}
+        style={estilo}
+        aria-label={`Bloqueado: período ${el.periodo}${el.grupo ? `, grupo ${el.grupo}` : ""}. Abrir missão.`}
+      >
+        {trilha}
+        <PixelArt rows={LOCK} scale={2} palette={{ k: C.ink, g: "color-mix(in oklab, var(--cat) 60%, var(--parchment))" }} />
+      </Link>
+    );
+  }
+  return (
+    <Link
+      to="/elemento/$z"
+      params={{ z: String(el.z) }}
+      className={classe}
+      style={estilo}
+      aria-label={`${el.nome}, número atômico ${el.z}, ${prog.estrelas.filter(Boolean).length} estrelas`}
+    >
+      {trilha}
+      <span className="absolute left-0.5 top-0 text-[9px] leading-none sm:text-[11px]">{el.z}</span>
+      <span className="font-display text-[10px] sm:text-sm">{el.simbolo}</span>
+      <span className="absolute bottom-0.5 right-0.5 flex gap-px">
+        {prog.estrelas.map((s, i) => (
+          <Star key={i} filled={s} scale={1} />
+        ))}
+      </span>
+    </Link>
+  );
+}
+
+/** Faixa com o brasão de cada família: apagado até completar; depois vira atalho para o quiz e mostra o selo. */
+function Familias() {
+  const { estado } = useProgresso();
+  return (
+    <section className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t-[3px] border-dashed border-wood/50 pt-2" aria-label="Famílias da tabela">
+      <p className="font-display text-[11px]">Famílias</p>
+      <ul className="flex flex-1 flex-wrap gap-2">
+        {FAMILIAS.map((f) => {
+          const pr = progressoFamilia(estado, f.id);
+          const selo = seloConquistado(estado, f.id);
+          const corpo = (
+            <>
+              <Emblema familia={f.id} scale={2} apagado={!pr.completa} />
+              <span className="font-display text-[8px] leading-none">
+                {pr.completa ? (selo > 0 ? <Stars estrelas={[selo >= 1, selo >= 2, selo >= 3]} scale={1} /> : "QUIZ") : `${pr.descobertos}/${pr.total}`}
+              </span>
+            </>
+          );
+          return (
+            <li key={f.id}>
+              {pr.completa ? (
+                <Link to="/quiz" search={{ familia: f.id }} className="flex flex-col items-center gap-1 hover:brightness-110" title={`${f.nome}: fazer o quiz`}>
+                  {corpo}
+                </Link>
+              ) : (
+                <span className="flex flex-col items-center gap-1" title={`${f.nome}: ${pr.descobertos} de ${pr.total} descobertos`}>
+                  {corpo}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+const ROTULOS_LINHA = ["Mundo 1", "Mundo 2", "Mundo 3", "Mundo 4", "Mundo 5", "Mundo 6", "Mundo 7", "", "Lant.", "Actin."];
+
+export function Mapa() {
+  const { estado, avisoCorrompido, carregado } = useProgresso();
+  const navegar = useNavigate();
+  useEffect(() => {
+    if (carregado && !estado.tutorialConcluido) void navegar({ to: "/tutorial" });
+  }, [carregado, estado.tutorialConcluido, navegar]);
+  const tot = contarTotais(estado);
+  const [final, setFinal] = useState(false);
+  // abre o final sozinho na primeira vez que a tabela fica completa (e guarda que já viu)
+  useEffect(() => {
+    if (!carregado || tot.elementos < ELEMENTOS.length) return;
+    try {
+      if (!localStorage.getItem("lab118:final")) setFinal(true);
+    } catch {
+      /* sem armazenamento: não abre sozinho */
+    }
+  }, [carregado, tot.elementos]);
+  // TESTE (remover depois): abrir /?final=1 mostra o final mesmo sem a tabela completa
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("final") === "1") setFinal(true);
+  }, []);
+  const fecharFinal = () => {
+    setFinal(false);
+    try {
+      localStorage.setItem("lab118:final", "1");
+    } catch {
+      /* ignora */
+    }
+  };
+  const proxima = gerarMissao(estado, 0);
+  const pct = Math.round((tot.elementos / 118) * 100);
+
+  return (
+    <main className="flex min-h-screen flex-col justify-center">
+      {/* em telas baixas, cabeçalho e tabela encolhem juntos para a tabela caber inteira sem rolar (a grade tem ~1,9 de largura para 1 de altura) */}
+      <div className="mx-auto w-full" style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}>
+      <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="pixel-btn btn-parchment px-3 text-base" aria-label="Voltar para a tela inicial" title="Voltar ao início">
+              ◀
+            </Link>
+            <div>
+            <h1 className="leading-none">
+              <Link to="/" title="Tela inicial" className="block hover:brightness-110">
+                <TituloLab className="w-[150px] sm:w-[210px]" />
+              </Link>
+            </h1>
+            <p className="font-display mt-2 text-[8px] tracking-widest text-parchment-shade sm:text-[10px]">CONSTRUTOR ATÔMICO</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Link to="/quiz" className="pixel-btn btn-parchment">
+              QUIZ
+            </Link>
+            <Link to="/glossario" className="pixel-btn btn-parchment">
+              GLOSSÁRIO
+            </Link>
+            {tot.elementos >= ELEMENTOS.length && (
+              <button type="button" className="pixel-btn btn-gold" onClick={() => setFinal(true)}>
+                ★ FINAL
+              </button>
+            )}
+            <SoundToggle />
+            <BotaoAjuda />
+          </div>
+        </div>
+        <div className="pixel-panel flex flex-col gap-2 p-3">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <p className="font-display text-[11px]">Elementos {tot.elementos}/118</p>
+            <p className="font-display flex items-center gap-2 text-[11px]">
+              <Star filled scale={2} /> Estrelas {tot.estrelas}/354
+            </p>
+            <div className="h-5 min-w-40 flex-1 border-[3px] border-ink bg-panel" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso da tabela">
+              <div className="h-full bg-gold" style={{ width: `${pct}%`, boxShadow: "inset 0 -3px 0 var(--wood)" }} />
+            </div>
+            {proxima && (
+              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold">
+                ▶ PRÓXIMA MISSÃO
+              </Link>
+            )}
+          </div>
+          <Familias />
+        </div>
+      </header>
+
+      {avisoCorrompido && (
+        <p role="alert" className="pixel-panel mx-auto mt-4 max-w-3xl p-3">
+          Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo antigo foi guardada.
+        </p>
+      )}
+
+      <section className="px-2 py-3 sm:px-4" aria-label="Tabela periódica">
+        <div
+          className="grid gap-[3px]"
+          style={{ gridTemplateColumns: "minmax(36px,auto) repeat(18, minmax(0,1fr))", gridTemplateRows: "repeat(7, auto) 12px auto auto" }}
+        >
+          {ROTULOS_LINHA.map((r, i) =>
+            r ? (
+              <span key={i} className="font-display flex items-center pr-1 text-[7px] text-parchment-shade sm:text-[9px]" style={{ gridRow: i + 1, gridColumn: 1 }}>
+                {r}
+              </span>
+            ) : null,
+          )}
+          {[6, 7].map((linha) => (
+            <span
+              key={linha}
+              aria-hidden
+              className="font-display flex aspect-square items-center justify-center border-2 border-dashed border-parchment-shade text-[7px] text-parchment-shade"
+              style={{ gridRow: linha, gridColumn: 4 }}
+            >
+              {linha === 6 ? "57-71" : "89-103"}
+            </span>
+          ))}
+          {ELEMENTOS.map((el) => (
+            <Bloco key={el.z} el={el} />
+          ))}
+        </div>
+
+        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Legenda das famílias">
+          {(Object.keys(NOME_CATEGORIA) as Categoria[]).map((c) => (
+            <li key={c} className="pixel-block block-open flex items-center gap-1.5 px-1.5 py-0.5 text-xs" style={catStyle(c)}>
+              <span className="font-display text-[8px]">{SIGLA_CATEGORIA[c]}</span>
+              {NOME_CATEGORIA[c]}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-xs text-parchment-shade">
+          Clique num bloco com cadeado para abrir a missão dele. O quadradinho claro no canto marca a Trilha essencial.
+        </p>
+      </section>
+      </div>
+      {final && <Final onFechar={fecharFinal} />}
+    </main>
+  );
+}

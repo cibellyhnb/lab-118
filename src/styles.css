@@ -1,0 +1,487 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Fontes pixel hospedadas no próprio projeto (funcionam offline). Licenças em public/fonts/LICENCAS.txt.
+   - Pixel Display Acentos: a Press Start 2P com as letras acentuadas redesenhadas em tamanho cheio (Ó, Ã, Ê...).
+   - Pixelify Sans: texto corrido.
+   - Dígitos claros: só os números 0-9 e a letra Z vêm da VT323, porque o 5 da Pixelify Sans parecia um S (15 virava 18). */
+@font-face {
+  font-family: "Pixel Display Acentos";
+  src: url("/fonts/pixel-display-acentos.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("/fonts/pixelify-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("/fonts/pixelify-sans-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Digitos Claros";
+  src: url("/fonts/vt323-digitos.woff2") format("woff2");
+  unicode-range: U+0030-0039, U+005A;
+  size-adjust: 120%;
+  font-display: swap;
+}
+
+/* Construtor Atômico - design system pixel art 16-bit. Paleta limitada (22 cores). */
+
+@theme inline {
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --font-display: "Pixel Display Acentos", monospace;
+  --font-body: "Digitos Claros", "Pixelify Sans", monospace;
+  --font-sans: "Digitos Claros", "Pixelify Sans", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ink: var(--ink);
+  --color-night: var(--night);
+  --color-panel: var(--panel);
+  --color-parchment: var(--parchment);
+  --color-parchment-shade: var(--parchment-shade);
+  --color-wood: var(--wood);
+  --color-wood-dark: var(--wood-dark);
+  --color-sky-light: var(--sky-light);
+  --color-sky: var(--sky);
+  --color-cloud: var(--cloud);
+  --color-proton: var(--proton);
+  --color-neutron: var(--neutron);
+  --color-electron: var(--electron);
+  --color-gold: var(--gold);
+}
+
+:root {
+  --ink: oklch(0.219 0.052 291.8);
+  --night: oklch(0.279 0.053 293.8);
+  --panel: oklch(0.352 0.064 294.1);
+  --parchment: oklch(0.936 0.035 87.1);
+  --parchment-shade: oklch(0.835 0.056 86.1);
+  --wood: oklch(0.512 0.083 57.9);
+  --wood-dark: oklch(0.383 0.061 56);
+  --sky-light: oklch(0.837 0.092 237.7);
+  --sky: oklch(0.695 0.13 245.4);
+  --cloud: oklch(1 0 0);
+  --proton: oklch(0.623 0.203 26.2);
+  --neutron: oklch(0.703 0.014 255.5);
+  --electron: oklch(0.6 0.181 260.4);
+  --gold: oklch(0.861 0.159 86.4);
+
+  --cat-metal_alcalino: oklch(0.727 0.176 41.2);
+  --cat-metal_alcalino_terroso: oklch(0.821 0.149 72.1);
+  --cat-metal_transicao: oklch(0.687 0.16 2.3);
+  --cat-metal_representativo: oklch(0.727 0.057 180);
+  --cat-semimetal: oklch(0.783 0.162 127.6);
+  --cat-nao_metal: oklch(0.735 0.136 159.3);
+  --cat-halogenio: oklch(0.77 0.119 207.6);
+  --cat-gas_nobre: oklch(0.709 0.159 293.5);
+  --cat-lantanideo: oklch(0.743 0.135 311.1);
+  --cat-actinideo: oklch(0.762 0.124 1);
+
+  --background: var(--night);
+  --foreground: var(--parchment);
+  --card: var(--parchment);
+  --card-foreground: var(--ink);
+  --popover: var(--parchment);
+  --popover-foreground: var(--ink);
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
+  --secondary: var(--panel);
+  --secondary-foreground: var(--parchment);
+  --muted: var(--panel);
+  --muted-foreground: var(--parchment-shade);
+  --accent: var(--sky);
+  --accent-foreground: var(--ink);
+  --destructive: var(--proton);
+  --destructive-foreground: var(--cloud);
+  --border: var(--ink);
+  --input: var(--ink);
+  --ring: var(--gold);
+
+  /* Bordas e bisel de pixel (sombras duras, sem desfoque) */
+  --px: 3px;
+  --pixel-border: 0 0 0 var(--px) var(--ink);
+  --bevel: inset calc(var(--px) * -1) calc(var(--px) * -1) 0 0 color-mix(in oklab, var(--ink) 35%, transparent),
+    inset var(--px) var(--px) 0 0 color-mix(in oklab, var(--cloud) 45%, transparent);
+  --drop: calc(var(--px) * 1.5) calc(var(--px) * 1.5) 0 0 var(--ink);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    image-rendering: pixelated;
+  }
+  body {
+    background-color: var(--color-background);
+    /* céu noturno discreto: um brilho roxo no alto e estrelinhas pixeladas (o mesmo fundo em todas as telas) */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' shape-rendering='crispEdges'><rect x='114' y='142' width='3' height='3' fill='%23f4e9d4' fill-opacity='0.32'/><rect x='115' y='140' width='1' height='7' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='112' y='143' width='7' height='1' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='118' y='114' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='46' y='130' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='160' y='156' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='24' y='114' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/><rect x='36' y='22' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.1'/><rect x='152' y='100' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='166' y='188' width='3' height='3' fill='%23f4e9d4' fill-opacity='0.32'/><rect x='167' y='186' width='1' height='7' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='164' y='189' width='7' height='1' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='40' y='158' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.1'/><rect x='134' y='16' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.1'/><rect x='8' y='48' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='152' y='6' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='82' y='112' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='132' y='58' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/><rect x='126' y='0' width='3' height='3' fill='%23f4e9d4' fill-opacity='0.32'/><rect x='127' y='-2' width='1' height='7' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='124' y='1' width='7' height='1' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='168' y='20' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='166' y='70' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='180' y='64' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/><rect x='58' y='130' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/><rect x='6' y='16' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.1'/><rect x='102' y='26' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/><rect x='4' y='174' width='3' height='3' fill='%23f4e9d4' fill-opacity='0.32'/><rect x='5' y='172' width='1' height='7' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='2' y='175' width='7' height='1' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='52' y='12' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='96' y='180' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.24'/><rect x='144' y='160' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.14'/><rect x='86' y='22' width='2' height='2' fill='%23f4e9d4' fill-opacity='0.18'/></svg>"), linear-gradient(180deg, color-mix(in oklab, var(--night) 80%, oklch(0.55 0.14 290)) 0, var(--night) 520px);
+    background-repeat: repeat, no-repeat;
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 18px;
+    -webkit-font-smoothing: none;
+    font-synthesis: none;
+    /* a Pixelify Sans tem a ligadura "fi" que parece um "A" (ficha vira Acha) */
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
+  }
+  img,
+  canvas,
+  svg {
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+  :focus-visible {
+    outline: var(--px) solid var(--gold);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- utilitários de pixel ---------- */
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+@utility pixel-panel {
+  background: var(--parchment);
+  color: var(--ink);
+  border: var(--px) solid var(--ink);
+  box-shadow: var(--bevel), var(--drop);
+}
+
+@utility pixel-panel-dark {
+  background: var(--panel);
+  color: var(--parchment);
+  border: var(--px) solid var(--ink);
+  box-shadow: var(--bevel), var(--drop);
+}
+
+@utility pixel-btn {
+  font-family: var(--font-display);
+  font-size: 11px;
+  line-height: 1;
+  padding: 12px 14px;
+  border: var(--px) solid var(--ink);
+  box-shadow: var(--bevel), var(--drop);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 60ms steps(2);
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+  &:active:not(:disabled) {
+    transform: translate(var(--px), var(--px));
+    box-shadow: var(--bevel);
+    filter: none;
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@utility btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+}
+@utility btn-parchment {
+  background: var(--parchment);
+  color: var(--ink);
+}
+@utility btn-sky {
+  background: var(--sky-light);
+  color: var(--ink);
+}
+@utility btn-dark {
+  background: var(--panel);
+  color: var(--parchment);
+}
+
+@utility pixel-block {
+  position: relative;
+  border: 2px solid var(--ink);
+  box-shadow: inset -3px -3px 0 0 color-mix(in oklab, var(--ink) 35%, transparent),
+    inset 3px 3px 0 0 color-mix(in oklab, var(--cloud) 50%, transparent);
+}
+
+/* blocos clicáveis do mapa: sobem um pouquinho e ganham brilho ao passar o mouse */
+a.pixel-block {
+  transition: transform 60ms steps(2);
+}
+a.pixel-block:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+  z-index: 2;
+}
+a.pixel-block:active {
+  transform: translateY(0);
+}
+
+@utility block-locked {
+  background: color-mix(in oklab, var(--cat) 28%, var(--ink));
+  color: color-mix(in oklab, var(--cat) 55%, var(--parchment));
+  box-shadow: inset -3px -3px 0 0 color-mix(in oklab, var(--ink) 60%, transparent),
+    inset 3px 3px 0 0 color-mix(in oklab, var(--cat) 35%, transparent);
+}
+
+@utility block-open {
+  background: var(--cat);
+  color: var(--ink);
+}
+
+@utility block-gold {
+  outline: 3px solid var(--gold);
+  outline-offset: -1px;
+  box-shadow: 0 0 0 2px var(--ink), inset -3px -3px 0 0 color-mix(in oklab, var(--ink) 35%, transparent),
+    inset 3px 3px 0 0 color-mix(in oklab, var(--cloud) 50%, transparent);
+}
+
+@utility bg-cat {
+  background: var(--cat);
+}
+
+/* Céu pixelado em faixas */
+@utility sky-bands {
+  background: linear-gradient(
+    to bottom,
+    var(--sky) 0 30%,
+    color-mix(in oklab, var(--sky) 50%, var(--sky-light)) 30% 55%,
+    var(--sky-light) 55% 100%
+  );
+}
+
+/* ---------- animações (respeitam reduced motion) ---------- */
+@keyframes drift {
+  from { transform: translateX(-20%); }
+  to { transform: translateX(120vw); }
+}
+@keyframes wobble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 1px); }
+  50% { transform: translate(3px, -1px); }
+  75% { transform: translate(-1px, 2px); }
+}
+@keyframes jitter {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(1px, -1px); }
+  66% { transform: translate(-1px, 1px); }
+}
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes confetti {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+}
+@keyframes flip-in {
+  0% { transform: perspective(800px) rotateY(180deg) scale(0.6); }
+  60% { transform: perspective(800px) rotateY(-10deg) scale(1.05); }
+  100% { transform: perspective(800px) rotateY(0) scale(1); }
+}
+@keyframes coin {
+  0% { transform: scale(0.2) rotateY(0); }
+  50% { transform: scale(1.4) rotateY(180deg); }
+  100% { transform: scale(1) rotateY(360deg); }
+}
+@keyframes blink {
+  50% { opacity: 0.35; }
+}
+
+@utility anim-drift { animation: drift 60s steps(240) infinite linear; }
+@utility anim-wobble { animation: wobble 320ms steps(4) 1; }
+@utility anim-jitter { animation: jitter 240ms steps(3) infinite; }
+@utility anim-jitter-slow { animation: jitter 900ms steps(3) infinite; }
+@utility anim-orbit { animation: orbit var(--orbit-dur, 12s) linear infinite; transform-origin: center; transform-box: view-box; }
+@utility anim-confetti { animation: confetti 1100ms steps(14) forwards; }
+@utility anim-flip { animation: flip-in 700ms steps(10) both; }
+@utility anim-coin { animation: coin 600ms steps(8) both; }
+@utility anim-blink { animation: blink 1s steps(2) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- tutorial, história e dicas ---------- */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+@keyframes slide-up {
+  from { transform: translateY(28px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes arrow-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+
+@utility anim-bob { animation: bob 1.6s steps(4) infinite; }
+@utility anim-pop { animation: pop 450ms steps(6) both; }
+@utility anim-twinkle { animation: twinkle 2.4s steps(2) infinite; }
+@utility anim-slide-up { animation: slide-up 320ms steps(5) both; }
+@utility anim-arrow { animation: arrow-down 700ms steps(3) infinite; }
+@utility anim-fade { animation: fade-in 600ms steps(6) both; }
+@utility anim-shine { animation: shine 900ms steps(2) infinite; }
+
+/* ---------- cerimônia de família e quiz ---------- */
+@keyframes raios {
+  to { transform: rotate(360deg); }
+}
+@keyframes voar {
+  from { transform: translate(var(--sx), var(--sy)) scale(0.3); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes flash {
+  0% { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+@keyframes subir {
+  0% { transform: translateY(70px) scale(0.2); opacity: 0; }
+  70% { transform: translateY(-10px) scale(1.12); opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes brilho {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 0 14px var(--gold)); }
+}
+@utility anim-raios { animation: raios 40s steps(80) infinite linear; }
+@utility anim-voar { animation: voar 700ms steps(8) both; }
+@utility anim-flash { animation: flash 700ms steps(6) both; }
+@utility anim-subir { animation: subir 900ms steps(10) both; }
+@utility anim-brilho { animation: brilho 1.8s steps(6) infinite; }
+
+/* ---------- estrelinhas que piscam (duas camadas atrás do conteúdo, com ritmos diferentes) ---------- */
+@keyframes piscar {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 1; }
+}
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: repeat;
+}
+body::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='288' height='288' shape-rendering='crispEdges'><rect x='128' y='74' width='2' height='2' fill='%23fff3c4'/><rect x='128' y='72' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='128' y='77' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='126' y='74' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='131' y='74' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='196' y='250' width='2' height='2' fill='%23fff3c4'/><rect x='40' y='14' width='2' height='2' fill='%23fff3c4'/><rect x='40' y='12' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='40' y='17' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='38' y='14' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='43' y='14' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='248' y='140' width='2' height='2' fill='%23fff3c4'/><rect x='126' y='106' width='2' height='2' fill='%23fff3c4'/><rect x='126' y='104' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='126' y='109' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='124' y='106' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='129' y='106' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='248' y='250' width='2' height='2' fill='%23fff3c4'/><rect x='210' y='84' width='2' height='2' fill='%23fff3c4'/><rect x='210' y='82' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='210' y='87' width='2' height='1' fill='%23fff3c4' fill-opacity='.6'/><rect x='208' y='84' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/><rect x='213' y='84' width='1' height='2' fill='%23fff3c4' fill-opacity='.6'/></svg>");
+  animation: piscar 3.6s steps(4) infinite;
+}
+body::after {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='224' height='224' shape-rendering='crispEdges'><rect x='66' y='102' width='2' height='2' fill='%23d9ecff'/><rect x='66' y='100' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='66' y='105' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='64' y='102' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='69' y='102' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='104' y='40' width='2' height='2' fill='%23d9ecff'/><rect x='56' y='188' width='2' height='2' fill='%23d9ecff'/><rect x='56' y='186' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='56' y='191' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='54' y='188' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='59' y='188' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='18' y='28' width='2' height='2' fill='%23d9ecff'/><rect x='42' y='70' width='2' height='2' fill='%23d9ecff'/><rect x='42' y='68' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='42' y='73' width='2' height='1' fill='%23d9ecff' fill-opacity='.6'/><rect x='40' y='70' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='45' y='70' width='1' height='2' fill='%23d9ecff' fill-opacity='.6'/><rect x='214' y='136' width='2' height='2' fill='%23d9ecff'/></svg>");
+  background-position: 97px 61px;
+  animation: piscar 5.2s steps(4) infinite;
+  animation-delay: -2s;
+}
+
+/* ---------- transições e entradas ---------- */
+@keyframes cortina {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes entrar {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes titulo {
+  0% { opacity: 0; translate: 0 -90px; }
+  55% { opacity: 1; translate: 0 10px; }
+  75% { translate: 0 -6px; }
+  100% { opacity: 1; translate: 0 0; }
+}
+@utility anim-cortina { animation: cortina 500ms steps(6) both; }
+@utility anim-entrar { animation: entrar 500ms steps(6) both; }
+@utility anim-titulo { animation: titulo 900ms steps(9) both; }
+
+/* ---------- final do jogo ---------- */
+@keyframes faisca {
+  0% { transform: translate(0, 0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+}
+@keyframes onda {
+  0%, 62%, 100% { filter: brightness(1); transform: translateY(0); }
+  80% { filter: brightness(1.7); transform: translateY(-4px); }
+}
+@utility anim-faisca { animation: faisca 1100ms steps(11) both; }
+@utility anim-onda { animation: onda 3.6s steps(12) infinite; }
+
+/* ---------- decoração química ---------- */
+@keyframes bolha {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-34px); opacity: 0; }
+}
+@keyframes flutuar {
+  0% { transform: translateY(20px); opacity: 0; }
+  12% { opacity: 0.55; }
+  85% { opacity: 0.4; }
+  100% { transform: translateY(-96vh); opacity: 0; }
+}
+@keyframes cadente {
+  0%, 82% { transform: translate(0, 0) rotate(28deg); opacity: 0; }
+  84% { opacity: 1; }
+  100% { transform: translate(-360px, 200px) rotate(28deg); opacity: 0; }
+}
+@keyframes aurora {
+  from { transform: translateX(-5%); }
+  to { transform: translateX(5%); }
+}
+@utility anim-bolha { animation: bolha 2.6s steps(8) infinite both; }
+@utility anim-flutuar { animation: flutuar 18s steps(60) infinite; }
+@utility anim-cadente { animation: cadente 11s steps(14) infinite both; }
+@utility anim-aurora { animation: aurora 16s steps(32) infinite alternate; }

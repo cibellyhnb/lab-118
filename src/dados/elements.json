@@ -1,0 +1,6886 @@
+[
+  {
+    "z": 1,
+    "simbolo": "H",
+    "nome": "Hidrogênio",
+    "categoria": "nao_metal",
+    "grupo": 1,
+    "periodo": 1,
+    "posicao": {
+      "linha": 1,
+      "coluna": 1
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": {
+      "valor": 1.008,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 1,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.9885
+      },
+      {
+        "a": 2,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.0115
+      },
+      {
+        "a": 3,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12,32 anos"
+      }
+    ],
+    "ions_comuns": [
+      1,
+      -1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "completa",
+      "pista": "Sou o elemento mais abundante do universo e o combustível das estrelas.",
+      "usos": [
+        "Combustível de foguetes, na forma líquida",
+        "Matéria-prima da amônia, usada em fertilizantes",
+        "Faz parte da água: cada molécula tem 2 átomos de hidrogênio"
+      ],
+      "curiosidades": [
+        "É o único elemento cujo isótopo mais comum não tem nenhum nêutron.",
+        "Nas estrelas, núcleos de hidrogênio se fundem e formam hélio, liberando a energia que as faz brilhar."
+      ],
+      "fontes": [
+        "CIAAW (massa atômica)",
+        "IAEA Live Chart of Nuclides (isótopos)"
+      ]
+    }
+  },
+  {
+    "z": 2,
+    "simbolo": "He",
+    "nome": "Hélio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 1,
+    "posicao": {
+      "linha": 1,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": {
+      "valor": 4.0026,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 3,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.000134
+      },
+      {
+        "a": 4,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.999866
+      },
+      {
+        "a": 6,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "0,8 segundo"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "pista": "Enchem balões de festa comigo, e quem me respira fica com a voz fina."
+    }
+  },
+  {
+    "z": 3,
+    "simbolo": "Li",
+    "nome": "Lítio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 1
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": {
+      "valor": 6.94,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 6,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.59
+      },
+      {
+        "a": 7,
+        "estabilidade": "estavel",
+        "abundancia_pct": 92.41
+      },
+      {
+        "a": 8,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "0,84 segundo"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 4,
+    "simbolo": "Be",
+    "nome": "Berílio",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": {
+      "valor": 9.0122,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 9,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100
+      },
+      {
+        "a": 10,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,39 milhão de anos"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 5,
+    "simbolo": "B",
+    "nome": "Boro",
+    "categoria": "semimetal",
+    "grupo": 13,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": {
+      "valor": 10.81,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 8,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "0,77 segundo"
+      },
+      {
+        "a": 10,
+        "estabilidade": "estavel",
+        "abundancia_pct": 19.9
+      },
+      {
+        "a": 11,
+        "estabilidade": "estavel",
+        "abundancia_pct": 80.1
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 6,
+    "simbolo": "C",
+    "nome": "Carbono",
+    "categoria": "nao_metal",
+    "grupo": 14,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": {
+      "valor": 12.011,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 12,
+        "estabilidade": "estavel",
+        "abundancia_pct": 98.93
+      },
+      {
+        "a": 13,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.07
+      },
+      {
+        "a": 14,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5.730 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "completa",
+      "pista": "Estou no grafite do lápis e no diamante.",
+      "usos": [
+        "Base da química orgânica e dos seres vivos",
+        "Grafite de lápis",
+        "Datação de restos orgânicos antigos com carbono-14"
+      ],
+      "curiosidades": [
+        "Diamante e grafite são feitos só de carbono, com arranjos diferentes dos átomos."
+      ],
+      "fontes": [
+        "CIAAW (massa atômica)",
+        "IAEA Live Chart of Nuclides (isótopos)"
+      ]
+    }
+  },
+  {
+    "z": 7,
+    "simbolo": "N",
+    "nome": "Nitrogênio",
+    "categoria": "nao_metal",
+    "grupo": 15,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 15
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": {
+      "valor": 14.007,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 13,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9,97 minutos"
+      },
+      {
+        "a": 14,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.636
+      },
+      {
+        "a": 15,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.364
+      }
+    ],
+    "ions_comuns": [
+      -3
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 8,
+    "simbolo": "O",
+    "nome": "Oxigênio",
+    "categoria": "nao_metal",
+    "grupo": 16,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 16
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": {
+      "valor": 15.999,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 15,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "122 segundos"
+      },
+      {
+        "a": 16,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.757
+      },
+      {
+        "a": 17,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.038
+      },
+      {
+        "a": 18,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.205
+      }
+    ],
+    "ions_comuns": [
+      -2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "pista": "Você me respira o tempo todo, e o fogo precisa de mim para queimar."
+    }
+  },
+  {
+    "z": 9,
+    "simbolo": "F",
+    "nome": "Flúor",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 17
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": {
+      "valor": 18.998,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 18,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "110 minutos"
+      },
+      {
+        "a": 19,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100
+      }
+    ],
+    "ions_comuns": [
+      -1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 10,
+    "simbolo": "Ne",
+    "nome": "Neônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 2,
+    "posicao": {
+      "linha": 2,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": {
+      "valor": 20.18,
+      "tipo": "convencional"
+    },
+    "isotopos": [
+      {
+        "a": 20,
+        "estabilidade": "estavel",
+        "abundancia_pct": 90.48
+      },
+      {
+        "a": 21,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.27
+      },
+      {
+        "a": 22,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.25
+      },
+      {
+        "a": 24,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,38 minutos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 11,
+    "simbolo": "Na",
+    "nome": "Sódio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 1
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 22,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,6 anos"
+      },
+      {
+        "a": 23,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 24,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "15 h"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "pista": "Junto com o cloro, formo o sal de cozinha."
+    }
+  },
+  {
+    "z": 12,
+    "simbolo": "Mg",
+    "nome": "Magnésio",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 24,
+        "estabilidade": "estavel",
+        "abundancia_pct": 78.965
+      },
+      {
+        "a": 25,
+        "estabilidade": "estavel",
+        "abundancia_pct": 10.011
+      },
+      {
+        "a": 26,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.025
+      },
+      {
+        "a": 27,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9,44 min"
+      },
+      {
+        "a": 28,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "20,9 h"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 13,
+    "simbolo": "Al",
+    "nome": "Alumínio",
+    "categoria": "metal_representativo",
+    "grupo": 13,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 26,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "717 mil anos"
+      },
+      {
+        "a": 27,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 29,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6,56 min"
+      }
+    ],
+    "ions_comuns": [
+      3
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 14,
+    "simbolo": "Si",
+    "nome": "Silício",
+    "categoria": "semimetal",
+    "grupo": 14,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 28,
+        "estabilidade": "estavel",
+        "abundancia_pct": 92.2545
+      },
+      {
+        "a": 29,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.672
+      },
+      {
+        "a": 30,
+        "estabilidade": "estavel",
+        "abundancia_pct": 3.0735
+      },
+      {
+        "a": 31,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "157 min"
+      },
+      {
+        "a": 32,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "157 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 15,
+    "simbolo": "P",
+    "nome": "Fósforo",
+    "categoria": "nao_metal",
+    "grupo": 15,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 15
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 31,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 32,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14,3 dias"
+      },
+      {
+        "a": 33,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "25,4 dias"
+      }
+    ],
+    "ions_comuns": [
+      -3
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 16,
+    "simbolo": "S",
+    "nome": "Enxofre",
+    "categoria": "nao_metal",
+    "grupo": 16,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 16
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 32,
+        "estabilidade": "estavel",
+        "abundancia_pct": 94.85
+      },
+      {
+        "a": 33,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.763
+      },
+      {
+        "a": 34,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.365
+      },
+      {
+        "a": 35,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "87,4 dias"
+      },
+      {
+        "a": 36,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.0158
+      },
+      {
+        "a": 38,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "170 min"
+      }
+    ],
+    "ions_comuns": [
+      -2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 17,
+    "simbolo": "Cl",
+    "nome": "Cloro",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 17
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 35,
+        "estabilidade": "estavel",
+        "abundancia_pct": 75.76
+      },
+      {
+        "a": 37,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.24
+      }
+    ],
+    "ions_comuns": [
+      -1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta"
+    }
+  },
+  {
+    "z": 18,
+    "simbolo": "Ar",
+    "nome": "Argônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 3,
+    "posicao": {
+      "linha": 3,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 36,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.3336
+      },
+      {
+        "a": 38,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.0629
+      },
+      {
+        "a": 39,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "268 anos"
+      },
+      {
+        "a": 40,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.6035
+      },
+      {
+        "a": 42,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "32,9 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 19,
+    "simbolo": "K",
+    "nome": "Potássio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 1
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      8,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 39,
+        "estabilidade": "estavel",
+        "abundancia_pct": 93.2581
+      },
+      {
+        "a": 40,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.0117,
+        "meia_vida": "1,25 bilhões de anos"
+      },
+      {
+        "a": 41,
+        "estabilidade": "estavel",
+        "abundancia_pct": 6.7302
+      },
+      {
+        "a": 42,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12,4 h"
+      },
+      {
+        "a": 43,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "22,3 h"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 20,
+    "simbolo": "Ca",
+    "nome": "Cálcio",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      8,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 40,
+        "estabilidade": "estavel",
+        "abundancia_pct": 96.941
+      },
+      {
+        "a": 41,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "99,4 mil anos"
+      },
+      {
+        "a": 42,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.647
+      },
+      {
+        "a": 43,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.135
+      },
+      {
+        "a": 44,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.086
+      },
+      {
+        "a": 45,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "163 dias"
+      },
+      {
+        "a": 46,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.004
+      },
+      {
+        "a": 48,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.187,
+        "meia_vida": "5,6 × 10¹⁹ anos"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 21,
+    "simbolo": "Sc",
+    "nome": "Escândio",
+    "categoria": "metal_transicao",
+    "grupo": 3,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 3
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 45,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 46,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "83,8 dias"
+      },
+      {
+        "a": 47,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,35 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 22,
+    "simbolo": "Ti",
+    "nome": "Titânio",
+    "categoria": "metal_transicao",
+    "grupo": 4,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 4
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      10,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 44,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "59,1 anos"
+      },
+      {
+        "a": 45,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "185 min"
+      },
+      {
+        "a": 46,
+        "estabilidade": "estavel",
+        "abundancia_pct": 8.25
+      },
+      {
+        "a": 47,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.44
+      },
+      {
+        "a": 48,
+        "estabilidade": "estavel",
+        "abundancia_pct": 73.72
+      },
+      {
+        "a": 49,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.41
+      },
+      {
+        "a": 50,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.18
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 23,
+    "simbolo": "V",
+    "nome": "Vanádio",
+    "categoria": "metal_transicao",
+    "grupo": 5,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 5
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      11,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 48,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "16 dias"
+      },
+      {
+        "a": 49,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "330 dias"
+      },
+      {
+        "a": 50,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.25,
+        "meia_vida": "2,71 × 10¹⁷ anos"
+      },
+      {
+        "a": 51,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.75
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 24,
+    "simbolo": "Cr",
+    "nome": "Cromo",
+    "categoria": "metal_transicao",
+    "grupo": 6,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 6
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      13,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 48,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "21,6 h"
+      },
+      {
+        "a": 50,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.345
+      },
+      {
+        "a": 51,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "27,7 dias"
+      },
+      {
+        "a": 52,
+        "estabilidade": "estavel",
+        "abundancia_pct": 83.789
+      },
+      {
+        "a": 53,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.501
+      },
+      {
+        "a": 54,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.365
+      }
+    ],
+    "ions_comuns": [
+      3
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 25,
+    "simbolo": "Mn",
+    "nome": "Manganês",
+    "categoria": "metal_transicao",
+    "grupo": 7,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 7
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      13,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 53,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,7 milhões de anos"
+      },
+      {
+        "a": 54,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "312 dias"
+      },
+      {
+        "a": 55,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 26,
+    "simbolo": "Fe",
+    "nome": "Ferro",
+    "categoria": "metal_transicao",
+    "grupo": 8,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 8
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      14,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 54,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.845
+      },
+      {
+        "a": 56,
+        "estabilidade": "estavel",
+        "abundancia_pct": 91.754
+      },
+      {
+        "a": 57,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.119
+      },
+      {
+        "a": 58,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.282
+      }
+    ],
+    "ions_comuns": [
+      2,
+      3
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "pista": "Estou no sangue e sou atraído por ímãs."
+    }
+  },
+  {
+    "z": 27,
+    "simbolo": "Co",
+    "nome": "Cobalto",
+    "categoria": "metal_transicao",
+    "grupo": 9,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 9
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      15,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 57,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "272 dias"
+      },
+      {
+        "a": 59,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 60,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,27 anos"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 28,
+    "simbolo": "Ni",
+    "nome": "Níquel",
+    "categoria": "metal_transicao",
+    "grupo": 10,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 10
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      16,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 58,
+        "estabilidade": "estavel",
+        "abundancia_pct": 68.0769
+      },
+      {
+        "a": 59,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "81 mil anos"
+      },
+      {
+        "a": 60,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.2231
+      },
+      {
+        "a": 61,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.1399
+      },
+      {
+        "a": 62,
+        "estabilidade": "estavel",
+        "abundancia_pct": 3.6345
+      },
+      {
+        "a": 63,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "101 anos"
+      },
+      {
+        "a": 64,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.9256
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 29,
+    "simbolo": "Cu",
+    "nome": "Cobre",
+    "categoria": "metal_transicao",
+    "grupo": 11,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 11
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 63,
+        "estabilidade": "estavel",
+        "abundancia_pct": 69.15
+      },
+      {
+        "a": 64,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12,7 h"
+      },
+      {
+        "a": 65,
+        "estabilidade": "estavel",
+        "abundancia_pct": 30.85
+      },
+      {
+        "a": 67,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "61,8 h"
+      }
+    ],
+    "ions_comuns": [
+      1,
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 30,
+    "simbolo": "Zn",
+    "nome": "Zinco",
+    "categoria": "metal_transicao",
+    "grupo": 12,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 12
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 64,
+        "estabilidade": "estavel",
+        "abundancia_pct": 49.17
+      },
+      {
+        "a": 65,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "244 dias"
+      },
+      {
+        "a": 66,
+        "estabilidade": "estavel",
+        "abundancia_pct": 27.73
+      },
+      {
+        "a": 67,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.04
+      },
+      {
+        "a": 68,
+        "estabilidade": "estavel",
+        "abundancia_pct": 18.45
+      },
+      {
+        "a": 70,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.61
+      },
+      {
+        "a": 72,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "46,5 h"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 31,
+    "simbolo": "Ga",
+    "nome": "Gálio",
+    "categoria": "metal_representativo",
+    "grupo": 13,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 67,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,26 dias"
+      },
+      {
+        "a": 69,
+        "estabilidade": "estavel",
+        "abundancia_pct": 60.108
+      },
+      {
+        "a": 71,
+        "estabilidade": "estavel",
+        "abundancia_pct": 39.892
+      },
+      {
+        "a": 72,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 32,
+    "simbolo": "Ge",
+    "nome": "Germânio",
+    "categoria": "semimetal",
+    "grupo": 14,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 68,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "271 dias"
+      },
+      {
+        "a": 70,
+        "estabilidade": "estavel",
+        "abundancia_pct": 20.52
+      },
+      {
+        "a": 71,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "11,4 dias"
+      },
+      {
+        "a": 72,
+        "estabilidade": "estavel",
+        "abundancia_pct": 27.45
+      },
+      {
+        "a": 73,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.76
+      },
+      {
+        "a": 74,
+        "estabilidade": "estavel",
+        "abundancia_pct": 36.52
+      },
+      {
+        "a": 76,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 7.75,
+        "meia_vida": "1,88 × 10²¹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 33,
+    "simbolo": "As",
+    "nome": "Arsênio",
+    "categoria": "semimetal",
+    "grupo": 15,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 15
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 73,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "80,3 dias"
+      },
+      {
+        "a": 74,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "17,8 dias"
+      },
+      {
+        "a": 75,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 34,
+    "simbolo": "Se",
+    "nome": "Selênio",
+    "categoria": "nao_metal",
+    "grupo": 16,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 16
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 74,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.86
+      },
+      {
+        "a": 75,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "120 dias"
+      },
+      {
+        "a": 76,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.23
+      },
+      {
+        "a": 77,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.6
+      },
+      {
+        "a": 78,
+        "estabilidade": "estavel",
+        "abundancia_pct": 23.69
+      },
+      {
+        "a": 79,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "327 mil anos"
+      },
+      {
+        "a": 80,
+        "estabilidade": "estavel",
+        "abundancia_pct": 49.8
+      },
+      {
+        "a": 82,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 8.82,
+        "meia_vida": "8,76 × 10¹⁹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 35,
+    "simbolo": "Br",
+    "nome": "Bromo",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 17
+    },
+    "fase_ambiente": "liquido",
+    "camadas": [
+      2,
+      8,
+      18,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 77,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "57 h"
+      },
+      {
+        "a": 79,
+        "estabilidade": "estavel",
+        "abundancia_pct": 50.65
+      },
+      {
+        "a": 81,
+        "estabilidade": "estavel",
+        "abundancia_pct": 49.35
+      },
+      {
+        "a": 82,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "35,3 h"
+      }
+    ],
+    "ions_comuns": [
+      -1
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 36,
+    "simbolo": "Kr",
+    "nome": "Criptônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 4,
+    "posicao": {
+      "linha": 4,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8,
+      18,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 78,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.355
+      },
+      {
+        "a": 80,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.286
+      },
+      {
+        "a": 81,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "229 mil anos"
+      },
+      {
+        "a": 82,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.593
+      },
+      {
+        "a": 83,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.5
+      },
+      {
+        "a": 84,
+        "estabilidade": "estavel",
+        "abundancia_pct": 56.987
+      },
+      {
+        "a": 85,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "10,7 anos"
+      },
+      {
+        "a": 86,
+        "estabilidade": "estavel",
+        "abundancia_pct": 17.279
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 37,
+    "simbolo": "Rb",
+    "nome": "Rubídio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 1
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      8,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 83,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "86,2 dias"
+      },
+      {
+        "a": 84,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "32,8 dias"
+      },
+      {
+        "a": 85,
+        "estabilidade": "estavel",
+        "abundancia_pct": 72.17
+      },
+      {
+        "a": 87,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 27.83,
+        "meia_vida": "49,7 bilhões de anos"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 38,
+    "simbolo": "Sr",
+    "nome": "Estrôncio",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      8,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 84,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.56
+      },
+      {
+        "a": 85,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "64,8 dias"
+      },
+      {
+        "a": 86,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.86
+      },
+      {
+        "a": 87,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.0
+      },
+      {
+        "a": 88,
+        "estabilidade": "estavel",
+        "abundancia_pct": 82.58
+      },
+      {
+        "a": 90,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "28,9 anos"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 39,
+    "simbolo": "Y",
+    "nome": "Ítrio",
+    "categoria": "metal_transicao",
+    "grupo": 3,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 3
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 88,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "107 dias"
+      },
+      {
+        "a": 89,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 91,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "58,5 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 40,
+    "simbolo": "Zr",
+    "nome": "Zircônio",
+    "categoria": "metal_transicao",
+    "grupo": 4,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 4
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      10,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 88,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "83,4 dias"
+      },
+      {
+        "a": 90,
+        "estabilidade": "estavel",
+        "abundancia_pct": 51.45
+      },
+      {
+        "a": 91,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.22
+      },
+      {
+        "a": 92,
+        "estabilidade": "estavel",
+        "abundancia_pct": 17.15
+      },
+      {
+        "a": 93,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,61 milhões de anos"
+      },
+      {
+        "a": 94,
+        "estabilidade": "estavel",
+        "abundancia_pct": 17.38
+      },
+      {
+        "a": 96,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 2.8,
+        "meia_vida": "2,34 × 10¹⁹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 41,
+    "simbolo": "Nb",
+    "nome": "Nióbio",
+    "categoria": "metal_transicao",
+    "grupo": 5,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 5
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      12,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 92,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "34,7 milhões de anos"
+      },
+      {
+        "a": 93,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 94,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "20,4 mil anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 42,
+    "simbolo": "Mo",
+    "nome": "Molibdênio",
+    "categoria": "metal_transicao",
+    "grupo": 6,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 6
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      13,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 92,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.649
+      },
+      {
+        "a": 93,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4 mil anos"
+      },
+      {
+        "a": 94,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.187
+      },
+      {
+        "a": 95,
+        "estabilidade": "estavel",
+        "abundancia_pct": 15.873
+      },
+      {
+        "a": 96,
+        "estabilidade": "estavel",
+        "abundancia_pct": 16.673
+      },
+      {
+        "a": 97,
+        "estabilidade": "estavel",
+        "abundancia_pct": 9.582
+      },
+      {
+        "a": 98,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.292
+      },
+      {
+        "a": 99,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "65,9 h"
+      },
+      {
+        "a": 100,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 9.744,
+        "meia_vida": "7,07 × 10¹⁸ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 43,
+    "simbolo": "Tc",
+    "nome": "Tecnécio",
+    "categoria": "metal_transicao",
+    "grupo": 7,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 7
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      13,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 97,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,21 milhões de anos"
+      },
+      {
+        "a": 98,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,2 milhões de anos"
+      },
+      {
+        "a": 99,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "211 mil anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 44,
+    "simbolo": "Ru",
+    "nome": "Rutênio",
+    "categoria": "metal_transicao",
+    "grupo": 8,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 8
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      15,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 96,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.54
+      },
+      {
+        "a": 98,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.87
+      },
+      {
+        "a": 99,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.76
+      },
+      {
+        "a": 100,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.6
+      },
+      {
+        "a": 101,
+        "estabilidade": "estavel",
+        "abundancia_pct": 17.06
+      },
+      {
+        "a": 102,
+        "estabilidade": "estavel",
+        "abundancia_pct": 31.55
+      },
+      {
+        "a": 103,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "39,2 dias"
+      },
+      {
+        "a": 104,
+        "estabilidade": "estavel",
+        "abundancia_pct": 18.62
+      },
+      {
+        "a": 106,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "372 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 45,
+    "simbolo": "Rh",
+    "nome": "Ródio",
+    "categoria": "metal_transicao",
+    "grupo": 9,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 9
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      16,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 101,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,07 anos"
+      },
+      {
+        "a": 102,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "207 dias"
+      },
+      {
+        "a": 103,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 46,
+    "simbolo": "Pd",
+    "nome": "Paládio",
+    "categoria": "metal_transicao",
+    "grupo": 10,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 10
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 102,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.02
+      },
+      {
+        "a": 103,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "17 dias"
+      },
+      {
+        "a": 104,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.14
+      },
+      {
+        "a": 105,
+        "estabilidade": "estavel",
+        "abundancia_pct": 22.33
+      },
+      {
+        "a": 106,
+        "estabilidade": "estavel",
+        "abundancia_pct": 27.33
+      },
+      {
+        "a": 107,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6,5 milhões de anos"
+      },
+      {
+        "a": 108,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.46
+      },
+      {
+        "a": 110,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.72
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 47,
+    "simbolo": "Ag",
+    "nome": "Prata",
+    "categoria": "metal_transicao",
+    "grupo": 11,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 11
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 105,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "41,3 dias"
+      },
+      {
+        "a": 107,
+        "estabilidade": "estavel",
+        "abundancia_pct": 51.839
+      },
+      {
+        "a": 109,
+        "estabilidade": "estavel",
+        "abundancia_pct": 48.161
+      },
+      {
+        "a": 111,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "7,43 dias"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 48,
+    "simbolo": "Cd",
+    "nome": "Cádmio",
+    "categoria": "metal_transicao",
+    "grupo": 12,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 12
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 106,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.245
+      },
+      {
+        "a": 108,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.888
+      },
+      {
+        "a": 109,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "461 dias"
+      },
+      {
+        "a": 110,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.47
+      },
+      {
+        "a": 111,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.795
+      },
+      {
+        "a": 112,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.109
+      },
+      {
+        "a": 113,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 12.227,
+        "meia_vida": "8,04 × 10¹⁵ anos"
+      },
+      {
+        "a": 114,
+        "estabilidade": "estavel",
+        "abundancia_pct": 28.754
+      },
+      {
+        "a": 115,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "53,5 h"
+      },
+      {
+        "a": 116,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 7.512,
+        "meia_vida": "2,69 × 10¹⁹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 49,
+    "simbolo": "In",
+    "nome": "Índio",
+    "categoria": "metal_representativo",
+    "grupo": 13,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 110,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,92 h"
+      },
+      {
+        "a": 111,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,8 dias"
+      },
+      {
+        "a": 113,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.281
+      },
+      {
+        "a": 115,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 95.719,
+        "meia_vida": "4,41 × 10¹⁴ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 50,
+    "simbolo": "Sn",
+    "nome": "Estanho",
+    "categoria": "metal_representativo",
+    "grupo": 14,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 112,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.97
+      },
+      {
+        "a": 116,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.54
+      },
+      {
+        "a": 117,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.68
+      },
+      {
+        "a": 118,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.22
+      },
+      {
+        "a": 119,
+        "estabilidade": "estavel",
+        "abundancia_pct": 8.59
+      },
+      {
+        "a": 120,
+        "estabilidade": "estavel",
+        "abundancia_pct": 32.58
+      },
+      {
+        "a": 122,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.63
+      },
+      {
+        "a": 123,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "129 dias"
+      },
+      {
+        "a": 124,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.79
+      },
+      {
+        "a": 126,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "230 mil anos"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 51,
+    "simbolo": "Sb",
+    "nome": "Antimônio",
+    "categoria": "semimetal",
+    "grupo": 15,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 15
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 121,
+        "estabilidade": "estavel",
+        "abundancia_pct": 57.21
+      },
+      {
+        "a": 123,
+        "estabilidade": "estavel",
+        "abundancia_pct": 42.79
+      },
+      {
+        "a": 124,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "60,2 dias"
+      },
+      {
+        "a": 125,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,76 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 52,
+    "simbolo": "Te",
+    "nome": "Telúrio",
+    "categoria": "semimetal",
+    "grupo": 16,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 16
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 118,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6 dias"
+      },
+      {
+        "a": 120,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.09
+      },
+      {
+        "a": 121,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "19,3 dias"
+      },
+      {
+        "a": 122,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.55
+      },
+      {
+        "a": 123,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.89
+      },
+      {
+        "a": 124,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.74
+      },
+      {
+        "a": 125,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.07
+      },
+      {
+        "a": 126,
+        "estabilidade": "estavel",
+        "abundancia_pct": 18.84
+      },
+      {
+        "a": 128,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 31.74,
+        "meia_vida": "2,25 × 10²⁴ anos"
+      },
+      {
+        "a": 130,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 34.08,
+        "meia_vida": "7,91 × 10²⁰ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 53,
+    "simbolo": "I",
+    "nome": "Iodo",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 17
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 125,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "59,4 dias"
+      },
+      {
+        "a": 127,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 129,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "16,1 milhões de anos"
+      }
+    ],
+    "ions_comuns": [
+      -1
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 54,
+    "simbolo": "Xe",
+    "nome": "Xenônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 5,
+    "posicao": {
+      "linha": 5,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 124,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.095
+      },
+      {
+        "a": 126,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.089
+      },
+      {
+        "a": 127,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "36,3 dias"
+      },
+      {
+        "a": 128,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.91
+      },
+      {
+        "a": 129,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.401
+      },
+      {
+        "a": 130,
+        "estabilidade": "estavel",
+        "abundancia_pct": 4.071
+      },
+      {
+        "a": 131,
+        "estabilidade": "estavel",
+        "abundancia_pct": 21.232
+      },
+      {
+        "a": 132,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.909
+      },
+      {
+        "a": 133,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,25 dias"
+      },
+      {
+        "a": 134,
+        "estabilidade": "estavel",
+        "abundancia_pct": 10.436
+      },
+      {
+        "a": 136,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 8.857,
+        "meia_vida": "2,18 × 10²¹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 55,
+    "simbolo": "Cs",
+    "nome": "Césio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 1
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      8,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 133,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 135,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,33 milhões de anos"
+      },
+      {
+        "a": 137,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "30 anos"
+      }
+    ],
+    "ions_comuns": [
+      1
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 56,
+    "simbolo": "Ba",
+    "nome": "Bário",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      8,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 130,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.11
+      },
+      {
+        "a": 132,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.1
+      },
+      {
+        "a": 133,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "10,5 anos"
+      },
+      {
+        "a": 134,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.42
+      },
+      {
+        "a": 135,
+        "estabilidade": "estavel",
+        "abundancia_pct": 6.59
+      },
+      {
+        "a": 136,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.85
+      },
+      {
+        "a": 137,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.23
+      },
+      {
+        "a": 138,
+        "estabilidade": "estavel",
+        "abundancia_pct": 71.7
+      },
+      {
+        "a": 140,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12,8 dias"
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 57,
+    "simbolo": "La",
+    "nome": "Lantânio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 3
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      18,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 137,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "60 mil anos"
+      },
+      {
+        "a": 138,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.0888,
+        "meia_vida": "103 bilhões de anos"
+      },
+      {
+        "a": 139,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.9112
+      },
+      {
+        "a": 140,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "40,3 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 58,
+    "simbolo": "Ce",
+    "nome": "Cério",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 4
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      19,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 136,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.186
+      },
+      {
+        "a": 138,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.251
+      },
+      {
+        "a": 139,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "138 dias"
+      },
+      {
+        "a": 140,
+        "estabilidade": "estavel",
+        "abundancia_pct": 88.449
+      },
+      {
+        "a": 142,
+        "estabilidade": "estavel",
+        "abundancia_pct": 11.114
+      },
+      {
+        "a": 144,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "285 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 59,
+    "simbolo": "Pr",
+    "nome": "Praseodímio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 5
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      21,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 141,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 142,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "19,1 h"
+      },
+      {
+        "a": 143,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "13,6 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 60,
+    "simbolo": "Nd",
+    "nome": "Neodímio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 6
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      22,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 140,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,37 dias"
+      },
+      {
+        "a": 142,
+        "estabilidade": "estavel",
+        "abundancia_pct": 27.153
+      },
+      {
+        "a": 143,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.173
+      },
+      {
+        "a": 144,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 23.798,
+        "meia_vida": "2,29 × 10¹⁵ anos"
+      },
+      {
+        "a": 145,
+        "estabilidade": "estavel",
+        "abundancia_pct": 8.293
+      },
+      {
+        "a": 146,
+        "estabilidade": "estavel",
+        "abundancia_pct": 17.189
+      },
+      {
+        "a": 147,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "11 dias"
+      },
+      {
+        "a": 148,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.756
+      },
+      {
+        "a": 150,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 5.638,
+        "meia_vida": "9,3 × 10¹⁸ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 61,
+    "simbolo": "Pm",
+    "nome": "Promécio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 7
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      23,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 145,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "17,7 anos"
+      },
+      {
+        "a": 146,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,53 anos"
+      },
+      {
+        "a": 147,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,62 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 62,
+    "simbolo": "Sm",
+    "nome": "Samário",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 8
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      24,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 144,
+        "estabilidade": "estavel",
+        "abundancia_pct": 3.08
+      },
+      {
+        "a": 146,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "68 milhões de anos"
+      },
+      {
+        "a": 147,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 15.0,
+        "meia_vida": "107 bilhões de anos"
+      },
+      {
+        "a": 148,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 11.25,
+        "meia_vida": "6,3 × 10¹⁵ anos"
+      },
+      {
+        "a": 149,
+        "estabilidade": "estavel",
+        "abundancia_pct": 13.82
+      },
+      {
+        "a": 150,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.37
+      },
+      {
+        "a": 151,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "94,6 anos"
+      },
+      {
+        "a": 152,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.74
+      },
+      {
+        "a": 154,
+        "estabilidade": "estavel",
+        "abundancia_pct": 22.74
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 63,
+    "simbolo": "Eu",
+    "nome": "Európio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 9
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      25,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 150,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "36,9 anos"
+      },
+      {
+        "a": 151,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 47.81,
+        "meia_vida": "4,6 × 10¹⁸ anos"
+      },
+      {
+        "a": 152,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "13,5 anos"
+      },
+      {
+        "a": 153,
+        "estabilidade": "estavel",
+        "abundancia_pct": 52.19
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 64,
+    "simbolo": "Gd",
+    "nome": "Gadolínio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 10
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      25,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 148,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "71,3 anos"
+      },
+      {
+        "a": 150,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,79 milhões de anos"
+      },
+      {
+        "a": 152,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.2,
+        "meia_vida": "1,08 × 10¹⁴ anos"
+      },
+      {
+        "a": 154,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.18
+      },
+      {
+        "a": 155,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.8
+      },
+      {
+        "a": 156,
+        "estabilidade": "estavel",
+        "abundancia_pct": 20.47
+      },
+      {
+        "a": 157,
+        "estabilidade": "estavel",
+        "abundancia_pct": 15.65
+      },
+      {
+        "a": 158,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.84
+      },
+      {
+        "a": 160,
+        "estabilidade": "estavel",
+        "abundancia_pct": 21.86
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 65,
+    "simbolo": "Tb",
+    "nome": "Térbio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 11
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      27,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 157,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "71 anos"
+      },
+      {
+        "a": 158,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "180 anos"
+      },
+      {
+        "a": 159,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 66,
+    "simbolo": "Dy",
+    "nome": "Disprósio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 12
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      28,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 154,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3 milhões de anos"
+      },
+      {
+        "a": 156,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.056
+      },
+      {
+        "a": 158,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.095
+      },
+      {
+        "a": 159,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "144 dias"
+      },
+      {
+        "a": 160,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.329
+      },
+      {
+        "a": 161,
+        "estabilidade": "estavel",
+        "abundancia_pct": 18.889
+      },
+      {
+        "a": 162,
+        "estabilidade": "estavel",
+        "abundancia_pct": 25.475
+      },
+      {
+        "a": 163,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.896
+      },
+      {
+        "a": 164,
+        "estabilidade": "estavel",
+        "abundancia_pct": 28.26
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 67,
+    "simbolo": "Ho",
+    "nome": "Hólmio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      29,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 163,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,57 mil anos"
+      },
+      {
+        "a": 165,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 166,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "26,8 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 68,
+    "simbolo": "Er",
+    "nome": "Érbio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      30,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 162,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.139
+      },
+      {
+        "a": 164,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.601
+      },
+      {
+        "a": 166,
+        "estabilidade": "estavel",
+        "abundancia_pct": 33.503
+      },
+      {
+        "a": 167,
+        "estabilidade": "estavel",
+        "abundancia_pct": 22.869
+      },
+      {
+        "a": 168,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.978
+      },
+      {
+        "a": 169,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9,39 dias"
+      },
+      {
+        "a": 170,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.91
+      },
+      {
+        "a": 172,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "49,3 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 69,
+    "simbolo": "Tm",
+    "nome": "Túlio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 15
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      31,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 169,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      },
+      {
+        "a": 170,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "129 dias"
+      },
+      {
+        "a": 171,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,92 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 70,
+    "simbolo": "Yb",
+    "nome": "Itérbio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 16
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 168,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.123
+      },
+      {
+        "a": 169,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "32 dias"
+      },
+      {
+        "a": 170,
+        "estabilidade": "estavel",
+        "abundancia_pct": 2.982
+      },
+      {
+        "a": 171,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.086
+      },
+      {
+        "a": 172,
+        "estabilidade": "estavel",
+        "abundancia_pct": 21.686
+      },
+      {
+        "a": 173,
+        "estabilidade": "estavel",
+        "abundancia_pct": 16.103
+      },
+      {
+        "a": 174,
+        "estabilidade": "estavel",
+        "abundancia_pct": 32.025
+      },
+      {
+        "a": 175,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,18 dias"
+      },
+      {
+        "a": 176,
+        "estabilidade": "estavel",
+        "abundancia_pct": 12.995
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 71,
+    "simbolo": "Lu",
+    "nome": "Lutécio",
+    "categoria": "lantanideo",
+    "grupo": null,
+    "periodo": 6,
+    "posicao": {
+      "linha": 9,
+      "coluna": 17
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 173,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,37 anos"
+      },
+      {
+        "a": 174,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,31 anos"
+      },
+      {
+        "a": 175,
+        "estabilidade": "estavel",
+        "abundancia_pct": 97.401
+      },
+      {
+        "a": 176,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 2.599,
+        "meia_vida": "37 bilhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 72,
+    "simbolo": "Hf",
+    "nome": "Háfnio",
+    "categoria": "metal_transicao",
+    "grupo": 4,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 4
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      10,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 172,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,87 anos"
+      },
+      {
+        "a": 174,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.16,
+        "meia_vida": "2 × 10¹⁵ anos"
+      },
+      {
+        "a": 176,
+        "estabilidade": "estavel",
+        "abundancia_pct": 5.26
+      },
+      {
+        "a": 177,
+        "estabilidade": "estavel",
+        "abundancia_pct": 18.6
+      },
+      {
+        "a": 178,
+        "estabilidade": "estavel",
+        "abundancia_pct": 27.28
+      },
+      {
+        "a": 179,
+        "estabilidade": "estavel",
+        "abundancia_pct": 13.62
+      },
+      {
+        "a": 180,
+        "estabilidade": "estavel",
+        "abundancia_pct": 35.08
+      },
+      {
+        "a": 182,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "8,9 milhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 73,
+    "simbolo": "Ta",
+    "nome": "Tântalo",
+    "categoria": "metal_transicao",
+    "grupo": 5,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 5
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      11,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 179,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,82 anos"
+      },
+      {
+        "a": 181,
+        "estabilidade": "estavel",
+        "abundancia_pct": 99.988
+      },
+      {
+        "a": 182,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "115 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 74,
+    "simbolo": "W",
+    "nome": "Tungstênio",
+    "categoria": "metal_transicao",
+    "grupo": 6,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 6
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      12,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 180,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.12,
+        "meia_vida": "1,59 × 10¹⁸ anos"
+      },
+      {
+        "a": 181,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "121 dias"
+      },
+      {
+        "a": 182,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.5
+      },
+      {
+        "a": 183,
+        "estabilidade": "estavel",
+        "abundancia_pct": 14.31
+      },
+      {
+        "a": 184,
+        "estabilidade": "estavel",
+        "abundancia_pct": 30.64
+      },
+      {
+        "a": 185,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "75,1 dias"
+      },
+      {
+        "a": 186,
+        "estabilidade": "estavel",
+        "abundancia_pct": 28.43
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 75,
+    "simbolo": "Re",
+    "nome": "Rênio",
+    "categoria": "metal_transicao",
+    "grupo": 7,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 7
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      13,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 183,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "70 dias"
+      },
+      {
+        "a": 184,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "35,4 dias"
+      },
+      {
+        "a": 185,
+        "estabilidade": "estavel",
+        "abundancia_pct": 37.4
+      },
+      {
+        "a": 187,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 62.6,
+        "meia_vida": "41,6 bilhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 76,
+    "simbolo": "Os",
+    "nome": "Ósmio",
+    "categoria": "metal_transicao",
+    "grupo": 8,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 8
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      14,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 184,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.02,
+        "meia_vida": "1,12 × 10¹³ anos"
+      },
+      {
+        "a": 185,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "93 dias"
+      },
+      {
+        "a": 186,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 1.59,
+        "meia_vida": "2 × 10¹⁵ anos"
+      },
+      {
+        "a": 187,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.96
+      },
+      {
+        "a": 188,
+        "estabilidade": "estavel",
+        "abundancia_pct": 13.24
+      },
+      {
+        "a": 189,
+        "estabilidade": "estavel",
+        "abundancia_pct": 16.15
+      },
+      {
+        "a": 190,
+        "estabilidade": "estavel",
+        "abundancia_pct": 26.26
+      },
+      {
+        "a": 192,
+        "estabilidade": "estavel",
+        "abundancia_pct": 40.78
+      },
+      {
+        "a": 194,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 77,
+    "simbolo": "Ir",
+    "nome": "Irídio",
+    "categoria": "metal_transicao",
+    "grupo": 9,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 9
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      15,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 189,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "13,2 dias"
+      },
+      {
+        "a": 191,
+        "estabilidade": "estavel",
+        "abundancia_pct": 37.3
+      },
+      {
+        "a": 192,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "73,8 dias"
+      },
+      {
+        "a": 193,
+        "estabilidade": "estavel",
+        "abundancia_pct": 62.7
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 78,
+    "simbolo": "Pt",
+    "nome": "Platina",
+    "categoria": "metal_transicao",
+    "grupo": 10,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 10
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      17,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 188,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "10,2 dias"
+      },
+      {
+        "a": 190,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.012,
+        "meia_vida": "483 bilhões de anos"
+      },
+      {
+        "a": 192,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.782
+      },
+      {
+        "a": 193,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "50 anos"
+      },
+      {
+        "a": 194,
+        "estabilidade": "estavel",
+        "abundancia_pct": 32.864
+      },
+      {
+        "a": 195,
+        "estabilidade": "estavel",
+        "abundancia_pct": 33.775
+      },
+      {
+        "a": 196,
+        "estabilidade": "estavel",
+        "abundancia_pct": 25.211
+      },
+      {
+        "a": 198,
+        "estabilidade": "estavel",
+        "abundancia_pct": 7.356
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 79,
+    "simbolo": "Au",
+    "nome": "Ouro",
+    "categoria": "metal_transicao",
+    "grupo": 11,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 11
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      1
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 195,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "186 dias"
+      },
+      {
+        "a": 196,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6,17 dias"
+      },
+      {
+        "a": 197,
+        "estabilidade": "estavel",
+        "abundancia_pct": 100.0
+      }
+    ],
+    "ions_comuns": [
+      1,
+      3
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 80,
+    "simbolo": "Hg",
+    "nome": "Mercúrio",
+    "categoria": "metal_transicao",
+    "grupo": 12,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 12
+    },
+    "fase_ambiente": "liquido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 194,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "447 anos"
+      },
+      {
+        "a": 196,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.15
+      },
+      {
+        "a": 198,
+        "estabilidade": "estavel",
+        "abundancia_pct": 10.04
+      },
+      {
+        "a": 199,
+        "estabilidade": "estavel",
+        "abundancia_pct": 16.94
+      },
+      {
+        "a": 200,
+        "estabilidade": "estavel",
+        "abundancia_pct": 23.14
+      },
+      {
+        "a": 201,
+        "estabilidade": "estavel",
+        "abundancia_pct": 13.17
+      },
+      {
+        "a": 202,
+        "estabilidade": "estavel",
+        "abundancia_pct": 29.74
+      },
+      {
+        "a": 203,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "46,6 dias"
+      },
+      {
+        "a": 204,
+        "estabilidade": "estavel",
+        "abundancia_pct": 6.82
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 81,
+    "simbolo": "Tl",
+    "nome": "Tálio",
+    "categoria": "metal_representativo",
+    "grupo": 13,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 202,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12,3 dias"
+      },
+      {
+        "a": 203,
+        "estabilidade": "estavel",
+        "abundancia_pct": 29.515
+      },
+      {
+        "a": 204,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,78 anos"
+      },
+      {
+        "a": 205,
+        "estabilidade": "estavel",
+        "abundancia_pct": 70.485
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 82,
+    "simbolo": "Pb",
+    "nome": "Chumbo",
+    "categoria": "metal_representativo",
+    "grupo": 14,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 14
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 202,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "52,5 mil anos"
+      },
+      {
+        "a": 204,
+        "estabilidade": "estavel",
+        "abundancia_pct": 1.4
+      },
+      {
+        "a": 205,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "17 milhões de anos"
+      },
+      {
+        "a": 206,
+        "estabilidade": "estavel",
+        "abundancia_pct": 24.1
+      },
+      {
+        "a": 207,
+        "estabilidade": "estavel",
+        "abundancia_pct": 22.1
+      },
+      {
+        "a": 208,
+        "estabilidade": "estavel",
+        "abundancia_pct": 52.4
+      }
+    ],
+    "ions_comuns": [
+      2
+    ],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 83,
+    "simbolo": "Bi",
+    "nome": "Bismuto",
+    "categoria": "metal_representativo",
+    "grupo": 15,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 15
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 207,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "31,2 anos"
+      },
+      {
+        "a": 208,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "368 mil anos"
+      },
+      {
+        "a": 209,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 100.0,
+        "meia_vida": "2,01 × 10¹⁹ anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 84,
+    "simbolo": "Po",
+    "nome": "Polônio",
+    "categoria": "metal_representativo",
+    "grupo": 16,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 16
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 208,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,9 anos"
+      },
+      {
+        "a": 209,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "124 anos"
+      },
+      {
+        "a": 210,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "138 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 85,
+    "simbolo": "At",
+    "nome": "Astato",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 17
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 209,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,42 h"
+      },
+      {
+        "a": 210,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "8,1 h"
+      },
+      {
+        "a": 211,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "7,21 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 86,
+    "simbolo": "Rn",
+    "nome": "Radônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 6,
+    "posicao": {
+      "linha": 6,
+      "coluna": 18
+    },
+    "fase_ambiente": "gasoso",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 210,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,4 h"
+      },
+      {
+        "a": 211,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14,6 h"
+      },
+      {
+        "a": 222,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,82 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 87,
+    "simbolo": "Fr",
+    "nome": "Frâncio",
+    "categoria": "metal_alcalino",
+    "grupo": 1,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 1
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8,
+      1
+    ],
+    "eletrons_valencia": 1,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 212,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "20 min"
+      },
+      {
+        "a": 222,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14,2 min"
+      },
+      {
+        "a": 223,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "22 min"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 88,
+    "simbolo": "Ra",
+    "nome": "Rádio",
+    "categoria": "metal_alcalino_terroso",
+    "grupo": 2,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 2
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8,
+      2
+    ],
+    "eletrons_valencia": 2,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 225,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14,8 dias"
+      },
+      {
+        "a": 226,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,6 mil anos"
+      },
+      {
+        "a": 228,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,75 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 89,
+    "simbolo": "Ac",
+    "nome": "Actínio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 3
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 225,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9,92 dias"
+      },
+      {
+        "a": 226,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "29,4 h"
+      },
+      {
+        "a": 227,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "21,8 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 90,
+    "simbolo": "Th",
+    "nome": "Tório",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 4
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      10,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 228,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,91 anos"
+      },
+      {
+        "a": 229,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "7,92 mil anos"
+      },
+      {
+        "a": 230,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.02,
+        "meia_vida": "75,4 mil anos"
+      },
+      {
+        "a": 232,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 99.98,
+        "meia_vida": "14 bilhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 91,
+    "simbolo": "Pa",
+    "nome": "Protactínio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 5
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      20,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 230,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "17,4 dias"
+      },
+      {
+        "a": 231,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 100.0,
+        "meia_vida": "32,6 mil anos"
+      },
+      {
+        "a": 233,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "27 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 92,
+    "simbolo": "U",
+    "nome": "Urânio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 6
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      21,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 233,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "159 mil anos"
+      },
+      {
+        "a": 234,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.0054,
+        "meia_vida": "246 mil anos"
+      },
+      {
+        "a": 235,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 0.7204,
+        "meia_vida": "704 milhões de anos"
+      },
+      {
+        "a": 236,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "23,4 milhões de anos"
+      },
+      {
+        "a": 238,
+        "estabilidade": "radioativo",
+        "abundancia_pct": 99.2742,
+        "meia_vida": "4,46 bilhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": true,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 93,
+    "simbolo": "Np",
+    "nome": "Netúnio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 7
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      22,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 235,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "396 dias"
+      },
+      {
+        "a": 236,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "153 mil anos"
+      },
+      {
+        "a": 237,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,14 milhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 94,
+    "simbolo": "Pu",
+    "nome": "Plutônio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 8
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      24,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 239,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "24,1 mil anos"
+      },
+      {
+        "a": 242,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "375 mil anos"
+      },
+      {
+        "a": 244,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "81,3 milhões de anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 95,
+    "simbolo": "Am",
+    "nome": "Amerício",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 9
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      25,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 240,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "50,8 h"
+      },
+      {
+        "a": 241,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "433 anos"
+      },
+      {
+        "a": 243,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "7,35 mil anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 96,
+    "simbolo": "Cm",
+    "nome": "Cúrio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 10
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      25,
+      9,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 245,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "8,25 mil anos"
+      },
+      {
+        "a": 247,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "15,6 milhões de anos"
+      },
+      {
+        "a": 248,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "348 mil anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 97,
+    "simbolo": "Bk",
+    "nome": "Berquélio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 11
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      27,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 245,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,95 dias"
+      },
+      {
+        "a": 247,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,38 mil anos"
+      },
+      {
+        "a": 249,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "327 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 98,
+    "simbolo": "Cf",
+    "nome": "Califórnio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 12
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      28,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 249,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "351 anos"
+      },
+      {
+        "a": 250,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "13,1 anos"
+      },
+      {
+        "a": 251,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "898 anos"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 99,
+    "simbolo": "Es",
+    "nome": "Einstênio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 13
+    },
+    "fase_ambiente": "solido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      29,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 252,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "472 dias"
+      },
+      {
+        "a": 254,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "276 dias"
+      },
+      {
+        "a": 255,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "39,8 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 100,
+    "simbolo": "Fm",
+    "nome": "Férmio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 14
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      30,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 252,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "25,4 h"
+      },
+      {
+        "a": 253,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3 dias"
+      },
+      {
+        "a": 257,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "100 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 101,
+    "simbolo": "Md",
+    "nome": "Mendelévio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 15
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      31,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 257,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5,52 h"
+      },
+      {
+        "a": 258,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "51,6 dias"
+      },
+      {
+        "a": 260,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "27,8 dias"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 102,
+    "simbolo": "No",
+    "nome": "Nobélio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 16
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      8,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 253,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,57 min"
+      },
+      {
+        "a": 255,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,52 min"
+      },
+      {
+        "a": 259,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "58 min"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 103,
+    "simbolo": "Lr",
+    "nome": "Laurêncio",
+    "categoria": "actinideo",
+    "grupo": null,
+    "periodo": 7,
+    "posicao": {
+      "linha": 10,
+      "coluna": 17
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      8,
+      3
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 260,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3 min"
+      },
+      {
+        "a": 261,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "39 min"
+      },
+      {
+        "a": 266,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "22 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 104,
+    "simbolo": "Rf",
+    "nome": "Rutherfórdio",
+    "categoria": "metal_transicao",
+    "grupo": 4,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 4
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      10,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 263,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "11 min"
+      },
+      {
+        "a": 265,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,6 min"
+      },
+      {
+        "a": 267,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,5 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 105,
+    "simbolo": "Db",
+    "nome": "Dúbnio",
+    "categoria": "metal_transicao",
+    "grupo": 5,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 5
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      11,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 267,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2 h"
+      },
+      {
+        "a": 268,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "29 h"
+      },
+      {
+        "a": 270,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,7 h"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 106,
+    "simbolo": "Sg",
+    "nome": "Seabórgio",
+    "categoria": "metal_transicao",
+    "grupo": 6,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 6
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      12,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 267,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,8 min"
+      },
+      {
+        "a": 269,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "5 min"
+      },
+      {
+        "a": 271,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,2 min"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 107,
+    "simbolo": "Bh",
+    "nome": "Bóhrio",
+    "categoria": "metal_transicao",
+    "grupo": 7,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 7
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      13,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 267,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "22 s"
+      },
+      {
+        "a": 270,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,8 min"
+      },
+      {
+        "a": 274,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "57 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 108,
+    "simbolo": "Hs",
+    "nome": "Hássio",
+    "categoria": "metal_transicao",
+    "grupo": 8,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 8
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      14,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 268,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "1,4 s"
+      },
+      {
+        "a": 269,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "15 s"
+      },
+      {
+        "a": 270,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 109,
+    "simbolo": "Mt",
+    "nome": "Meitnério",
+    "categoria": "metal_transicao",
+    "grupo": 9,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 9
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      15,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 274,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "850 ms"
+      },
+      {
+        "a": 277,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "9 s"
+      },
+      {
+        "a": 278,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 110,
+    "simbolo": "Ds",
+    "nome": "Darmstádio",
+    "categoria": "metal_transicao",
+    "grupo": 10,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 10
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      16,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 279,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "210 ms"
+      },
+      {
+        "a": 281,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "14 s"
+      },
+      {
+        "a": 282,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,2 min"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 111,
+    "simbolo": "Rg",
+    "nome": "Roentgênio",
+    "categoria": "metal_transicao",
+    "grupo": 11,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 11
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      17,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 280,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,3 s"
+      },
+      {
+        "a": 281,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "19 s"
+      },
+      {
+        "a": 282,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "130 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 112,
+    "simbolo": "Cn",
+    "nome": "Copernício",
+    "categoria": "metal_transicao",
+    "grupo": 12,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 12
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      2
+    ],
+    "eletrons_valencia": null,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 283,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,7 s"
+      },
+      {
+        "a": 285,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "30 s"
+      },
+      {
+        "a": 286,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "30 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 113,
+    "simbolo": "Nh",
+    "nome": "Nihônio",
+    "categoria": "metal_representativo",
+    "grupo": 13,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 13
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      3
+    ],
+    "eletrons_valencia": 3,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 285,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "4,6 s"
+      },
+      {
+        "a": 286,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "12 s"
+      },
+      {
+        "a": 290,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "8 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 114,
+    "simbolo": "Fl",
+    "nome": "Fleróvio",
+    "categoria": "metal_representativo",
+    "grupo": 14,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 14
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      4
+    ],
+    "eletrons_valencia": 4,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 288,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "653 ms"
+      },
+      {
+        "a": 289,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,1 s"
+      },
+      {
+        "a": 290,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "80 s"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 115,
+    "simbolo": "Mc",
+    "nome": "Moscóvio",
+    "categoria": "metal_representativo",
+    "grupo": 15,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 15
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      5
+    ],
+    "eletrons_valencia": 5,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 288,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "177 ms"
+      },
+      {
+        "a": 289,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "410 ms"
+      },
+      {
+        "a": 290,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "840 ms"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 116,
+    "simbolo": "Lv",
+    "nome": "Livermório",
+    "categoria": "metal_representativo",
+    "grupo": 16,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 16
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      6
+    ],
+    "eletrons_valencia": 6,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 291,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "26 ms"
+      },
+      {
+        "a": 292,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "16 ms"
+      },
+      {
+        "a": 293,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "70 ms"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 117,
+    "simbolo": "Ts",
+    "nome": "Tenessino",
+    "categoria": "halogenio",
+    "grupo": 17,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 17
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      7
+    ],
+    "eletrons_valencia": 7,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 293,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "25 ms"
+      },
+      {
+        "a": 294,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "70 ms"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  },
+  {
+    "z": 118,
+    "simbolo": "Og",
+    "nome": "Oganessônio",
+    "categoria": "gas_nobre",
+    "grupo": 18,
+    "periodo": 7,
+    "posicao": {
+      "linha": 7,
+      "coluna": 18
+    },
+    "fase_ambiente": "desconhecido",
+    "camadas": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      8
+    ],
+    "eletrons_valencia": 8,
+    "massa_atomica": null,
+    "isotopos": [
+      {
+        "a": 294,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "0,7 ms"
+      },
+      {
+        "a": 295,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "680 ms"
+      }
+    ],
+    "ions_comuns": [],
+    "trilha_essencial": false,
+    "ficha": {
+      "nivel": "enxuta",
+      "fontes": [
+        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
+      ]
+    }
+  }
+]

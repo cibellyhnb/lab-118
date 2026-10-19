@@ -1,0 +1,7 @@
+Fontes usadas no jogo (todas sob a SIL Open Font License 1.1, https://openfontlicense.org)
+
+- Press Start 2P, Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net).
+  Como o nome "Press Start 2P" é reservado pela licença, a versão deste projeto foi MODIFICADA
+  (letras acentuadas redesenhadas com tamanho cheio) e RENOMEADA para "Pixel Display Acentos".
+- Pixelify Sans, Copyright 2021 The Pixelify Sans Project Authors (https://github.com/eifetx/Pixelify-Sans).
+- VT323, Copyright 2011 The VT323 Project Authors (peter.hull@oikoi.com). Usada só para os dígitos 0 a 9.
