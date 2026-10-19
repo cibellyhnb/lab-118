@@ -1,10 +1,11 @@
+import { AJUSTES2 } from "./ajustes2";
 import { AJUSTES } from "./ajustes";
 import { ILUSTRACOES } from "./mapa";
 import { PARTE1 } from "./parte1";
 import { PARTE2 } from "./parte2";
 import { PARTE3 } from "./parte3";
 
-const SPRITES: Record<string, string[]> = { ...PARTE1, ...PARTE2, ...PARTE3, ...AJUSTES };
+const SPRITES: Record<string, string[]> = { ...PARTE1, ...PARTE2, ...PARTE3, ...AJUSTES, ...AJUSTES2 };
 
 export { PALETA_ILUS } from "./paleta";
 
