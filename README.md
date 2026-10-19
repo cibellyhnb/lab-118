@@ -8,9 +8,9 @@ Jogo educativo em pixel art em que o jogador monta átomos com prótons, nêutro
 
 - **Mapa:** a tela principal é a tabela periódica. Cada elemento começa trancado e é destrancado quando o jogador monta o átomo correspondente no laboratório.
 - **Estrelas:** cada elemento tem 3 estrelas: descobrir o elemento, montar um isótopo e montar um íon. São 354 estrelas no total (118 x 3).
-- **Laboratório:** o jogador coloca prótons, nêutrons e elétrons na máquina (arrastando ou pelos botões). O jogo classifica o resultado (átomo neutro, cátion ou ânion, e se o núcleo é estável, instável ou não catalogado) e explica o que foi montado.
+- **Laboratório:** o jogador coloca prótons, nêutrons e elétrons na máquina (arrastando ou pelos botões). O jogo classifica o resultado (átomo neutro, cátion ou ânion, e se o núcleo é estável, radioativo ou não catalogado) e explica o que foi montado.
 - **Fichas dos elementos:** cada elemento tem uma ficha com dados da tabela, isótopos catalogados, curiosidades e ilustrações em pixel art de suas aplicações.
-- **Quiz:** perguntas por família, liberadas quando todos os elementos da família são descobertos.
+- **Quiz:** um quiz geral, sempre liberado, com 8 perguntas sorteadas sobre átomos, isótopos, íons e a tabela, e um quiz por família, liberado quando todos os elementos da família são descobertos.
 - **Glossário:** termos de química usados no jogo, com definição, exemplo e dúvidas comuns.
 - **Tutorial:** uma pequena história de abertura e um treino guiado pelo personagem Zula, o robô do laboratório, montando o hidrogênio.
 - **Final especial:** uma cena de encerramento quando a tabela é completada.
@@ -32,16 +32,16 @@ O progresso fica salvo no navegador (`localStorage`).
 
 ## 🚀 Como rodar
 
-Requisitos: Node.js 20 ou superior e npm.
+Requisitos: Node.js ^20.19.0 ou >=22.12.0 e npm.
 
 ```sh
 npm install
 npm run dev     # servidor de desenvolvimento em http://localhost:8081
 npm run test    # testes (Vitest)
-npm run build   # build de produção em .output/
+npm run build   # build de produção: site estático em dist/client/
 ```
 
-Depois do build, `npm run preview` serve a versão de produção localmente.
+O jogo é publicado como site estático (modo SPA do TanStack Start): o build gera `dist/client/index.html` e o roteador desenha cada tela no navegador. Para ver localmente exatamente o que vai para o ar, depois do build rode `npx serve -s dist/client` (o `-s` manda qualquer rota para o `index.html`, como na Vercel).
 
 ## 🗂️ Estrutura do projeto
 
@@ -52,8 +52,12 @@ src/
   interface/      telas e componentes React
     ilus/         ilustrações em pixel art das fichas
   routes/         rotas do TanStack Router (finas, só ligam URL e tela)
+  lib/            página e captura de erros do servidor de desenvolvimento
+  test/           configuração dos testes e teste das rotas
 public/
   fonts/          fontes pixel usadas no jogo e suas licenças
+docs/
+  img/            capturas de tela usadas neste README
 ```
 
 ### Arquitetura
@@ -63,6 +67,22 @@ public/
 - As telas ficam em `src/interface/`. Os arquivos de `src/routes/` só definem a rota, os metadados da página e qual tela mostrar.
 
 Tecnologias: React, TypeScript, TanStack Start (com TanStack Router), Tailwind CSS v4, Vite e Vitest.
+
+## Publicação
+
+O projeto já vem configurado para a Vercel no arquivo `vercel.json`:
+
+- comando de build: `npm run build`
+- pasta de saída: `dist/client`
+- regra que manda qualquer rota para o `index.html`, para endereços como `/mapa` e `/elemento/6` funcionarem ao recarregar a página
+
+Para publicar:
+
+1. Envie o projeto para um repositório no GitHub.
+2. Na Vercel, clique em "Add New..." e depois em "Project", e importe o repositório.
+3. Confira se a Vercel leu as opções do `vercel.json` (Framework Preset "Other", build `npm run build`, saída `dist/client`) e clique em "Deploy".
+
+A cada novo push na branch principal, a Vercel publica a versão nova sozinha.
 
 ## 📚 Dados e fontes
 
