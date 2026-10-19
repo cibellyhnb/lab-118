@@ -1119,7 +1119,9 @@
         "meia_vida": "3,35 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -1190,7 +1192,9 @@
         "abundancia_pct": 5.18
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -1247,7 +1251,9 @@
         "abundancia_pct": 99.75
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -1737,7 +1743,9 @@
         "meia_vida": "14 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -1937,7 +1945,9 @@
         "meia_vida": "8,76 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      -2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2252,7 +2262,9 @@
         "meia_vida": "58,5 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2325,7 +2337,9 @@
         "meia_vida": "2 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2377,7 +2391,9 @@
         "meia_vida": "20,4 mil anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      5
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2595,7 +2611,9 @@
         "meia_vida": "372 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2647,7 +2665,9 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2723,7 +2743,9 @@
         "abundancia_pct": 11.72
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2871,7 +2893,9 @@
         "meia_vida": "3,3 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -2929,7 +2953,9 @@
         "meia_vida": "4,41 × 10¹⁴ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3085,7 +3111,9 @@
         "meia_vida": "2,76 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3174,7 +3202,9 @@
         "meia_vida": "7,91 × 10²⁰ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      -2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3520,7 +3550,9 @@
         "meia_vida": "40,3 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3588,7 +3620,10 @@
         "meia_vida": "285 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3,
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3641,7 +3676,9 @@
         "meia_vida": "13,6 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3726,7 +3763,9 @@
         "meia_vida": "9,3 × 10¹⁸ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3780,7 +3819,9 @@
         "meia_vida": "2,62 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3865,7 +3906,10 @@
         "abundancia_pct": 22.74
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2,
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -3924,7 +3968,10 @@
         "abundancia_pct": 52.19
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2,
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4008,7 +4055,9 @@
         "abundancia_pct": 21.86
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4061,7 +4110,9 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4144,7 +4195,9 @@
         "abundancia_pct": 28.26
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4197,7 +4250,9 @@
         "meia_vida": "26,8 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4275,7 +4330,9 @@
         "meia_vida": "49,3 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4328,7 +4385,9 @@
         "meia_vida": "1,92 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4411,7 +4470,10 @@
         "abundancia_pct": 12.995
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2,
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4470,7 +4532,9 @@
         "meia_vida": "37 bilhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4549,7 +4613,9 @@
         "meia_vida": "8,9 milhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4602,7 +4668,9 @@
         "meia_vida": "115 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      5
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4878,7 +4946,9 @@
         "abundancia_pct": 62.7
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -4957,7 +5027,10 @@
         "abundancia_pct": 7.356
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2,
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5156,7 +5229,10 @@
         "abundancia_pct": 70.485
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      1,
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5280,7 +5356,9 @@
         "meia_vida": "2,01 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5388,7 +5466,9 @@
         "meia_vida": "7,21 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      -1
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5497,7 +5577,9 @@
         "meia_vida": "22 min"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      1
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5552,7 +5634,9 @@
         "meia_vida": "5,75 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5607,7 +5691,9 @@
         "meia_vida": "21,8 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5668,7 +5754,9 @@
         "meia_vida": "14 bilhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      4
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -5790,7 +5878,9 @@
         "meia_vida": "4,46 bilhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      4
+    ],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
@@ -5955,7 +6045,9 @@
         "meia_vida": "7,35 mil anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6010,7 +6102,9 @@
         "meia_vida": "348 mil anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6065,7 +6159,9 @@
         "meia_vida": "327 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6120,7 +6216,9 @@
         "meia_vida": "898 anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6175,7 +6273,9 @@
         "meia_vida": "39,8 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6230,7 +6330,9 @@
         "meia_vida": "100 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6285,7 +6387,9 @@
         "meia_vida": "31,8 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6340,7 +6444,9 @@
         "meia_vida": "58 min"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      2
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
@@ -6395,7 +6501,9 @@
         "meia_vida": "11 h"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [
+      3
+    ],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",

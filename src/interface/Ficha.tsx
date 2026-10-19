@@ -207,6 +207,11 @@ export function Ficha({ z }: { z: number }) {
             Comuns em compostos: {el.ions_comuns.map((q) => notacaoIon(el.simbolo, q)).join(", ")}. Íons isolados não são o mesmo que íons em compostos.
           </p>
         )}
+        {el.ions_comuns.length === 0 && (
+          <p className="mt-2 text-sm">
+            Este elemento não costuma formar íons simples em compostos. Mesmo assim, dá para montar íons dele no laboratório.
+          </p>
+        )}
       </Secao>
 
       {curiosidades.length > 0 && (
