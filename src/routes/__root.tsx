@@ -117,12 +117,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
-      { name: "twitter:card", content: "summary" },
+      // previa nas redes sociais: os robos exigem URL absoluta para a imagem
+      { property: "og:url", content: "https://lab-118.vercel.app/" },
+      { property: "og:image", content: "https://lab-118.vercel.app/og.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Tela inicial do Lab 118: título em pixel art, botão Jogar e bancadas com frascos coloridos.",
+      },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Lab 118 - Construtor Atômico" },
       {
         name: "twitter:description",
         content: "Monte átomos e destranque os 118 elementos da tabela periódica.",
       },
+      { name: "twitter:image", content: "https://lab-118.vercel.app/og.png" },
     ],
     links: [
       {

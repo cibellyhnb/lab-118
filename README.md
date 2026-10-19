@@ -2,6 +2,8 @@
 
 **Construtor Atômico**
 
+Jogue online: [https://lab-118.vercel.app/](https://lab-118.vercel.app/)
+
 Jogo educativo em pixel art em que o jogador monta átomos com prótons, nêutrons e elétrons para destrancar os 118 elementos da tabela periódica.
 
 ## 🎮 Sobre o jogo
@@ -70,6 +72,8 @@ Tecnologias: React, TypeScript, TanStack Start (com TanStack Router), Tailwind C
 
 ## Publicação
 
+O jogo está publicado em [https://lab-118.vercel.app/](https://lab-118.vercel.app/).
+
 O projeto já vem configurado para a Vercel no arquivo `vercel.json`:
 
 - comando de build: `npm run build`
@@ -82,7 +86,7 @@ Para publicar:
 2. Na Vercel, clique em "Add New..." e depois em "Project", e importe o repositório.
 3. Confira se a Vercel leu as opções do `vercel.json` (Framework Preset "Other", build `npm run build`, saída `dist/client`) e clique em "Deploy".
 
-A cada novo push na branch principal, a Vercel publica a versão nova sozinha.
+Cada push na branch `main` publica a nova versão automaticamente.
 
 ## 📚 Dados e fontes
 
