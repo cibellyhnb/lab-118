@@ -4,7 +4,7 @@
  * isotopo, M3 ion), escolhe a proxima missao sugerida e confere se uma
  * montagem cumpre a missao, com a mensagem que o jogador ve.
  ******************************************************************************/
-import { ELEMENTOS, elementoPorZ } from "./dados";
+import { ELEMENTOS, artigoDoElemento, elementoPorZ } from "./dados";
 import { notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
 import { descoberto } from "./progresso";
@@ -94,11 +94,11 @@ export function missaoIon(estado: Progresso, z: number): Missao | null {
       id: `M3-${z}`,
       tipo: "M3",
       z,
-      enunciado: `Transforme o ${el.nome.toLowerCase()} em um íon: mude a quantidade de elétrons para a carga deixar de ser zero.`,
+      enunciado: `Transforme ${artigoDoElemento(el.nome)} ${el.nome.toLowerCase()} em um íon: mude a quantidade de elétrons para a carga deixar de ser zero.`,
       dicas: [
         "Carga = prótons − elétrons. Um átomo neutro tem a mesma quantidade dos dois.",
         "Tire um elétron (carga +1) ou ponha um a mais (carga −1).",
-        `Com ${z} ${z === 1 ? "próton" : "prótons"}, tente ${Math.max(0, z - 1)} elétrons.`,
+        `Com ${z} ${z === 1 ? "próton" : "prótons"}, tente ${Math.max(0, z - 1)} ${Math.max(0, z - 1) === 1 ? "elétron" : "elétrons"}.`,
       ],
       criterio: { tipo: "ION", z },
     };
@@ -163,15 +163,17 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
   if (!c.valido || !c.elemento) return { cumprida: false, mensagem: "" };
   const el = elementoPorZ(m.z);
   const nome = el?.nome ?? "";
+  // "o" ou "a" antes do nome do elemento da missao
+  const art = artigoDoElemento(nome);
   // M2: precisa ser o mesmo elemento com o numero de massa pedido
   if (m.criterio.tipo === "ISOTOPO") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com o ${nome.toLowerCase()} (${m.z} prótons).` };
-    if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Missão cumprida! Você montou o ${nome}-${c.a}: mesmo elemento, massa diferente.` };
+    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
+    if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Missão cumprida! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.` };
     return { cumprida: false, mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.` };
   }
   // M3: qualquer carga diferente de zero, ou a carga exata quando a missao pede uma
   if (m.criterio.tipo === "ION") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com o ${nome.toLowerCase()} (${m.z} prótons).` };
+    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
     const alvoQ = m.criterio.carga;
     if (c.carga !== 0 && (alvoQ === undefined || c.carga === alvoQ)) {
       return { cumprida: true, mensagem: `Missão cumprida! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.` };
@@ -181,7 +183,7 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
   }
   // M1: o elemento certo e neutro
   const cumprida = c.z === m.z && c.especie === "atomo_neutro";
-  if (cumprida) return { cumprida, mensagem: `Isso! Você descobriu o ${c.elemento.nome}!` };
+  if (cumprida) return { cumprida, mensagem: `Isso! Você descobriu ${art} ${c.elemento.nome}!` };
   if (c.z === m.z) {
     return {
       cumprida,

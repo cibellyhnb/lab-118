@@ -3,7 +3,7 @@
  * funcao principal: cena de encerramento quando o jogador descobre os 118
  * elementos: a tabela acende, fogos estouram e o Zula agradece.
  ******************************************************************************/
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ELEMENTOS, FAMILIAS, contarTotais, progressoFamilia } from "@/motor";
 import { Confete } from "./Celebracao";
 import { Dialogo } from "./Dialogo";
@@ -58,6 +58,9 @@ export function Final({ onFechar }: { onFechar: () => void }) {
   const [revelados, setRevelados] = useState(0);
   const [fase, setFase] = useState<1 | 2 | 3>(1); // 1 acendendo, 2 explosao, 3 dialogo
   const [pagina, setPagina] = useState(0);
+  // contador dos ids dos fogos; fica numa ref para nao voltar a 1 quando o efeito
+  // reinicia na passagem da fase 2 para a 3 (ids repetidos viravam keys duplicadas)
+  const ultimoFogo = useRef(0);
   const [fogos, setFogos] = useState<Fogo[]>([]);
 
   // fase 1: acende um elemento a cada 40 ms
@@ -97,12 +100,12 @@ export function Final({ onFechar }: { onFechar: () => void }) {
   // fases 2 e 3: solta um fogo a cada 750 ms ate a cena fechar
   useEffect(() => {
     if (fase < 2) return;
-    let n = 0;
     const solta = () => {
-      n++;
+      const n = ++ultimoFogo.current;
       const f: Fogo = { id: n, x: 8 + ((n * 37) % 84), y: 8 + ((n * 23) % 38), cor: CORES[n % CORES.length]! };
-      // guarda so os 6 ultimos para nao acumular elementos na tela
-      setFogos((l) => [...l.slice(-5), f]);
+      // a explosao dura 1100 ms e sai um fogo a cada 750 ms: guardando so o anterior
+      // e o novo, cada fogo sai do DOM logo depois de terminar
+      setFogos((l) => [...l.slice(-1), f]);
       tocar(sons.estouro);
     };
     solta();

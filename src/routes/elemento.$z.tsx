@@ -4,7 +4,7 @@
  * numero atomico z.
  ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
-import { elementoPorZ } from "@/motor";
+import { artigoDoElemento, elementoPorZ } from "@/motor";
 import { Ficha } from "@/interface/Ficha";
 
 /*******************************************************************************
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/elemento/$z")({
     return {
       meta: [
         { title: `${t} - Lab 118` },
-        { name: "description", content: el ? `Ficha do ${el.nome}: isótopos, massa atômica, família e suas variantes.` : "Ficha do elemento." },
+        { name: "description", content: el ? `Ficha d${artigoDoElemento(el.nome)} ${el.nome}: isótopos, massa atômica, família e suas variantes.` : "Ficha do elemento." },
         { property: "og:title", content: t },
         { property: "og:description", content: "Consulte o elemento que você descobriu no Lab 118." },
       ],

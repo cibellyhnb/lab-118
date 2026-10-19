@@ -25,7 +25,7 @@ import { Emblema } from "./Emblema";
 import { Final } from "./Final";
 import { TituloLab } from "./Titulo";
 import { SoundToggle, Stars, catStyle } from "./comuns";
-import { useProgresso } from "./store";
+import { CHAVE_FINAL, useProgresso } from "./store";
 
 /*******************************************************************************
  * Bloco
@@ -150,7 +150,7 @@ export function Mapa() {
   useEffect(() => {
     if (!carregado || tot.elementos < ELEMENTOS.length) return;
     try {
-      if (!localStorage.getItem("lab118:final")) setFinal(true);
+      if (!localStorage.getItem(CHAVE_FINAL)) setFinal(true);
     } catch {
       /* sem armazenamento: nao abre sozinho */
     }
@@ -164,7 +164,7 @@ export function Mapa() {
   const fecharFinal = () => {
     setFinal(false);
     try {
-      localStorage.setItem("lab118:final", "1");
+      localStorage.setItem(CHAVE_FINAL, "1");
     } catch {
       /* ignora */
     }

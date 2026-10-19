@@ -13,6 +13,7 @@ import {
   avaliarMissao,
   classificar,
   construir as construirMotor,
+  artigoDoElemento,
   descoberto,
   elementoPorZ,
   familiaPendente,
@@ -126,8 +127,8 @@ function LabScene() {
  * Contador
  * funcao: botoes - e + com um campo numerico para uma particula. segurar
  * o botao repete de 5 em 5; Shift + clique ou Shift + seta tambem soma 5.
- * recebe: tipo (particula), valor, max e onChange (novo valor, ja limitado
- * entre 0 e max).
+ * recebe: tipo (particula), valor, max e onChange (novo valor, ja inteiro e
+ * limitado entre 0 e max).
  * retorna: os controles da particula.
  ******************************************************************************/
 function Contador({
@@ -144,7 +145,8 @@ function Contador({
   const timer = useRef<number | null>(null);
   // marca se o clique veio de um toque longo, para nao somar de novo no onClick
   const longo = useRef(false);
-  const clamp = (v: number) => Math.max(0, Math.min(max, v));
+  // corta a parte decimal (colar "0.5" vira 0) e troca NaN por 0 antes de limitar
+  const clamp = (v: number) => Math.max(0, Math.min(max, Math.trunc(v) || 0));
   const parar = () => {
     if (timer.current) window.clearInterval(timer.current);
     timer.current = null;
@@ -552,7 +554,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                 ))}
                 {c.valido && descoberto(estado, c.z) && (
                   <Link to="/elemento/$z" params={{ z: String(c.z) }} className="mt-2 inline-block underline">
-                    Abrir ficha do {c.elemento?.nome}
+                    Abrir ficha d{artigoDoElemento(c.elemento?.nome ?? "")} {c.elemento?.nome}
                   </Link>
                 )}
               </section>

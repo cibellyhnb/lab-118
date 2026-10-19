@@ -11,7 +11,8 @@ import type { Classificacao, Particulas, StatusNuclideo } from "./tipos";
  * LIMITE_N, Z_MAX, CARGA_MIN_COMUM, CARGA_MAX_COMUM
  * funcao: limites das regras do documento de design. LIMITE_N e o maximo de
  * neutrons (REG-06), Z_MAX o maior numero atomico (REG-02) e as cargas comuns
- * marcam a faixa fora da qual o ion ganha o aviso CARGA_RARA (REG-10).
+ * marcam a faixa fora da qual o ion ganha o aviso CARGA_RARA (REG-10), a
+ * menos que a carga esteja nos ions_comuns do elemento.
  ******************************************************************************/
 export const LIMITE_N = 200; // REG-06
 export const Z_MAX = 118; // REG-02
@@ -98,7 +99,9 @@ export function classificar(p: Particulas): Classificacao {
   const especie = carga === 0 ? "atomo_neutro" : carga > 0 ? "cation" : "anion"; // REG-05
   const status = statusNuclideo(z, a); // REG-07
   const avisos: string[] = [];
-  if (carga < CARGA_MIN_COMUM || carga > CARGA_MAX_COMUM) avisos.push("CARGA_RARA"); // REG-10
+  // REG-10: carga fora da faixa comum e rara, exceto se for um ion comum do proprio
+  // elemento (ex: Nb⁵⁺ e Ta⁵⁺)
+  if ((carga < CARGA_MIN_COMUM || carga > CARGA_MAX_COMUM) && !el.ions_comuns.includes(carga)) avisos.push("CARGA_RARA");
   if (status === "nao_catalogado") avisos.push("NUCLIDEO_NAO_CATALOGADO");
   // nenhum eletron: so o nucleo
   if (e === 0) avisos.push("NUCLEO_NU");

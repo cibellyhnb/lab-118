@@ -130,6 +130,13 @@ describe("Regras", () => {
     expect(c(8, 8, 3).avisos).toContain("CARGA_RARA");
     expect(c(8, 8, 4).avisos).not.toContain("CARGA_RARA");
   });
+  // carga +5 passa do maximo comum, mas e um ion comum do niobio: sem aviso
+  it("REG-10: Nb⁵⁺ não é carga rara porque está nos íons comuns", () => {
+    const r = c(41, 52, 36);
+    expect(r.carga).toBe(5);
+    expect(r.notacao).toBe("Nb⁵⁺");
+    expect(r.avisos).not.toContain("CARGA_RARA");
+  });
   it("REG-11: camadas", () => {
     // neutro, cation que esvazia a camada, anion que completa 8, anion na primeira
     // camada (cap 2), anion que abre camada nova e sem eletrons

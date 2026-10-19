@@ -9,6 +9,8 @@ import type { Progresso } from "./tipos";
 
 // chave usada no armazenamento
 export const CHAVE = "construtor-atomico:progresso";
+// onde fica a copia do progresso que nao deu para ler
+export const CHAVE_CORROMPIDO = `${CHAVE}:corrompido`;
 
 // so o que o codigo usa do Storage; nos testes da para passar um objeto simples
 type Armazenamento = Pick<Storage, "getItem" | "setItem">;
@@ -29,12 +31,20 @@ function valido(x: unknown): x is Progresso {
 /*******************************************************************************
  * carregar
  * funcao: le o progresso salvo. se o dado estiver estragado, copia ele para
- * CHAVE + ":corrompido" e comeca do zero.
+ * CHAVE_CORROMPIDO e comeca do zero. se o armazenamento lancar erro
+ * (bloqueado, modo privado), comeca do zero sem acusar corrupcao.
  * recebe: arm (armazenamento com getItem e setItem).
  * retorna: { estado, corrompido }, com o progresso e se houve corrupcao.
+ * nunca lanca erro.
  ******************************************************************************/
 export function carregar(arm: Armazenamento): { estado: Progresso; corrompido: boolean } {
-  const bruto = arm.getItem(CHAVE);
+  let bruto: string | null;
+  try {
+    bruto = arm.getItem(CHAVE);
+  } catch {
+    // armazenamento bloqueado: segue com um jogo novo so em memoria
+    return { estado: progressoInicial(), corrompido: false };
+  }
   // nada salvo ainda: jogo novo
   if (!bruto) return { estado: progressoInicial(), corrompido: false };
   try {
@@ -48,7 +58,11 @@ export function carregar(arm: Armazenamento): { estado: Progresso; corrompido: b
     };
   } catch {
     // JSON quebrado ou formato errado: guarda o texto original e recomeca
-    arm.setItem(`${CHAVE}:corrompido`, bruto);
+    try {
+      arm.setItem(CHAVE_CORROMPIDO, bruto);
+    } catch {
+      /* sem como guardar a copia: recomeca do mesmo jeito */
+    }
     return { estado: progressoInicial(), corrompido: true };
   }
 }

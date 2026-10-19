@@ -5,7 +5,7 @@
  * cada elemento, que muda o quanto a primeira dica entrega.
  ******************************************************************************/
 import { CURIOSIDADES } from "./curiosidades";
-import { NOME_CATEGORIA, elementoPorZ } from "./dados";
+import { NOME_CATEGORIA, artigoDoElemento, elementoPorZ } from "./dados";
 import type { Dica, Dificuldade, Elemento } from "./tipos";
 
 /*******************************************************************************
@@ -107,7 +107,7 @@ function dica1(el: Elemento): string {
   const curio = CURIOSIDADES[el.z];
   if (dif === "dificil") {
     // a localizacao entra no meio da frase, entao a primeira letra vira minuscula
-    const base = `É o ${el.nome} (${el.simbolo}): ${localizacao(el).replace(/^./, (c) => c.toLowerCase())}.`;
+    const base = `É ${artigoDoElemento(el.nome)} ${el.nome} (${el.simbolo}): ${localizacao(el).replace(/^./, (c) => c.toLowerCase())}.`;
     return base + (curio ? ` ${curio}` : "") + massaTexto(el);
   }
   // facil e media: curiosidade do dia a dia + familia e posicao (sem dizer o nome)

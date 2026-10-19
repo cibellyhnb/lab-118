@@ -6,6 +6,8 @@
  ******************************************************************************/
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
+  CHAVE,
+  CHAVE_CORROMPIDO,
   carregar,
   concluirTutorial as concluirTutorialMotor,
   construir as construirMotor,
@@ -28,6 +30,8 @@ type Ctx = {
   estado: Progresso;
   carregado: boolean;
   avisoCorrompido: boolean;
+  dispensarAviso: () => void;
+  reiniciar: () => void;
   ultimoMontado: Record<number, Particulas>;
   construir: (p: Particulas) => { classificacao: Classificacao; eventos: Evento[] };
   alternarSom: () => void;
@@ -39,6 +43,8 @@ type Ctx = {
 
 // ultima montagem valida de cada elemento, salva separada do progresso
 const CHAVE_ULTIMO = "construtor-atomico:ultimo-montado";
+// marca que o final do jogo ja foi visto (o Mapa so abre o final sozinho uma vez)
+export const CHAVE_FINAL = "lab118:final";
 
 const ProgressoCtx = createContext<Ctx | null>(null);
 
@@ -74,7 +80,14 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     } catch {
       /* sem ultimo atomo salvo: segue vazio */
     }
-    const r = carregar(window.localStorage);
+    // so ler window.localStorage ja pode lancar SecurityError com os dados bloqueados;
+    // nesse caso o jogo segue com um progresso novo so em memoria
+    let r: ReturnType<typeof carregar>;
+    try {
+      r = carregar(window.localStorage);
+    } catch {
+      r = { estado: progressoInicial(), corrompido: false };
+    }
     setEstado(r.estado);
     setAviso(r.corrompido);
     setCarregado(true);
@@ -108,6 +121,9 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     return { classificacao: r.classificacao, eventos: r.eventos };
   }, []);
 
+  // esconde o aviso de progresso corrompido depois que o jogador leu
+  const dispensarAviso = useCallback(() => setAviso(false), []);
+
   // liga e desliga o som (efeitos e musica)
   const alternarSom = useCallback(() => {
     const s = ref.current;
@@ -133,10 +149,28 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     return { selo: r.selo, novoRecorde: r.novoRecorde };
   }, []);
 
+  // apaga as 4 chaves do jogo no navegador e volta ao progresso inicial. com o
+  // armazenamento bloqueado, cada remocao falha em silencio e so a memoria e zerada
+  const reiniciar = useCallback(() => {
+    for (const chave of [CHAVE, CHAVE_ULTIMO, CHAVE_CORROMPIDO, CHAVE_FINAL]) {
+      try {
+        window.localStorage.removeItem(chave);
+      } catch {
+        /* armazenamento indisponivel: segue so com a memoria */
+      }
+    }
+    const novo = progressoInicial();
+    ref.current = novo;
+    setEstado(novo);
+    ultimoRef.current = {};
+    setUltimo({});
+    setAviso(false);
+  }, []);
+
   // useMemo evita redesenhar quem usa o contexto quando nada mudou
   const valor = useMemo(
-    () => ({ estado, carregado, avisoCorrompido, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz }),
-    [estado, carregado, avisoCorrompido, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz],
+    () => ({ estado, carregado, avisoCorrompido, dispensarAviso, reiniciar, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz }),
+    [estado, carregado, avisoCorrompido, dispensarAviso, reiniciar, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz],
   );
   return <ProgressoCtx.Provider value={valor}>{children}</ProgressoCtx.Provider>;
 }

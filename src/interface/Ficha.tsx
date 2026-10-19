@@ -6,7 +6,7 @@
  * trancada.
  ******************************************************************************/
 import { Link } from "@tanstack/react-router";
-import { APLICACOES, CURIOSIDADES, NOME_CATEGORIA, classificar, descoberto, elementoPorZ, isotoposNecessarios } from "@/motor";
+import { APLICACOES, CURIOSIDADES, NOME_CATEGORIA, artigoDoElemento, classificar, descoberto, elementoPorZ, isotoposNecessarios } from "@/motor";
 import { Stars, TopBar, catStyle } from "./comuns";
 import { notacaoIon } from "@/motor";
 import { useProgresso } from "./store";
@@ -51,12 +51,35 @@ const ESTRELA_BTN = [
  * funcao: tela da ficha do elemento.
  * recebe: z (numero atomico).
  * retorna: a ficha completa; a versao trancada se o elemento nao foi
- * descoberto; ou um aviso se o z nao existir.
+ * descoberto; so a barra do topo enquanto o progresso carrega; ou um aviso
+ * com botao para o mapa se o z nao existir.
  ******************************************************************************/
 export function Ficha({ z }: { z: number }) {
-  const { estado, ultimoMontado } = useProgresso();
+  const { estado, carregado, ultimoMontado } = useProgresso();
   const el = elementoPorZ(z);
-  if (!el) return <p className="p-6">Elemento não encontrado.</p>;
+  // z que nao existe (ex: /elemento/999 ou /elemento/abc): aviso com saida para o mapa
+  if (!el) {
+    return (
+      <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-4 p-4">
+        <TopBar titulo="FICHA" />
+        <div className="pixel-panel p-6 text-center">
+          <p className="mb-4">Elemento não encontrado.</p>
+          <Link to="/mapa" className="pixel-btn btn-gold">
+            VOLTAR AO MAPA
+          </Link>
+        </div>
+      </main>
+    );
+  }
+  // progresso ainda nao lido do localStorage (no servidor e no primeiro render):
+  // so a barra do topo, para nao mostrar a ficha trancada por engano
+  if (!carregado) {
+    return (
+      <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-4 p-4">
+        <TopBar titulo="FICHA" />
+      </main>
+    );
+  }
   const prog = estado.elementos[String(z)];
   const aberto = descoberto(estado, z);
 
@@ -76,6 +99,8 @@ export function Ficha({ z }: { z: number }) {
     );
   }
 
+  // "o" ou "a" antes do nome (a prata, a platina)
+  const art = artigoDoElemento(el.nome);
   // ultima montagem valida deste elemento, para comparar com a tabela
   const montado = ultimoMontado[z];
   const cMontado = montado ? classificar(montado) : null;
@@ -186,13 +211,13 @@ export function Ficha({ z }: { z: number }) {
         </p>
         {cMontado && el.massa_atomica && !maisLongevo && (
           <p className="mt-2">
-            Você montou o {el.nome.toLowerCase()}-{cMontado.a}, com número de massa {cMontado.a}. Na tabela, a massa atômica do{" "}
+            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}, com número de massa {cMontado.a}. Na tabela, a massa atômica d{art}{" "}
             {el.nome.toLowerCase()} é {fmt(el.massa_atomica.valor)}, a média dos isótopos naturais.
           </p>
         )}
         {cMontado && el.massa_atomica && maisLongevo && (
           <p className="mt-2">
-            Você montou o {el.nome.toLowerCase()}-{cMontado.a}. O isótopo que dura mais tempo é o {el.nome.toLowerCase()}-{fmt(el.massa_atomica.valor)}.
+            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}. O isótopo que dura mais tempo é {art} {el.nome.toLowerCase()}-{fmt(el.massa_atomica.valor)}.
           </p>
         )}
       </Secao>

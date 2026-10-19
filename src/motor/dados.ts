@@ -25,6 +25,21 @@ export function elementoPorZ(z: number): Elemento | undefined {
   return porZ.get(z);
 }
 
+// nomes de elemento que pedem artigo feminino, em minusculas
+const NOMES_FEMININOS = new Set(["prata", "platina"]);
+
+/*******************************************************************************
+ * artigoDoElemento
+ * funcao: artigo definido que acompanha o nome do elemento. quase todos sao
+ * masculinos ("o ferro"); so a prata e a platina pedem "a". as contracoes
+ * saem dele: "d" + artigo da do/da.
+ * recebe: nome (string, com ou sem maiuscula).
+ * retorna: "o" ou "a".
+ ******************************************************************************/
+export function artigoDoElemento(nome: string): "o" | "a" {
+  return NOMES_FEMININOS.has(nome.toLowerCase()) ? "a" : "o";
+}
+
 /*******************************************************************************
  * NOME_CATEGORIA
  * funcao: nome de cada familia do jeito que aparece para o jogador.

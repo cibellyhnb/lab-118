@@ -335,6 +335,18 @@ a.pixel-block:active {
     animation: none !important;
     transition: none !important;
   }
+  /* sem animacao, estes enfeites passageiros ficariam presos na tela: a cortina e o
+     flash cobririam tudo, e confete, faiscas, bolhas, formulas e estrelas cadentes
+     ficariam parados no ponto de partida. por isso somem */
+  .anim-cortina,
+  .anim-flash,
+  .anim-confetti,
+  .anim-faisca,
+  .anim-bolha,
+  .anim-flutuar,
+  .anim-cadente {
+    display: none !important;
+  }
 }
 
 /* ---------- tutorial, história e dicas ---------- */
