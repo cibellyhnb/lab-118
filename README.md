@@ -83,10 +83,6 @@ Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) sã
 - **Professor:** Gidevaldo Novais
 - **Semestre:** 6º semestre
 
-## 📄 Licença
-
-Projeto acadêmico. Ainda não há uma licença de uso definida, então todos os direitos ficam reservados aos autores.
-
 ## ⭐ Créditos
 
 Fontes tipográficas (todas sob a SIL Open Font License 1.1, detalhes em `public/fonts/LICENCAS.txt`):
