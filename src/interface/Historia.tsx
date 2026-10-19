@@ -134,7 +134,7 @@ function TabelaApagando({ acesa }: { acesa: boolean }) {
 /*******************************************************************************
  * Fundo
  * funcao: monta o cenario de cada fala: ceu com predios, tabela apagando,
- * laboratorio com a Zula ou o atomo de hidrogenio.
+ * laboratorio com o Zula ou o atomo de hidrogenio.
  * recebe: cena (Cena).
  * retorna: o fundo em tela cheia.
  ******************************************************************************/

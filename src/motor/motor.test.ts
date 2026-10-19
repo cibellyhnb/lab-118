@@ -18,8 +18,9 @@ import { carregar, CHAVE, salvar } from "./persistencia";
  ******************************************************************************/
 const c = (p: number, n: number, e: number) => classificar({ p, n, e });
 
-// tabela de casos da secao 15: cada nome traz p,n,e e o resultado esperado
-describe("Seção 15 - casos do motor", () => {
+// classificacao de montagens: elemento, especie, nuclideo e erros. cada nome traz
+// p,n,e e o resultado esperado
+describe("classificação de montagens: elemento, espécie, nuclídeo e erros", () => {
   it("1,0,1 H-1 neutro estável", () => {
     const r = c(1, 0, 1);
     expect(r.elemento?.nome).toBe("Hidrogênio");
@@ -194,6 +195,8 @@ describe("Missão M1", () => {
       if (!p) continue;
       expect(p.length).toBeLessThanOrEqual(120);
       expect(p.toLowerCase()).not.toContain(el.nome.toLowerCase());
+      // simbolo como palavra isolada, para "C" dentro de "Combustivel" nao contar
+      expect(p, el.simbolo).not.toMatch(new RegExp(`(^|[^A-Za-zÀ-ÿ])${el.simbolo}([^a-zà-ÿ]|$)`));
     }
   });
 });

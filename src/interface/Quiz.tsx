@@ -210,7 +210,7 @@ export function Quiz({ familiaInicial }: { familiaInicial?: string | undefined }
               <button type="button" className="pixel-btn btn-sky" onClick={() => setFim(null)}>
                 OUTROS QUIZZES
               </button>
-              <Link to="/" className="pixel-btn btn-parchment">
+              <Link to="/mapa" className="pixel-btn btn-parchment">
                 VOLTAR AO MAPA
               </Link>
             </div>

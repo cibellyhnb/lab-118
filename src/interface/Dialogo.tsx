@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Dialogo.tsx
- * funcao principal: caixa de dialogo estilo RPG, com o retrato da Zula e o
+ * funcao principal: caixa de dialogo estilo RPG, com o retrato do Zula e o
  * texto aparecendo letra por letra.
  ******************************************************************************/
 import { useEffect, useRef, useState } from "react";
@@ -51,9 +51,9 @@ function useDigitando(texto: string, aoFalar: (i: number) => void) {
 
 /*******************************************************************************
  * Dialogo
- * funcao: caixa de dialogo com retrato da Zula, texto que "digita" e botao
+ * funcao: caixa de dialogo com retrato do Zula, texto que "digita" e botao
  * para avancar.
- * recebe: texto, autor (padrao "ZULA"), humor (expressao da Zula), rotulo
+ * recebe: texto, autor (padrao "ZULA"), humor (expressao do Zula), rotulo
  * (texto do botao), onAvancar e extra (conteudo abaixo do texto).
  * retorna: a caixa fixa na parte de baixo da tela.
  ******************************************************************************/

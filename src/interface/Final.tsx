@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Final.tsx
  * funcao principal: cena de encerramento quando o jogador descobre os 118
- * elementos: a tabela acende, fogos estouram e a Zula agradece.
+ * elementos: a tabela acende, fogos estouram e o Zula agradece.
  ******************************************************************************/
 import { useEffect, useMemo, useState } from "react";
 import { ELEMENTOS, FAMILIAS, contarTotais, progressoFamilia } from "@/motor";
@@ -46,7 +46,7 @@ function Estouro({ x, y, cor }: { x: number; y: number; cor: string }) {
  * Final
  * funcao: final do jogo, em fases: 1) a tabela acende elemento por
  * elemento, com notinhas subindo; 2) flash, confete, fogos e uma onda de
- * brilho; 3) a Zula agradece e mostra o que o jogador conquistou.
+ * brilho; 3) o Zula agradece e mostra o que o jogador conquistou.
  * recebe: onFechar (volta para o mapa).
  * retorna: a cena em tela cheia.
  ******************************************************************************/
@@ -60,18 +60,22 @@ export function Final({ onFechar }: { onFechar: () => void }) {
   const [pagina, setPagina] = useState(0);
   const [fogos, setFogos] = useState<Fogo[]>([]);
 
-  // fase 1: acende um elemento a cada 40 ms, cada um com uma nota
+  // fase 1: acende um elemento a cada 40 ms
   useEffect(() => {
     if (fase !== 1) return;
     const id = window.setInterval(() => {
-      setRevelados((n) => {
-        if (n >= lista.length) return n;
-        tocar(() => sons.nota(n));
-        return n + 1;
-      });
+      setRevelados((n) => (n >= lista.length ? n : n + 1));
     }, 40);
     return () => window.clearInterval(id);
-  }, [fase, lista.length, tocar]);
+  }, [fase, lista.length]);
+
+  // nota de cada elemento aceso: quando revelados passa de n para n + 1, toca a nota n.
+  // fica fora do setRevelados porque o StrictMode roda esse callback duas vezes.
+  // so na fase 1: o PULAR (que vai direto para a fase 3) e o recomeco em 0 nao tocam nada
+  useEffect(() => {
+    if (fase !== 1 || revelados === 0) return;
+    tocar(() => sons.nota(revelados - 1));
+  }, [revelados, fase, tocar]);
 
   // todos acesos: meio segundo depois passa para a fase 2
   useEffect(() => {
@@ -112,12 +116,12 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     setFase(3);
   };
 
-  // falas da Zula, uma por pagina
+  // falas do Zula, uma por pagina
   const paginas = [
     "Você conseguiu! Os 118 elementos estão acesos, do Hidrogênio ao Oganessônio. Olha só como o laboratório ficou lindo!",
     "Sabe o que você montou? A água, o ar, o seu celular, as estrelas e até você são feitos dessas mesmas peças. Tudo o que existe vem dessa tabelinha.",
     "Você começou sem saber nada e agora monta até átomos gigantes. Foi muito bom aprender com você por aqui.",
-    "Obrigada por ajudar o Lab 118 a acender. Esse laboratório agora é todo seu!",
+    "Obrigado por ajudar o Lab 118 a acender. Esse laboratório agora é todo seu!",
   ];
   const ultima = pagina === paginas.length - 1;
 

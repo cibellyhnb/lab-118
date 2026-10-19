@@ -2,7 +2,7 @@
  * CerimoniaFamilia.tsx
  * funcao principal: cerimonia estilo RPG que aparece quando o jogador
  * completa uma familia da tabela: raios, simbolos voando, brasao, titulo e
- * a Zula contando curiosidades e convidando para o quiz da familia.
+ * o Zula contando curiosidades e convidando para o quiz da familia.
  ******************************************************************************/
 import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
@@ -40,7 +40,7 @@ function posicoes(n: number): { ux: number; uy: number; anel: 1 | 2 }[] {
  * CerimoniaFamilia
  * funcao: cerimonia de familia completa, em fases: 0) escurece e os raios
  * giram; 1) os simbolos dos elementos voam para o centro; 2) flash, o
- * brasao sobe e o titulo aparece; 3) a Zula conta curiosidades e convida
+ * brasao sobe e o titulo aparece; 3) o Zula conta curiosidades e convida
  * para o quiz.
  * recebe: familia (Categoria) e onFechar (chamado ao sair).
  * retorna: a tela cheia da cerimonia.
@@ -165,7 +165,7 @@ export function CerimoniaFamilia({ familia, onFechar }: { familia: Categoria; on
         )}
       </div>
 
-      {/* dialogo da Zula; na ultima pagina troca o PROXIMO pelos botoes do quiz */}
+      {/* dialogo do Zula; na ultima pagina troca o PROXIMO pelos botoes do quiz */}
       {fase >= 3 && (
         <Dialogo
           texto={texto}

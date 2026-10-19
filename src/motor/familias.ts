@@ -17,7 +17,7 @@ export type FamiliaInfo = {
   titulo: string;
   // onde fica na tabela, ja com a preposicao ("no grupo 17, ...")
   onde: string;
-  // tres curiosidades que a Zula conta na cerimonia (e que o quiz da familia retoma)
+  // tres curiosidades que o Zula conta na cerimonia (e que o quiz da familia retoma)
   fatos: [string, string, string];
 };
 

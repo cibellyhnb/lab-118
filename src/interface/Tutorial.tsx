@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Tutorial.tsx
  * funcao principal: tutorial do jogo: primeiro a historia de abertura, depois
- * o laboratorio guiado passo a passo pela Zula, com a tela escurecida em
+ * o laboratorio guiado passo a passo pelo Zula, com a tela escurecida em
  * volta do que o jogador deve mexer.
  ******************************************************************************/
 import { useNavigate } from "@tanstack/react-router";
@@ -208,7 +208,7 @@ function Foco({ alvos }: { alvos: string[] }) {
 
 /*******************************************************************************
  * Guiado
- * funcao: laboratorio do tutorial com os passos da Zula. passos com auto
+ * funcao: laboratorio do tutorial com os passos do Zula. passos com auto
  * avancam sozinhos quando o jogador faz o que foi pedido.
  * recebe: nada.
  * retorna: o laboratorio em modo treino, o foco, o dialogo e o botao de
@@ -246,10 +246,11 @@ function Guiado() {
     if (p.confete) tocar(sons.descoberta);
   }, [p, tocar]);
 
-  // fecha o tutorial: concluindo (leva H e He para a tabela real) ou pulando
+  // fecha o tutorial: concluindo (leva H e He para a tabela real e vai para o mapa)
+  // ou pulando (volta para a tela inicial)
   const terminar = (conceder: boolean) => {
     concluirTutorial(conceder);
-    void navegar({ to: "/" });
+    void navegar({ to: conceder ? "/mapa" : "/" });
   };
 
   // ligacao com o laboratorio

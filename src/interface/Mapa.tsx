@@ -155,7 +155,8 @@ export function Mapa() {
       /* sem armazenamento: nao abre sozinho */
     }
   }, [carregado, tot.elementos]);
-  // TESTE (remover depois): abrir /mapa?final=1 mostra o final mesmo sem a tabela completa
+  // atalho para a apresentacao do trabalho: abrir /mapa?final=1 mostra o final mesmo
+  // sem a tabela completa
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("final") === "1") setFinal(true);
   }, []);

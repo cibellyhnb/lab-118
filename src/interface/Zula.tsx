@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Zula.tsx
- * funcao principal: sprite da Zula, a robo-assistente do jogo, que pisca
- * sozinha e mexe a boca enquanto fala.
+ * funcao principal: sprite do Zula, o robo-assistente do jogo, que pisca
+ * sozinho e mexe a boca enquanto fala.
  ******************************************************************************/
 import { useEffect, useState } from "react";
 import { C, PixelArt } from "./PixelArt";
@@ -40,7 +40,7 @@ export type Humor = keyof typeof ROSTO;
 
 /*******************************************************************************
  * linhasZula
- * funcao: monta o desenho inteiro da Zula numa expressao.
+ * funcao: monta o desenho inteiro do Zula numa expressao.
  * recebe: humor ("normal", "pisca", "fala" ou "feliz").
  * retorna: as linhas do desenho.
  ******************************************************************************/
@@ -52,10 +52,10 @@ const PALETA = { k: C.ink, w: C.cloud, s: "var(--parchment-shade)", c: "var(--sk
 
 /*******************************************************************************
  * Zula
- * funcao: sprite da Zula. falando alterna a boca; pisca sozinha de tempos
+ * funcao: sprite do Zula. falando alterna a boca; pisca sozinho de tempos
  * em tempos.
  * recebe: falando, humor (expressao parada), className e scale.
- * retorna: a Zula em pixel art.
+ * retorna: o Zula em pixel art.
  ******************************************************************************/
 export function Zula({
   falando = false,
