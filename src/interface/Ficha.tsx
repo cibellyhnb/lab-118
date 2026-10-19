@@ -54,6 +54,7 @@ export function Ficha({ z }: { z: number }) {
 
   const montado = ultimoMontado[z];
   const cMontado = montado ? classificar(montado) : null;
+  const maisLongevo = el.massa_atomica?.tipo === "isotopo_mais_longevo";
   const f = el.ficha;
   const ilus = ilustracaoDe(z);
   const aplicacoes = APLICACOES[z] ?? f.usos ?? [];
@@ -139,18 +140,24 @@ export function Ficha({ z }: { z: number }) {
             {!cMontado && <p className="text-sm">Construa um átomo deste elemento para comparar.</p>}
           </div>
           <div className="border-[3px] border-ink bg-cloud p-3">
-            <p className="font-display text-[9px]">MASSA ATÔMICA (TABELA)</p>
+            <p className="font-display text-[9px]">{maisLongevo ? "NÚMERO DE MASSA DO ISÓTOPO MAIS LONGEVO" : "MASSA ATÔMICA (TABELA)"}</p>
             <p className="font-display mt-2 text-xl">{el.massa_atomica ? fmt(el.massa_atomica.valor) : "sem dado"}</p>
           </div>
         </div>
         <p>
           Número de massa é a soma de prótons e nêutrons de um átomo específico, e por isso é sempre um número inteiro. Massa
           atômica é a média ponderada das massas dos isótopos naturais de um elemento, e por isso costuma ser decimal.
+          {maisLongevo && " Este elemento não tem isótopo estável, então não existe uma massa atômica padrão: a tabela mostra o número de massa do isótopo que dura mais tempo."}
         </p>
-        {cMontado && el.massa_atomica && (
+        {cMontado && el.massa_atomica && !maisLongevo && (
           <p className="mt-2">
             Você montou o {el.nome.toLowerCase()}-{cMontado.a}, com número de massa {cMontado.a}. Na tabela, a massa atômica do{" "}
             {el.nome.toLowerCase()} é {fmt(el.massa_atomica.valor)}, a média dos isótopos naturais.
+          </p>
+        )}
+        {cMontado && el.massa_atomica && maisLongevo && (
+          <p className="mt-2">
+            Você montou o {el.nome.toLowerCase()}-{cMontado.a}. O isótopo que dura mais tempo é o {el.nome.toLowerCase()}-{fmt(el.massa_atomica.valor)}.
           </p>
         )}
       </Secao>

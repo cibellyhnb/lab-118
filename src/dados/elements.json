@@ -507,7 +507,10 @@
       1
     ],
     "eletrons_valencia": 1,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 22.99,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 22,
@@ -554,7 +557,10 @@
       2
     ],
     "eletrons_valencia": 2,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 24.305,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 24,
@@ -613,7 +619,10 @@
       3
     ],
     "eletrons_valencia": 3,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 26.982,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 26,
@@ -662,7 +671,10 @@
       4
     ],
     "eletrons_valencia": 4,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 28.085,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 28,
@@ -719,7 +731,10 @@
       5
     ],
     "eletrons_valencia": 5,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 30.974,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 31,
@@ -768,7 +783,10 @@
       6
     ],
     "eletrons_valencia": 6,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 32.06,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 32,
@@ -832,7 +850,10 @@
       7
     ],
     "eletrons_valencia": 7,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 35.45,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 35,
@@ -871,7 +892,10 @@
       8
     ],
     "eletrons_valencia": 8,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 39.95,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 36,
@@ -929,7 +953,10 @@
       1
     ],
     "eletrons_valencia": 1,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 39.098,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 39,
@@ -990,7 +1017,10 @@
       2
     ],
     "eletrons_valencia": 2,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 40.078,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 40,
@@ -1033,7 +1063,7 @@
         "a": 48,
         "estabilidade": "radioativo",
         "abundancia_pct": 0.187,
-        "meia_vida": "5,6 × 10¹⁹ anos"
+        "meia_vida": "2,9 × 10¹⁹ anos"
       }
     ],
     "ions_comuns": [
@@ -1066,7 +1096,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 44.956,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 45,
@@ -1114,7 +1147,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 47.867,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 44,
@@ -1182,7 +1218,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 50.942,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 48,
@@ -1236,7 +1275,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 51.996,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 48,
@@ -1301,7 +1343,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 54.938,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 53,
@@ -1351,7 +1396,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 55.845,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 54,
@@ -1403,7 +1451,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 58.933,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 57,
@@ -1453,7 +1504,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 58.693,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 58,
@@ -1523,7 +1577,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 63.546,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 63,
@@ -1579,7 +1636,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 65.38,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 64,
@@ -1649,7 +1709,10 @@
       3
     ],
     "eletrons_valencia": 3,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 69.723,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 67,
@@ -1702,7 +1765,10 @@
       4
     ],
     "eletrons_valencia": 4,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 72.63,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 68,
@@ -1771,7 +1837,10 @@
       5
     ],
     "eletrons_valencia": 5,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 74.922,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 73,
@@ -1819,7 +1888,10 @@
       6
     ],
     "eletrons_valencia": 6,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 78.971,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 74,
@@ -1893,7 +1965,10 @@
       7
     ],
     "eletrons_valencia": 7,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 79.904,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 77,
@@ -1948,7 +2023,10 @@
       8
     ],
     "eletrons_valencia": 8,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 83.798,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 78,
@@ -2022,7 +2100,10 @@
       1
     ],
     "eletrons_valencia": 1,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 85.468,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 83,
@@ -2079,7 +2160,10 @@
       2
     ],
     "eletrons_valencia": 2,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 87.62,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 84,
@@ -2145,7 +2229,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 88.906,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 88,
@@ -2194,7 +2281,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 91.222,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 88,
@@ -2232,7 +2322,7 @@
         "a": 96,
         "estabilidade": "radioativo",
         "abundancia_pct": 2.8,
-        "meia_vida": "2,34 × 10¹⁹ anos"
+        "meia_vida": "2 × 10¹⁹ anos"
       }
     ],
     "ions_comuns": [],
@@ -2264,7 +2354,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 92.906,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 92,
@@ -2313,7 +2406,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 95.95,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 92,
@@ -2393,7 +2489,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 97,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 97,
@@ -2443,7 +2542,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 101.07,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 96,
@@ -2522,13 +2624,16 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 102.91,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 101,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "4,07 anos"
+        "meia_vida": "3,3 anos"
       },
       {
         "a": 102,
@@ -2570,7 +2675,10 @@
       18
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 106.42,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 102,
@@ -2644,7 +2752,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 107.87,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 105,
@@ -2700,7 +2811,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 112.41,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 106,
@@ -2754,7 +2868,7 @@
         "a": 116,
         "estabilidade": "radioativo",
         "abundancia_pct": 7.512,
-        "meia_vida": "2,69 × 10¹⁹ anos"
+        "meia_vida": "3,3 × 10¹⁹ anos"
       }
     ],
     "ions_comuns": [],
@@ -2786,7 +2900,10 @@
       3
     ],
     "eletrons_valencia": 3,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 114.82,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 110,
@@ -2841,12 +2958,25 @@
       4
     ],
     "eletrons_valencia": 4,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 118.71,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 112,
         "estabilidade": "estavel",
         "abundancia_pct": 0.97
+      },
+      {
+        "a": 114,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.66
+      },
+      {
+        "a": 115,
+        "estabilidade": "estavel",
+        "abundancia_pct": 0.34
       },
       {
         "a": 116,
@@ -2927,7 +3057,10 @@
       5
     ],
     "eletrons_valencia": 5,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 121.76,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 121,
@@ -2981,7 +3114,10 @@
       6
     ],
     "eletrons_valencia": 6,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 127.6,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 118,
@@ -3029,7 +3165,7 @@
         "a": 128,
         "estabilidade": "radioativo",
         "abundancia_pct": 31.74,
-        "meia_vida": "2,25 × 10²⁴ anos"
+        "meia_vida": "7,7 × 10²⁴ anos"
       },
       {
         "a": 130,
@@ -3067,7 +3203,10 @@
       7
     ],
     "eletrons_valencia": 7,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 126.9,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 125,
@@ -3118,7 +3257,10 @@
       8
     ],
     "eletrons_valencia": 8,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 131.29,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 124,
@@ -3209,7 +3351,10 @@
       1
     ],
     "eletrons_valencia": 1,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 132.91,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 133,
@@ -3220,7 +3365,7 @@
         "a": 135,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,33 milhões de anos"
+        "meia_vida": "2,3 milhões de anos"
       },
       {
         "a": 137,
@@ -3261,7 +3406,10 @@
       2
     ],
     "eletrons_valencia": 2,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 137.33,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 130,
@@ -3343,7 +3491,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 138.91,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 137,
@@ -3399,7 +3550,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 140.12,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 136,
@@ -3464,7 +3618,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 140.91,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 141,
@@ -3514,7 +3671,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 144.24,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 140,
@@ -3596,7 +3756,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 145,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 145,
@@ -3647,7 +3810,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 150.36,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 144,
@@ -3670,7 +3836,7 @@
         "a": 148,
         "estabilidade": "radioativo",
         "abundancia_pct": 11.25,
-        "meia_vida": "6,3 × 10¹⁵ anos"
+        "meia_vida": "7 × 10¹⁵ anos"
       },
       {
         "a": 149,
@@ -3729,7 +3895,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 151.96,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 150,
@@ -3785,7 +3954,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 157.25,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 148,
@@ -3866,7 +4038,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 158.93,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 157,
@@ -3916,7 +4091,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 162.5,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 154,
@@ -3996,7 +4174,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 164.93,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 163,
@@ -4046,7 +4227,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 167.26,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 162,
@@ -4121,7 +4305,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 168.93,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 169,
@@ -4171,7 +4358,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 173.05,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 168,
@@ -4251,7 +4441,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 174.97,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 173,
@@ -4307,7 +4500,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 178.49,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 172,
@@ -4383,7 +4579,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 180.95,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 179,
@@ -4433,13 +4632,16 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 183.84,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 180,
         "estabilidade": "radioativo",
         "abundancia_pct": 0.12,
-        "meia_vida": "1,59 × 10¹⁸ anos"
+        "meia_vida": "1,8 × 10¹⁸ anos"
       },
       {
         "a": 181,
@@ -4504,7 +4706,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 186.21,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 183,
@@ -4560,7 +4765,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 190.23,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 184,
@@ -4642,7 +4850,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 192.22,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 189,
@@ -4697,7 +4908,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 195.08,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 188,
@@ -4773,7 +4987,10 @@
       1
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 196.97,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 195,
@@ -4826,7 +5043,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 200.59,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 194,
@@ -4908,7 +5128,10 @@
       3
     ],
     "eletrons_valencia": 3,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 204.38,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 202,
@@ -4963,7 +5186,10 @@
       4
     ],
     "eletrons_valencia": 4,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 207.2,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 202,
@@ -5030,7 +5256,10 @@
       5
     ],
     "eletrons_valencia": 5,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 208.98,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 207,
@@ -5081,7 +5310,10 @@
       6
     ],
     "eletrons_valencia": 6,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 209,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 208,
@@ -5132,7 +5364,10 @@
       7
     ],
     "eletrons_valencia": 7,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 210,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 209,
@@ -5183,7 +5418,10 @@
       8
     ],
     "eletrons_valencia": 8,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 222,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 210,
@@ -5235,7 +5473,10 @@
       1
     ],
     "eletrons_valencia": 1,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 223,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 212,
@@ -5287,7 +5528,10 @@
       2
     ],
     "eletrons_valencia": 2,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 226,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 225,
@@ -5339,7 +5583,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 227,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 225,
@@ -5391,7 +5638,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 232.04,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 228,
@@ -5449,7 +5699,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 231.04,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 230,
@@ -5501,7 +5754,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 238.03,
+      "tipo": "convencional"
+    },
     "isotopos": [
       {
         "a": 233,
@@ -5565,7 +5821,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 237,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 235,
@@ -5617,7 +5876,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 244,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 239,
@@ -5669,7 +5931,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 243,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 240,
@@ -5721,7 +5986,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 247,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 245,
@@ -5773,7 +6041,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 247,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 245,
@@ -5825,7 +6096,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 251,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 249,
@@ -5877,7 +6151,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 252,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 252,
@@ -5929,7 +6206,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 257,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 252,
@@ -5981,7 +6261,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 258,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 257,
@@ -5999,7 +6282,7 @@
         "a": 260,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "27,8 dias"
+        "meia_vida": "31,8 dias"
       }
     ],
     "ions_comuns": [],
@@ -6033,7 +6316,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 259,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 253,
@@ -6085,7 +6371,10 @@
       3
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 266,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 260,
@@ -6103,7 +6392,7 @@
         "a": 266,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "22 h"
+        "meia_vida": "11 h"
       }
     ],
     "ions_comuns": [],
@@ -6137,7 +6426,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 267,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 263,
@@ -6149,13 +6441,13 @@
         "a": 265,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,6 min"
+        "meia_vida": "1 min"
       },
       {
         "a": 267,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "2,5 h"
+        "meia_vida": "1,3 h"
       }
     ],
     "ions_comuns": [],
@@ -6189,13 +6481,16 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 268,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 267,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "2 h"
+        "meia_vida": "79 min"
       },
       {
         "a": 268,
@@ -6207,7 +6502,7 @@
         "a": 270,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,7 h"
+        "meia_vida": "15 h"
       }
     ],
     "ions_comuns": [],
@@ -6241,25 +6536,28 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 269,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 267,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,8 min"
+        "meia_vida": "84 s"
       },
       {
         "a": 269,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "5 min"
+        "meia_vida": "130 s"
       },
       {
         "a": 271,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "2,2 min"
+        "meia_vida": "96 s"
       }
     ],
     "ions_comuns": [],
@@ -6293,25 +6591,28 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 270,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 267,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "22 s"
+        "meia_vida": "14 s"
       },
       {
         "a": 270,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "3,8 min"
+        "meia_vida": "1 min"
       },
       {
         "a": 274,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "57 s"
+        "meia_vida": "44 s"
       }
     ],
     "ions_comuns": [],
@@ -6345,25 +6646,28 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 269,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 268,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,4 s"
+        "meia_vida": "400 ms"
       },
       {
         "a": 269,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "15 s"
+        "meia_vida": "13 s"
       },
       {
         "a": 270,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "9 s"
+        "meia_vida": "7,6 s"
       }
     ],
     "ions_comuns": [],
@@ -6397,25 +6701,28 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 278,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 274,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "850 ms"
+        "meia_vida": "440 ms"
       },
       {
         "a": 277,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "9 s"
+        "meia_vida": "4 ms"
       },
       {
         "a": 278,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "6 s"
+        "meia_vida": "4,5 s"
       }
     ],
     "ions_comuns": [],
@@ -6449,7 +6756,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 282,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 279,
@@ -6461,13 +6771,13 @@
         "a": 281,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "14 s"
+        "meia_vida": "12 s"
       },
       {
         "a": 282,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "4,2 min"
+        "meia_vida": "1,1 min"
       }
     ],
     "ions_comuns": [],
@@ -6501,7 +6811,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 282,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 280,
@@ -6513,13 +6826,13 @@
         "a": 281,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "19 s"
+        "meia_vida": "15 s"
       },
       {
         "a": 282,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "130 s"
+        "meia_vida": "100 s"
       }
     ],
     "ions_comuns": [],
@@ -6553,7 +6866,10 @@
       2
     ],
     "eletrons_valencia": null,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 286,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 283,
@@ -6571,7 +6887,7 @@
         "a": 286,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "30 s"
+        "meia_vida": "11 min"
       }
     ],
     "ions_comuns": [],
@@ -6605,25 +6921,28 @@
       3
     ],
     "eletrons_valencia": 3,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 286,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 285,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "4,6 s"
+        "meia_vida": "930 ms"
       },
       {
         "a": 286,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "12 s"
+        "meia_vida": "9,5 s"
       },
       {
         "a": 290,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "8 s"
+        "meia_vida": "2 s"
       }
     ],
     "ions_comuns": [],
@@ -6657,7 +6976,10 @@
       4
     ],
     "eletrons_valencia": 4,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 290,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 288,
@@ -6669,13 +6991,13 @@
         "a": 289,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "2,1 s"
+        "meia_vida": "2,4 s"
       },
       {
         "a": 290,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "80 s"
+        "meia_vida": "19 s"
       }
     ],
     "ions_comuns": [],
@@ -6709,7 +7031,10 @@
       5
     ],
     "eletrons_valencia": 5,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 290,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 288,
@@ -6721,13 +7046,13 @@
         "a": 289,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "410 ms"
+        "meia_vida": "296 ms"
       },
       {
         "a": 290,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "840 ms"
+        "meia_vida": "650 ms"
       }
     ],
     "ions_comuns": [],
@@ -6761,25 +7086,28 @@
       6
     ],
     "eletrons_valencia": 6,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 293,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 291,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "26 ms"
+        "meia_vida": "19 ms"
       },
       {
         "a": 292,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "16 ms"
+        "meia_vida": "12,8 ms"
       },
       {
         "a": 293,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "70 ms"
+        "meia_vida": "95 ms"
       }
     ],
     "ions_comuns": [],
@@ -6813,19 +7141,22 @@
       7
     ],
     "eletrons_valencia": 7,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 294,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 293,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "25 ms"
+        "meia_vida": "21 ms"
       },
       {
         "a": 294,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "70 ms"
+        "meia_vida": "51 ms"
       }
     ],
     "ions_comuns": [],
@@ -6859,19 +7190,16 @@
       8
     ],
     "eletrons_valencia": 8,
-    "massa_atomica": null,
+    "massa_atomica": {
+      "valor": 294,
+      "tipo": "isotopo_mais_longevo"
+    },
     "isotopos": [
       {
         "a": 294,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "0,7 ms"
-      },
-      {
-        "a": 295,
-        "estabilidade": "radioativo",
-        "abundancia_pct": null,
-        "meia_vida": "680 ms"
+        "meia_vida": "0,58 ms"
       }
     ],
     "ions_comuns": [],
