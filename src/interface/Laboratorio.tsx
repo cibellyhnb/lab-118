@@ -5,7 +5,7 @@
  * CONSTRUIR para registrar descobertas, isotopos e ions. tambem roda dentro
  * do tutorial, com um progresso de treino.
  ******************************************************************************/
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   LIMITE_N,
@@ -21,6 +21,7 @@ import {
   maxEletrons,
   missaoParaElemento,
   progressoInicial,
+  proximoElemento,
   type Categoria,
   type Classificacao,
   type Evento,
@@ -213,7 +214,8 @@ function Contador({
  * recebe: alvoZ (elemento da missao pedida pela url, opcional) e guia (so no
  * tutorial).
  * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
- * e as janelas de descoberta e de cerimonia de familia.
+ * as janelas de descoberta e de cerimonia de familia e, depois de uma
+ * estrela nova, o botao PROXIMA MISSAO (ou VER FINAL) no canto da tela.
  ******************************************************************************/
 export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
   const store = useProgresso();
@@ -248,6 +250,9 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   // mensagem de missao M2/M3 cumprida e o confete que vem junto
   const [cumprida, setCumprida] = useState<string | null>(null);
   const [festa, setFesta] = useState(false);
+  // Z do elemento que acabou de ganhar estrela; liga o botao PROXIMA MISSAO
+  const [estrelaEm, setEstrelaEm] = useState<number | null>(null);
+  const navegar = useNavigate();
   // missao atual: a do elemento pedido na url ou a proxima sugerida; nenhuma no tutorial
   const missao = guia ? null : (alvoZ ? missaoParaElemento(estado, alvoZ) : null) ?? gerarMissao(estado, 0);
   // quando o ultimo elemento de uma familia e descoberto, a cerimonia aparece depois do
@@ -342,6 +347,8 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
     setAnimar(estrelas);
     if (estrelas.length) tocar(sons.estrela);
+    // estrela nova fora do tutorial: guarda o elemento para o botao PROXIMA MISSAO
+    if (estrelas.length && !guia) setEstrelaEm(r.classificacao.z);
     const desc = r.eventos.find((ev) => ev.tipo === "ELEMENTO_DESCOBERTO");
     // descobriu elemento: som, vibracao no celular e cartao de celebracao (fora do tutorial)
     if (desc) {
@@ -391,6 +398,20 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     if (eventos.length === 0 && jaDescoberto) l.push(`Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`);
     return { tom: eventos.length ? "bom" : "info", linhas: l };
   }
+
+  // botao PROXIMA MISSAO: proximo elemento com missao pendente depois do que ganhou estrela
+  const proximoZ = estrelaEm !== null ? proximoElemento(estado, estrelaEm) : null;
+  // VER FINAL so quando nao sobra missao nenhuma, nem no proprio elemento (proximoElemento
+  // nunca devolve o elemento de partida, entao null sozinho nao basta)
+  const acabou = estrelaEm !== null && proximoZ === null && missaoParaElemento(estado, estrelaEm) === null;
+  // nunca no tutorial e so depois das janelas: cartao de descoberta e cerimonia vem antes
+  const mostrarProxima = !guia && estrelaEm !== null && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
+  // vai para o laboratorio do proximo elemento, ou para o final pelo atalho /mapa?final=1
+  const irParaProxima = () => {
+    setEstrelaEm(null);
+    if (proximoZ !== null) void navegar({ to: "/laboratorio", search: { z: proximoZ } });
+    else void navegar({ href: "/mapa?final=1" });
+  };
 
   // progresso do elemento que esta montado agora, para as estrelas do painel
   const progEl = c.valido ? estado.elementos[String(c.z)] : undefined;
@@ -568,6 +589,13 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         <div aria-hidden className="pointer-events-none fixed z-50" style={{ left: drag.x - 24, top: drag.y - 24 }}>
           <ParticleSprite tipo={drag.tipo} size={48} />
         </div>
+      )}
+      {/* proxima missao no canto inferior direito; no celular sobe acima dos controles
+          presos no pe da tela, no computador fica abaixo do painel de leitura */}
+      {mostrarProxima && (
+        <button type="button" className="pixel-btn btn-gold fixed bottom-48 right-4 z-30 px-5 py-4 text-sm lg:bottom-4" onClick={irParaProxima}>
+          {acabou ? "★ VER FINAL" : "▶ PRÓXIMA MISSÃO"}
+        </button>
       )}
       {/* janelas por cima da tela */}
       {cerimonia && <CerimoniaFamilia familia={cerimonia} onFechar={() => setCerimonia(null)} />}

@@ -1,13 +1,13 @@
 /*******************************************************************************
  * missoes2.test.ts
  * funcao principal: testa as missoes M1, M2 e M3 juntas: se seguindo so as
- * missoes o jogador chega as 3 estrelas em todos os elementos, e se M2 e
- * M3 pedem o alvo certo.
+ * missoes o jogador chega as 3 estrelas em todos os elementos, se M2 e M3
+ * pedem o alvo certo e se proximoElemento acha o proximo elemento pendente.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
 import { ELEMENTOS } from "./dados";
 import { classificar } from "./classificar";
-import { avaliarMissao, missaoParaElemento } from "./missoes";
+import { avaliarMissao, missaoParaElemento, proximoElemento } from "./missoes";
 import { construir, contarTotais, dominado, progressoInicial } from "./progresso";
 import type { Missao, Particulas, Progresso } from "./tipos";
 
@@ -73,5 +73,61 @@ describe("missões M1, M2 e M3", () => {
     // nitrogenio no lugar do carbono, e depois o C-12 que ja foi feito
     expect(avaliarMissao(m, classificar({ p: 7, n: 7, e: 7 })).cumprida).toBe(false);
     expect(avaliarMissao(m, classificar({ p: 6, n: 6, e: 6 })).cumprida).toBe(false);
+  });
+});
+
+/*******************************************************************************
+ * dominar
+ * funcao: leva os elementos pedidos ate as 3 estrelas seguindo as proprias
+ * missoes, como o jogador faria.
+ * recebe: s (Progresso) e zs (numeros atomicos).
+ * retorna: o Progresso com esses elementos completos.
+ ******************************************************************************/
+function dominar(s: Progresso, zs: number[]): Progresso {
+  for (const z of zs) {
+    // cada elemento precisa de no maximo 3 missoes; 12 voltas so evitam laco infinito
+    for (let i = 0; i < 12; i++) {
+      const m = missaoParaElemento(s, z);
+      if (!m) break;
+      s = construir(s, solucao(m)).estado;
+    }
+  }
+  return s;
+}
+
+// proximo elemento com missao pendente, usado pelo botao PROXIMA MISSAO do laboratorio
+describe("proximoElemento", () => {
+  it("pula os elementos que já têm 3 estrelas", () => {
+    // He, Li e Be completos: depois do H o proximo pendente e o B
+    const s = dominar(progressoInicial(), [2, 3, 4]);
+    expect(dominado(s, 3)).toBe(true);
+    expect(proximoElemento(s, 1)).toBe(5);
+  });
+
+  it("dá a volta do 118 para o 1", () => {
+    expect(proximoElemento(progressoInicial(), 118)).toBe(1);
+    // com o H completo, a volta continua ate o He
+    expect(proximoElemento(dominar(progressoInicial(), [1]), 118)).toBe(2);
+  });
+
+  it("retorna null quando todos os elementos têm 3 estrelas", () => {
+    const s = dominar(progressoInicial(), ELEMENTOS.map((e) => e.z));
+    expect(contarTotais(s)).toEqual({ elementos: 118, estrelas: 354 });
+    for (const z of [1, 60, 118]) expect(proximoElemento(s, z)).toBeNull();
+  });
+
+  it("nunca devolve o próprio zAtual", () => {
+    // jogo novo: o proximo e sempre o vizinho seguinte, nunca o proprio z
+    for (let z = 1; z <= 118; z++) {
+      const prox = proximoElemento(progressoInicial(), z);
+      expect(prox).not.toBe(z);
+      expect(prox).toBe((z % 118) + 1);
+    }
+    // so o Nd (60) pendente: a partir dele nao ha outro, entao null em vez de 60;
+    // a partir de qualquer outro elemento, o resultado e 60
+    const quase = dominar(progressoInicial(), ELEMENTOS.map((e) => e.z).filter((z) => z !== 60));
+    expect(proximoElemento(quase, 60)).toBeNull();
+    expect(proximoElemento(quase, 10)).toBe(60);
+    expect(proximoElemento(quase, 100)).toBe(60);
   });
 });

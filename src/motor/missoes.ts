@@ -1,11 +1,12 @@
 /*******************************************************************************
  * missoes.ts
  * funcao principal: cria as missoes de cada elemento (M1 descobrir, M2
- * isotopo, M3 ion), escolhe a proxima missao sugerida e confere se uma
- * montagem cumpre a missao, com a mensagem que o jogador ve.
+ * isotopo, M3 ion), escolhe a proxima missao sugerida, acha o proximo
+ * elemento com missao pendente e confere se uma montagem cumpre a missao,
+ * com a mensagem que o jogador ve.
  ******************************************************************************/
 import { ELEMENTOS, artigoDoElemento, elementoPorZ } from "./dados";
-import { notacaoIon } from "./classificar";
+import { Z_MAX, notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
 import { descoberto } from "./progresso";
 import type { Classificacao, Missao, Progresso } from "./tipos";
@@ -136,6 +137,24 @@ export function missaoParaElemento(estado: Progresso, z: number): Missao | null 
     if (m) return m;
   }
   if (!est[2]) return missaoIon(estado, z);
+  return null;
+}
+
+/*******************************************************************************
+ * proximoElemento
+ * funcao: acha o proximo elemento que ainda tem missao pendente, para o
+ * botao PROXIMA MISSAO do laboratorio. procura de zAtual + 1 ate 118 e
+ * depois volta do 1 ate zAtual - 1; nunca devolve o proprio zAtual.
+ * recebe: estado (Progresso) e zAtual (numero atomico de onde partir).
+ * retorna: o Z encontrado, ou null se nenhum outro elemento tiver missao
+ * (todos com 3 estrelas, exceto talvez o proprio zAtual).
+ ******************************************************************************/
+export function proximoElemento(estado: Progresso, zAtual: number): number | null {
+  // da a volta na tabela: i = 1 e o vizinho seguinte, i = Z_MAX - 1 e o anterior
+  for (let i = 1; i < Z_MAX; i++) {
+    const z = ((zAtual - 1 + i) % Z_MAX) + 1;
+    if (missaoParaElemento(estado, z) !== null) return z;
+  }
   return null;
 }
 
