@@ -12,7 +12,7 @@ export const ILUSTRACOES: Record<number, { sprite: string; rotulo: string }> = {
   10: { sprite: "neon", rotulo: "Placas de Propaganda" },
   11: { sprite: "sal", rotulo: "Sal" },
   12: { sprite: "folha", rotulo: "Clorofila" },
-  13: { sprite: "aviao", rotulo: "Aviões" },
+  13: { sprite: "panela", rotulo: "Panelas" },
   14: { sprite: "pedras", rotulo: "Pedra, Areia e Solo" },
   15: { sprite: "osso", rotulo: "Ossos" },
   16: { sprite: "ovo", rotulo: "Ovos" },
