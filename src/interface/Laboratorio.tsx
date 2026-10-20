@@ -214,12 +214,13 @@ function Contador({
  * Laboratorio
  * funcao: tela do laboratorio.
  * recebe: alvoZ (elemento da url; sem ele, a tela troca a url para o
- * elemento sugerido) e guia (so no tutorial).
+ * elemento sugerido), retomar (abriu voltando da ficha: devolve o ultimo
+ * atomo montado) e guia (so no tutorial).
  * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
  * as janelas de descoberta e de cerimonia de familia e, quando o elemento
  * ganha a ultima das 3 estrelas, o botao PROXIMA MISSAO (ou VER FINAL).
  ******************************************************************************/
-export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
+export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number | undefined; retomar?: boolean; guia?: Guia | undefined }) {
   const store = useProgresso();
   // no tutorial, tudo acontece num progresso de treino separado do jogo salvo
   const [treino, setTreino] = useState(progressoInicial);
@@ -291,6 +292,21 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     setFeedback(null);
     setAnimar([]);
   }, [zMissao]);
+  // voltando da ficha (?retomar=1): devolve o ultimo atomo montado do elemento do desafio,
+  // so os contadores, sem construir de novo, sem estrela e sem animacao. vale so para o
+  // valor de retomar na abertura da tela; fica depois do efeito acima para nao ser zerado
+  const retomarNaAbertura = useRef(retomar);
+  const jaRetomou = useRef(false);
+  useEffect(() => {
+    if (guia || !retomarNaAbertura.current || jaRetomou.current || !store.carregado || zMissao === undefined) return;
+    jaRetomou.current = true;
+    const salvo = store.ultimoMontado[zMissao];
+    if (!salvo) return;
+    setP(salvo.p);
+    setN(salvo.n);
+    setE(salvo.e);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store.carregado, zMissao]);
   // leitura ao vivo do que esta montado, antes mesmo de construir
   const c = classificar({ p, n, e });
   const elVivo = c.elemento ? elementoPorZ(c.z) : undefined;
@@ -358,6 +374,12 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     const antes = c.valido ? descoberto(estado, c.z) : false;
     const missaoAntes = missao;
     const r = construir({ p, n, e });
+    // primeira montagem valida: marca esta entrada do historico com retomar=1 (replace,
+    // sem entrada nova). quem voltar da ficha cai nela e recebe o atomo de volta; quem
+    // chega pelo mapa ou pelo botao amarelo abre uma entrada nova, sem a marca
+    if (!guia && alvoZ !== undefined && !retomar && r.classificacao.valido) {
+      void navegar({ to: "/laboratorio", search: { z: alvoZ, retomar: 1 }, replace: true });
+    }
     // M2 e M3 sao conferidas aqui; a M1 aparece na celebracao de descoberta
     if (missaoAntes && missaoAntes.tipo !== "M1") {
       const av = avaliarMissao(missaoAntes, r.classificacao);
