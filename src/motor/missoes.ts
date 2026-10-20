@@ -8,7 +8,7 @@
 import { ELEMENTOS, artigoDoElemento, elementoPorZ } from "./dados";
 import { Z_MAX, notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
-import { descoberto } from "./progresso";
+import { descoberto, isotoposNecessarios } from "./progresso";
 import type { Classificacao, Missao, Progresso } from "./tipos";
 
 /*******************************************************************************
@@ -47,7 +47,9 @@ const sinal = (q: number) => (q > 0 ? `+${q}` : `${q}`);
 /*******************************************************************************
  * missaoIsotopo
  * funcao: monta a missao M2, de montar um isotopo do catalogo que o jogador
- * ainda nao registrou. prefere os mais abundantes.
+ * ainda nao registrou. prefere os mais abundantes. o enunciado diz quantos
+ * isotopos ainda faltam para a estrela 2 (a descoberta so conta se o nucleo
+ * montado estava no catalogo).
  * recebe: estado (Progresso) e z (numero atomico).
  * retorna: a Missao, ou null se todos os isotopos ja foram feitos.
  ******************************************************************************/
@@ -62,11 +64,13 @@ export function missaoIsotopo(estado: Progresso, z: number): Missao | null {
   if (!alvo) return null;
   // neutrons que o jogador precisa colocar
   const n = alvo.a - z;
+  // quantos isotopos registrados ainda faltam para a estrela 2
+  const faltam = Math.max(1, isotoposNecessarios(z) - feitos.length);
   return {
     id: `M2-${z}-${alvo.a}`,
     tipo: "M2",
     z,
-    enunciado: `Monte o isótopo ${el.nome}-${alvo.a}: o mesmo elemento, mas com número de massa ${alvo.a}.`,
+    enunciado: `Monte o isótopo ${el.nome}-${alvo.a}: o mesmo elemento, mas com número de massa ${alvo.a}. ${faltam === 1 ? "Falta 1 isótopo do catálogo" : `Faltam ${faltam} isótopos do catálogo`} para a estrela 2.`,
     dicas: [
       "Isótopos de um mesmo elemento têm o mesmo número de prótons. O que muda é a quantidade de nêutrons.",
       `Número de massa = prótons + nêutrons. Aqui: ${alvo.a} − ${z} prótons = ? nêutrons.`,
@@ -159,6 +163,35 @@ export function proximoElemento(estado: Progresso, zAtual: number): number | nul
 }
 
 /*******************************************************************************
+ * missaoDoLaboratorio
+ * funcao: missao que o laboratorio mostra para o elemento z: a do proprio
+ * elemento (M1, M2, M3) e, so quando ele ja tem as 3 estrelas, a do
+ * proximo elemento pendente (o mesmo do botao PROXIMA MISSAO).
+ * recebe: estado (Progresso) e z (elemento do laboratorio).
+ * retorna: a Missao, ou null se nao sobrar missao em lugar nenhum.
+ ******************************************************************************/
+export function missaoDoLaboratorio(estado: Progresso, z: number): Missao | null {
+  const propria = missaoParaElemento(estado, z);
+  if (propria) return propria;
+  const proximo = proximoElemento(estado, z);
+  return proximo === null ? null : missaoParaElemento(estado, proximo);
+}
+
+/*******************************************************************************
+ * elementoSugerido
+ * funcao: elemento para abrir o laboratorio quando a url nao diz qual: o
+ * sugerido por gerarMissao (descoberta pendente, Trilha essencial primeiro)
+ * ou, se tudo ja foi descoberto, o primeiro com estrela faltando.
+ * recebe: estado (Progresso).
+ * retorna: o Z, ou null se o jogo estiver completo.
+ ******************************************************************************/
+export function elementoSugerido(estado: Progresso): number | null {
+  const m = gerarMissao(estado, 0);
+  if (m) return m.z;
+  return ELEMENTOS.find((el) => missaoParaElemento(estado, el.z) !== null)?.z ?? null;
+}
+
+/*******************************************************************************
  * gerarMissao
  * funcao: sugere a proxima missao de descoberta: Trilha essencial primeiro,
  * depois o resto, sempre em ordem crescente de Z.
@@ -186,16 +219,16 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
   const art = artigoDoElemento(nome);
   // M2: precisa ser o mesmo elemento com o numero de massa pedido
   if (m.criterio.tipo === "ISOTOPO") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
-    if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Missão cumprida! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.` };
+    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
+    if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Desafio cumprido! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.` };
     return { cumprida: false, mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.` };
   }
   // M3: qualquer carga diferente de zero, ou a carga exata quando a missao pede uma
   if (m.criterio.tipo === "ION") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Esta missão é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
+    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
     const alvoQ = m.criterio.carga;
     if (c.carga !== 0 && (alvoQ === undefined || c.carga === alvoQ)) {
-      return { cumprida: true, mensagem: `Missão cumprida! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.` };
+      return { cumprida: true, mensagem: `Desafio cumprido! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.` };
     }
     if (c.carga === 0) return { cumprida: false, mensagem: "Átomo neutro, com carga 0. Mude a quantidade de elétrons." };
     return { cumprida: false, mensagem: `A carga agora é ${sinal(c.carga)}, mas o alvo é ${sinal(alvoQ ?? 0)}. Ajuste os elétrons.` };

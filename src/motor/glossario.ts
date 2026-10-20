@@ -427,8 +427,8 @@ export const GLOSSARIO: TermoGlossario[] = [
     id: "missao",
     termo: "Missão",
     categoria: "jogo",
-    definicao: "O desafio que aparece no topo do laboratório. A primeira missão de cada elemento é descobri-lo; depois vêm as de isótopo e de íon.",
-    duvida: "Se você montar outro elemento por acaso, ele também é descoberto, e a missão continua valendo.",
+    definicao: "O conjunto de desafios de um elemento no laboratório, um para cada estrela: descobrir o elemento, montar um isótopo e montar um íon. O desafio da vez aparece no topo do laboratório.",
+    duvida: "Se você montar outro elemento por acaso, ele também é descoberto, e o desafio continua valendo.",
     ver: ["estrela", "dica"],
   },
   {
@@ -442,7 +442,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     id: "dica",
     termo: "Dica",
     categoria: "jogo",
-    definicao: "Ajuda extra para uma missão. São pedidas uma por vez, das pistas gerais (família, período) até a resposta, e não custam estrelas.",
+    definicao: "Ajuda extra para um desafio. São pedidas uma por vez, das pistas gerais (família, período) até a resposta, e não custam estrelas.",
     ver: ["missao", "periodo", "grupo"],
   },
   {

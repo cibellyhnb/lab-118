@@ -16,9 +16,11 @@ import {
   artigoDoElemento,
   descoberto,
   elementoPorZ,
+  elementoSugerido,
   familiaPendente,
   gerarMissao,
   maxEletrons,
+  missaoDoLaboratorio,
   missaoParaElemento,
   progressoInicial,
   proximoElemento,
@@ -211,11 +213,11 @@ function Contador({
 /*******************************************************************************
  * Laboratorio
  * funcao: tela do laboratorio.
- * recebe: alvoZ (elemento da missao pedida pela url, opcional) e guia (so no
- * tutorial).
+ * recebe: alvoZ (elemento da url; sem ele, a tela troca a url para o
+ * elemento sugerido) e guia (so no tutorial).
  * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
- * as janelas de descoberta e de cerimonia de familia e, depois de uma
- * estrela nova, o botao PROXIMA MISSAO (ou VER FINAL) no canto da tela.
+ * as janelas de descoberta e de cerimonia de familia e, quando o elemento
+ * ganha a ultima das 3 estrelas, o botao PROXIMA MISSAO (ou VER FINAL).
  ******************************************************************************/
 export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
   const store = useProgresso();
@@ -253,8 +255,17 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   // Z do elemento que acabou de ganhar estrela; liga o botao PROXIMA MISSAO
   const [estrelaEm, setEstrelaEm] = useState<number | null>(null);
   const navegar = useNavigate();
-  // missao atual: a do elemento pedido na url ou a proxima sugerida; nenhuma no tutorial
-  const missao = guia ? null : (alvoZ ? missaoParaElemento(estado, alvoZ) : null) ?? gerarMissao(estado, 0);
+  // missao atual: a do elemento da url (M1, M2, M3) e, quando ele termina, a do proximo
+  // elemento pendente, o mesmo do botao PROXIMA MISSAO; nenhuma no tutorial
+  const missao = guia ? null : alvoZ ? missaoDoLaboratorio(estado, alvoZ) : gerarMissao(estado, 0);
+  // sem elemento na url, o laboratorio se prende ao elemento sugerido assim que o progresso
+  // carrega: troca a url para ?z= sem criar entrada nova no historico
+  useEffect(() => {
+    if (guia || alvoZ !== undefined || !store.carregado) return;
+    const z = elementoSugerido(estado);
+    if (z !== null) void navegar({ to: "/laboratorio", search: { z }, replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [guia, alvoZ, store.carregado]);
   // quando o ultimo elemento de uma familia e descoberto, a cerimonia aparece depois do
   // cartao de "novo elemento" (por isso espera celebrar ficar null)
   const pendente = guia || celebrar || cerimonia ? null : familiaPendente(estado);
@@ -373,7 +384,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       const nome = r.classificacao.elemento?.nome ?? "";
       let msg = `Você montou ${nome} com ${r.classificacao.z} ${r.classificacao.z === 1 ? "próton" : "prótons"}: o número de prótons define o elemento.`;
       // descobriu outro elemento que nao era o da missao
-      if (missao && missao.z !== desc.z) msg = `Você descobriu ${nome} por acaso. A missão ainda está de pé.`;
+      if (missao && missao.z !== desc.z) msg = `Você descobriu ${nome} por acaso. O desafio ainda está de pé.`;
       else if (missao) msg = avaliarMissao(missao, r.classificacao).mensagem + " " + msg;
       if (!guia) setCelebrar({ z: desc.z, msg });
     }
@@ -415,13 +426,18 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     return { tom: eventos.length ? "bom" : "info", linhas: l };
   }
 
-  // botao PROXIMA MISSAO: proximo elemento com missao pendente depois do que ganhou estrela
-  const proximoZ = estrelaEm !== null ? proximoElemento(estado, estrelaEm) : null;
+  // botao PROXIMA MISSAO: proximo elemento com missao pendente a partir do elemento do
+  // laboratorio (o mesmo criterio da missao sugerida quando ele termina)
+  const zBase = alvoZ ?? estrelaEm;
+  const proximoZ = estrelaEm !== null && zBase !== null ? proximoElemento(estado, zBase) : null;
   // VER FINAL so quando nao sobra missao nenhuma, nem no proprio elemento (proximoElemento
   // nunca devolve o elemento de partida, entao null sozinho nao basta)
-  const acabou = estrelaEm !== null && proximoZ === null && missaoParaElemento(estado, estrelaEm) === null;
+  const acabou = zBase !== null && estrelaEm !== null && proximoZ === null && missaoParaElemento(estado, zBase) === null;
+  // so quando o elemento do laboratorio ja tem as 3 estrelas: antes disso o painel de
+  // missao guia (descobrir, isotopo, ion) e o botao pularia missoes dele
+  const elementoTerminou = zBase !== null && missaoParaElemento(estado, zBase) === null;
   // nunca no tutorial e so depois das janelas: cartao de descoberta e cerimonia vem antes
-  const mostrarProxima = !guia && estrelaEm !== null && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
+  const mostrarProxima = !guia && estrelaEm !== null && elementoTerminou && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
   // vai para o laboratorio do proximo elemento, ou para o final pelo atalho /mapa?final=1
   const irParaProxima = () => {
     setEstrelaEm(null);
@@ -437,11 +453,11 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
         <TopBar titulo="LABORATÓRIO" compacto />
 
-        {/* aviso de missao M2/M3 cumprida; OK so fecha o aviso (quem leva ao proximo
+        {/* aviso de desafio cumprido (M2/M3); OK so fecha o aviso (quem leva ao proximo
             elemento e o botao amarelo do canto) */}
         {cumprida && (
           <section role="status" className="pixel-panel anim-pop flex flex-wrap items-center gap-3 border-gold bg-gold p-3">
-            <span className="font-display text-[10px]">★ CUMPRIDA</span>
+            <span className="font-display text-[10px]">★ CUMPRIDO</span>
             <p className="flex-1 text-lg">{cumprida}</p>
             <button type="button" className="pixel-btn btn-parchment" onClick={() => setCumprida(null)}>
               OK
@@ -451,7 +467,7 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         {festa && <Confete />}
         {/* missao atual e dicas; a key reinicia as dicas quando a missao muda */}
         {missao && (
-          <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Missão">
+          <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Desafio">
             <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{ROTULO_MISSAO[missao.tipo]}</span>
             <p className="flex-1 text-base lg:text-lg">{missao.enunciado}</p>
             <Dicas key={missao.id} z={missao.z} textos={missao.tipo === "M1" ? undefined : missao.dicas} />

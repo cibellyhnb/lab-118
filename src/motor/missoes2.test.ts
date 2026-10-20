@@ -2,12 +2,13 @@
  * missoes2.test.ts
  * funcao principal: testa as missoes M1, M2 e M3 juntas: se seguindo so as
  * missoes o jogador chega as 3 estrelas em todos os elementos, se M2 e M3
- * pedem o alvo certo e se proximoElemento acha o proximo elemento pendente.
+ * pedem o alvo certo, se proximoElemento acha o proximo elemento pendente e
+ * se o laboratorio segue M1, M2 e M3 do mesmo elemento antes de trocar.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
 import { ELEMENTOS } from "./dados";
 import { classificar } from "./classificar";
-import { avaliarMissao, missaoParaElemento, proximoElemento } from "./missoes";
+import { avaliarMissao, elementoSugerido, missaoDoLaboratorio, missaoParaElemento, proximoElemento } from "./missoes";
 import { construir, contarTotais, dominado, progressoInicial } from "./progresso";
 import type { Missao, Particulas, Progresso } from "./tipos";
 
@@ -129,5 +130,57 @@ describe("proximoElemento", () => {
     expect(proximoElemento(quase, 60)).toBeNull();
     expect(proximoElemento(quase, 10)).toBe(60);
     expect(proximoElemento(quase, 100)).toBe(60);
+  });
+});
+
+// sequencia do laboratorio preso a um elemento, passando so pelos estados do progresso
+describe("sequência de missões de um elemento no laboratório", () => {
+  // so os elementos antes do fosforo completos, para o proximo depois dele ser o enxofre
+  const antes = () => dominar(progressoInicial(), Array.from({ length: 14 }, (_, i) => i + 1));
+  const estrelas = (s: Progresso) => s.elementos["15"]?.estrelas;
+
+  it("fósforo descoberto com P-31: M1, um M2 e M3, e depois o próximo elemento", () => {
+    let s = antes();
+    expect(missaoDoLaboratorio(s, 15)?.tipo).toBe("M1");
+    // descobrir com P-31, que esta no catalogo: ja conta como 1 dos 2 isotopos
+    s = construir(s, { p: 15, n: 16, e: 15 }).estado;
+    const m2 = missaoDoLaboratorio(s, 15)!;
+    expect(m2).toMatchObject({ tipo: "M2", z: 15, criterio: { a: 32 } });
+    expect(m2.enunciado).toContain("Falta 1 isótopo do catálogo para a estrela 2");
+    s = construir(s, solucao(m2)).estado;
+    expect(estrelas(s)).toEqual([true, true, false]);
+    const m3 = missaoDoLaboratorio(s, 15)!;
+    expect(m3).toMatchObject({ tipo: "M3", z: 15, criterio: { carga: -3 } });
+    s = construir(s, solucao(m3)).estado;
+    expect(estrelas(s)).toEqual([true, true, true]);
+    // so agora o laboratorio sugere outro elemento, o mesmo do botao PROXIMA MISSAO
+    expect(missaoDoLaboratorio(s, 15)?.z).toBe(proximoElemento(s, 15));
+    expect(missaoDoLaboratorio(s, 15)?.z).toBe(16);
+  });
+
+  it("fósforo descoberto com P-30 (fora do catálogo): a estrela 2 pede dois isótopos", () => {
+    // regra: a descoberta so registra isotopo se o nucleo estiver no catalogo
+    let s = construir(antes(), { p: 15, n: 15, e: 15 }).estado;
+    expect(s.elementos["15"]?.isotopos).toEqual([]);
+    const primeiro = missaoDoLaboratorio(s, 15)!;
+    expect(primeiro).toMatchObject({ tipo: "M2", criterio: { a: 31 } });
+    expect(primeiro.enunciado).toContain("Faltam 2 isótopos do catálogo para a estrela 2");
+    s = construir(s, solucao(primeiro)).estado;
+    expect(estrelas(s)).toEqual([true, false, false]);
+    const segundo = missaoDoLaboratorio(s, 15)!;
+    expect(segundo).toMatchObject({ tipo: "M2", criterio: { a: 32 } });
+    expect(segundo.enunciado).toContain("Falta 1 isótopo do catálogo para a estrela 2");
+    s = construir(s, solucao(segundo)).estado;
+    expect(missaoDoLaboratorio(s, 15)?.tipo).toBe("M3");
+  });
+
+  it("sem elemento na url, o sugerido é o de gerarMissao e depois o primeiro com estrela faltando", () => {
+    expect(elementoSugerido(progressoInicial())).toBe(1);
+    // tudo descoberto, so o Nd (60) sem as outras estrelas
+    const todos = ELEMENTOS.map((e) => e.z);
+    let s = dominar(progressoInicial(), todos.filter((z) => z !== 60));
+    s = construir(s, { p: 60, n: 82, e: 60 }).estado;
+    expect(elementoSugerido(s)).toBe(60);
+    expect(elementoSugerido(dominar(s, [60]))).toBeNull();
   });
 });
