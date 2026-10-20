@@ -213,14 +213,14 @@ function Contador({
  * Laboratorio
  * funcao: tela do laboratorio.
  * recebe: alvoZ (elemento da url; sem ele, a tela troca a url para o
- * elemento sugerido), retomar (abriu voltando da ficha: devolve o ultimo
- * atomo montado) e guia (so no tutorial).
+ * elemento sugerido; ao abrir, os contadores vem com o ultimo atomo montado
+ * desse elemento, ou vazios) e guia (so no tutorial).
  * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
  * as janelas de descoberta e de cerimonia de familia e, quando o elemento
  * esta com as 3 estrelas, o painel de elemento completo e o botao PROXIMA
  * MISSAO (ou VER FINAL). a tela nunca troca de elemento sozinha.
  ******************************************************************************/
-export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number | undefined; retomar?: boolean; guia?: Guia | undefined }) {
+export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
   const store = useProgresso();
   // no tutorial, tudo acontece num progresso de treino separado do jogo salvo
   const [treino, setTreino] = useState(progressoInicial);
@@ -293,23 +293,23 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
     setFeedback(null);
     setAnimar([]);
   }, [zMissao]);
-  // voltando da ficha (?retomar=1): devolve o ultimo atomo montado do elemento do desafio,
-  // so os contadores, sem construir de novo, sem estrela e sem animacao. vale so para o
-  // valor de retomar na abertura da tela; fica depois do efeito acima para nao ser zerado
-  const retomarNaAbertura = useRef(retomar);
-  const jaRetomou = useRef(false);
+  // ao abrir para o elemento da url (qualquer caminho: voltar da ficha, botao da ficha,
+  // mapa, botao amarelo), os contadores vem com o ultimo atomo montado desse elemento, ou
+  // vazios se ele nunca foi montado. so os contadores: sem construir, sem estrela, sem som
+  // e sem animacao. a rota recria a tela quando o z muda, entao roda uma vez por elemento;
+  // fica depois do efeito acima para nao ser zerado por ele
+  const jaRestaurou = useRef(false);
   useEffect(() => {
-    // elemento completo nao tem missao: usa o elemento da url
-    const zRetomar = zMissao ?? alvoZ;
-    if (guia || !retomarNaAbertura.current || jaRetomou.current || !store.carregado || zRetomar === undefined) return;
-    jaRetomou.current = true;
-    const salvo = store.ultimoMontado[zRetomar];
-    if (!salvo) return;
+    if (guia || jaRestaurou.current || !store.carregado || alvoZ === undefined) return;
+    jaRestaurou.current = true;
+    const salvo = store.ultimoMontado[alvoZ];
+    // atomo salvo de outro elemento (protons diferentes do z) e ignorado
+    if (!salvo || salvo.p !== alvoZ) return;
     setP(salvo.p);
     setN(salvo.n);
     setE(salvo.e);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store.carregado, zMissao]);
+  }, [store.carregado, alvoZ]);
   // leitura ao vivo do que esta montado, antes mesmo de construir
   const c = classificar({ p, n, e });
   const elVivo = c.elemento ? elementoPorZ(c.z) : undefined;
@@ -377,12 +377,6 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
     const antes = c.valido ? descoberto(estado, c.z) : false;
     const missaoAntes = missao;
     const r = construir({ p, n, e });
-    // primeira montagem valida: marca esta entrada do historico com retomar=1 (replace,
-    // sem entrada nova). quem voltar da ficha cai nela e recebe o atomo de volta; quem
-    // chega pelo mapa ou pelo botao amarelo abre uma entrada nova, sem a marca
-    if (!guia && alvoZ !== undefined && !retomar && r.classificacao.valido) {
-      void navegar({ to: "/laboratorio", search: { z: alvoZ, retomar: 1 }, replace: true });
-    }
     // M2 e M3 sao conferidas aqui; a M1 aparece na celebracao de descoberta
     if (missaoAntes && missaoAntes.tipo !== "M1") {
       const av = avaliarMissao(missaoAntes, r.classificacao);

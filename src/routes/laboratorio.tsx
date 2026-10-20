@@ -1,14 +1,13 @@
 /*******************************************************************************
  * laboratorio.tsx
  * funcao principal: rota /laboratorio. aceita ?z= na url para abrir o
- * laboratorio ja com a missao daquele elemento, e ?retomar=1 para devolver
- * o ultimo atomo montado quando o jogador volta da ficha.
+ * laboratorio ja com a missao daquele elemento.
  ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
 import { Laboratorio } from "@/interface/Laboratorio";
 
 // parametros aceitos na url
-type Busca = { z?: number; retomar?: 1 };
+type Busca = { z?: number };
 
 /*******************************************************************************
  * Route
@@ -18,9 +17,7 @@ export const Route = createFileRoute("/laboratorio")({
   validateSearch: (s: Record<string, unknown>): Busca => {
     // so aceita z inteiro entre 1 e 118; o resto vira laboratorio livre
     const z = Number(s["z"]);
-    if (!(Number.isInteger(z) && z >= 1 && z <= 118)) return {};
-    // retomar so vale junto com um z valido
-    return String(s["retomar"]) === "1" ? { z, retomar: 1 } : { z };
+    return Number.isInteger(z) && z >= 1 && z <= 118 ? { z } : {};
   },
   head: () => ({
     meta: [
@@ -35,12 +32,11 @@ export const Route = createFileRoute("/laboratorio")({
 
 /*******************************************************************************
  * Pagina
- * funcao: le o z e o retomar da url e abre o laboratorio.
+ * funcao: le o z da url e abre o laboratorio.
  * recebe: nada.
- * retorna: o Laboratorio; a key faz ele recomecar do zero quando o z muda
- * (ganhar o retomar na mesma entrada nao remonta a tela).
+ * retorna: o Laboratorio; a key faz ele recomecar do zero quando o z muda.
  ******************************************************************************/
 function Pagina() {
-  const { z, retomar } = Route.useSearch();
-  return <Laboratorio key={z ?? 0} alvoZ={z} retomar={retomar === 1} />;
+  const { z } = Route.useSearch();
+  return <Laboratorio key={z ?? 0} alvoZ={z} />;
 }
