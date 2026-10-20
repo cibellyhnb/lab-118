@@ -646,6 +646,14 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                 )}
               </section>
             )}
+            {/* proxima missao: no computador fica no fim desta coluna, alinhado a direita, com
+                16 px de respiro (gap-3 da coluna + mt-1) e nunca cobre painel nem link; no
+                celular continua fixo e sobe acima dos controles presos no pe da tela */}
+            {mostrarProxima && (
+              <button type="button" className="pixel-btn btn-gold fixed bottom-48 right-4 z-30 px-5 py-4 text-sm lg:static lg:mt-1 lg:self-end" onClick={irParaProxima}>
+                {acabou ? "★ VER FINAL" : "▶ PRÓXIMA MISSÃO"}
+              </button>
+            )}
           </aside>
         </div>
       </div>
@@ -655,13 +663,6 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         <div aria-hidden className="pointer-events-none fixed z-50" style={{ left: drag.x - 24, top: drag.y - 24 }}>
           <ParticleSprite tipo={drag.tipo} size={48} />
         </div>
-      )}
-      {/* proxima missao no canto inferior direito; no celular sobe acima dos controles
-          presos no pe da tela, no computador fica abaixo do painel de leitura */}
-      {mostrarProxima && (
-        <button type="button" className="pixel-btn btn-gold fixed bottom-48 right-4 z-30 px-5 py-4 text-sm lg:bottom-4" onClick={irParaProxima}>
-          {acabou ? "★ VER FINAL" : "▶ PRÓXIMA MISSÃO"}
-        </button>
       )}
       {/* janelas por cima da tela */}
       {cerimonia && <CerimoniaFamilia familia={cerimonia} onFechar={() => setCerimonia(null)} />}
