@@ -264,6 +264,22 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     store.registrarFamilia(pendente);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendente]);
+  // quando a missao passa a ser de outro elemento (mudou o Z), o laboratorio fica vazio:
+  // atomo, retorno e estrelas animadas. na mesma missao de elemento (ex: isotopo para
+  // ion) o atomo montado fica. vale para qualquer caminho, inclusive quando a missao
+  // do elemento acaba e a tela passa sozinha para a proxima sugerida
+  const zMissao = missao?.z;
+  const zMissaoAnterior = useRef(zMissao);
+  useEffect(() => {
+    const antes = zMissaoAnterior.current;
+    zMissaoAnterior.current = zMissao;
+    if (zMissao === undefined || antes === undefined || zMissao === antes) return;
+    setP(0);
+    setN(0);
+    setE(0);
+    setFeedback(null);
+    setAnimar([]);
+  }, [zMissao]);
   // leitura ao vivo do que esta montado, antes mesmo de construir
   const c = classificar({ p, n, e });
   const elVivo = c.elemento ? elementoPorZ(c.z) : undefined;
@@ -421,13 +437,14 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
         <TopBar titulo="LABORATÓRIO" compacto />
 
-        {/* aviso de missao M2/M3 cumprida */}
+        {/* aviso de missao M2/M3 cumprida; OK so fecha o aviso (quem leva ao proximo
+            elemento e o botao amarelo do canto) */}
         {cumprida && (
           <section role="status" className="pixel-panel anim-pop flex flex-wrap items-center gap-3 border-gold bg-gold p-3">
             <span className="font-display text-[10px]">★ CUMPRIDA</span>
             <p className="flex-1 text-lg">{cumprida}</p>
             <button type="button" className="pixel-btn btn-parchment" onClick={() => setCumprida(null)}>
-              PRÓXIMA MISSÃO ▶
+              OK
             </button>
           </section>
         )}
