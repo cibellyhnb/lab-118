@@ -20,7 +20,6 @@ import {
   familiaPendente,
   gerarMissao,
   maxEletrons,
-  missaoDoLaboratorio,
   missaoParaElemento,
   progressoInicial,
   proximoElemento,
@@ -218,7 +217,8 @@ function Contador({
  * atomo montado) e guia (so no tutorial).
  * retorna: a tela com missao, palco do atomo, controles, painel de leitura,
  * as janelas de descoberta e de cerimonia de familia e, quando o elemento
- * ganha a ultima das 3 estrelas, o botao PROXIMA MISSAO (ou VER FINAL).
+ * esta com as 3 estrelas, o painel de elemento completo e o botao PROXIMA
+ * MISSAO (ou VER FINAL). a tela nunca troca de elemento sozinha.
  ******************************************************************************/
 export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number | undefined; retomar?: boolean; guia?: Guia | undefined }) {
   const store = useProgresso();
@@ -256,9 +256,10 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
   // Z do elemento que acabou de ganhar estrela; liga o botao PROXIMA MISSAO
   const [estrelaEm, setEstrelaEm] = useState<number | null>(null);
   const navegar = useNavigate();
-  // missao atual: a do elemento da url (M1, M2, M3) e, quando ele termina, a do proximo
-  // elemento pendente, o mesmo do botao PROXIMA MISSAO; nenhuma no tutorial
-  const missao = guia ? null : alvoZ ? missaoDoLaboratorio(estado, alvoZ) : gerarMissao(estado, 0);
+  // missao atual: a do elemento da url (M1, M2, M3); null quando ele ja tem as 3
+  // estrelas, e ai aparece o painel de elemento completo. o laboratorio so muda de
+  // elemento quando o jogador navega (botao amarelo, mapa, ficha); nenhuma no tutorial
+  const missao = guia ? null : alvoZ ? missaoParaElemento(estado, alvoZ) : gerarMissao(estado, 0);
   // sem elemento na url, o laboratorio se prende ao elemento sugerido assim que o progresso
   // carrega: troca a url para ?z= sem criar entrada nova no historico
   useEffect(() => {
@@ -298,9 +299,11 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
   const retomarNaAbertura = useRef(retomar);
   const jaRetomou = useRef(false);
   useEffect(() => {
-    if (guia || !retomarNaAbertura.current || jaRetomou.current || !store.carregado || zMissao === undefined) return;
+    // elemento completo nao tem missao: usa o elemento da url
+    const zRetomar = zMissao ?? alvoZ;
+    if (guia || !retomarNaAbertura.current || jaRetomou.current || !store.carregado || zRetomar === undefined) return;
     jaRetomou.current = true;
-    const salvo = store.ultimoMontado[zMissao];
+    const salvo = store.ultimoMontado[zRetomar];
     if (!salvo) return;
     setP(salvo.p);
     setN(salvo.n);
@@ -449,17 +452,20 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
   }
 
   // botao PROXIMA MISSAO: proximo elemento com missao pendente a partir do elemento do
-  // laboratorio (o mesmo criterio da missao sugerida quando ele termina)
+  // laboratorio
   const zBase = alvoZ ?? estrelaEm;
-  const proximoZ = estrelaEm !== null && zBase !== null ? proximoElemento(estado, zBase) : null;
+  const proximoZ = zBase !== null ? proximoElemento(estado, zBase) : null;
+  // so quando o elemento do laboratorio ja tem as 3 estrelas: antes disso o painel de
+  // desafio guia (descobrir, isotopo, ion) e o botao pularia desafios dele. espera o
+  // progresso carregar para nao contar um elemento como completo por engano
+  const elementoTerminou = store.carregado && zBase !== null && missaoParaElemento(estado, zBase) === null;
   // VER FINAL so quando nao sobra missao nenhuma, nem no proprio elemento (proximoElemento
   // nunca devolve o elemento de partida, entao null sozinho nao basta)
-  const acabou = zBase !== null && estrelaEm !== null && proximoZ === null && missaoParaElemento(estado, zBase) === null;
-  // so quando o elemento do laboratorio ja tem as 3 estrelas: antes disso o painel de
-  // missao guia (descobrir, isotopo, ion) e o botao pularia missoes dele
-  const elementoTerminou = zBase !== null && missaoParaElemento(estado, zBase) === null;
-  // nunca no tutorial e so depois das janelas: cartao de descoberta e cerimonia vem antes
-  const mostrarProxima = !guia && estrelaEm !== null && elementoTerminou && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
+  const acabou = elementoTerminou && proximoZ === null;
+  // aparece sempre que o elemento esta completo, inclusive aberto ja completo pelo mapa,
+  // porque o painel de elemento completo manda o jogador seguir por ele. nunca no
+  // tutorial e so depois das janelas: cartao de descoberta e cerimonia vem antes
+  const mostrarProxima = !guia && elementoTerminou && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
   // vai para o laboratorio do proximo elemento, ou para o final pelo atalho /mapa?final=1
   const irParaProxima = () => {
     setEstrelaEm(null);
@@ -493,6 +499,17 @@ export function Laboratorio({ alvoZ, retomar = false, guia }: { alvoZ?: number |
             <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{ROTULO_MISSAO[missao.tipo]}</span>
             <p className="flex-1 text-base lg:text-lg">{missao.enunciado}</p>
             <Dicas key={missao.id} z={missao.z} textos={missao.tipo === "M1" ? undefined : missao.dicas} />
+          </section>
+        )}
+        {/* elemento completo: no lugar do painel de desafio, no mesmo estilo. a tela fica
+            neste elemento ate o jogador seguir pelo botao amarelo */}
+        {!guia && !missao && elementoTerminou && alvoZ !== undefined && (
+          <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Elemento completo">
+            <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">★ COMPLETO</span>
+            <p className="flex-1 text-base lg:text-lg">
+              {elementoPorZ(alvoZ)?.nome} completo: as 3 estrelas são suas.{" "}
+              {acabou ? "Todos os elementos estão completos! Siga pelo botão VER FINAL." : "Siga pelo botão PRÓXIMA MISSÃO para o próximo elemento."}
+            </p>
           </section>
         )}
 

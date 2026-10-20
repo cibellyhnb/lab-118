@@ -163,21 +163,6 @@ export function proximoElemento(estado: Progresso, zAtual: number): number | nul
 }
 
 /*******************************************************************************
- * missaoDoLaboratorio
- * funcao: missao que o laboratorio mostra para o elemento z: a do proprio
- * elemento (M1, M2, M3) e, so quando ele ja tem as 3 estrelas, a do
- * proximo elemento pendente (o mesmo do botao PROXIMA MISSAO).
- * recebe: estado (Progresso) e z (elemento do laboratorio).
- * retorna: a Missao, ou null se nao sobrar missao em lugar nenhum.
- ******************************************************************************/
-export function missaoDoLaboratorio(estado: Progresso, z: number): Missao | null {
-  const propria = missaoParaElemento(estado, z);
-  if (propria) return propria;
-  const proximo = proximoElemento(estado, z);
-  return proximo === null ? null : missaoParaElemento(estado, proximo);
-}
-
-/*******************************************************************************
  * elementoSugerido
  * funcao: elemento para abrir o laboratorio quando a url nao diz qual: o
  * sugerido por gerarMissao (descoberta pendente, Trilha essencial primeiro)
