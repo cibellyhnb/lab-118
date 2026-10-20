@@ -43,7 +43,8 @@ function Bloco({ el }: { el: Elemento }) {
   // coluna + 1 porque a primeira coluna da grade e a dos rotulos "Mundo"
   const estilo = { ...catStyle(el.categoria), gridRow: el.posicao.linha, gridColumn: el.posicao.coluna + 1 };
   const classe = `pixel-block aspect-square flex flex-col items-center justify-center ${aberto ? "block-open" : "block-locked"} ${ouro ? "block-gold" : ""} hover:brightness-110 focus-visible:z-10`;
-  // quadradinho claro no canto marca os elementos da Trilha essencial
+  // quadradinho claro no canto marca os elementos da Trilha essencial. nos blocos
+  // trancados ele aparece vazio; nos descobertos vira a caixa do numero atomico
   const trilha = el.trilha_essencial && (
     <span aria-hidden className="absolute left-0 top-0 h-1.5 w-1.5 bg-parchment" style={{ boxShadow: "1px 1px 0 var(--ink)" }} />
   );
@@ -71,8 +72,15 @@ function Bloco({ el }: { el: Elemento }) {
       style={estilo}
       aria-label={`${el.nome}, número atômico ${el.z}, ${prog.estrelas.filter(Boolean).length} estrelas`}
     >
-      {trilha}
-      <span className="absolute left-0.5 top-0 text-[9px] leading-none sm:text-[11px]">{el.z}</span>
+      {/* numero atomico no canto: fonte pequena e caixa do tamanho do conteudo (largura
+          minima de 6 px, como o marcador), para 1 a 3 digitos caberem sem mudar o bloco.
+          nos elementos da trilha a caixa fica clara e faz o papel do marcador */}
+      <span
+        className={`absolute left-0 top-0 min-w-1.5 px-[2px] py-px text-[9px] leading-none ${el.trilha_essencial ? "bg-parchment" : ""}`}
+        style={el.trilha_essencial ? { boxShadow: "1px 1px 0 var(--ink)" } : undefined}
+      >
+        {el.z}
+      </span>
       <span className="font-display text-[10px] sm:text-sm">{el.simbolo}</span>
       <span className="absolute bottom-0.5 right-0.5 flex gap-px">
         {prog.estrelas.map((s, i) => (
