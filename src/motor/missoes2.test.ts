@@ -9,7 +9,7 @@
 import { describe, expect, it } from "vitest";
 import { ELEMENTOS } from "./dados";
 import { classificar } from "./classificar";
-import { avaliarMissao, elementoSugerido, missaoParaElemento, proximoElemento } from "./missoes";
+import { avaliarMissao, elementoSugerido, missaoParaElemento, proximoElemento, retornoDesafioIsotopo } from "./missoes";
 import { construir, contarTotais, dominado, progressoInicial } from "./progresso";
 import type { Missao, Particulas, Progresso } from "./tipos";
 
@@ -184,5 +184,36 @@ describe("sequência de missões de um elemento no laboratório", () => {
     s = construir(s, { p: 60, n: 82, e: 60 }).estado;
     expect(elementoSugerido(s)).toBe(60);
     expect(elementoSugerido(dominar(s, [60]))).toBeNull();
+  });
+});
+
+// frase extra do retorno no desafio de isotopo: isotopo repetido ou fora do catalogo
+describe("retorno do desafio de isótopo", () => {
+  // litio descoberto com Li-7 (registrado); o desafio de isotopo pede o Li-6
+  const s = construir(progressoInicial(), { p: 3, n: 4, e: 3 }).estado;
+  const m = missaoParaElemento(s, 3)!;
+
+  it("montar de novo o mesmo isótopo registrado avisa que é o mesmo", () => {
+    expect(m).toMatchObject({ tipo: "M2", criterio: { a: 6 } });
+    expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 4, e: 3 }))).toBe(
+      "Esse é o mesmo isótopo que você já montou. Mude o número de nêutrons para montar um isótopo diferente.",
+    );
+    // repetir nao registra nada nem da estrela
+    expect(construir(s, { p: 3, n: 4, e: 3 }).eventos).toEqual([]);
+  });
+
+  it("núcleo fora do catálogo lembra que o desafio pede um isótopo do catálogo", () => {
+    // Li-13 (10 neutrons) nao esta no catalogo do litio
+    expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 10, e: 3 }))).toBe("Este desafio pede um isótopo do catálogo: monte o Lítio-6.");
+  });
+
+  it("isótopo novo do catálogo, outro elemento ou outro desafio: sem frase extra", () => {
+    expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 3, e: 3 }))).toBeNull();
+    expect(retornoDesafioIsotopo(s, m, classificar({ p: 2, n: 2, e: 2 }))).toBeNull();
+    // no desafio de ion (M3) a frase nao aparece
+    const s3 = construir(s, { p: 3, n: 3, e: 3 }).estado;
+    const m3 = missaoParaElemento(s3, 3)!;
+    expect(m3.tipo).toBe("M3");
+    expect(retornoDesafioIsotopo(s3, m3, classificar({ p: 3, n: 3, e: 3 }))).toBeNull();
   });
 });

@@ -190,6 +190,29 @@ export function gerarMissao(estado: Progresso, _semente: number): Missao | null 
 }
 
 /*******************************************************************************
+ * retornoDesafioIsotopo
+ * funcao: frase extra do painel de retorno no desafio de isotopo (M2) do
+ * proprio elemento. se o nucleo montado nao esta no catalogo, lembra que o
+ * desafio pede um isotopo do catalogo; se e um isotopo que o jogador ja
+ * tinha registrado, avisa que e o mesmo e pede outro numero de neutrons.
+ * recebe: estado (Progresso de ANTES de construir), m (Missao) e c
+ * (Classificacao da montagem).
+ * retorna: a frase, ou null fora desses casos.
+ ******************************************************************************/
+export function retornoDesafioIsotopo(estado: Progresso, m: Missao, c: Classificacao): string | null {
+  if (m.criterio.tipo !== "ISOTOPO" || !c.valido || c.z !== m.z) return null;
+  const nome = elementoPorZ(m.z)?.nome ?? "";
+  // nucleo fora do catalogo nunca e registrado: o desafio pede um do catalogo
+  if (c.nuclideo?.status === "nao_catalogado") {
+    return `Este desafio pede um isótopo do catálogo: monte ${artigoDoElemento(nome)} ${nome}-${m.criterio.a}.`;
+  }
+  // mesmo z e mesmo numero de massa (logo, mesmos neutrons) de um isotopo ja registrado
+  const feitos = estado.elementos[String(m.z)]?.isotopos ?? [];
+  if (feitos.includes(c.a)) return "Esse é o mesmo isótopo que você já montou. Mude o número de nêutrons para montar um isótopo diferente.";
+  return null;
+}
+
+/*******************************************************************************
  * avaliarMissao
  * funcao: confere se a montagem cumpre a missao e escreve a resposta para
  * o jogador (acerto ou o que ajustar).

@@ -11,6 +11,7 @@ import {
   LIMITE_N,
   NOME_CATEGORIA,
   avaliarMissao,
+  retornoDesafioIsotopo,
   classificar,
   construir as construirMotor,
   artigoDoElemento,
@@ -388,7 +389,9 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       }
     }
     guia?.onConstruir({ ...r, particulas: { p, n, e } });
-    setFeedback(montarFeedback(r.classificacao, r.eventos, antes));
+    // frase do desafio de isotopo, calculada com o progresso de antes deste construir
+    const fraseIsotopo = missaoAntes && !guia ? retornoDesafioIsotopo(estado, missaoAntes, r.classificacao) : null;
+    setFeedback(montarFeedback(r.classificacao, r.eventos, antes, fraseIsotopo));
     // quais estrelas (1, 2 ou 3) foram ganhas agora
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
     setAnimar(estrelas);
@@ -412,11 +415,12 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   /*****************************************************************************
    * montarFeedback
    * funcao: monta as frases do painel de retorno depois de construir.
-   * recebe: cl (Classificacao), eventos e jaDescoberto (se o elemento ja
-   * estava descoberto antes).
+   * recebe: cl (Classificacao), eventos, jaDescoberto (se o elemento ja
+   * estava descoberto antes) e fraseIsotopo (frase do desafio de isotopo,
+   * que substitui o "ainda e..." quando existe).
    * retorna: Feedback com o tom (bom, info ou aviso) e as linhas de texto.
    ****************************************************************************/
-  function montarFeedback(cl: Classificacao, eventos: Evento[], jaDescoberto: boolean): Feedback {
+  function montarFeedback(cl: Classificacao, eventos: Evento[], jaDescoberto: boolean, fraseIsotopo: string | null): Feedback {
     // montagem invalida: so a mensagem de erro (e o aviso do neutron livre)
     if (!cl.valido) {
       const l = [MSG_ERRO[cl.erro ?? ""] ?? ""];
@@ -440,8 +444,11 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     if (cl.nuclideo?.status === "nao_catalogado")
       l.push("Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.");
     if (cl.avisos.includes("CARGA_RARA")) l.push("Cargas tão extremas só aparecem em condições muito especiais, como no interior de estrelas.");
+    // desafio de isotopo: isotopo repetido ou fora do catalogo tem frase propria, no lugar
+    // do "ainda e..." (que diria "ja registrou" de um nucleo que nunca foi registrado)
+    if (fraseIsotopo) l.push(fraseIsotopo);
     // nada novo num elemento conhecido: sugere mudar neutrons ou eletrons
-    if (eventos.length === 0 && jaDescoberto) l.push(`Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`);
+    else if (eventos.length === 0 && jaDescoberto) l.push(`Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`);
     return { tom: eventos.length ? "bom" : "info", linhas: l };
   }
 
