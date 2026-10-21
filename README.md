@@ -72,21 +72,15 @@ Tecnologias: React, TypeScript, TanStack Start (com TanStack Router), Tailwind C
 
 ## Publicação
 
-O jogo está publicado em [https://lab-118.vercel.app/](https://lab-118.vercel.app/).
+O jogo está no ar em https://lab-118.vercel.app/, hospedado na Vercel. Como não tem servidor nem conta de usuário, ele é publicado como um site estático.
 
-O projeto já vem configurado para a Vercel no arquivo `vercel.json`:
+A configuração fica no arquivo `vercel.json`:
 
-- comando de build: `npm run build`
-- pasta de saída: `dist/client`
-- regra que manda qualquer rota para o `index.html`, para endereços como `/mapa` e `/elemento/6` funcionarem ao recarregar a página
+* comando de build: `npm run build`
+* pasta de saída: `dist/client`
+* regra que manda qualquer rota para o `index.html`, para endereços como `/mapa` e `/elemento/6` funcionarem ao recarregar a página
 
-Para publicar:
-
-1. Envie o projeto para um repositório no GitHub.
-2. Na Vercel, clique em "Add New..." e depois em "Project", e importe o repositório.
-3. Confira se a Vercel leu as opções do `vercel.json` (Framework Preset "Other", build `npm run build`, saída `dist/client`) e clique em "Deploy".
-
-Cada push na branch `main` publica a nova versão automaticamente.
+Cada push na branch `main` gera uma nova versão automaticamente.
 
 ## 📚 Dados e fontes
 
