@@ -12,6 +12,7 @@ import { Zula } from "./Zula";
 import { audio, sons } from "./som";
 import { useMusica } from "./useMusica";
 import { useProgresso } from "./store";
+import { SoundToggle } from "./comuns";
 import { DecorCena } from "./FundoQuimico";
 import { TituloLab } from "./Titulo";
 
@@ -257,13 +258,13 @@ export function Historia({ onFim }: { onFim: () => void }) {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <Fundo cena={f.cena} />
-      <button
-        type="button"
-        className="pixel-btn btn-dark absolute right-3 top-3 z-[80]"
-        onClick={onFim}
-      >
-        PULAR ▶▶
-      </button>
+      {/* canto superior direito: SOM/MUDO durante a historia, a esquerda do PULAR */}
+      <div className="absolute right-3 top-3 z-[80] flex items-start gap-2">
+        <SoundToggle />
+        <button type="button" className="pixel-btn btn-dark" onClick={onFim}>
+          PULAR ▶▶
+        </button>
+      </div>
       <Dialogo
         // key muda a cada fala para o dialogo recomecar a digitar
         key={i}

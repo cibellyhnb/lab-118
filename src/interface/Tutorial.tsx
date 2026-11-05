@@ -8,6 +8,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Particulas } from "@/motor";
 import { Confete } from "./Celebracao";
+import { SoundToggle } from "./comuns";
 import { Dialogo } from "./Dialogo";
 import { Historia } from "./Historia";
 import { Laboratorio, type Guia } from "./Laboratorio";
@@ -267,9 +268,14 @@ function Guiado() {
       <Laboratorio guia={guia} />
       <Foco alvos={p.alvo} />
       {p.confete && <Confete />}
-      <button type="button" className="pixel-btn btn-dark fixed right-3 top-3 z-[80] text-[9px]" onClick={() => terminar(false)}>
-        PULAR TUTORIAL
-      </button>
+      {/* canto superior direito, acima do escurecido do foco (z-60) e do dialogo (z-70):
+          o SOM/MUDO fica sempre clicavel, a esquerda do PULAR, que nao mudou de lugar */}
+      <div className="fixed right-3 top-3 z-[80] flex items-start gap-2">
+        <SoundToggle />
+        <button type="button" className="pixel-btn btn-dark text-[9px]" onClick={() => terminar(false)}>
+          PULAR TUTORIAL
+        </button>
+      </div>
       <Dialogo
         key={passo}
         texto={p.texto}
