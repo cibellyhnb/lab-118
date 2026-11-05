@@ -1,10 +1,11 @@
 /*******************************************************************************
  * tutorial.test.ts
- * funcao principal: testa concluirTutorial com e sem recompensa e o modo
- * treino, que nao pode mexer no progresso original.
+ * funcao principal: testa concluirTutorial com e sem recompensa, o modo
+ * treino, que nao pode mexer no progresso original, e o atomo montado que o
+ * tutorial deixa para a ficha.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
-import { concluirTutorial, MONTAGENS_DO_TUTORIAL } from "./tutorial";
+import { ATOMOS_DO_TUTORIAL, completarUltimoMontado, concluirTutorial, MONTAGENS_DO_TUTORIAL } from "./tutorial";
 import { construir, progressoInicial } from "./progresso";
 
 // fechamento do tutorial e o progresso de treino
@@ -37,5 +38,31 @@ describe("tutorial", () => {
     expect(original.elementos).toEqual({});
     expect(original.tutorialConcluido).toBe(false);
     expect(sandbox.elementos["1"]?.estrelas).toEqual([true, true, true]);
+  });
+});
+
+// atomo montado que o tutorial deixa registrado para a ficha comparar com a tabela
+describe("átomo montado deixado pelo tutorial", () => {
+  it("tutorial concluído grava H-1 e He-4 neutros para os elementos concedidos", () => {
+    const s = concluirTutorial(progressoInicial(), true);
+    expect(completarUltimoMontado({}, s)).toEqual({ 1: { p: 1, n: 0, e: 1 }, 2: { p: 2, n: 2, e: 2 } });
+    expect(ATOMOS_DO_TUTORIAL[1]).toEqual(MONTAGENS_DO_TUTORIAL[0]);
+  });
+
+  it("não troca um átomo que já estava salvo", () => {
+    const s = concluirTutorial(progressoInicial(), true);
+    const salvo = { 1: { p: 1, n: 1, e: 0 } };
+    const novo = completarUltimoMontado(salvo, s);
+    expect(novo[1]).toEqual({ p: 1, n: 1, e: 0 });
+    expect(novo[2]).toEqual({ p: 2, n: 2, e: 2 });
+  });
+
+  it("tutorial pulado ou nada a acrescentar: devolve o mesmo registro", () => {
+    // pulou: nada descoberto, nada para gravar
+    const vazio = {};
+    expect(completarUltimoMontado(vazio, concluirTutorial(progressoInicial(), false))).toBe(vazio);
+    // os dois ja salvos: o mesmo objeto volta, e o store nao grava de novo
+    const cheio = { 1: { p: 1, n: 0, e: 1 }, 2: { p: 2, n: 2, e: 2 } };
+    expect(completarUltimoMontado(cheio, concluirTutorial(progressoInicial(), true))).toBe(cheio);
   });
 });

@@ -9,6 +9,7 @@ import {
   CHAVE,
   CHAVE_CORROMPIDO,
   carregar,
+  completarUltimoMontado,
   concluirTutorial as concluirTutorialMotor,
   construir as construirMotor,
   progressoInicial,
@@ -104,20 +105,23 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // troca o ultimo atomo montado por elemento na tela e grava no localStorage
+  const gravarUltimo = (novo: Record<number, Particulas>) => {
+    if (novo === ultimoRef.current) return;
+    ultimoRef.current = novo;
+    setUltimo(novo);
+    try {
+      window.localStorage.setItem(CHAVE_ULTIMO, JSON.stringify(novo));
+    } catch {
+      /* armazenamento indisponivel: segue em memoria */
+    }
+  };
+
   // roda a montagem no motor; se for valida, lembra ela como a ultima do elemento
   const construir = useCallback((p: Particulas) => {
     const r = construirMotor(ref.current, p);
     persistir(r.estado); // salva depois de cada construir()
-    if (r.classificacao.valido) {
-      const z = r.classificacao.z;
-      ultimoRef.current = { ...ultimoRef.current, [z]: p };
-      setUltimo(ultimoRef.current);
-      try {
-        window.localStorage.setItem(CHAVE_ULTIMO, JSON.stringify(ultimoRef.current));
-      } catch {
-        /* armazenamento indisponivel: segue em memoria */
-      }
-    }
+    if (r.classificacao.valido) gravarUltimo({ ...ultimoRef.current, [r.classificacao.z]: p });
     return { classificacao: r.classificacao, eventos: r.eventos };
   }, []);
 
@@ -130,8 +134,12 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     persistir({ ...s, config: { ...s.config, som: !s.config.som } });
   }, []);
 
+  // fecha o tutorial; com as estrelas concedidas, grava tambem o atomo que o tutorial
+  // ensinou (H e He), sem trocar o que ja estava salvo, para a ficha poder comparar
   const concluirTutorial = useCallback((conceder: boolean) => {
-    persistir(concluirTutorialMotor(ref.current, conceder));
+    const s = concluirTutorialMotor(ref.current, conceder);
+    persistir(s);
+    if (conceder) gravarUltimo(completarUltimoMontado(ultimoRef.current, s));
   }, []);
 
   // so toca o efeito se o som estiver ligado

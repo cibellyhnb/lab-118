@@ -196,8 +196,9 @@ export function Ficha({ z }: { z: number }) {
         <div className="mb-3 grid gap-3 sm:grid-cols-2">
           <div className="border-[3px] border-ink bg-cloud p-3">
             <p className="font-display text-[9px]">NÚMERO DE MASSA (SEU ÁTOMO)</p>
-            <p className="font-display mt-2 text-xl">{cMontado ? cMontado.a : "-"}</p>
-            {!cMontado && <p className="text-sm">Construa um átomo deste elemento para comparar.</p>}
+            {/* sem atomo salvo (progresso antigo ou chave apagada): texto no lugar do numero */}
+            <p className={`font-display mt-2 ${cMontado ? "text-xl" : "text-sm"}`}>{cMontado ? cMontado.a : "Ainda não montado"}</p>
+            {!cMontado && <p className="text-sm">Monte um átomo deste elemento no laboratório para comparar com a tabela.</p>}
           </div>
           <div className="border-[3px] border-ink bg-cloud p-3">
             <p className="font-display text-[9px]">{maisLongevo ? "NÚMERO DE MASSA DO ISÓTOPO MAIS LONGEVO" : "MASSA ATÔMICA (TABELA)"}</p>
