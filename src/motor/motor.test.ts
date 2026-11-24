@@ -142,6 +142,13 @@ describe("Regras", () => {
     expect(r.notacao).toBe("Nb⁵⁺");
     expect(r.avisos).not.toContain("CARGA_RARA");
   });
+  it("gás nobre com elétron a mais ganha o aviso de ânion instável", () => {
+    expect(c(2, 2, 3).avisos).toContain("ANION_GAS_NOBRE");
+    expect(c(10, 10, 11).avisos).toContain("ANION_GAS_NOBRE");
+    // cation de gas nobre e anion de outro elemento: sem aviso
+    expect(c(2, 2, 1).avisos).not.toContain("ANION_GAS_NOBRE");
+    expect(c(17, 18, 18).avisos).not.toContain("ANION_GAS_NOBRE");
+  });
   it("REG-11: camadas", () => {
     // neutro, cation que esvazia a camada, anion que completa 8, anion na primeira
     // camada (cap 2), anion que abre camada nova e sem eletrons
@@ -198,6 +205,15 @@ describe("Progresso e estrelas (RF-01 a RF-03)", () => {
     expect(isotopoReferencia(ELEMENTOS[0]!)?.a).toBe(1);
     expect(isotopoReferencia(ELEMENTOS[91]!)?.a).toBe(238);
     expect(isotopoReferencia(ELEMENTOS[42]!)?.a).toBe(97);
+  });
+  it("ânion de gás nobre não é registrado nem dá a estrela do íon", () => {
+    let s = construir(progressoInicial(), { p: 2, n: 2, e: 2 }).estado; // He-4
+    const r = construir(s, { p: 2, n: 2, e: 3 }); // He⁻
+    expect(r.eventos).toEqual([]);
+    expect(r.estado.elementos["2"]?.ions).toEqual([]);
+    s = construir(r.estado, { p: 2, n: 2, e: 1 }).estado; // He⁺
+    expect(s.elementos["2"]?.ions).toEqual([1]);
+    expect(s.elementos["2"]?.estrelas[2]).toBe(true);
   });
   it("aplicar o mesmo build duas vezes não duplica nada", () => {
     const a = construir(progressoInicial(), { p: 6, n: 6, e: 6 });

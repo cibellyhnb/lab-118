@@ -120,6 +120,9 @@ export function classificar(p: Particulas): Classificacao {
   if (status === "nao_catalogado") avisos.push("NUCLIDEO_NAO_CATALOGADO");
   // nenhum eletron: so o nucleo
   if (e === 0) avisos.push("NUCLEO_NU");
+  // gases nobres ja tem a ultima camada cheia: o eletron a mais nao fica preso, entao
+  // eles nao formam ions negativos estaveis (He⁻, Ne⁻...)
+  if (carga < 0 && el.categoria === "gas_nobre") avisos.push("ANION_GAS_NOBRE");
 
   return {
     valido: true,

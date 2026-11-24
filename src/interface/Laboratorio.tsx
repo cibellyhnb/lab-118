@@ -524,6 +524,10 @@ export function Laboratorio({
       l.push(
         "Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.",
       );
+    if (cl.avisos.includes("ANION_GAS_NOBRE"))
+      l.push(
+        `Atenção: ${artigoDoElemento(nome)} ${nome.toLowerCase()} não forma íon negativo estável. A última camada dos gases nobres já está cheia, e o elétron a mais escapa logo. Por isso esse íon não é registrado: os íons dos gases nobres são positivos, então tente tirar um elétron.`,
+      );
     if (cl.avisos.includes("CARGA_RARA"))
       l.push(
         "Cargas tão extremas só aparecem em condições muito especiais, como no interior de estrelas.",
@@ -531,8 +535,15 @@ export function Laboratorio({
     // desafio de isotopo: isotopo repetido ou fora do catalogo tem frase propria, no lugar
     // do "ainda e..." (que diria "ja registrou" de um nucleo que nunca foi registrado)
     if (fraseIsotopo) l.push(fraseIsotopo);
-    // nada novo num elemento conhecido: sugere mudar neutrons ou eletrons
-    else if (eventos.length === 0 && jaDescoberto)
+    // nada novo num elemento conhecido: sugere mudar neutrons ou eletrons. nao vale para
+    // nucleo fora do catalogo nem anion de gas nobre, que nunca sao registrados (a frase
+    // "ja registrou" seria falsa; esses casos ja tem a propria explicacao acima)
+    else if (
+      eventos.length === 0 &&
+      jaDescoberto &&
+      !nucleoFora &&
+      !cl.avisos.includes("ANION_GAS_NOBRE")
+    )
       l.push(
         `Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`,
       );

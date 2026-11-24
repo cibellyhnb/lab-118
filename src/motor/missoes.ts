@@ -86,7 +86,9 @@ export function missaoIsotopo(estado: Progresso, z: number): Missao | null {
 /*******************************************************************************
  * missaoIon
  * funcao: monta a missao M3, de transformar o elemento em ion. pede a
- * primeira carga comum que o jogador ainda nao fez.
+ * primeira carga comum que o jogador ainda nao fez. gases nobres nao tem
+ * ion comum, mas a missao pede o cation +1 (eles nao formam anions
+ * estaveis).
  * recebe: estado (Progresso) e z (numero atomico).
  * retorna: a Missao; se nao sobrar carga comum, uma missao que aceita
  * qualquer carga diferente de zero. null se o Z nao existir.
@@ -95,7 +97,9 @@ export function missaoIon(estado: Progresso, z: number): Missao | null {
   const el = elementoPorZ(z);
   if (!el) return null;
   const feitos = estado.elementos[String(z)]?.ions ?? [];
-  const q = el.ions_comuns.find((c) => !feitos.includes(c));
+  // gases nobres: pede o cation +1, e nao um ion qualquer (que podia ser negativo)
+  const cargas = el.ions_comuns.length ? el.ions_comuns : el.categoria === "gas_nobre" ? [1] : [];
+  const q = cargas.find((c) => !feitos.includes(c));
   // sem carga comum pendente: missao generica, sem carga no criterio
   if (q === undefined) {
     return {

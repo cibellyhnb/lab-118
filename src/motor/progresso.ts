@@ -71,7 +71,9 @@ export function construir(
     atual.isotopos.sort((x, y) => x - y);
     eventos.push({ tipo: "ISOTOPO_REGISTRADO", z, a });
   }
-  if (carga !== 0 && !atual.ions.includes(carga)) {
+  // anion de gas nobre (He⁻, Ne⁻...) nao e estavel: o jogo avisa e nao registra
+  const ionEstavel = !classificacao.avisos.includes("ANION_GAS_NOBRE");
+  if (carga !== 0 && ionEstavel && !atual.ions.includes(carga)) {
     atual.ions.push(carga);
     atual.ions.sort((x, y) => x - y);
     eventos.push({ tipo: "ION_REGISTRADO", z, carga });

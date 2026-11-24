@@ -12,6 +12,7 @@ import { classificar } from "./classificar";
 import {
   avaliarMissao,
   elementoSugerido,
+  missaoIon,
   missaoParaElemento,
   proximoElemento,
   retornoDesafioIsotopo,
@@ -74,6 +75,16 @@ describe("missões M1, M2 e M3", () => {
     expect(m.tipo).toBe("M3");
     expect(m.criterio).toEqual({ tipo: "ION", z: 11, carga: 1 });
     expect(m.enunciado).toContain("Na⁺");
+  });
+
+  it("M3 de gás nobre pede o cátion +1, e não um ânion", () => {
+    for (const z of [2, 10, 18, 36, 54, 86, 118]) {
+      const m = missaoIon(progressoInicial(), z)!;
+      expect(m.criterio, `Z=${z}`).toEqual({ tipo: "ION", z, carga: 1 });
+      expect(avaliarMissao(m, classificar({ p: z, n: z, e: z + 1 })).cumprida).toBe(false);
+    }
+    // carbono, sem ion comum, continua com a missao generica (qualquer carga)
+    expect(missaoIon(progressoInicial(), 6)!.criterio).toEqual({ tipo: "ION", z: 6 });
   });
 
   it("missão errada não conta: elemento ou massa trocados", () => {
