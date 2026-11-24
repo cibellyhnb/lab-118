@@ -1,0 +1,3 @@
+# quebra de linha LF em todos os arquivos de texto, inclusive no Windows, igual ao
+# que o prettier grava (evita os avisos "LF will be replaced by CRLF")
+* text=auto eol=lf
