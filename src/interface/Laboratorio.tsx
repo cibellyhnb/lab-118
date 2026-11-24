@@ -200,7 +200,7 @@ function Contador({
   const botao = (delta: 1 | -1, rotulo: string) => (
     <button
       type="button"
-      className="pixel-btn btn-parchment w-8 px-0 text-sm lg:w-10"
+      className="pixel-btn btn-parchment w-8 px-0 text-sm xl:w-10"
       aria-label={`${delta > 0 ? "Adicionar" : "Remover"} ${NOME_PARTICULA[tipo].toLowerCase()} (Shift: 5)`}
       // segurou 450 ms: passa a repetir de 5 em 5 a cada 180 ms
       onPointerDown={() => {
@@ -225,7 +225,7 @@ function Contador({
   );
 
   return (
-    <div className="flex items-center gap-1 lg:gap-2">
+    <div className="flex items-center gap-1 xl:gap-2">
       {botao(-1, "−")}
       <input
         type="number"
@@ -242,7 +242,7 @@ function Contador({
           }
         }}
         aria-label={`Quantidade de ${NOME_PARTICULA[tipo].toLowerCase()}s`}
-        className="font-display w-12 border-[3px] border-ink bg-cloud px-1 py-2 text-center text-xs text-ink lg:w-16"
+        className="font-display w-12 border-[3px] border-ink bg-cloud px-1 py-2 text-center text-xs text-ink xl:w-16"
       />
       {botao(1, "+")}
     </div>
@@ -654,7 +654,7 @@ export function Laboratorio({
             >
               <div
                 data-tut="particulas"
-                className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-6 lg:px-6 lg:py-3"
+                className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-3 lg:px-3 lg:py-3 xl:gap-6 xl:px-6"
               >
                 {/* uma coluna por particula: botao de arrastar e contador */}
                 {(
@@ -667,7 +667,7 @@ export function Laboratorio({
                   <div key={t} data-tut={`col-${t}`} className="flex flex-col items-center gap-1">
                     <button
                       type="button"
-                      className="pixel-btn btn-parchment flex touch-none flex-col items-center gap-0.5 px-2 py-1 text-[9px] lg:flex-row lg:gap-2 lg:text-sm"
+                      className="pixel-btn btn-parchment flex touch-none flex-col items-center gap-0.5 px-2 py-1 text-[9px] xl:flex-row xl:gap-2 xl:text-sm"
                       aria-label={`${NOME_PARTICULA[t]}: arraste para o átomo ou aperte Enter para adicionar`}
                       // so o botao esquerdo comeca a arrastar
                       onPointerDown={(ev) => {
@@ -682,10 +682,10 @@ export function Laboratorio({
                         }
                       }}
                     >
-                      <span className="lg:hidden">
+                      <span className="xl:hidden">
                         <ParticleSprite tipo={t} size={28} />
                       </span>
-                      <span className="hidden lg:block">
+                      <span className="hidden xl:block">
                         <ParticleSprite tipo={t} size={40} />
                       </span>
                       <span>{NOME_PARTICULA[t].toUpperCase()}</span>
