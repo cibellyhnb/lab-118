@@ -6,7 +6,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   server: {
-    host: "::",
+    // true: escuta em todos os enderecos (IPv4 e, se existir, IPv6). "::" so funcionava
+    // em maquinas com IPv6 e quebrava o build (o prerender usa este host)
+    host: true,
     port: 8081,
   },
   css: { transformer: "lightningcss" },
