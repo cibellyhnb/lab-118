@@ -268,7 +268,7 @@ export function avaliarMissao(
     if (c.carga !== 0 && (alvoQ === undefined || c.carga === alvoQ)) {
       return {
         cumprida: true,
-        mensagem: `Desafio cumprido! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.`,
+        mensagem: `Desafio cumprido! ${notacaoIon(c.elemento.simbolo, c.carga)}: elétrons mudam a carga, não o elemento.`,
       };
     }
     if (c.carga === 0)

@@ -20,6 +20,8 @@ import {
   elementoSugerido,
   familiaPendente,
   gerarMissao,
+  notacaoIon,
+  textoCarga,
   maxEletrons,
   missaoParaElemento,
   progressoInicial,
@@ -496,7 +498,8 @@ export function Laboratorio({
     // uma frase para cada coisa nova registrada
     for (const ev of eventos) {
       if (ev.tipo === "ISOTOPO_REGISTRADO") l.push(`Isótopo registrado: ${nome}-${ev.a}.`);
-      if (ev.tipo === "ION_REGISTRADO") l.push(`Íon registrado: ${cl.notacao}.`);
+      if (ev.tipo === "ION_REGISTRADO" && cl.elemento)
+        l.push(`Íon registrado: ${notacaoIon(cl.elemento.simbolo, cl.carga)}.`);
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 2)
         l.push("Estrela do isótopo! Nêutrons mudam a massa, não o elemento.");
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 3)
@@ -765,10 +768,8 @@ export function Laboratorio({
                     <>
                       <span className="font-display text-[9px]">{c.a}</span>
                       <span className="font-display text-2xl">{c.elemento?.simbolo}</span>
-                      {/* so a parte da carga da notacao, ex: "²⁺" */}
-                      <span className="font-display text-[9px]">
-                        {c.carga === 0 ? "" : c.notacao?.replace(c.elemento?.simbolo ?? "", "")}
-                      </span>
+                      {/* so a parte da carga, ex: "²⁺" */}
+                      <span className="font-display text-[9px]">{textoCarga(c.carga)}</span>
                     </>
                   ) : (
                     <span className="font-display text-2xl">?</span>

@@ -5,7 +5,13 @@
  * elements.json e salvar/carregar o progresso.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
-import { classificar, distribuirCamadas } from "./classificar";
+import {
+  classificar,
+  distribuirCamadas,
+  notacaoIon,
+  notacaoNuclideo,
+  textoCarga,
+} from "./classificar";
 import { ELEMENTOS, isotopoReferencia } from "./dados";
 import { construir, progressoInicial } from "./progresso";
 import { avaliarMissao, gerarMissao, missaoDescoberta } from "./missoes";
@@ -36,13 +42,13 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     expect(r.valido).toBe(true);
     expect(r.especie).toBe("cation");
     expect(r.carga).toBe(1);
-    expect(r.notacao).toBe("H⁺");
+    expect(r.notacao).toBe("¹H⁺");
   });
   it("1,0,2 H⁻", () => {
     const r = c(1, 0, 2);
     expect(r.especie).toBe("anion");
     expect(r.carga).toBe(-1);
-    expect(r.notacao).toBe("H⁻");
+    expect(r.notacao).toBe("¹H⁻");
   });
   it("2,2,2 He-4", () => {
     const r = c(2, 2, 2);
@@ -55,13 +61,15 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     const r = c(6, 6, 6);
     expect(r.especie).toBe("atomo_neutro");
     expect(r.nuclideo).toEqual({ rotulo: "C-12", status: "estavel" });
+    // notacao dos livros: massa sobrescrita a esquerda, sem carga no atomo neutro
+    expect(r.notacao).toBe("¹²C");
   });
   it("6,8,6 C-14 radioativo", () =>
     expect(c(6, 8, 6).nuclideo).toEqual({ rotulo: "C-14", status: "radioativo" }));
   it("6,6,5 C⁺", () => {
     const r = c(6, 6, 5);
     expect(r.especie).toBe("cation");
-    expect(r.notacao).toBe("C⁺");
+    expect(r.notacao).toBe("¹²C⁺");
   });
   // C-36 nao existe no catalogo, mas a montagem continua valida
   it("6,30,6 não catalogado", () => {
@@ -71,23 +79,23 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
   });
   it("8,8,10 O²⁻", () => {
     const r = c(8, 8, 10);
-    expect(r.notacao).toBe("O²⁻");
+    expect(r.notacao).toBe("¹⁶O²⁻");
     expect(r.carga).toBe(-2);
     expect(r.especie).toBe("anion");
   });
   it("11,12,10 Na⁺ Na-23 estável", () => {
     const r = c(11, 12, 10);
-    expect(r.notacao).toBe("Na⁺");
+    expect(r.notacao).toBe("²³Na⁺");
     expect(r.nuclideo).toEqual({ rotulo: "Na-23", status: "estavel" });
   });
   it("17,18,18 Cl⁻ Cl-35", () => {
     const r = c(17, 18, 18);
-    expect(r.notacao).toBe("Cl⁻");
+    expect(r.notacao).toBe("³⁵Cl⁻");
     expect(r.nuclideo).toEqual({ rotulo: "Cl-35", status: "estavel" });
   });
   it("26,30,24 Fe²⁺ Fe-56", () => {
     const r = c(26, 30, 24);
-    expect(r.notacao).toBe("Fe²⁺");
+    expect(r.notacao).toBe("⁵⁶Fe²⁺");
     expect(r.nuclideo).toEqual({ rotulo: "Fe-56", status: "estavel" });
   });
   // limite de cima da tabela
@@ -130,6 +138,16 @@ describe("Regras", () => {
           expect(r.carga === 0).toBe(e === z);
         }
   });
+  it("notação: carga, íon e nuclídeo", () => {
+    expect(textoCarga(0)).toBe("");
+    expect(textoCarga(1)).toBe("⁺");
+    expect(textoCarga(-2)).toBe("²⁻");
+    expect(textoCarga(10)).toBe("¹⁰⁺");
+    expect(notacaoIon("Na", 0)).toBe("Na");
+    expect(notacaoIon("Na", 1)).toBe("Na⁺");
+    expect(notacaoNuclideo("Og", 294, 0)).toBe("²⁹⁴Og");
+    expect(notacaoNuclideo("U", 238, 6)).toBe("²³⁸U⁶⁺");
+  });
   it("REG-10: carga rara", () => {
     // oxigenio com 3 eletrons tem carga +5, acima do maximo comum (+4); com 4 eletrons, +4 ainda vale
     expect(c(8, 8, 3).avisos).toContain("CARGA_RARA");
@@ -139,7 +157,7 @@ describe("Regras", () => {
   it("REG-10: Nb⁵⁺ não é carga rara porque está nos íons comuns", () => {
     const r = c(41, 52, 36);
     expect(r.carga).toBe(5);
-    expect(r.notacao).toBe("Nb⁵⁺");
+    expect(r.notacao).toBe("⁹³Nb⁵⁺");
     expect(r.avisos).not.toContain("CARGA_RARA");
   });
   it("gás nobre com elétron a mais ganha o aviso de ânion instável", () => {
