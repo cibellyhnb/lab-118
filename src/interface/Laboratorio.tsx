@@ -431,6 +431,8 @@ export function Laboratorio({
     const antes = c.valido ? descoberto(estado, c.z) : false;
     const missaoAntes = missao;
     const r = construir({ p, n, e });
+    // o som de estrela toca uma vez so, mesmo quando o desafio cumprido tambem da estrela
+    let tocouEstrela = false;
     // M2 e M3 sao conferidas aqui; a M1 aparece na celebracao de descoberta
     if (missaoAntes && missaoAntes.tipo !== "M1") {
       const av = avaliarMissao(missaoAntes, r.classificacao);
@@ -439,6 +441,7 @@ export function Laboratorio({
         setFesta(true);
         window.setTimeout(() => setFesta(false), 1600);
         tocar(sons.estrela);
+        tocouEstrela = true;
       }
     }
     guia?.onConstruir({ ...r, particulas: { p, n, e } });
@@ -449,7 +452,7 @@ export function Laboratorio({
     // quais estrelas (1, 2 ou 3) foram ganhas agora
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
     setAnimar(estrelas);
-    if (estrelas.length) tocar(sons.estrela);
+    if (estrelas.length && !tocouEstrela) tocar(sons.estrela);
     // estrela nova fora do tutorial: guarda o elemento para o botao PROXIMA MISSAO
     if (estrelas.length && !guia) setEstrelaEm(r.classificacao.z);
     const desc = r.eventos.find((ev) => ev.tipo === "ELEMENTO_DESCOBERTO");
