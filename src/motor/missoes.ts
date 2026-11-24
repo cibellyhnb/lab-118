@@ -199,7 +199,11 @@ export function gerarMissao(estado: Progresso, _semente: number): Missao | null 
  * (Classificacao da montagem).
  * retorna: a frase, ou null fora desses casos.
  ******************************************************************************/
-export function retornoDesafioIsotopo(estado: Progresso, m: Missao, c: Classificacao): string | null {
+export function retornoDesafioIsotopo(
+  estado: Progresso,
+  m: Missao,
+  c: Classificacao,
+): string | null {
   if (m.criterio.tipo !== "ISOTOPO" || !c.valido || c.z !== m.z) return null;
   const nome = elementoPorZ(m.z)?.nome ?? "";
   // nucleo fora do catalogo nunca e registrado: o desafio pede um do catalogo
@@ -208,7 +212,8 @@ export function retornoDesafioIsotopo(estado: Progresso, m: Missao, c: Classific
   }
   // mesmo z e mesmo numero de massa (logo, mesmos neutrons) de um isotopo ja registrado
   const feitos = estado.elementos[String(m.z)]?.isotopos ?? [];
-  if (feitos.includes(c.a)) return "Esse é o mesmo isótopo que você já montou. Mude o número de nêutrons para montar um isótopo diferente.";
+  if (feitos.includes(c.a))
+    return "Esse é o mesmo isótopo que você já montou. Mude o número de nêutrons para montar um isótopo diferente.";
   return null;
 }
 
@@ -219,7 +224,10 @@ export function retornoDesafioIsotopo(estado: Progresso, m: Missao, c: Classific
  * recebe: m (Missao) e c (Classificacao da montagem).
  * retorna: { cumprida, mensagem }; mensagem vazia se a montagem for invalida.
  ******************************************************************************/
-export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean; mensagem: string } {
+export function avaliarMissao(
+  m: Missao,
+  c: Classificacao,
+): { cumprida: boolean; mensagem: string } {
   if (!c.valido || !c.elemento) return { cumprida: false, mensagem: "" };
   const el = elementoPorZ(m.z);
   const nome = el?.nome ?? "";
@@ -227,19 +235,44 @@ export function avaliarMissao(m: Missao, c: Classificacao): { cumprida: boolean;
   const art = artigoDoElemento(nome);
   // M2: precisa ser o mesmo elemento com o numero de massa pedido
   if (m.criterio.tipo === "ISOTOPO") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
-    if (c.a === m.criterio.a) return { cumprida: true, mensagem: `Desafio cumprido! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.` };
-    return { cumprida: false, mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.` };
+    if (c.z !== m.z)
+      return {
+        cumprida: false,
+        mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
+      };
+    if (c.a === m.criterio.a)
+      return {
+        cumprida: true,
+        mensagem: `Desafio cumprido! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.`,
+      };
+    return {
+      cumprida: false,
+      mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.`,
+    };
   }
   // M3: qualquer carga diferente de zero, ou a carga exata quando a missao pede uma
   if (m.criterio.tipo === "ION") {
-    if (c.z !== m.z) return { cumprida: false, mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).` };
+    if (c.z !== m.z)
+      return {
+        cumprida: false,
+        mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
+      };
     const alvoQ = m.criterio.carga;
     if (c.carga !== 0 && (alvoQ === undefined || c.carga === alvoQ)) {
-      return { cumprida: true, mensagem: `Desafio cumprido! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.` };
+      return {
+        cumprida: true,
+        mensagem: `Desafio cumprido! ${c.notacao ?? "Íon"}: elétrons mudam a carga, não o elemento.`,
+      };
     }
-    if (c.carga === 0) return { cumprida: false, mensagem: "Átomo neutro, com carga 0. Mude a quantidade de elétrons." };
-    return { cumprida: false, mensagem: `A carga agora é ${sinal(c.carga)}, mas o alvo é ${sinal(alvoQ ?? 0)}. Ajuste os elétrons.` };
+    if (c.carga === 0)
+      return {
+        cumprida: false,
+        mensagem: "Átomo neutro, com carga 0. Mude a quantidade de elétrons.",
+      };
+    return {
+      cumprida: false,
+      mensagem: `A carga agora é ${sinal(c.carga)}, mas o alvo é ${sinal(alvoQ ?? 0)}. Ajuste os elétrons.`,
+    };
   }
   // M1: o elemento certo e neutro
   const cumprida = c.z === m.z && c.especie === "atomo_neutro";

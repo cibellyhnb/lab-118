@@ -10,25 +10,125 @@ import { PixelArt } from "./PixelArt";
 // lembra algo do dia a dia daquela familia
 const ICONES: Record<Categoria, string[]> = {
   // raio: reatividade e baterias de litio
-  metal_alcalino: [".....www.", "....www..", "...www...", "..wwwwww.", ".wwwwww..", "....www..", "...www...", "..ww.....", "..w......"],
+  metal_alcalino: [
+    ".....www.",
+    "....www..",
+    "...www...",
+    "..wwwwww.",
+    ".wwwwww..",
+    "....www..",
+    "...www...",
+    "..ww.....",
+    "..w......",
+  ],
   // dente: o calcio
-  metal_alcalino_terroso: [".wwwwwww.", "wwwwwwwww", "wwwwwwwww", "wwwwwwwww", ".wwwwwww.", ".www.www.", ".ww...ww.", ".ww...ww.", "..w...w.."],
+  metal_alcalino_terroso: [
+    ".wwwwwww.",
+    "wwwwwwwww",
+    "wwwwwwwww",
+    "wwwwwwwww",
+    ".wwwwwww.",
+    ".www.www.",
+    ".ww...ww.",
+    ".ww...ww.",
+    "..w...w..",
+  ],
   // engrenagem: os metais que constroem
-  metal_transicao: ["....w....", ".ww.w.ww.", ".wwwwwww.", "..ww.ww..", "wwww.wwww", "..ww.ww..", ".wwwwwww.", ".ww.w.ww.", "....w...."],
+  metal_transicao: [
+    "....w....",
+    ".ww.w.ww.",
+    ".wwwwwww.",
+    "..ww.ww..",
+    "wwww.wwww",
+    "..ww.ww..",
+    ".wwwwwww.",
+    ".ww.w.ww.",
+    "....w....",
+  ],
   // bigorna: quem constroi e molda
-  metal_representativo: ["wwwwwwww.", "wwwwwwwww", "wwwwwwww.", ".wwwwww..", "..wwww...", "...www...", "...www...", ".wwwwwww.", "wwwwwwwww"],
+  metal_representativo: [
+    "wwwwwwww.",
+    "wwwwwwwww",
+    "wwwwwwww.",
+    ".wwwwww..",
+    "..wwww...",
+    "...www...",
+    "...www...",
+    ".wwwwwww.",
+    "wwwwwwwww",
+  ],
   // chip de silicio
-  semimetal: ["..w.w.w..", ".wwwwwww.", "wwwwwwwww", ".wwkkkww.", "wwwkkkwww", ".wwkkkww.", "wwwwwwwww", ".wwwwwww.", "..w.w.w.."],
+  semimetal: [
+    "..w.w.w..",
+    ".wwwwwww.",
+    "wwwwwwwww",
+    ".wwkkkww.",
+    "wwwkkkwww",
+    ".wwkkkww.",
+    "wwwwwwwww",
+    ".wwwwwww.",
+    "..w.w.w..",
+  ],
   // folha: a vida
-  nao_metal: [".......ww", ".....wwww", "...wwwwww", "..wwwwwww", "..wwwwww.", "..wwwww..", ".wwww....", "wwk......", "w........"],
+  nao_metal: [
+    ".......ww",
+    ".....wwww",
+    "...wwwwww",
+    "..wwwwwww",
+    "..wwwwww.",
+    "..wwwww..",
+    ".wwww....",
+    "wwk......",
+    "w........",
+  ],
   // gota: agua tratada
-  halogenio: ["....w....", "....w....", "...www...", "...www...", "..wwwww..", ".wwwwwww.", ".wwwwwww.", ".wwwwwww.", "..wwwww.."],
+  halogenio: [
+    "....w....",
+    "....w....",
+    "...www...",
+    "...www...",
+    "..wwwww..",
+    ".wwwwwww.",
+    ".wwwwwww.",
+    ".wwwwwww.",
+    "..wwwww..",
+  ],
   // lampada: luz de neonio
-  gas_nobre: ["..wwwww..", ".wwwwwww.", "wwwwwwwww", "wwwwwwwww", "wwwkwkwww", ".wwwkwww.", "..wwwww..", "...www...", "...kkk..."],
+  gas_nobre: [
+    "..wwwww..",
+    ".wwwwwww.",
+    "wwwwwwwww",
+    "wwwwwwwww",
+    "wwwkwkwww",
+    ".wwwkwww.",
+    "..wwwww..",
+    "...www...",
+    "...kkk...",
+  ],
   // ima: os imas de neodimio
-  lantanideo: ["kkk...kkk", "kkk...kkk", "www...www", "www...www", "www...www", "www...www", ".www.www.", "..wwwww..", "...www..."],
+  lantanideo: [
+    "kkk...kkk",
+    "kkk...kkk",
+    "www...www",
+    "www...www",
+    "www...www",
+    "www...www",
+    ".www.www.",
+    "..wwwww..",
+    "...www...",
+  ],
   // cristal: brilho radioativo
-  actinideo: ["....w....", "...www...", "..wwwww..", ".wwwwwww.", "wwwwwwwww", ".wwwwwww.", "..wwwww..", "...www...", "....w...."],
+  actinideo: [
+    "....w....",
+    "...www...",
+    "..wwwww..",
+    ".wwwwwww.",
+    "wwwwwwwww",
+    ".wwwwwww.",
+    "..wwwww..",
+    "...www...",
+    "....w....",
+  ],
 };
 
 // tamanho do escudo em pixels
@@ -59,7 +159,8 @@ function montarEscudo(cat: Categoria): string[] {
     for (let x = 0; x < LARGURA; x++) {
       // fora: transparente; borda: contorno; dentro: luz (l), sombra (s) ou cor (g)
       if (!dentro(x, y)) linha.push(".");
-      else if (!dentro(x - 1, y) || !dentro(x + 1, y) || !dentro(x, y - 1) || !dentro(x, y + 1)) linha.push("k");
+      else if (!dentro(x - 1, y) || !dentro(x + 1, y) || !dentro(x, y - 1) || !dentro(x, y + 1))
+        linha.push("k");
       else linha.push(x <= 2 || y <= 1 ? "l" : x >= 12 || y >= 12 ? "s" : "g");
     }
     grade.push(linha);
@@ -115,7 +216,13 @@ export function Emblema({
   const cor = `var(--cat-${familia})`;
   // apagado usa tons neutros; normal mistura a cor da familia com branco e preto
   const palette = apagado
-    ? { k: "var(--ink)", g: "var(--panel)", l: "var(--parchment-shade)", s: "var(--night)", w: "var(--parchment-shade)" }
+    ? {
+        k: "var(--ink)",
+        g: "var(--panel)",
+        l: "var(--parchment-shade)",
+        s: "var(--night)",
+        w: "var(--parchment-shade)",
+      }
     : {
         k: "var(--ink)",
         g: cor,
@@ -123,5 +230,13 @@ export function Emblema({
         s: `color-mix(in oklab, ${cor} 62%, black)`,
         w: "var(--cloud)",
       };
-  return <PixelArt rows={EMBLEMAS[familia]} palette={palette} scale={scale} className={className} style={apagado ? { opacity: 0.6 } : undefined} />;
+  return (
+    <PixelArt
+      rows={EMBLEMAS[familia]}
+      palette={palette}
+      scale={scale}
+      className={className}
+      style={apagado ? { opacity: 0.6 } : undefined}
+    />
+  );
 }

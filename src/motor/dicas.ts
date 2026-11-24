@@ -40,7 +40,10 @@ export function dificuldadeDe(el: Elemento): Dificuldade {
 export function faixaProtons(z: number): { min: number; max: number } {
   // arredonda para o inicio da dezena (1, 11, 21...) e trava em 109 para a
   // faixa nao passar de 118
-  const min = Math.min(Math.max(1, Math.floor((z - 1) / LARGURA_FAIXA) * LARGURA_FAIXA + 1), 118 - LARGURA_FAIXA + 1);
+  const min = Math.min(
+    Math.max(1, Math.floor((z - 1) / LARGURA_FAIXA) * LARGURA_FAIXA + 1),
+    118 - LARGURA_FAIXA + 1,
+  );
   return { min, max: min + LARGURA_FAIXA - 1 };
 }
 

@@ -4,7 +4,14 @@
  * referencias) e a busca por termo, sigla e sinonimo.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
-import { GLOSSARIO, NOME_CATEGORIA, NOME_CATEGORIA_GLOSSARIO, buscarGlossario, normalizar, termoPorId } from "./index";
+import {
+  GLOSSARIO,
+  NOME_CATEGORIA,
+  NOME_CATEGORIA_GLOSSARIO,
+  buscarGlossario,
+  normalizar,
+  termoPorId,
+} from "./index";
 
 // integridade dos termos e comportamento de buscarGlossario
 describe("glossário", () => {
@@ -19,18 +26,26 @@ describe("glossário", () => {
   });
 
   it("todo 'veja também' aponta para um termo que existe (e não para si mesmo)", () => {
-    for (const t of GLOSSARIO) for (const v of t.ver ?? []) {
-      expect(termoPorId(v), `${t.id} -> ${v}`).toBeDefined();
-      expect(v).not.toBe(t.id);
-    }
+    for (const t of GLOSSARIO)
+      for (const v of t.ver ?? []) {
+        expect(termoPorId(v), `${t.id} -> ${v}`).toBeDefined();
+        expect(v).not.toBe(t.id);
+      }
   });
 
   it("cobre as siglas do painel e todas as categorias de elemento da tabela", () => {
-    for (const s of ["Z", "N", "E", "A", "q"]) expect(GLOSSARIO.some((t) => t.sigla === s)).toBe(true);
+    for (const s of ["Z", "N", "E", "A", "q"])
+      expect(GLOSSARIO.some((t) => t.sigla === s)).toBe(true);
     for (const nome of Object.values(NOME_CATEGORIA)) {
       const n = normalizar(nome);
       // aceita o nome com ou sem hifen, ex: "alcalino-terroso" ou "alcalino terroso"
-      expect(GLOSSARIO.some((t) => normalizar(t.termo).includes(n.replace("-", " ")) || normalizar(t.termo).includes(n)), nome).toBe(true);
+      expect(
+        GLOSSARIO.some(
+          (t) =>
+            normalizar(t.termo).includes(n.replace("-", " ")) || normalizar(t.termo).includes(n),
+        ),
+        nome,
+      ).toBe(true);
     }
   });
 

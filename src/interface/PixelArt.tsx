@@ -83,7 +83,16 @@ export const C = {
 
 // desenhos pequenos: k = contorno, g = preenchimento, w = branco, s = sombra
 export const STAR = ["...k...", "..kgk..", "kkkgkkk", "kgggggk", ".kgggk.", ".kgkgk.", "kk...kk"];
-export const LOCK = ["..kkk..", ".k...k.", ".k...k.", "kkkkkkk", "kgggggk", "kggkggk", "kgggggk", "kkkkkkk"];
+export const LOCK = [
+  "..kkk..",
+  ".k...k.",
+  ".k...k.",
+  "kkkkkkk",
+  "kgggggk",
+  "kggkggk",
+  "kgggggk",
+  "kkkkkkk",
+];
 export const CLOUD = [
   "......kkkk......",
   "....kkwwwwk.....",
@@ -93,8 +102,26 @@ export const CLOUD = [
   ".kkssssssssssskk",
   "...kkkkkkkkkkk..",
 ];
-export const SOUND_ON = ["...k....", "..kk..k.", "kkgk.k.k", "kggk.k.k", "kggk.k.k", "kkgk.k.k", "..kk..k.", "...k...."];
-export const SOUND_OFF = ["...k....", "..kk....", "kkgk.k.k", "kggk..k.", "kggk..k.", "kkgk.k.k", "..kk....", "...k...."];
+export const SOUND_ON = [
+  "...k....",
+  "..kk..k.",
+  "kkgk.k.k",
+  "kggk.k.k",
+  "kggk.k.k",
+  "kkgk.k.k",
+  "..kk..k.",
+  "...k....",
+];
+export const SOUND_OFF = [
+  "...k....",
+  "..kk....",
+  "kkgk.k.k",
+  "kggk..k.",
+  "kggk..k.",
+  "kkgk.k.k",
+  "..kk....",
+  "...k....",
+];
 
 /*******************************************************************************
  * Star
@@ -102,7 +129,15 @@ export const SOUND_OFF = ["...k....", "..kk....", "kkgk.k.k", "kggk..k.", "kggk.
  * recebe: filled, scale e className.
  * retorna: a estrela.
  ******************************************************************************/
-export function Star({ filled, scale = 3, className }: { filled: boolean; scale?: number; className?: string | undefined }) {
+export function Star({
+  filled,
+  scale = 3,
+  className,
+}: {
+  filled: boolean;
+  scale?: number;
+  className?: string | undefined;
+}) {
   return (
     <PixelArt
       rows={STAR}

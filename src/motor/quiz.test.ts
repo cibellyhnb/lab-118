@@ -55,7 +55,11 @@ describe("famílias", () => {
     // descobre todos os halogenios menos o ultimo: ainda nao ha cerimonia
     const hal = membros("halogenio").map((e) => e.z);
     s = descobrirTodos(s, hal.slice(0, -1));
-    expect(progressoFamilia(s, "halogenio")).toMatchObject({ descobertos: hal.length - 1, total: hal.length, completa: false });
+    expect(progressoFamilia(s, "halogenio")).toMatchObject({
+      descobertos: hal.length - 1,
+      total: hal.length,
+      completa: false,
+    });
     expect(familiaPendente(s)).toBeNull();
     // o ultimo completa a familia
     s = descobrirTodos(s, hal.slice(-1));

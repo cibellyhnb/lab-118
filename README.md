@@ -76,9 +76,9 @@ O jogo está no ar em https://lab-118.vercel.app/, hospedado na Vercel. Como nã
 
 A configuração fica no arquivo `vercel.json`:
 
-* comando de build: `npm run build`
-* pasta de saída: `dist/client`
-* regra que manda qualquer rota para o `index.html`, para endereços como `/mapa` e `/elemento/6` funcionarem ao recarregar a página
+- comando de build: `npm run build`
+- pasta de saída: `dist/client`
+- regra que manda qualquer rota para o `index.html`, para endereços como `/mapa` e `/elemento/6` funcionarem ao recarregar a página
 
 Cada push na branch `main` gera uma nova versão automaticamente.
 

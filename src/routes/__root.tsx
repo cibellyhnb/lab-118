@@ -123,7 +123,8 @@ export const Route = createRootRoute({
       { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
-        content: "Tela inicial do Lab 118: título em pixel art, botão Jogar e bancadas com frascos coloridos.",
+        content:
+          "Tela inicial do Lab 118: título em pixel art, botão Jogar e bancadas com frascos coloridos.",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Lab 118 - Construtor Atômico" },

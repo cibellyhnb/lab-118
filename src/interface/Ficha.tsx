@@ -6,7 +6,16 @@
  * trancada.
  ******************************************************************************/
 import { Link } from "@tanstack/react-router";
-import { APLICACOES, CURIOSIDADES, NOME_CATEGORIA, artigoDoElemento, classificar, descoberto, elementoPorZ, isotoposNecessarios } from "@/motor";
+import {
+  APLICACOES,
+  CURIOSIDADES,
+  NOME_CATEGORIA,
+  artigoDoElemento,
+  classificar,
+  descoberto,
+  elementoPorZ,
+  isotoposNecessarios,
+} from "@/motor";
 import { Stars, TopBar, catStyle } from "./comuns";
 import { notacaoIon } from "@/motor";
 import { useProgresso } from "./store";
@@ -14,7 +23,12 @@ import { PixelArt } from "./PixelArt";
 import { PALETA_ILUS, ilustracaoDe } from "./ilus";
 
 // fase do JSON escrita para a tela
-const FASE = { solido: "Sólido", liquido: "Líquido", gasoso: "Gasoso", desconhecido: "Desconhecido" } as const;
+const FASE = {
+  solido: "Sólido",
+  liquido: "Líquido",
+  gasoso: "Gasoso",
+  desconhecido: "Desconhecido",
+} as const;
 // numero no formato brasileiro (virgula decimal), com ate 6 casas
 const fmt = (x: number) => x.toLocaleString("pt-BR", { maximumFractionDigits: 6 });
 
@@ -90,7 +104,9 @@ export function Ficha({ z }: { z: number }) {
         <TopBar titulo="FICHA" />
         <div className="pixel-panel p-6 text-center">
           <p className="font-display mb-4 text-sm">ELEMENTO BLOQUEADO</p>
-          <p className="mb-4">Monte o átomo neutro deste elemento no laboratório para abrir a ficha.</p>
+          <p className="mb-4">
+            Monte o átomo neutro deste elemento no laboratório para abrir a ficha.
+          </p>
           <Link to="/laboratorio" search={{ z }} className="pixel-btn btn-gold">
             IR PARA A MISSÃO
           </Link>
@@ -110,7 +126,11 @@ export function Ficha({ z }: { z: number }) {
   // textos do motor tem prioridade; o JSON fica de reserva
   const aplicacoes = APLICACOES[z] ?? f.usos ?? [];
   // curiosidades do JSON; sem elas, usa a frase do motor
-  const curiosidades = f.curiosidades?.length ? f.curiosidades : CURIOSIDADES[z] ? [CURIOSIDADES[z]!] : [];
+  const curiosidades = f.curiosidades?.length
+    ? f.curiosidades
+    : CURIOSIDADES[z]
+      ? [CURIOSIDADES[z]!]
+      : [];
   // grupos 1, 2 e 13 a 18: so neles o jogo mostra eletrons de valencia fixos
   const principal = el.grupo !== null && (el.grupo <= 2 || el.grupo >= 13);
 
@@ -119,7 +139,10 @@ export function Ficha({ z }: { z: number }) {
       <TopBar titulo="FICHA" />
 
       {/* cabecalho: ilustracao (ou carta simples), nome, familia, fase e estrelas */}
-      <header className="anim-flip pixel-block block-open flex flex-wrap items-center gap-5 p-5" style={catStyle(el.categoria)}>
+      <header
+        className="anim-flip pixel-block block-open flex flex-wrap items-center gap-5 p-5"
+        style={catStyle(el.categoria)}
+      >
         {ilus ? (
           <div className="pixel-block flex w-40 flex-col items-center gap-1 bg-parchment p-2 sm:w-44">
             <div className="flex w-full items-baseline justify-between">
@@ -142,7 +165,12 @@ export function Ficha({ z }: { z: number }) {
             {el.grupo ? ` · Grupo ${el.grupo}` : ""}
           </p>
           {/* do 104 em diante a fase e so prevista, nunca foi medida */}
-          <p>Estado físico à temperatura ambiente: {el.z >= 104 && el.fase_ambiente !== "desconhecido" ? `${FASE[el.fase_ambiente]} (previsto)` : FASE[el.fase_ambiente]}</p>
+          <p>
+            Estado físico à temperatura ambiente:{" "}
+            {el.z >= 104 && el.fase_ambiente !== "desconhecido"
+              ? `${FASE[el.fase_ambiente]} (previsto)`
+              : FASE[el.fase_ambiente]}
+          </p>
           <Stars estrelas={prog?.estrelas ?? [false, false, false]} scale={4} />
         </div>
       </header>
@@ -178,10 +206,15 @@ export function Ficha({ z }: { z: number }) {
               // se sobrar um cartao sozinho na ultima linha, ele ocupa as duas colunas
               const sozinho = aplicacoes.length % 2 === 1 && k === aplicacoes.length - 1;
               return (
-                <li key={linha} className={`flex flex-col border-[3px] border-ink bg-parchment-shade ${sozinho ? "sm:col-span-2" : ""}`}>
+                <li
+                  key={linha}
+                  className={`flex flex-col border-[3px] border-ink bg-parchment-shade ${sozinho ? "sm:col-span-2" : ""}`}
+                >
                   <span className="h-2" style={{ background: `var(--cat-${el.categoria})` }} />
                   <div className="flex flex-1 flex-col gap-2 p-3">
-                    <span className="font-display self-start bg-ink px-2 py-1 text-[9px] leading-none text-gold">{tema.toUpperCase()}</span>
+                    <span className="font-display self-start bg-ink px-2 py-1 text-[9px] leading-none text-gold">
+                      {tema.toUpperCase()}
+                    </span>
                     <p className="text-lg leading-snug">{texto}</p>
                   </div>
                 </li>
@@ -197,28 +230,42 @@ export function Ficha({ z }: { z: number }) {
           <div className="border-[3px] border-ink bg-cloud p-3">
             <p className="font-display text-[9px]">NÚMERO DE MASSA (SEU ÁTOMO)</p>
             {/* sem atomo salvo (progresso antigo ou chave apagada): texto no lugar do numero */}
-            <p className={`font-display mt-2 ${cMontado ? "text-xl" : "text-sm"}`}>{cMontado ? cMontado.a : "Ainda não montado"}</p>
-            {!cMontado && <p className="text-sm">Monte um átomo deste elemento no laboratório para comparar com a tabela.</p>}
+            <p className={`font-display mt-2 ${cMontado ? "text-xl" : "text-sm"}`}>
+              {cMontado ? cMontado.a : "Ainda não montado"}
+            </p>
+            {!cMontado && (
+              <p className="text-sm">
+                Monte um átomo deste elemento no laboratório para comparar com a tabela.
+              </p>
+            )}
           </div>
           <div className="border-[3px] border-ink bg-cloud p-3">
-            <p className="font-display text-[9px]">{maisLongevo ? "NÚMERO DE MASSA DO ISÓTOPO MAIS LONGEVO" : "MASSA ATÔMICA (TABELA)"}</p>
-            <p className="font-display mt-2 text-xl">{el.massa_atomica ? fmt(el.massa_atomica.valor) : "sem dado"}</p>
+            <p className="font-display text-[9px]">
+              {maisLongevo ? "NÚMERO DE MASSA DO ISÓTOPO MAIS LONGEVO" : "MASSA ATÔMICA (TABELA)"}
+            </p>
+            <p className="font-display mt-2 text-xl">
+              {el.massa_atomica ? fmt(el.massa_atomica.valor) : "sem dado"}
+            </p>
           </div>
         </div>
         <p>
-          Número de massa é a soma de prótons e nêutrons de um átomo específico, e por isso é sempre um número inteiro. Massa
-          atômica é a média ponderada das massas dos isótopos naturais de um elemento, e por isso costuma ser decimal.
-          {maisLongevo && " Este elemento não tem isótopo estável, então não existe uma massa atômica padrão: a tabela mostra o número de massa do isótopo que dura mais tempo."}
+          Número de massa é a soma de prótons e nêutrons de um átomo específico, e por isso é sempre
+          um número inteiro. Massa atômica é a média ponderada das massas dos isótopos naturais de
+          um elemento, e por isso costuma ser decimal.
+          {maisLongevo &&
+            " Este elemento não tem isótopo estável, então não existe uma massa atômica padrão: a tabela mostra o número de massa do isótopo que dura mais tempo."}
         </p>
         {cMontado && el.massa_atomica && !maisLongevo && (
           <p className="mt-2">
-            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}, com número de massa {cMontado.a}. Na tabela, a massa atômica d{art}{" "}
-            {el.nome.toLowerCase()} é {fmt(el.massa_atomica.valor)}, a média dos isótopos naturais.
+            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}, com número de massa {cMontado.a}
+            . Na tabela, a massa atômica d{art} {el.nome.toLowerCase()} é{" "}
+            {fmt(el.massa_atomica.valor)}, a média dos isótopos naturais.
           </p>
         )}
         {cMontado && el.massa_atomica && maisLongevo && (
           <p className="mt-2">
-            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}. O isótopo que dura mais tempo é {art} {el.nome.toLowerCase()}-{fmt(el.massa_atomica.valor)}.
+            Você montou {art} {el.nome.toLowerCase()}-{cMontado.a}. O isótopo que dura mais tempo é{" "}
+            {art} {el.nome.toLowerCase()}-{fmt(el.massa_atomica.valor)}.
           </p>
         )}
       </Secao>
@@ -244,7 +291,10 @@ export function Ficha({ z }: { z: number }) {
             {el.isotopos.map((i) => {
               const reg = prog?.isotopos.includes(i.a);
               return (
-                <li key={i.a} className={`border-[3px] border-ink p-2 ${reg ? "bg-gold" : "bg-cloud"}`}>
+                <li
+                  key={i.a}
+                  className={`border-[3px] border-ink p-2 ${reg ? "bg-gold" : "bg-cloud"}`}
+                >
                   <span className="font-display text-[10px]">
                     {el.simbolo}-{i.a}
                   </span>{" "}
@@ -257,23 +307,36 @@ export function Ficha({ z }: { z: number }) {
             })}
           </ul>
           <p className="mt-2 text-sm">
-            Estrela 2: registre {isotoposNecessarios(z)} {isotoposNecessarios(z) === 1 ? "isótopo" : "isótopos"} do catálogo.
+            Estrela 2: registre {isotoposNecessarios(z)}{" "}
+            {isotoposNecessarios(z) === 1 ? "isótopo" : "isótopos"} do catálogo.
           </p>
         </Secao>
       )}
 
       {/* o que o jogador ja registrou e os ions comuns do elemento */}
       <Secao titulo="SUAS VARIANTES">
-        <p>Isótopos: {prog?.isotopos.length ? prog.isotopos.map((a) => `${el.simbolo}-${a}`).join(", ") : "nenhum ainda"}</p>
-        <p>Íons: {prog?.ions.length ? prog.ions.map((q) => notacaoIon(el.simbolo, q)).join(", ") : "nenhum ainda"}</p>
+        <p>
+          Isótopos:{" "}
+          {prog?.isotopos.length
+            ? prog.isotopos.map((a) => `${el.simbolo}-${a}`).join(", ")
+            : "nenhum ainda"}
+        </p>
+        <p>
+          Íons:{" "}
+          {prog?.ions.length
+            ? prog.ions.map((q) => notacaoIon(el.simbolo, q)).join(", ")
+            : "nenhum ainda"}
+        </p>
         {el.ions_comuns.length > 0 && (
           <p className="mt-2 text-sm">
-            Comuns em compostos: {el.ions_comuns.map((q) => notacaoIon(el.simbolo, q)).join(", ")}. Íons isolados não são o mesmo que íons em compostos.
+            Comuns em compostos: {el.ions_comuns.map((q) => notacaoIon(el.simbolo, q)).join(", ")}.
+            Íons isolados não são o mesmo que íons em compostos.
           </p>
         )}
         {el.ions_comuns.length === 0 && (
           <p className="mt-2 text-sm">
-            Este elemento não costuma formar íons simples em compostos. Mesmo assim, dá para montar íons dele no laboratório.
+            Este elemento não costuma formar íons simples em compostos. Mesmo assim, dá para montar
+            íons dele no laboratório.
           </p>
         )}
       </Secao>
@@ -297,7 +360,8 @@ export function Ficha({ z }: { z: number }) {
         </Secao>
       )}
       <p className="pb-6 text-sm text-parchment-shade">
-        Sobre este modelo: o átomo é desenhado com camadas. É uma metáfora visual; elétrons não orbitam como planetas.
+        Sobre este modelo: o átomo é desenhado com camadas. É uma metáfora visual; elétrons não
+        orbitam como planetas.
       </p>
     </main>
   );

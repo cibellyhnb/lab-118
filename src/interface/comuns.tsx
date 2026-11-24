@@ -41,7 +41,13 @@ export function TelaCheia() {
     else void document.documentElement.requestFullscreen().catch(() => undefined);
   };
   return (
-    <button type="button" onClick={alternar} className="pixel-btn btn-parchment" aria-pressed={cheia} title={cheia ? "Sair da tela cheia (Esc)" : "Tela cheia"}>
+    <button
+      type="button"
+      onClick={alternar}
+      className="pixel-btn btn-parchment"
+      aria-pressed={cheia}
+      title={cheia ? "Sair da tela cheia (Esc)" : "Tela cheia"}
+    >
       {cheia ? "SAIR DA TELA CHEIA" : "TELA CHEIA"}
     </button>
   );
@@ -77,11 +83,26 @@ export function SoundToggle() {
  * estrelas, de 1 a 3, ganham a animacao de moeda).
  * retorna: as tres estrelas lado a lado.
  ******************************************************************************/
-export function Stars({ estrelas, scale = 3, animar = [] }: { estrelas: boolean[]; scale?: number; animar?: number[] }) {
+export function Stars({
+  estrelas,
+  scale = 3,
+  animar = [],
+}: {
+  estrelas: boolean[];
+  scale?: number;
+  animar?: number[];
+}) {
   return (
-    <span className="inline-flex gap-1" aria-label={`${estrelas.filter(Boolean).length} de 3 estrelas`}>
+    <span
+      className="inline-flex gap-1"
+      aria-label={`${estrelas.filter(Boolean).length} de 3 estrelas`}
+    >
       {[0, 1, 2].map((i) => (
-        <span key={i} className={animar.includes(i + 1) ? "anim-coin inline-block" : "inline-block"} style={{ animationDelay: `${i * 120}ms` }}>
+        <span
+          key={i}
+          className={animar.includes(i + 1) ? "anim-coin inline-block" : "inline-block"}
+          style={{ animationDelay: `${i * 120}ms` }}
+        >
           <Star filled={!!estrelas[i]} scale={scale} />
         </span>
       ))}
@@ -103,7 +124,11 @@ export function Clouds() {
         { top: "48%", delay: "-22s", s: 3 },
         { top: "26%", delay: "-41s", s: 5 },
       ].map((c, i) => (
-        <div key={i} className="anim-drift absolute left-0" style={{ top: c.top, animationDelay: c.delay }}>
+        <div
+          key={i}
+          className="anim-drift absolute left-0"
+          style={{ top: c.top, animationDelay: c.delay }}
+        >
           <PixelArt rows={CLOUD} scale={c.s} palette={{ k: C.ink, w: C.cloud, s: C.sky }} />
         </div>
       ))}
@@ -122,7 +147,11 @@ function BotaoVoltar() {
   const podeVoltar = useCanGoBack();
   const navegar = useNavigate();
   return (
-    <button type="button" className="pixel-btn btn-parchment" onClick={() => (podeVoltar ? router.history.back() : void navegar({ to: "/mapa" }))}>
+    <button
+      type="button"
+      className="pixel-btn btn-parchment"
+      onClick={() => (podeVoltar ? router.history.back() : void navegar({ to: "/mapa" }))}
+    >
       ◀ VOLTAR
     </button>
   );
@@ -138,7 +167,11 @@ export function TopBar({ titulo, compacto = false }: { titulo: string; compacto?
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <BotaoVoltar />
-      <h1 className={`font-display text-sm text-parchment sm:text-base ${compacto ? "hidden sm:block" : ""}`}>{titulo}</h1>
+      <h1
+        className={`font-display text-sm text-parchment sm:text-base ${compacto ? "hidden sm:block" : ""}`}
+      >
+        {titulo}
+      </h1>
       <div className="flex gap-2">
         <BotaoAjuda />
         <SoundToggle />

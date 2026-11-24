@@ -41,12 +41,20 @@ function Bloco({ el }: { el: Elemento }) {
   // com as 3 estrelas o bloco fica dourado
   const ouro = dominado(estado, el.z);
   // coluna + 1 porque a primeira coluna da grade e a dos rotulos "Mundo"
-  const estilo = { ...catStyle(el.categoria), gridRow: el.posicao.linha, gridColumn: el.posicao.coluna + 1 };
+  const estilo = {
+    ...catStyle(el.categoria),
+    gridRow: el.posicao.linha,
+    gridColumn: el.posicao.coluna + 1,
+  };
   const classe = `pixel-block aspect-square flex flex-col items-center justify-center ${aberto ? "block-open" : "block-locked"} ${ouro ? "block-gold" : ""} hover:brightness-110 focus-visible:z-10`;
   // quadradinho claro no canto marca os elementos da Trilha essencial. nos blocos
   // trancados ele aparece vazio; nos descobertos vira a caixa do numero atomico
   const trilha = el.trilha_essencial && (
-    <span aria-hidden className="absolute left-0 top-0 h-1.5 w-1.5 bg-parchment" style={{ boxShadow: "1px 1px 0 var(--ink)" }} />
+    <span
+      aria-hidden
+      className="absolute left-0 top-0 h-1.5 w-1.5 bg-parchment"
+      style={{ boxShadow: "1px 1px 0 var(--ink)" }}
+    />
   );
 
   // trancado: o nome fica escondido, so periodo e grupo no aria-label
@@ -60,7 +68,11 @@ function Bloco({ el }: { el: Elemento }) {
         aria-label={`Bloqueado: período ${el.periodo}${el.grupo ? `, grupo ${el.grupo}` : ""}. Abrir missão.`}
       >
         {trilha}
-        <PixelArt rows={LOCK} scale={2} palette={{ k: C.ink, g: "color-mix(in oklab, var(--cat) 60%, var(--parchment))" }} />
+        <PixelArt
+          rows={LOCK}
+          scale={2}
+          palette={{ k: C.ink, g: "color-mix(in oklab, var(--cat) 60%, var(--parchment))" }}
+        />
       </Link>
     );
   }
@@ -101,7 +113,10 @@ function Bloco({ el }: { el: Elemento }) {
 function Familias() {
   const { estado } = useProgresso();
   return (
-    <section className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t-[3px] border-dashed border-wood/50 pt-2" aria-label="Famílias da tabela">
+    <section
+      className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t-[3px] border-dashed border-wood/50 pt-2"
+      aria-label="Famílias da tabela"
+    >
       <p className="font-display text-[11px]">Famílias</p>
       <ul className="flex flex-1 flex-wrap gap-2">
         {FAMILIAS.map((f) => {
@@ -112,18 +127,34 @@ function Familias() {
             <>
               <Emblema familia={f.id} scale={2} apagado={!pr.completa} />
               <span className="font-display text-[8px] leading-none">
-                {pr.completa ? (selo > 0 ? <Stars estrelas={[selo >= 1, selo >= 2, selo >= 3]} scale={1} /> : "QUIZ") : `${pr.descobertos}/${pr.total}`}
+                {pr.completa ? (
+                  selo > 0 ? (
+                    <Stars estrelas={[selo >= 1, selo >= 2, selo >= 3]} scale={1} />
+                  ) : (
+                    "QUIZ"
+                  )
+                ) : (
+                  `${pr.descobertos}/${pr.total}`
+                )}
               </span>
             </>
           );
           return (
             <li key={f.id}>
               {pr.completa ? (
-                <Link to="/quiz" search={{ familia: f.id }} className="flex flex-col items-center gap-1 hover:brightness-110" title={`${f.nome}: fazer o quiz`}>
+                <Link
+                  to="/quiz"
+                  search={{ familia: f.id }}
+                  className="flex flex-col items-center gap-1 hover:brightness-110"
+                  title={`${f.nome}: fazer o quiz`}
+                >
                   {corpo}
                 </Link>
               ) : (
-                <span className="flex flex-col items-center gap-1" title={`${f.nome}: ${pr.descobertos} de ${pr.total} descobertos`}>
+                <span
+                  className="flex flex-col items-center gap-1"
+                  title={`${f.nome}: ${pr.descobertos} de ${pr.total} descobertos`}
+                >
                   {corpo}
                 </span>
               )}
@@ -136,7 +167,18 @@ function Familias() {
 }
 
 // rotulo de cada linha da grade; a 8a e o espaco antes de lantanideos e actinideos
-const ROTULOS_LINHA = ["Mundo 1", "Mundo 2", "Mundo 3", "Mundo 4", "Mundo 5", "Mundo 6", "Mundo 7", "", "Lant.", "Actin."];
+const ROTULOS_LINHA = [
+  "Mundo 1",
+  "Mundo 2",
+  "Mundo 3",
+  "Mundo 4",
+  "Mundo 5",
+  "Mundo 6",
+  "Mundo 7",
+  "",
+  "Lant.",
+  "Actin.",
+];
 
 /*******************************************************************************
  * Mapa
@@ -186,119 +228,162 @@ export function Mapa() {
       {/* em telas baixas, cabecalho e tabela encolhem juntos para a tabela caber inteira
           sem rolar (a grade tem ~1,9 de largura para 1 de altura). @container deixa o
           botao PROXIMA MISSAO escolher o lugar pela largura que sobrou */}
-      <div className="@container mx-auto w-full" style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}>
-      <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="pixel-btn btn-parchment px-3 text-base" aria-label="Voltar para a tela inicial" title="Voltar ao início">
-              ◀
-            </Link>
-            <div>
-            <h1 className="leading-none">
-              <Link to="/" title="Tela inicial" className="block hover:brightness-110">
-                <TituloLab className="w-[150px] sm:w-[210px]" />
+      <div
+        className="@container mx-auto w-full"
+        style={{ maxWidth: "min(84rem, max(672px, calc((100svh - 300px) * 1.9 + 2rem)))" }}
+      >
+        <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-4">
+              <Link
+                to="/"
+                className="pixel-btn btn-parchment px-3 text-base"
+                aria-label="Voltar para a tela inicial"
+                title="Voltar ao início"
+              >
+                ◀
               </Link>
-            </h1>
-            <p className="font-display mt-2 text-[8px] tracking-widest text-parchment-shade sm:text-[10px]">CONSTRUTOR ATÔMICO</p>
+              <div>
+                <h1 className="leading-none">
+                  <Link to="/" title="Tela inicial" className="block hover:brightness-110">
+                    <TituloLab className="w-[150px] sm:w-[210px]" />
+                  </Link>
+                </h1>
+                <p className="font-display mt-2 text-[8px] tracking-widest text-parchment-shade sm:text-[10px]">
+                  CONSTRUTOR ATÔMICO
+                </p>
+              </div>
+            </div>
+            {/* atalhos; o botao FINAL so aparece com a tabela completa. em areas estreitas
+              (menos de 52rem) a PROXIMA MISSAO vem para ca, para nao espremer a barra */}
+            <div className="flex gap-2">
+              {proxima && (
+                <Link
+                  to="/laboratorio"
+                  search={{ z: proxima.z }}
+                  className="pixel-btn btn-gold hidden @max-[52rem]:inline"
+                >
+                  ▶ PRÓXIMA MISSÃO
+                </Link>
+              )}
+              <Link to="/quiz" className="pixel-btn btn-parchment">
+                QUIZ
+              </Link>
+              <Link to="/glossario" className="pixel-btn btn-parchment">
+                GLOSSÁRIO
+              </Link>
+              {tot.elementos >= ELEMENTOS.length && (
+                <button type="button" className="pixel-btn btn-gold" onClick={() => setFinal(true)}>
+                  ★ FINAL
+                </button>
+              )}
+              <SoundToggle />
+              <BotaoAjuda />
             </div>
           </div>
-          {/* atalhos; o botao FINAL so aparece com a tabela completa. em areas estreitas
-              (menos de 52rem) a PROXIMA MISSAO vem para ca, para nao espremer a barra */}
-          <div className="flex gap-2">
-            {proxima && (
-              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold hidden @max-[52rem]:inline">
-                ▶ PRÓXIMA MISSÃO
-              </Link>
-            )}
-            <Link to="/quiz" className="pixel-btn btn-parchment">
-              QUIZ
-            </Link>
-            <Link to="/glossario" className="pixel-btn btn-parchment">
-              GLOSSÁRIO
-            </Link>
-            {tot.elementos >= ELEMENTOS.length && (
-              <button type="button" className="pixel-btn btn-gold" onClick={() => setFinal(true)}>
-                ★ FINAL
-              </button>
-            )}
-            <SoundToggle />
-            <BotaoAjuda />
-          </div>
-        </div>
-        {/* painel de progresso: contagens, barra, proxima missao e familias */}
-        <div className="pixel-panel flex flex-col gap-2 p-3">
-          {/* uma linha so, sem quebrar: textos fixos, barra com o espaco que sobra e o
+          {/* painel de progresso: contagens, barra, proxima missao e familias */}
+          <div className="pixel-panel flex flex-col gap-2 p-3">
+            {/* uma linha so, sem quebrar: textos fixos, barra com o espaco que sobra e o
               botao no fim. a largura do mapa depende da altura da janela, entao em janelas
               baixas a linha fica estreita; nesse caso o botao vai para o cabecalho */}
-          <div className="flex items-center gap-x-6">
-            <p className="font-display shrink-0 whitespace-nowrap text-[11px]">Elementos {tot.elementos}/118</p>
-            <p className="font-display flex shrink-0 items-center gap-2 whitespace-nowrap text-[11px]">
-              <Star filled scale={2} /> Estrelas {tot.estrelas}/354
-            </p>
-            <div className="h-5 min-w-0 flex-1 border-[3px] border-ink bg-panel" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso da tabela">
-              <div className="h-full bg-gold" style={{ width: `${pct}%`, boxShadow: "inset 0 -3px 0 var(--wood)" }} />
+            <div className="flex items-center gap-x-6">
+              <p className="font-display shrink-0 whitespace-nowrap text-[11px]">
+                Elementos {tot.elementos}/118
+              </p>
+              <p className="font-display flex shrink-0 items-center gap-2 whitespace-nowrap text-[11px]">
+                <Star filled scale={2} /> Estrelas {tot.estrelas}/354
+              </p>
+              <div
+                className="h-5 min-w-0 flex-1 border-[3px] border-ink bg-panel"
+                role="progressbar"
+                aria-valuenow={pct}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label="Progresso da tabela"
+              >
+                <div
+                  className="h-full bg-gold"
+                  style={{ width: `${pct}%`, boxShadow: "inset 0 -3px 0 var(--wood)" }}
+                />
+              </div>
+              {proxima && (
+                // tamanho normal dos botoes do jogo; some em areas estreitas, onde o botao do
+                // cabecalho toma o lugar
+                <Link
+                  to="/laboratorio"
+                  search={{ z: proxima.z }}
+                  className="pixel-btn btn-gold shrink-0 whitespace-nowrap @max-[52rem]:hidden"
+                >
+                  ▶ PRÓXIMA MISSÃO
+                </Link>
+              )}
             </div>
-            {proxima && (
-              // tamanho normal dos botoes do jogo; some em areas estreitas, onde o botao do
-              // cabecalho toma o lugar
-              <Link to="/laboratorio" search={{ z: proxima.z }} className="pixel-btn btn-gold shrink-0 whitespace-nowrap @max-[52rem]:hidden">
-                ▶ PRÓXIMA MISSÃO
-              </Link>
-            )}
+            <Familias />
           </div>
-          <Familias />
-        </div>
-      </header>
+        </header>
 
-      {/* aviso quando o progresso salvo estava estragado */}
-      {avisoCorrompido && (
-        <p role="alert" className="pixel-panel mx-auto mt-4 max-w-3xl p-3">
-          Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo antigo foi guardada.
-        </p>
-      )}
+        {/* aviso quando o progresso salvo estava estragado */}
+        {avisoCorrompido && (
+          <p role="alert" className="pixel-panel mx-auto mt-4 max-w-3xl p-3">
+            Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo
+            antigo foi guardada.
+          </p>
+        )}
 
-      <section className="px-2 py-3 sm:px-4" aria-label="Tabela periódica">
-        <div
-          className="grid gap-[3px]"
-          style={{ gridTemplateColumns: "minmax(36px,auto) repeat(18, minmax(0,1fr))", gridTemplateRows: "repeat(7, auto) 12px auto auto" }}
-        >
-          {/* rotulos das linhas */}
-          {ROTULOS_LINHA.map((r, i) =>
-            r ? (
-              <span key={i} className="font-display flex items-center pr-1 text-[7px] text-parchment-shade sm:text-[9px]" style={{ gridRow: i + 1, gridColumn: 1 }}>
-                {r}
+        <section className="px-2 py-3 sm:px-4" aria-label="Tabela periódica">
+          <div
+            className="grid gap-[3px]"
+            style={{
+              gridTemplateColumns: "minmax(36px,auto) repeat(18, minmax(0,1fr))",
+              gridTemplateRows: "repeat(7, auto) 12px auto auto",
+            }}
+          >
+            {/* rotulos das linhas */}
+            {ROTULOS_LINHA.map((r, i) =>
+              r ? (
+                <span
+                  key={i}
+                  className="font-display flex items-center pr-1 text-[7px] text-parchment-shade sm:text-[9px]"
+                  style={{ gridRow: i + 1, gridColumn: 1 }}
+                >
+                  {r}
+                </span>
+              ) : null,
+            )}
+            {/* casas tracejadas que indicam onde entram lantanideos e actinideos */}
+            {[6, 7].map((linha) => (
+              <span
+                key={linha}
+                aria-hidden
+                className="font-display flex aspect-square items-center justify-center border-2 border-dashed border-parchment-shade text-[7px] text-parchment-shade"
+                style={{ gridRow: linha, gridColumn: 4 }}
+              >
+                {linha === 6 ? "57-71" : "89-103"}
               </span>
-            ) : null,
-          )}
-          {/* casas tracejadas que indicam onde entram lantanideos e actinideos */}
-          {[6, 7].map((linha) => (
-            <span
-              key={linha}
-              aria-hidden
-              className="font-display flex aspect-square items-center justify-center border-2 border-dashed border-parchment-shade text-[7px] text-parchment-shade"
-              style={{ gridRow: linha, gridColumn: 4 }}
-            >
-              {linha === 6 ? "57-71" : "89-103"}
-            </span>
-          ))}
-          {ELEMENTOS.map((el) => (
-            <Bloco key={el.z} el={el} />
-          ))}
-        </div>
+            ))}
+            {ELEMENTOS.map((el) => (
+              <Bloco key={el.z} el={el} />
+            ))}
+          </div>
 
-        {/* legenda das cores */}
-        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Legenda das famílias">
-          {(Object.keys(NOME_CATEGORIA) as Categoria[]).map((c) => (
-            <li key={c} className="pixel-block block-open flex items-center gap-1.5 px-1.5 py-0.5 text-xs" style={catStyle(c)}>
-              <span className="font-display text-[8px]">{SIGLA_CATEGORIA[c]}</span>
-              {NOME_CATEGORIA[c]}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-2 text-xs text-parchment-shade">
-          Clique num bloco com cadeado para abrir a missão dele. O quadradinho claro no canto marca a Trilha essencial.
-        </p>
-      </section>
+          {/* legenda das cores */}
+          <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Legenda das famílias">
+            {(Object.keys(NOME_CATEGORIA) as Categoria[]).map((c) => (
+              <li
+                key={c}
+                className="pixel-block block-open flex items-center gap-1.5 px-1.5 py-0.5 text-xs"
+                style={catStyle(c)}
+              >
+                <span className="font-display text-[8px]">{SIGLA_CATEGORIA[c]}</span>
+                {NOME_CATEGORIA[c]}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs text-parchment-shade">
+            Clique num bloco com cadeado para abrir a missão dele. O quadradinho claro no canto
+            marca a Trilha essencial.
+          </p>
+        </section>
       </div>
       {final && <Final onFechar={fecharFinal} />}
     </main>

@@ -176,11 +176,18 @@ export function membros(id: Categoria): Elemento[] {
  * retorna: { descobertos, total, completa }; completa so e true quando
  * todos os membros foram descobertos.
  ******************************************************************************/
-export function progressoFamilia(estado: Progresso, id: Categoria): { descobertos: number; total: number; completa: boolean } {
+export function progressoFamilia(
+  estado: Progresso,
+  id: Categoria,
+): { descobertos: number; total: number; completa: boolean } {
   const lista = membros(id);
   const descobertos = lista.filter((e) => descoberto(estado, e.z)).length;
   // lista.length > 0 evita dar uma familia vazia como completa
-  return { descobertos, total: lista.length, completa: lista.length > 0 && descobertos === lista.length };
+  return {
+    descobertos,
+    total: lista.length,
+    completa: lista.length > 0 && descobertos === lista.length,
+  };
 }
 
 // texto guardado em conquistas para lembrar que a cerimonia ja aconteceu

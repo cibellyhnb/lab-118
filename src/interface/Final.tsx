@@ -25,7 +25,11 @@ type Fogo = { id: number; x: number; y: number; cor: string };
  ******************************************************************************/
 function Estouro({ x, y, cor }: { x: number; y: number; cor: string }) {
   return (
-    <div aria-hidden className="pointer-events-none absolute" style={{ left: `${x}%`, top: `${y}%` }}>
+    <div
+      aria-hidden
+      className="pointer-events-none absolute"
+      style={{ left: `${x}%`, top: `${y}%` }}
+    >
       {Array.from({ length: 16 }, (_, i) => {
         const ang = (i / 16) * Math.PI * 2;
         // faiscas alternam entre perto e longe; uma em cada 4 e quase branca
@@ -34,7 +38,11 @@ function Estouro({ x, y, cor }: { x: number; y: number; cor: string }) {
           <span
             key={i}
             className="anim-faisca absolute block h-1.5 w-1.5"
-            style={{ background: i % 4 === 0 ? "#fff6d6" : cor, ["--dx" as string]: `${Math.cos(ang) * dist}px`, ["--dy" as string]: `${Math.sin(ang) * dist + 18}px` }}
+            style={{
+              background: i % 4 === 0 ? "#fff6d6" : cor,
+              ["--dx" as string]: `${Math.cos(ang) * dist}px`,
+              ["--dy" as string]: `${Math.sin(ang) * dist + 18}px`,
+            }}
           />
         );
       })}
@@ -102,7 +110,12 @@ export function Final({ onFechar }: { onFechar: () => void }) {
     if (fase < 2) return;
     const solta = () => {
       const n = ++ultimoFogo.current;
-      const f: Fogo = { id: n, x: 8 + ((n * 37) % 84), y: 8 + ((n * 23) % 38), cor: CORES[n % CORES.length]! };
+      const f: Fogo = {
+        id: n,
+        x: 8 + ((n * 37) % 84),
+        y: 8 + ((n * 23) % 38),
+        cor: CORES[n % CORES.length]!,
+      };
       // a explosao dura 1100 ms e sai um fogo a cada 750 ms: guardando so o anterior
       // e o novo, cada fogo sai do DOM logo depois de terminar
       setFogos((l) => [...l.slice(-1), f]);
@@ -129,9 +142,17 @@ export function Final({ onFechar }: { onFechar: () => void }) {
   const ultima = pagina === paginas.length - 1;
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Final do jogo: tabela completa" className="fixed inset-0 z-[65] overflow-hidden" style={{ background: "var(--ink)" }}>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Final do jogo: tabela completa"
+      className="fixed inset-0 z-[65] overflow-hidden"
+      style={{ background: "var(--ink)" }}
+    >
       {/* flash e confete a partir da fase 2 */}
-      {fase >= 2 && <div aria-hidden className="anim-flash pointer-events-none fixed inset-0 bg-cloud" />}
+      {fase >= 2 && (
+        <div aria-hidden className="anim-flash pointer-events-none fixed inset-0 bg-cloud" />
+      )}
       {fase >= 2 && <Confete />}
 
       {/* estrelinhas ao fundo */}
@@ -140,7 +161,13 @@ export function Final({ onFechar }: { onFechar: () => void }) {
           <span
             key={i}
             className="anim-twinkle absolute block bg-cloud"
-            style={{ left: `${(i * 41 + 9) % 98}%`, top: `${(i * 59 + 5) % 90}%`, width: i % 3 === 0 ? 4 : 2, height: i % 3 === 0 ? 4 : 2, animationDelay: `${(i % 7) * 300}ms` }}
+            style={{
+              left: `${(i * 41 + 9) % 98}%`,
+              top: `${(i * 59 + 5) % 90}%`,
+              width: i % 3 === 0 ? 4 : 2,
+              height: i % 3 === 0 ? 4 : 2,
+              animationDelay: `${(i % 7) * 300}ms`,
+            }}
           />
         ))}
       </div>
@@ -152,7 +179,11 @@ export function Final({ onFechar }: { onFechar: () => void }) {
 
       {/* botao de pular a animacao */}
       {fase < 3 && (
-        <button type="button" className="pixel-btn btn-parchment absolute right-3 top-3 z-10 text-xs" onClick={pular}>
+        <button
+          type="button"
+          className="pixel-btn btn-parchment absolute right-3 top-3 z-10 text-xs"
+          onClick={pular}
+        >
           PULAR ▶▶
         </button>
       )}
@@ -162,7 +193,9 @@ export function Final({ onFechar }: { onFechar: () => void }) {
         <div className="flex h-[17vh] flex-col items-center justify-center gap-2 text-center">
           {fase === 1 ? (
             <>
-              <p className="font-display text-[10px] text-parchment sm:text-xs">ACENDENDO O LABORATÓRIO…</p>
+              <p className="font-display text-[10px] text-parchment sm:text-xs">
+                ACENDENDO O LABORATÓRIO…
+              </p>
               <p className="font-display text-xl text-gold sm:text-3xl">
                 {revelados}/{lista.length}
               </p>
@@ -170,7 +203,10 @@ export function Final({ onFechar }: { onFechar: () => void }) {
           ) : (
             <div className="anim-slide-up flex flex-col items-center gap-2">
               <p className="font-display text-[10px] text-gold sm:text-xs">★ TABELA COMPLETA ★</p>
-              <h2 className="font-display text-2xl leading-none text-gold sm:text-5xl" style={{ textShadow: "4px 4px 0 var(--wood-dark)" }}>
+              <h2
+                className="font-display text-2xl leading-none text-gold sm:text-5xl"
+                style={{ textShadow: "4px 4px 0 var(--wood-dark)" }}
+              >
                 <TituloLab className="w-[min(70vw,380px)]" />
               </h2>
             </div>
@@ -180,7 +216,11 @@ export function Final({ onFechar }: { onFechar: () => void }) {
         {/* a tabela se acendendo */}
         <div
           className="grid gap-[3px]"
-          style={{ width: "min(94vw, 84vh)", gridTemplateColumns: "repeat(18, minmax(0,1fr))", gridTemplateRows: "repeat(7, auto) 12px auto auto" }}
+          style={{
+            width: "min(94vw, 84vh)",
+            gridTemplateColumns: "repeat(18, minmax(0,1fr))",
+            gridTemplateRows: "repeat(7, auto) 12px auto auto",
+          }}
           aria-hidden
         >
           {lista.map((el, i) => {
@@ -194,10 +234,14 @@ export function Final({ onFechar }: { onFechar: () => void }) {
                   gridRow: el.posicao.linha,
                   gridColumn: el.posicao.coluna,
                   // na fase 2 o brilho anda em onda pela diagonal
-                  ...(fase >= 2 ? { animationDelay: `${(el.posicao.linha + el.posicao.coluna) * 80}ms` } : {}),
+                  ...(fase >= 2
+                    ? { animationDelay: `${(el.posicao.linha + el.posicao.coluna) * 80}ms` }
+                    : {}),
                 }}
               >
-                <span className="font-display text-[7px] sm:text-[10px] lg:text-xs">{el.simbolo}</span>
+                <span className="font-display text-[7px] sm:text-[10px] lg:text-xs">
+                  {el.simbolo}
+                </span>
               </span>
             );
           })}
@@ -215,11 +259,21 @@ export function Final({ onFechar }: { onFechar: () => void }) {
             ultima ? (
               <div className="flex flex-col gap-2">
                 <p className="font-display text-[9px] text-wood-dark sm:text-[10px]">
-                  {tot.elementos}/118 ELEMENTOS · {tot.estrelas}/354 ★ · {familias}/{FAMILIAS.length} FAMÍLIAS
+                  {tot.elementos}/118 ELEMENTOS · {tot.estrelas}/354 ★ · {familias}/
+                  {FAMILIAS.length} FAMÍLIAS
                 </p>
                 <div className="flex flex-wrap justify-end gap-2">
                   {/* VER DE NOVO zera tudo e recomeca da fase 1 */}
-                  <button type="button" className="pixel-btn btn-parchment" onClick={() => { setPagina(0); setRevelados(0); setFogos([]); setFase(1); }}>
+                  <button
+                    type="button"
+                    className="pixel-btn btn-parchment"
+                    onClick={() => {
+                      setPagina(0);
+                      setRevelados(0);
+                      setFogos([]);
+                      setFase(1);
+                    }}
+                  >
                     VER DE NOVO
                   </button>
                   <button type="button" className="pixel-btn btn-gold" onClick={onFechar}>

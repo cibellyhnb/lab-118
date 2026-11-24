@@ -27,7 +27,8 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     expect(r.especie).toBe("atomo_neutro");
     expect(r.nuclideo).toEqual({ rotulo: "H-1", status: "estavel" });
   });
-  it("1,1,1 H-2 estável", () => expect(c(1, 1, 1).nuclideo).toEqual({ rotulo: "H-2", status: "estavel" }));
+  it("1,1,1 H-2 estável", () =>
+    expect(c(1, 1, 1).nuclideo).toEqual({ rotulo: "H-2", status: "estavel" }));
   it("1,2,1 H-3 radioativo", () => expect(c(1, 2, 1).nuclideo?.status).toBe("radioativo"));
   // proton sozinho ainda e valido: vira cation, nao erro
   it("1,0,0 H⁺ núcleo nu", () => {
@@ -48,13 +49,15 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     expect(r.elemento?.nome).toBe("Hélio");
     expect(r.nuclideo).toEqual({ rotulo: "He-4", status: "estavel" });
   });
-  it("2,1,2 He-3", () => expect(c(2, 1, 2).nuclideo).toEqual({ rotulo: "He-3", status: "estavel" }));
+  it("2,1,2 He-3", () =>
+    expect(c(2, 1, 2).nuclideo).toEqual({ rotulo: "He-3", status: "estavel" }));
   it("6,6,6 C-12", () => {
     const r = c(6, 6, 6);
     expect(r.especie).toBe("atomo_neutro");
     expect(r.nuclideo).toEqual({ rotulo: "C-12", status: "estavel" });
   });
-  it("6,8,6 C-14 radioativo", () => expect(c(6, 8, 6).nuclideo).toEqual({ rotulo: "C-14", status: "radioativo" }));
+  it("6,8,6 C-14 radioativo", () =>
+    expect(c(6, 8, 6).nuclideo).toEqual({ rotulo: "C-14", status: "radioativo" }));
   it("6,6,5 C⁺", () => {
     const r = c(6, 6, 5);
     expect(r.especie).toBe("cation");
@@ -106,14 +109,16 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
   // REG-06: o maximo para Z = 1 e 4 eletrons (Z + 3), entao 5 passa do limite
   it("1,0,5 REG-06", () => expect(c(1, 0, 5).erro).toBe("ELETRONS_FORA_DO_LIMITE"));
   // REG-06: LIMITE_N e 200, entao 201 passa do limite
-  it("REG-06 nêutrons acima de 200", () => expect(c(6, 201, 6).erro).toBe("NEUTRONS_FORA_DO_LIMITE"));
+  it("REG-06 nêutrons acima de 200", () =>
+    expect(c(6, 201, 6).erro).toBe("NEUTRONS_FORA_DO_LIMITE"));
 });
 
 // regras gerais testadas em varias combinacoes
 describe("Regras", () => {
   it("REG-03: só Z define o elemento", () => {
     // varia neutrons e eletrons com 6 protons: sempre carbono (9 e o maximo de eletrons)
-    for (let n = 0; n < 20; n++) for (let e = 0; e <= 9; e++) expect(c(6, n, e).elemento?.simbolo).toBe("C");
+    for (let n = 0; n < 20; n++)
+      for (let e = 0; e <= 9; e++) expect(c(6, n, e).elemento?.simbolo).toBe("C");
   });
   it("REG-04: A = Z + N e carga 0 sse E = Z (propriedade)", () => {
     // varre a tabela de 3 em 3, neutrons de 17 em 17 e todos os eletrons permitidos
@@ -220,8 +225,16 @@ describe("Validação dos dados", () => {
     const cont: Record<string, number> = {};
     for (const e of ELEMENTOS) cont[e.categoria] = (cont[e.categoria] ?? 0) + 1;
     expect(cont).toEqual({
-      metal_alcalino: 6, metal_alcalino_terroso: 6, metal_transicao: 38, metal_representativo: 12,
-      semimetal: 6, nao_metal: 7, halogenio: 6, gas_nobre: 7, lantanideo: 15, actinideo: 15,
+      metal_alcalino: 6,
+      metal_alcalino_terroso: 6,
+      metal_transicao: 38,
+      metal_representativo: 12,
+      semimetal: 6,
+      nao_metal: 7,
+      halogenio: 6,
+      gas_nobre: 7,
+      lantanideo: 15,
+      actinideo: 15,
     });
   });
   // fora dos grupos principais, eletrons_valencia tem que ser null
@@ -251,7 +264,11 @@ describe("Persistência", () => {
    ****************************************************************************/
   const mem = () => {
     const m = new Map<string, string>();
-    return { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v), m };
+    return {
+      getItem: (k: string) => m.get(k) ?? null,
+      setItem: (k: string, v: string) => void m.set(k, v),
+      m,
+    };
   };
   it("salva e carrega", () => {
     const a = mem();

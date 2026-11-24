@@ -21,8 +21,16 @@ export const CARGA_MAX_COMUM = 4; // REG-10
 
 // troca cada digito pelo seu sobrescrito, para escrever a carga do ion
 const SOBRESCRITO: Record<string, string> = {
-  "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴",
-  "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹",
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
 };
 
 /*******************************************************************************
@@ -35,7 +43,13 @@ export function notacaoIon(simbolo: string, carga: number): string {
   if (carga === 0) return simbolo;
   const mod = Math.abs(carga);
   // carga 1 nao escreve o numero, so o sinal (Na⁺ e nao Na¹⁺)
-  const num = mod === 1 ? "" : String(mod).split("").map((d) => SOBRESCRITO[d]).join("");
+  const num =
+    mod === 1
+      ? ""
+      : String(mod)
+          .split("")
+          .map((d) => SOBRESCRITO[d])
+          .join("");
   return `${simbolo}${num}${carga > 0 ? "⁺" : "⁻"}`;
 }
 
@@ -101,7 +115,8 @@ export function classificar(p: Particulas): Classificacao {
   const avisos: string[] = [];
   // REG-10: carga fora da faixa comum e rara, exceto se for um ion comum do proprio
   // elemento (ex: Nb⁵⁺ e Ta⁵⁺)
-  if ((carga < CARGA_MIN_COMUM || carga > CARGA_MAX_COMUM) && !el.ions_comuns.includes(carga)) avisos.push("CARGA_RARA");
+  if ((carga < CARGA_MIN_COMUM || carga > CARGA_MAX_COMUM) && !el.ions_comuns.includes(carga))
+    avisos.push("CARGA_RARA");
   if (status === "nao_catalogado") avisos.push("NUCLIDEO_NAO_CATALOGADO");
   // nenhum eletron: so o nucleo
   if (e === 0) avisos.push("NUCLEO_NU");

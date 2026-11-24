@@ -37,7 +37,13 @@ export function BotaoAjuda() {
 
   return (
     <>
-      <button type="button" className="pixel-btn btn-gold px-4" aria-label="Ajuda" title="Ajuda" onClick={() => setAberto(true)}>
+      <button
+        type="button"
+        className="pixel-btn btn-gold px-4"
+        aria-label="Ajuda"
+        title="Ajuda"
+        onClick={() => setAberto(true)}
+      >
         ?
       </button>
       {/* fundo escuro: clicar fora do painel fecha */}
@@ -50,22 +56,35 @@ export function BotaoAjuda() {
           style={{ background: "color-mix(in oklab, var(--ink) 75%, transparent)" }}
           onClick={() => setAberto(false)}
         >
-          <div className="pixel-panel anim-pop max-h-[90vh] w-full max-w-md overflow-y-auto p-4" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="pixel-panel anim-pop max-h-[90vh] w-full max-w-md overflow-y-auto p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* stopPropagation acima: clique dentro do painel nao fecha */}
             <h2 className="font-display mb-3 text-sm">AJUDA</h2>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">3 REGRAS DE OURO</h3>
             <ul className="mb-3 list-disc pl-5">
-              <li><strong>Prótons</strong> definem o elemento.</li>
-              <li><strong>Nêutrons</strong> definem o isótopo (a massa).</li>
-              <li><strong>Elétrons</strong> definem o íon (a carga).</li>
+              <li>
+                <strong>Prótons</strong> definem o elemento.
+              </li>
+              <li>
+                <strong>Nêutrons</strong> definem o isótopo (a massa).
+              </li>
+              <li>
+                <strong>Elétrons</strong> definem o íon (a carga).
+              </li>
             </ul>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">AS 3 ESTRELAS</h3>
-            <p className="mb-3">Cada elemento tem 3 estrelas: monte o átomo neutro, um isótopo e um íon.</p>
+            <p className="mb-3">
+              Cada elemento tem 3 estrelas: monte o átomo neutro, um isótopo e um íon.
+            </p>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">SIGLAS DO PAINEL</h3>
             <dl className="mb-4 grid grid-cols-[1.75rem_1fr] items-start gap-x-3 gap-y-2">
               {SIGLAS.map(([k, d]) => (
                 <div key={k} className="contents">
-                  <dt className="font-display flex h-7 w-7 items-center justify-center bg-ink text-xs text-gold">{k}</dt>
+                  <dt className="font-display flex h-7 w-7 items-center justify-center bg-ink text-xs text-gold">
+                    {k}
+                  </dt>
                   <dd className="leading-snug">{d}</dd>
                 </div>
               ))}
@@ -75,10 +94,19 @@ export function BotaoAjuda() {
               <Link to="/tutorial" className="pixel-btn btn-sky" onClick={() => setAberto(false)}>
                 REVER TUTORIAL
               </Link>
-              <Link to="/glossario" className="pixel-btn btn-parchment" onClick={() => setAberto(false)}>
+              <Link
+                to="/glossario"
+                className="pixel-btn btn-parchment"
+                onClick={() => setAberto(false)}
+              >
                 GLOSSÁRIO
               </Link>
-              <button ref={fechar} type="button" className="pixel-btn btn-gold" onClick={() => setAberto(false)}>
+              <button
+                ref={fechar}
+                type="button"
+                className="pixel-btn btn-gold"
+                onClick={() => setAberto(false)}
+              >
                 FECHAR
               </button>
             </div>

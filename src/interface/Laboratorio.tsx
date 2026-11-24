@@ -48,8 +48,16 @@ const MSG_ERRO: Record<string, string> = {
   NEUTRONS_FORA_DO_LIMITE: "Nêutrons demais para o laboratório.",
 };
 // nomes do status do nuclideo e da especie, como aparecem no painel
-const MSG_STATUS = { estavel: "Estável", radioativo: "Radioativo", nao_catalogado: "Não catalogado" } as const;
-const ROTULO_ESPECIE = { atomo_neutro: "Átomo neutro", cation: "Cátion (carga positiva)", anion: "Ânion (carga negativa)" } as const;
+const MSG_STATUS = {
+  estavel: "Estável",
+  radioativo: "Radioativo",
+  nao_catalogado: "Não catalogado",
+} as const;
+const ROTULO_ESPECIE = {
+  atomo_neutro: "Átomo neutro",
+  cation: "Cátion (carga positiva)",
+  anion: "Ânion (carga negativa)",
+} as const;
 
 /*******************************************************************************
  * Guia
@@ -59,7 +67,11 @@ const ROTULO_ESPECIE = { atomo_neutro: "Átomo neutro", cation: "Cátion (carga 
  ******************************************************************************/
 export type Guia = {
   onMudar: (v: Particulas) => void;
-  onConstruir: (r: { classificacao: Classificacao; eventos: Evento[]; particulas: Particulas }) => void;
+  onConstruir: (r: {
+    classificacao: Classificacao;
+    eventos: Evento[];
+    particulas: Particulas;
+  }) => void;
 };
 
 // etiqueta de cada tipo de missao
@@ -76,7 +88,13 @@ type Feedback = { tom: "bom" | "info" | "aviso"; linhas: string[] };
  ******************************************************************************/
 function LabScene() {
   return (
-    <svg aria-hidden viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" shapeRendering="crispEdges">
+    <svg
+      aria-hidden
+      viewBox="0 0 160 90"
+      preserveAspectRatio="xMidYMid slice"
+      className="absolute inset-0 h-full w-full"
+      shapeRendering="crispEdges"
+    >
       <rect width="160" height="90" fill="var(--panel)" />
       <rect y="0" width="160" height="2" fill="var(--ink)" />
       {/* listras da parede */}
@@ -109,9 +127,27 @@ function LabScene() {
         [138, 27, "var(--cat-metal_alcalino)"],
       ].map(([x, y, c], i) => (
         <g key={i}>
-          <rect x={Number(x) + 1} y={Number(y) - 2} width="2" height="2" fill="var(--parchment-shade)" />
-          <rect x={Number(x)} y={Number(y)} width="4" height={16 - (Number(y) % 8) - (Number(y) > 20 ? 0 : 0)} fill="var(--ink)" />
-          <rect x={Number(x) + 1} y={Number(y) + 2} width="2" height={12 - (Number(y) % 8)} fill={String(c)} />
+          <rect
+            x={Number(x) + 1}
+            y={Number(y) - 2}
+            width="2"
+            height="2"
+            fill="var(--parchment-shade)"
+          />
+          <rect
+            x={Number(x)}
+            y={Number(y)}
+            width="4"
+            height={16 - (Number(y) % 8) - (Number(y) > 20 ? 0 : 0)}
+            fill="var(--ink)"
+          />
+          <rect
+            x={Number(x) + 1}
+            y={Number(y) + 2}
+            width="2"
+            height={12 - (Number(y) % 8)}
+            fill={String(c)}
+          />
         </g>
       ))}
       {/* bancada */}
@@ -171,7 +207,10 @@ function Contador({
         longo.current = false;
         timer.current = window.setTimeout(() => {
           longo.current = true;
-          timer.current = window.setInterval(() => onChange(clamp(valorRef.current + delta * 5)), 180);
+          timer.current = window.setInterval(
+            () => onChange(clamp(valorRef.current + delta * 5)),
+            180,
+          );
         }, 450) as unknown as number;
       }}
       onPointerUp={parar}
@@ -221,7 +260,13 @@ function Contador({
  * esta com as 3 estrelas, o painel de elemento completo e o botao PROXIMA
  * MISSAO (ou VER FINAL). a tela nunca troca de elemento sozinha.
  ******************************************************************************/
-export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?: Guia | undefined }) {
+export function Laboratorio({
+  alvoZ,
+  guia,
+}: {
+  alvoZ?: number | undefined;
+  guia?: Guia | undefined;
+}) {
   const store = useProgresso();
   // no tutorial, tudo acontece num progresso de treino separado do jogo salvo
   const [treino, setTreino] = useState(progressoInicial);
@@ -351,10 +396,18 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   // dentro do palco, adiciona a particula
   useEffect(() => {
     if (!drag) return;
-    const mover = (ev: PointerEvent) => setDrag((d) => (d ? { ...d, x: ev.clientX, y: ev.clientY } : d));
+    const mover = (ev: PointerEvent) =>
+      setDrag((d) => (d ? { ...d, x: ev.clientX, y: ev.clientY } : d));
     const soltar = (ev: PointerEvent) => {
       const r = palco.current?.getBoundingClientRect();
-      if (r && ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom) adicionar(drag.tipo);
+      if (
+        r &&
+        ev.clientX >= r.left &&
+        ev.clientX <= r.right &&
+        ev.clientY >= r.top &&
+        ev.clientY <= r.bottom
+      )
+        adicionar(drag.tipo);
       setDrag(null);
     };
     window.addEventListener("pointermove", mover);
@@ -390,7 +443,8 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     }
     guia?.onConstruir({ ...r, particulas: { p, n, e } });
     // frase do desafio de isotopo, calculada com o progresso de antes deste construir
-    const fraseIsotopo = missaoAntes && !guia ? retornoDesafioIsotopo(estado, missaoAntes, r.classificacao) : null;
+    const fraseIsotopo =
+      missaoAntes && !guia ? retornoDesafioIsotopo(estado, missaoAntes, r.classificacao) : null;
     setFeedback(montarFeedback(r.classificacao, r.eventos, antes, fraseIsotopo));
     // quais estrelas (1, 2 ou 3) foram ganhas agora
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
@@ -406,7 +460,8 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
       const nome = r.classificacao.elemento?.nome ?? "";
       let msg = `Você montou ${nome} com ${r.classificacao.z} ${r.classificacao.z === 1 ? "próton" : "prótons"}: o número de prótons define o elemento.`;
       // descobriu outro elemento que nao era o da missao
-      if (missao && missao.z !== desc.z) msg = `Você descobriu ${nome} por acaso. O desafio ainda está de pé.`;
+      if (missao && missao.z !== desc.z)
+        msg = `Você descobriu ${nome} por acaso. O desafio ainda está de pé.`;
       else if (missao) msg = avaliarMissao(missao, r.classificacao).mensagem + " " + msg;
       if (!guia) setCelebrar({ z: desc.z, msg });
     }
@@ -420,11 +475,17 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
    * que substitui o "ainda e..." quando existe).
    * retorna: Feedback com o tom (bom, info ou aviso) e as linhas de texto.
    ****************************************************************************/
-  function montarFeedback(cl: Classificacao, eventos: Evento[], jaDescoberto: boolean, fraseIsotopo: string | null): Feedback {
+  function montarFeedback(
+    cl: Classificacao,
+    eventos: Evento[],
+    jaDescoberto: boolean,
+    fraseIsotopo: string | null,
+  ): Feedback {
     // montagem invalida: so a mensagem de erro (e o aviso do neutron livre)
     if (!cl.valido) {
       const l = [MSG_ERRO[cl.erro ?? ""] ?? ""];
-      if (cl.avisos.includes("NEUTRON_LIVRE_INSTAVEL")) l.push("Um nêutron sozinho é instável: dura em média alguns minutos.");
+      if (cl.avisos.includes("NEUTRON_LIVRE_INSTAVEL"))
+        l.push("Um nêutron sozinho é instável: dura em média alguns minutos.");
       return { tom: "aviso", linhas: l };
     }
     const nome = cl.elemento?.nome ?? "";
@@ -433,22 +494,39 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
     for (const ev of eventos) {
       if (ev.tipo === "ISOTOPO_REGISTRADO") l.push(`Isótopo registrado: ${nome}-${ev.a}.`);
       if (ev.tipo === "ION_REGISTRADO") l.push(`Íon registrado: ${cl.notacao}.`);
-      if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 2) l.push("Estrela do isótopo! Nêutrons mudam a massa, não o elemento.");
-      if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 3) l.push("Estrela do íon! Elétrons mudam a carga, não o elemento.");
+      if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 2)
+        l.push("Estrela do isótopo! Nêutrons mudam a massa, não o elemento.");
+      if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 3)
+        l.push("Estrela do íon! Elétrons mudam a carga, não o elemento.");
     }
     // ion de elemento ainda nao descoberto: lembra que a descoberta pede atomo neutro;
     // atomo neutro de outro elemento ja conhecido: repete a dica da missao
-    if (cl.especie !== "atomo_neutro" && !jaDescoberto && !eventos.some((x) => x.tipo === "ELEMENTO_DESCOBERTO"))
-      l.push(`Isso é um íon de ${nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`);
-    else if (missao && cl.especie === "atomo_neutro" && cl.z !== missao.z && jaDescoberto) l.push(avaliarMissao(missao, cl).mensagem);
+    if (
+      cl.especie !== "atomo_neutro" &&
+      !jaDescoberto &&
+      !eventos.some((x) => x.tipo === "ELEMENTO_DESCOBERTO")
+    )
+      l.push(
+        `Isso é um íon de ${nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`,
+      );
+    else if (missao && cl.especie === "atomo_neutro" && cl.z !== missao.z && jaDescoberto)
+      l.push(avaliarMissao(missao, cl).mensagem);
     if (cl.nuclideo?.status === "nao_catalogado")
-      l.push("Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.");
-    if (cl.avisos.includes("CARGA_RARA")) l.push("Cargas tão extremas só aparecem em condições muito especiais, como no interior de estrelas.");
+      l.push(
+        "Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.",
+      );
+    if (cl.avisos.includes("CARGA_RARA"))
+      l.push(
+        "Cargas tão extremas só aparecem em condições muito especiais, como no interior de estrelas.",
+      );
     // desafio de isotopo: isotopo repetido ou fora do catalogo tem frase propria, no lugar
     // do "ainda e..." (que diria "ja registrou" de um nucleo que nunca foi registrado)
     if (fraseIsotopo) l.push(fraseIsotopo);
     // nada novo num elemento conhecido: sugere mudar neutrons ou eletrons
-    else if (eventos.length === 0 && jaDescoberto) l.push(`Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`);
+    else if (eventos.length === 0 && jaDescoberto)
+      l.push(
+        `Ainda é ${nome.toLowerCase()}! Você já registrou essa combinação. Mude os nêutrons ou os elétrons.`,
+      );
     return { tom: eventos.length ? "bom" : "info", linhas: l };
   }
 
@@ -459,14 +537,21 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   // so quando o elemento do laboratorio ja tem as 3 estrelas: antes disso o painel de
   // desafio guia (descobrir, isotopo, ion) e o botao pularia desafios dele. espera o
   // progresso carregar para nao contar um elemento como completo por engano
-  const elementoTerminou = store.carregado && zBase !== null && missaoParaElemento(estado, zBase) === null;
+  const elementoTerminou =
+    store.carregado && zBase !== null && missaoParaElemento(estado, zBase) === null;
   // VER FINAL so quando nao sobra missao nenhuma, nem no proprio elemento (proximoElemento
   // nunca devolve o elemento de partida, entao null sozinho nao basta)
   const acabou = elementoTerminou && proximoZ === null;
   // aparece sempre que o elemento esta completo, inclusive aberto ja completo pelo mapa,
   // porque o painel de elemento completo manda o jogador seguir por ele. nunca no
   // tutorial e so depois das janelas: cartao de descoberta e cerimonia vem antes
-  const mostrarProxima = !guia && elementoTerminou && !celebrar && !cerimonia && !pendente && (proximoZ !== null || acabou);
+  const mostrarProxima =
+    !guia &&
+    elementoTerminou &&
+    !celebrar &&
+    !cerimonia &&
+    !pendente &&
+    (proximoZ !== null || acabou);
   // vai para o laboratorio do proximo elemento, ou para o final pelo atalho /mapa?final=1
   const irParaProxima = () => {
     setEstrelaEm(null);
@@ -478,17 +563,26 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
   const progEl = c.valido ? estado.elementos[String(c.z)] : undefined;
 
   return (
-    <main className={`min-h-screen p-3 sm:p-5 ${guia ? "pb-[26rem] sm:pb-[26rem]" : "pb-44 sm:pb-44 lg:pb-5"}`}>
+    <main
+      className={`min-h-screen p-3 sm:p-5 ${guia ? "pb-[26rem] sm:pb-[26rem]" : "pb-44 sm:pb-44 lg:pb-5"}`}
+    >
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
         <TopBar titulo="LABORATÓRIO" compacto />
 
         {/* aviso de desafio cumprido (M2/M3); OK so fecha o aviso (quem leva ao proximo
             elemento e o botao amarelo do canto) */}
         {cumprida && (
-          <section role="status" className="pixel-panel anim-pop flex flex-wrap items-center gap-3 border-gold bg-gold p-3">
+          <section
+            role="status"
+            className="pixel-panel anim-pop flex flex-wrap items-center gap-3 border-gold bg-gold p-3"
+          >
             <span className="font-display text-[10px]">★ CUMPRIDO</span>
             <p className="flex-1 text-lg">{cumprida}</p>
-            <button type="button" className="pixel-btn btn-parchment" onClick={() => setCumprida(null)}>
+            <button
+              type="button"
+              className="pixel-btn btn-parchment"
+              onClick={() => setCumprida(null)}
+            >
               OK
             </button>
           </section>
@@ -496,20 +590,34 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         {festa && <Confete />}
         {/* missao atual e dicas; a key reinicia as dicas quando a missao muda */}
         {missao && (
-          <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Desafio">
-            <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{ROTULO_MISSAO[missao.tipo]}</span>
+          <section
+            className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3"
+            aria-label="Desafio"
+          >
+            <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">
+              {ROTULO_MISSAO[missao.tipo]}
+            </span>
             <p className="flex-1 text-base lg:text-lg">{missao.enunciado}</p>
-            <Dicas key={missao.id} z={missao.z} textos={missao.tipo === "M1" ? undefined : missao.dicas} />
+            <Dicas
+              key={missao.id}
+              z={missao.z}
+              textos={missao.tipo === "M1" ? undefined : missao.dicas}
+            />
           </section>
         )}
         {/* elemento completo: no lugar do painel de desafio, no mesmo estilo. a tela fica
             neste elemento ate o jogador seguir pelo botao amarelo */}
         {!guia && !missao && elementoTerminou && alvoZ !== undefined && (
-          <section className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3" aria-label="Elemento completo">
+          <section
+            className="pixel-panel flex flex-wrap items-center gap-2 p-2 lg:gap-3 lg:p-3"
+            aria-label="Elemento completo"
+          >
             <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">★ COMPLETO</span>
             <p className="flex-1 text-base lg:text-lg">
               {elementoPorZ(alvoZ)?.nome} completo: as 3 estrelas são suas.{" "}
-              {acabou ? "Todos os elementos estão completos! Siga pelo botão VER FINAL." : "Siga pelo botão PRÓXIMA MISSÃO para o próximo elemento."}
+              {acabou
+                ? "Todos os elementos estão completos! Siga pelo botão VER FINAL."
+                : "Siga pelo botão PRÓXIMA MISSÃO para o próximo elemento."}
             </p>
           </section>
         )}
@@ -517,9 +625,17 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
         <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="flex flex-col gap-3">
             {/* palco: cenario e o atomo desenhado. data-tut marca o que o tutorial destaca */}
-            <div ref={palco} data-tut="palco" className="relative aspect-[4/3] max-h-[40svh] min-h-[150px] w-full overflow-hidden border-[3px] border-ink lg:max-h-[calc(100svh-24.5rem)] lg:min-h-[180px]" style={{ boxShadow: "var(--drop)" }}>
+            <div
+              ref={palco}
+              data-tut="palco"
+              className="relative aspect-[4/3] max-h-[40svh] min-h-[150px] w-full overflow-hidden border-[3px] border-ink lg:max-h-[calc(100svh-24.5rem)] lg:min-h-[180px]"
+              style={{ boxShadow: "var(--drop)" }}
+            >
               <LabScene />
-              <div className="absolute inset-[6%] mx-auto aspect-square" style={{ maxHeight: "88%" }}>
+              <div
+                className="absolute inset-[6%] mx-auto aspect-square"
+                style={{ maxHeight: "88%" }}
+              >
                 <Atomo p={p} n={n} e={e} status={c.nuclideo?.status ?? null} wobbleKey={wobble} />
               </div>
               <p className="font-display absolute bottom-2 left-2 bg-ink px-2 py-1 text-[8px] text-parchment">
@@ -529,8 +645,17 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
 
             {/* no celular os controles ficam presos no pe da tela; no tutorial e no
                 computador ficam no fluxo normal */}
-            <div className={guia ? "flex flex-col gap-3 lg:flex-row lg:items-stretch" : "fixed inset-x-0 bottom-0 z-30 flex flex-col gap-2 border-t-[3px] border-ink bg-night p-2 lg:static lg:z-auto lg:flex-row lg:items-stretch lg:gap-3 lg:border-0 lg:bg-transparent lg:p-0"}>
-              <div data-tut="particulas" className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-6 lg:px-6 lg:py-3">
+            <div
+              className={
+                guia
+                  ? "flex flex-col gap-3 lg:flex-row lg:items-stretch"
+                  : "fixed inset-x-0 bottom-0 z-30 flex flex-col gap-2 border-t-[3px] border-ink bg-night p-2 lg:static lg:z-auto lg:flex-row lg:items-stretch lg:gap-3 lg:border-0 lg:bg-transparent lg:p-0"
+              }
+            >
+              <div
+                data-tut="particulas"
+                className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-6 lg:px-6 lg:py-3"
+              >
                 {/* uma coluna por particula: botao de arrastar e contador */}
                 {(
                   [
@@ -557,8 +682,12 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                         }
                       }}
                     >
-                      <span className="lg:hidden"><ParticleSprite tipo={t} size={28} /></span>
-                      <span className="hidden lg:block"><ParticleSprite tipo={t} size={40} /></span>
+                      <span className="lg:hidden">
+                        <ParticleSprite tipo={t} size={28} />
+                      </span>
+                      <span className="hidden lg:block">
+                        <ParticleSprite tipo={t} size={40} />
+                      </span>
                       <span>{NOME_PARTICULA[t].toUpperCase()}</span>
                     </button>
                     <Contador tipo={t} valor={v} max={max} onChange={(x) => mudar(t, v, x, set)} />
@@ -567,8 +696,16 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
               </div>
               <div className="mx-auto flex w-full max-w-2xl gap-2 lg:w-44 lg:max-w-none lg:flex-col lg:gap-3">
                 {/* CONSTRUIR e LIMPAR */}
-                <button type="button" data-tut="construir" className="pixel-btn btn-gold flex-1 whitespace-nowrap px-2 py-2 text-xs lg:py-4" onClick={aoConstruir}>
-                  <span aria-hidden className="text-base leading-none">★</span> CONSTRUIR
+                <button
+                  type="button"
+                  data-tut="construir"
+                  className="pixel-btn btn-gold flex-1 whitespace-nowrap px-2 py-2 text-xs lg:py-4"
+                  onClick={aoConstruir}
+                >
+                  <span aria-hidden className="text-base leading-none">
+                    ★
+                  </span>{" "}
+                  CONSTRUIR
                 </button>
                 <button
                   type="button"
@@ -588,15 +725,29 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
 
           <aside className="flex flex-col gap-3">
             {/* painel de leitura: carta do elemento, especie, numeros Z N E A q e status */}
-            <section data-tut="painel" className="pixel-panel p-4" aria-live="polite" aria-label="Painel de leitura">
+            <section
+              data-tut="painel"
+              className="pixel-panel p-4"
+              aria-live="polite"
+              aria-label="Painel de leitura"
+            >
               <div className="flex items-start gap-3">
-                <div className="pixel-block block-open flex h-24 w-24 shrink-0 flex-col items-center justify-center" style={{ ["--cat" as string]: elVivo ? `var(--cat-${elVivo.categoria})` : "var(--parchment-shade)" }}>
+                <div
+                  className="pixel-block block-open flex h-24 w-24 shrink-0 flex-col items-center justify-center"
+                  style={{
+                    ["--cat" as string]: elVivo
+                      ? `var(--cat-${elVivo.categoria})`
+                      : "var(--parchment-shade)",
+                  }}
+                >
                   {c.valido ? (
                     <>
                       <span className="font-display text-[9px]">{c.a}</span>
                       <span className="font-display text-2xl">{c.elemento?.simbolo}</span>
                       {/* so a parte da carga da notacao, ex: "²⁺" */}
-                      <span className="font-display text-[9px]">{c.carga === 0 ? "" : c.notacao?.replace(c.elemento?.simbolo ?? "", "")}</span>
+                      <span className="font-display text-[9px]">
+                        {c.carga === 0 ? "" : c.notacao?.replace(c.elemento?.simbolo ?? "", "")}
+                      </span>
                     </>
                   ) : (
                     <span className="font-display text-2xl">?</span>
@@ -617,7 +768,11 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                   ["A", c.a, "massa"],
                   ["q", c.carga > 0 ? `+${c.carga}` : c.carga, "carga"],
                 ].map(([k, v, d]) => (
-                  <div key={String(k)} className="border-[3px] border-ink bg-cloud py-2" title={String(d)}>
+                  <div
+                    key={String(k)}
+                    className="border-[3px] border-ink bg-cloud py-2"
+                    title={String(d)}
+                  >
                     <dt>{k}</dt>
                     <dd className="mt-1 text-xs">{v}</dd>
                   </div>
@@ -629,25 +784,36 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                 </p>
               )}
               {/* erro so aparece se algo ja foi montado */}
-              {!c.valido && (p > 0 || n > 0 || e > 0) && <p className="mt-3">{MSG_ERRO[c.erro ?? ""]}</p>}
+              {!c.valido && (p > 0 || n > 0 || e > 0) && (
+                <p className="mt-3">{MSG_ERRO[c.erro ?? ""]}</p>
+              )}
               {progEl && (
                 <div className="mt-3 flex items-center gap-2">
                   <Stars estrelas={progEl.estrelas} animar={animarEstrelas} />
-                  <span className="text-sm">{descoberto(estado, c.z) ? "Descoberto" : "Ainda não descoberto"}</span>
+                  <span className="text-sm">
+                    {descoberto(estado, c.z) ? "Descoberto" : "Ainda não descoberto"}
+                  </span>
                 </div>
               )}
             </section>
 
             {/* retorno do ultimo CONSTRUIR */}
             {feedback && feedback.linhas.length > 0 && (
-              <section role="status" className={`pixel-panel p-4 ${feedback.tom === "aviso" ? "bg-parchment-shade" : ""}`}>
+              <section
+                role="status"
+                className={`pixel-panel p-4 ${feedback.tom === "aviso" ? "bg-parchment-shade" : ""}`}
+              >
                 {feedback.linhas.map((l, i) => (
                   <p key={i} className="mb-1 last:mb-0">
                     {l}
                   </p>
                 ))}
                 {c.valido && descoberto(estado, c.z) && (
-                  <Link to="/elemento/$z" params={{ z: String(c.z) }} className="mt-2 inline-block underline">
+                  <Link
+                    to="/elemento/$z"
+                    params={{ z: String(c.z) }}
+                    className="mt-2 inline-block underline"
+                  >
                     Abrir ficha d{artigoDoElemento(c.elemento?.nome ?? "")} {c.elemento?.nome}
                   </Link>
                 )}
@@ -657,7 +823,11 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
                 16 px de respiro (gap-3 da coluna + mt-1) e nunca cobre painel nem link; no
                 celular continua fixo e sobe acima dos controles presos no pe da tela */}
             {mostrarProxima && (
-              <button type="button" className="pixel-btn btn-gold fixed bottom-48 right-4 z-30 px-5 py-4 text-sm lg:static lg:mt-1 lg:self-end" onClick={irParaProxima}>
+              <button
+                type="button"
+                className="pixel-btn btn-gold fixed bottom-48 right-4 z-30 px-5 py-4 text-sm lg:static lg:mt-1 lg:self-end"
+                onClick={irParaProxima}
+              >
                 {acabou ? "★ VER FINAL" : "▶ PRÓXIMA MISSÃO"}
               </button>
             )}
@@ -667,13 +837,19 @@ export function Laboratorio({ alvoZ, guia }: { alvoZ?: number | undefined; guia?
 
       {/* particula seguindo o ponteiro durante o arraste */}
       {drag && (
-        <div aria-hidden className="pointer-events-none fixed z-50" style={{ left: drag.x - 24, top: drag.y - 24 }}>
+        <div
+          aria-hidden
+          className="pointer-events-none fixed z-50"
+          style={{ left: drag.x - 24, top: drag.y - 24 }}
+        >
           <ParticleSprite tipo={drag.tipo} size={48} />
         </div>
       )}
       {/* janelas por cima da tela */}
       {cerimonia && <CerimoniaFamilia familia={cerimonia} onFechar={() => setCerimonia(null)} />}
-      {celebrar && <Celebracao z={celebrar.z} mensagem={celebrar.msg} onFechar={() => setCelebrar(null)} />}
+      {celebrar && (
+        <Celebracao z={celebrar.z} mensagem={celebrar.msg} onFechar={() => setCelebrar(null)} />
+      )}
     </main>
   );
 }

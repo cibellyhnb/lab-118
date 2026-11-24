@@ -28,7 +28,11 @@ export function Efeitos() {
     // acha o botao sob o evento, ignorando os desativados
     const alvo = (e: Event) => {
       const el = (e.target as Element | null)?.closest?.(ALVO) ?? null;
-      return el && !(el as HTMLButtonElement).disabled && el.getAttribute("aria-disabled") !== "true" ? el : null;
+      return el &&
+        !(el as HTMLButtonElement).disabled &&
+        el.getAttribute("aria-disabled") !== "true"
+        ? el
+        : null;
     };
     const entrou = (e: PointerEvent) => {
       // no toque nao existe "passar por cima"
@@ -58,5 +62,11 @@ export function Efeitos() {
   }, [caminho, tocar]);
 
   // a key muda com a rota, entao a div e recriada e a animacao da cortina recomeca
-  return <div key={caminho} aria-hidden className="anim-cortina pointer-events-none fixed inset-0 z-[100] bg-ink" />;
+  return (
+    <div
+      key={caminho}
+      aria-hidden
+      className="anim-cortina pointer-events-none fixed inset-0 z-[100] bg-ink"
+    />
+  );
 }

@@ -22,7 +22,9 @@ function useDigitando(texto: string, aoFalar: (i: number) => void) {
   falar.current = aoFalar;
 
   useEffect(() => {
-    const reduzido = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduzido =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduzido) {
       setN(texto.length);
       return;
@@ -46,7 +48,11 @@ function useDigitando(texto: string, aoFalar: (i: number) => void) {
     if (n > 0 && n < texto.length && n % 2 === 0 && texto[n - 1] !== " ") falar.current(n);
   }, [n, texto]);
 
-  return { visivel: texto.slice(0, n), pronto: n >= texto.length, terminar: () => setN(texto.length) };
+  return {
+    visivel: texto.slice(0, n),
+    pronto: n >= texto.length,
+    terminar: () => setN(texto.length),
+  };
 }
 
 /*******************************************************************************

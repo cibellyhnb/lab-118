@@ -53,7 +53,10 @@ export function concluirTutorial(estado: Progresso, conceder: boolean): Progress
  * concluirTutorial).
  * retorna: o registro novo, ou o mesmo objeto se nao houver o que acrescentar.
  ******************************************************************************/
-export function completarUltimoMontado(ultimo: Record<number, Particulas>, estado: Progresso): Record<number, Particulas> {
+export function completarUltimoMontado(
+  ultimo: Record<number, Particulas>,
+  estado: Progresso,
+): Record<number, Particulas> {
   let novo = ultimo;
   for (const [chave, atomo] of Object.entries(ATOMOS_DO_TUTORIAL)) {
     const z = Number(chave);
