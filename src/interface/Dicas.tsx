@@ -4,7 +4,7 @@
  * cada vez, com uma mini tabela periodica na dica de posicao.
  ******************************************************************************/
 import { useState } from "react";
-import { ELEMENTOS, elementoPorZ, gerarDicas } from "@/motor";
+import { ELEMENTOS, elementoPorZ, gerarDicas, type Missao } from "@/motor";
 
 /*******************************************************************************
  * MiniTabela
@@ -51,15 +51,32 @@ function MiniTabela({ z }: { z: number }) {
   );
 }
 
+// frase de quando as dicas acabam: no desafio de descobrir o elemento o jogador muda os
+// protons; nos de isotopo e de ion os protons ficam e mudam os neutrons ou os eletrons
+const DICA_FINAL: Record<Missao["tipo"], string> = {
+  M1: "Dica de cientista: tente variar os prótons até o painel mostrar o nome certo.",
+  M2: "Dica de cientista: deixe os prótons como estão e mude só os nêutrons até o A do painel ficar igual ao pedido.",
+  M3: "Dica de cientista: deixe os prótons como estão e mude só os elétrons, olhando a carga (q) no painel.",
+};
+
 /*******************************************************************************
  * Dicas
  * funcao: dicas da missao. o nivel 1 ja esta no enunciado; aqui o jogador
  * pede os niveis 2 a 4, um por vez, sem custo de estrelas.
- * recebe: z (elemento da missao) e textos (dicas proprias das missoes M2 e
- * M3; sem eles, usa as do motor).
+ * recebe: z (elemento da missao), textos (dicas proprias das missoes M2 e
+ * M3; sem eles, usa as do motor) e tipo (M1, M2 ou M3, para a frase que
+ * aparece quando as dicas acabam).
  * retorna: as dicas abertas e o botao de pedir a proxima.
  ******************************************************************************/
-export function Dicas({ z, textos }: { z: number; textos?: string[] | undefined }) {
+export function Dicas({
+  z,
+  textos,
+  tipo = "M1",
+}: {
+  z: number;
+  textos?: string[] | undefined;
+  tipo?: Missao["tipo"];
+}) {
   // quantas dicas ja foram abertas
   const [aberto, setAberto] = useState(0);
   const TITULOS = ["Lembrete", "Conta", "Resposta"];
@@ -102,10 +119,7 @@ export function Dicas({ z, textos }: { z: number; textos?: string[] | undefined 
           💡 PEDIR DICA ({restam})
         </button>
       ) : (
-        <p className="text-sm">
-          Sem mais dicas. Dica de cientista: tente variar os prótons até o painel mostrar o nome
-          certo.
-        </p>
+        <p className="text-sm">Sem mais dicas. {DICA_FINAL[tipo]}</p>
       )}
     </div>
   );

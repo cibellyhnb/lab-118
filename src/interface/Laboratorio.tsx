@@ -602,6 +602,7 @@ export function Laboratorio({
               key={missao.id}
               z={missao.z}
               textos={missao.tipo === "M1" ? undefined : missao.dicas}
+              tipo={missao.tipo}
             />
           </section>
         )}
