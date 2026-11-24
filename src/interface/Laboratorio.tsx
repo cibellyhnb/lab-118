@@ -567,7 +567,7 @@ export function Laboratorio({
       className={`min-h-screen p-3 sm:p-5 ${guia ? "pb-[26rem] sm:pb-[26rem]" : "pb-44 sm:pb-44 lg:pb-5"}`}
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <TopBar titulo="LABORATÓRIO" compacto />
+        <TopBar titulo="LABORATÓRIO" compacto semAcoes={!!guia} />
 
         {/* aviso de desafio cumprido (M2/M3); OK so fecha o aviso (quem leva ao proximo
             elemento e o botao amarelo do canto) */}

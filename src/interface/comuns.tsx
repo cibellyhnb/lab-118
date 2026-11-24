@@ -160,10 +160,19 @@ function BotaoVoltar() {
 /*******************************************************************************
  * TopBar
  * funcao: barra do topo das telas: voltar, titulo, ajuda e som.
- * recebe: titulo e compacto (esconde o titulo em telas pequenas).
+ * recebe: titulo, compacto (esconde o titulo em telas pequenas) e semAcoes
+ * (esconde ajuda e som, mantendo o espaco; o tutorial usa os proprios botoes).
  * retorna: a barra.
  ******************************************************************************/
-export function TopBar({ titulo, compacto = false }: { titulo: string; compacto?: boolean }) {
+export function TopBar({
+  titulo,
+  compacto = false,
+  semAcoes = false,
+}: {
+  titulo: string;
+  compacto?: boolean;
+  semAcoes?: boolean;
+}) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <BotaoVoltar />
@@ -172,7 +181,9 @@ export function TopBar({ titulo, compacto = false }: { titulo: string; compacto?
       >
         {titulo}
       </h1>
-      <div className="flex gap-2">
+      {/* invisible guarda o lugar dos botoes (o titulo nao sai do centro) e tira eles do
+          clique e do leitor de tela */}
+      <div className={`flex gap-2 ${semAcoes ? "invisible" : ""}`}>
         <BotaoAjuda />
         <SoundToggle />
       </div>
