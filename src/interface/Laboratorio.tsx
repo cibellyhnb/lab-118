@@ -200,7 +200,7 @@ function Contador({
   const botao = (delta: 1 | -1, rotulo: string) => (
     <button
       type="button"
-      className="pixel-btn btn-parchment w-8 px-0 text-sm lg:w-10"
+      className="pixel-btn btn-parchment w-8 px-0 text-sm xl:w-10"
       aria-label={`${delta > 0 ? "Adicionar" : "Remover"} ${NOME_PARTICULA[tipo].toLowerCase()} (Shift: 5)`}
       // segurou 450 ms: passa a repetir de 5 em 5 a cada 180 ms
       onPointerDown={() => {
@@ -225,7 +225,7 @@ function Contador({
   );
 
   return (
-    <div className="flex items-center gap-1 lg:gap-2">
+    <div className="flex items-center gap-1 xl:gap-2">
       {botao(-1, "−")}
       <input
         type="number"
@@ -242,7 +242,7 @@ function Contador({
           }
         }}
         aria-label={`Quantidade de ${NOME_PARTICULA[tipo].toLowerCase()}s`}
-        className="font-display w-12 border-[3px] border-ink bg-cloud px-1 py-2 text-center text-xs text-ink lg:w-16"
+        className="font-display w-12 border-[3px] border-ink bg-cloud px-1 py-2 text-center text-xs text-ink xl:w-16"
       />
       {botao(1, "+")}
     </div>
@@ -431,6 +431,8 @@ export function Laboratorio({
     const antes = c.valido ? descoberto(estado, c.z) : false;
     const missaoAntes = missao;
     const r = construir({ p, n, e });
+    // o som de estrela toca uma vez so, mesmo quando o desafio cumprido tambem da estrela
+    let tocouEstrela = false;
     // M2 e M3 sao conferidas aqui; a M1 aparece na celebracao de descoberta
     if (missaoAntes && missaoAntes.tipo !== "M1") {
       const av = avaliarMissao(missaoAntes, r.classificacao);
@@ -439,6 +441,7 @@ export function Laboratorio({
         setFesta(true);
         window.setTimeout(() => setFesta(false), 1600);
         tocar(sons.estrela);
+        tocouEstrela = true;
       }
     }
     guia?.onConstruir({ ...r, particulas: { p, n, e } });
@@ -449,7 +452,7 @@ export function Laboratorio({
     // quais estrelas (1, 2 ou 3) foram ganhas agora
     const estrelas = r.eventos.flatMap((ev) => (ev.tipo === "ESTRELA_GANHA" ? [ev.estrela] : []));
     setAnimar(estrelas);
-    if (estrelas.length) tocar(sons.estrela);
+    if (estrelas.length && !tocouEstrela) tocar(sons.estrela);
     // estrela nova fora do tutorial: guarda o elemento para o botao PROXIMA MISSAO
     if (estrelas.length && !guia) setEstrelaEm(r.classificacao.z);
     const desc = r.eventos.find((ev) => ev.tipo === "ELEMENTO_DESCOBERTO");
@@ -567,7 +570,7 @@ export function Laboratorio({
       className={`min-h-screen p-3 sm:p-5 ${guia ? "pb-[26rem] sm:pb-[26rem]" : "pb-44 sm:pb-44 lg:pb-5"}`}
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <TopBar titulo="LABORATÓRIO" compacto />
+        <TopBar titulo="LABORATÓRIO" compacto semAcoes={!!guia} />
 
         {/* aviso de desafio cumprido (M2/M3); OK so fecha o aviso (quem leva ao proximo
             elemento e o botao amarelo do canto) */}
@@ -602,6 +605,7 @@ export function Laboratorio({
               key={missao.id}
               z={missao.z}
               textos={missao.tipo === "M1" ? undefined : missao.dicas}
+              tipo={missao.tipo}
             />
           </section>
         )}
@@ -654,7 +658,7 @@ export function Laboratorio({
             >
               <div
                 data-tut="particulas"
-                className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-6 lg:px-6 lg:py-3"
+                className="pixel-panel-dark mx-auto grid w-full max-w-2xl grid-cols-3 gap-2 p-2 lg:max-w-none lg:flex-1 lg:gap-3 lg:px-3 lg:py-3 xl:gap-6 xl:px-6"
               >
                 {/* uma coluna por particula: botao de arrastar e contador */}
                 {(
@@ -667,7 +671,7 @@ export function Laboratorio({
                   <div key={t} data-tut={`col-${t}`} className="flex flex-col items-center gap-1">
                     <button
                       type="button"
-                      className="pixel-btn btn-parchment flex touch-none flex-col items-center gap-0.5 px-2 py-1 text-[9px] lg:flex-row lg:gap-2 lg:text-sm"
+                      className="pixel-btn btn-parchment flex touch-none flex-col items-center gap-0.5 px-2 py-1 text-[9px] xl:flex-row xl:gap-2 xl:text-sm"
                       aria-label={`${NOME_PARTICULA[t]}: arraste para o átomo ou aperte Enter para adicionar`}
                       // so o botao esquerdo comeca a arrastar
                       onPointerDown={(ev) => {
@@ -682,10 +686,10 @@ export function Laboratorio({
                         }
                       }}
                     >
-                      <span className="lg:hidden">
+                      <span className="xl:hidden">
                         <ParticleSprite tipo={t} size={28} />
                       </span>
-                      <span className="hidden lg:block">
+                      <span className="hidden xl:block">
                         <ParticleSprite tipo={t} size={40} />
                       </span>
                       <span>{NOME_PARTICULA[t].toUpperCase()}</span>

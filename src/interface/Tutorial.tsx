@@ -124,6 +124,10 @@ const PASSOS: Passo[] = [
   },
 ];
 
+// distancia minima entre o topo da tela e o alvo iluminado, para os botoes fixos
+// SOM e PULAR TUTORIAL nao cobrirem o alvo
+const MARGEM_TOPO = 72;
+
 // retangulo na tela (posicao e tamanho em pixels)
 type Ret = { top: number; left: number; w: number; h: number };
 
@@ -176,11 +180,12 @@ function Foco({ alvos }: { alvos: string[] }) {
       const n = achar(alvos);
       if (n && !ajustado) {
         // rola a pagina uma vez para o alvo ficar visivel, acima da caixa de dialogo
-        // (que ocupa ~230px embaixo)
+        // (que ocupa ~230px embaixo) e abaixo dos botoes SOM e PULAR TUTORIAL, que
+        // ficam presos no topo (ate ~60px)
         ajustado = true;
         const excesso = n.top + n.h - (window.innerHeight - 230);
-        if (excesso > 0) window.scrollBy(0, Math.min(excesso, Math.max(0, n.top - 10)));
-        else if (n.top < 10) window.scrollBy(0, n.top - 10);
+        if (excesso > 0) window.scrollBy(0, Math.min(excesso, Math.max(0, n.top - MARGEM_TOPO)));
+        else if (n.top < MARGEM_TOPO) window.scrollBy(0, n.top - MARGEM_TOPO);
       }
       // so atualiza o estado se o retangulo mudou, para nao redesenhar a toa
       const s = n ? `${n.top},${n.left},${n.w},${n.h}` : "";

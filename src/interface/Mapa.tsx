@@ -210,13 +210,21 @@ export function Mapa() {
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("final") === "1") setFinal(true);
   }, []);
-  // ao fechar o final, marca que ja foi visto
+  // ao fechar o final, marca que ja foi visto. so marca com a tabela completa de verdade:
+  // aberto pelo atalho com a tabela incompleta, o final ainda abre sozinho quando o
+  // jogador completar a tabela
   const fecharFinal = () => {
     setFinal(false);
-    try {
-      localStorage.setItem(CHAVE_FINAL, "1");
-    } catch {
-      /* ignora */
+    if (tot.elementos >= ELEMENTOS.length) {
+      try {
+        localStorage.setItem(CHAVE_FINAL, "1");
+      } catch {
+        /* ignora */
+      }
+    }
+    // tira o ?final=1 da url, para recarregar a pagina nao abrir o final de novo
+    if (new URLSearchParams(window.location.search).has("final")) {
+      void navegar({ to: "/mapa", replace: true });
     }
   };
   const proxima = gerarMissao(estado, 0);
