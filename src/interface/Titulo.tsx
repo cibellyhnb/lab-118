@@ -33,7 +33,15 @@ const LINHAS = montar("LAB 118");
  * recebe: className (define a largura, e o tamanho vem dela), cor e sombra.
  * retorna: um <svg> com o titulo.
  ******************************************************************************/
-export function TituloLab({ className, cor = "var(--gold)", sombra = "var(--wood-dark)" }: { className?: string; cor?: string; sombra?: string }) {
+export function TituloLab({
+  className,
+  cor = "var(--gold)",
+  sombra = "var(--wood-dark)",
+}: {
+  className?: string;
+  cor?: string;
+  sombra?: string;
+}) {
   const w = LINHAS[0]!.length;
   // desenha o titulo deslocado de (dx, dy); cada pixel vale 2 unidades e
   // pixels seguidos viram um retangulo so
@@ -48,13 +56,28 @@ export function TituloLab({ className, cor = "var(--gold)", sombra = "var(--wood
         }
         let len = 1;
         while (linha[x + len] === "X") len++;
-        out.push(<rect key={`${k}${x}-${y}`} x={x * 2 + dx} y={y * 2 + dy} width={len * 2} height={2} fill={fill} />);
+        out.push(
+          <rect
+            key={`${k}${x}-${y}`}
+            x={x * 2 + dx}
+            y={y * 2 + dy}
+            width={len * 2}
+            height={2}
+            fill={fill}
+          />,
+        );
         x += len;
       }
       return out;
     });
   return (
-    <svg viewBox={`0 0 ${w * 2 + 2} ${7 * 2 + 2}`} shapeRendering="crispEdges" role="img" aria-label="Lab 118" className={`h-auto ${className ?? ""}`}>
+    <svg
+      viewBox={`0 0 ${w * 2 + 2} ${7 * 2 + 2}`}
+      shapeRendering="crispEdges"
+      role="img"
+      aria-label="Lab 118"
+      className={`h-auto ${className ?? ""}`}
+    >
       {/* sombra primeiro, um pixel abaixo e a direita; a cor vem por cima */}
       {rects(1, 1, sombra, "s")}
       {rects(0, 0, cor, "c")}

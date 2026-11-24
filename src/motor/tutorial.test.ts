@@ -5,7 +5,12 @@
  * tutorial deixa para a ficha.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
-import { ATOMOS_DO_TUTORIAL, completarUltimoMontado, concluirTutorial, MONTAGENS_DO_TUTORIAL } from "./tutorial";
+import {
+  ATOMOS_DO_TUTORIAL,
+  completarUltimoMontado,
+  concluirTutorial,
+  MONTAGENS_DO_TUTORIAL,
+} from "./tutorial";
 import { construir, progressoInicial } from "./progresso";
 
 // fechamento do tutorial e o progresso de treino
@@ -45,7 +50,10 @@ describe("tutorial", () => {
 describe("átomo montado deixado pelo tutorial", () => {
   it("tutorial concluído grava H-1 e He-4 neutros para os elementos concedidos", () => {
     const s = concluirTutorial(progressoInicial(), true);
-    expect(completarUltimoMontado({}, s)).toEqual({ 1: { p: 1, n: 0, e: 1 }, 2: { p: 2, n: 2, e: 2 } });
+    expect(completarUltimoMontado({}, s)).toEqual({
+      1: { p: 1, n: 0, e: 1 },
+      2: { p: 2, n: 2, e: 2 },
+    });
     expect(ATOMOS_DO_TUTORIAL[1]).toEqual(MONTAGENS_DO_TUTORIAL[0]);
   });
 

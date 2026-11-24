@@ -67,10 +67,7 @@ export type Elemento = {
 
 // motivos pelos quais uma montagem e recusada
 export type CodigoErro =
-  | "SEM_PROTONS"
-  | "Z_ACIMA_DE_118"
-  | "ELETRONS_FORA_DO_LIMITE"
-  | "NEUTRONS_FORA_DO_LIMITE";
+  "SEM_PROTONS" | "Z_ACIMA_DE_118" | "ELETRONS_FORA_DO_LIMITE" | "NEUTRONS_FORA_DO_LIMITE";
 
 export type StatusNuclideo = "estavel" | "radioativo" | "nao_catalogado";
 

@@ -9,7 +9,13 @@
 import { describe, expect, it } from "vitest";
 import { ELEMENTOS } from "./dados";
 import { classificar } from "./classificar";
-import { avaliarMissao, elementoSugerido, missaoParaElemento, proximoElemento, retornoDesafioIsotopo } from "./missoes";
+import {
+  avaliarMissao,
+  elementoSugerido,
+  missaoParaElemento,
+  proximoElemento,
+  retornoDesafioIsotopo,
+} from "./missoes";
 import { construir, contarTotais, dominado, progressoInicial } from "./progresso";
 import type { Missao, Particulas, Progresso } from "./tipos";
 
@@ -113,7 +119,10 @@ describe("proximoElemento", () => {
   });
 
   it("retorna null quando todos os elementos têm 3 estrelas", () => {
-    const s = dominar(progressoInicial(), ELEMENTOS.map((e) => e.z));
+    const s = dominar(
+      progressoInicial(),
+      ELEMENTOS.map((e) => e.z),
+    );
     expect(contarTotais(s)).toEqual({ elementos: 118, estrelas: 354 });
     for (const z of [1, 60, 118]) expect(proximoElemento(s, z)).toBeNull();
   });
@@ -127,7 +136,10 @@ describe("proximoElemento", () => {
     }
     // so o Nd (60) pendente: a partir dele nao ha outro, entao null em vez de 60;
     // a partir de qualquer outro elemento, o resultado e 60
-    const quase = dominar(progressoInicial(), ELEMENTOS.map((e) => e.z).filter((z) => z !== 60));
+    const quase = dominar(
+      progressoInicial(),
+      ELEMENTOS.map((e) => e.z).filter((z) => z !== 60),
+    );
     expect(proximoElemento(quase, 60)).toBeNull();
     expect(proximoElemento(quase, 10)).toBe(60);
     expect(proximoElemento(quase, 100)).toBe(60);
@@ -137,7 +149,11 @@ describe("proximoElemento", () => {
 // sequencia do laboratorio preso a um elemento, passando so pelos estados do progresso
 describe("sequência de missões de um elemento no laboratório", () => {
   // so os elementos antes do fosforo completos, para o proximo depois dele ser o enxofre
-  const antes = () => dominar(progressoInicial(), Array.from({ length: 14 }, (_, i) => i + 1));
+  const antes = () =>
+    dominar(
+      progressoInicial(),
+      Array.from({ length: 14 }, (_, i) => i + 1),
+    );
   const estrelas = (s: Progresso) => s.elementos["15"]?.estrelas;
 
   it("fósforo descoberto com P-31: M1, um M2 e M3, e depois o elemento fica completo", () => {
@@ -180,7 +196,10 @@ describe("sequência de missões de um elemento no laboratório", () => {
     expect(elementoSugerido(progressoInicial())).toBe(1);
     // tudo descoberto, so o Nd (60) sem as outras estrelas
     const todos = ELEMENTOS.map((e) => e.z);
-    let s = dominar(progressoInicial(), todos.filter((z) => z !== 60));
+    let s = dominar(
+      progressoInicial(),
+      todos.filter((z) => z !== 60),
+    );
     s = construir(s, { p: 60, n: 82, e: 60 }).estado;
     expect(elementoSugerido(s)).toBe(60);
     expect(elementoSugerido(dominar(s, [60]))).toBeNull();
@@ -204,7 +223,9 @@ describe("retorno do desafio de isótopo", () => {
 
   it("núcleo fora do catálogo lembra que o desafio pede um isótopo do catálogo", () => {
     // Li-13 (10 neutrons) nao esta no catalogo do litio
-    expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 10, e: 3 }))).toBe("Este desafio pede um isótopo do catálogo: monte o Lítio-6.");
+    expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 10, e: 3 }))).toBe(
+      "Este desafio pede um isótopo do catálogo: monte o Lítio-6.",
+    );
   });
 
   it("isótopo novo do catálogo, outro elemento ou outro desafio: sem frase extra", () => {

@@ -49,12 +49,23 @@ export function Inicio() {
   };
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center gap-5 overflow-hidden px-4 pb-[16vh] pt-6 text-center" style={{ background: "linear-gradient(to bottom, var(--ink) 0 45%, color-mix(in oklab, var(--ink) 70%, var(--night)) 100%)" }}>
+    <main
+      className="relative flex min-h-screen flex-col items-center justify-center gap-5 overflow-hidden px-4 pb-[16vh] pt-6 text-center"
+      style={{
+        background:
+          "linear-gradient(to bottom, var(--ink) 0 45%, color-mix(in oklab, var(--ink) 70%, var(--night)) 100%)",
+      }}
+    >
       <DecorCena cena="titulo" />
 
       {/* canto esquerdo: reiniciar o jogo, pequeno e discreto */}
       <div className="absolute left-3 top-3 z-10">
-        <button type="button" className="pixel-btn btn-dark text-[9px]" onClick={() => setConfirmando(true)} disabled={!carregado}>
+        <button
+          type="button"
+          className="pixel-btn btn-dark text-[9px]"
+          onClick={() => setConfirmando(true)}
+          disabled={!carregado}
+        >
           REINICIAR JOGO
         </button>
       </div>
@@ -70,7 +81,10 @@ export function Inicio() {
             para o tutorial, que esconderia o aviso do mapa */}
         {avisoCorrompido && (
           <div role="alert" className="pixel-panel flex max-w-md flex-col items-center gap-3 p-4">
-            <p>Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo antigo foi guardada.</p>
+            <p>
+              Não conseguimos ler o progresso salvo, então começamos um novo. Uma cópia do arquivo
+              antigo foi guardada.
+            </p>
             <button type="button" className="pixel-btn btn-gold" onClick={dispensarAviso}>
               ENTENDI
             </button>
@@ -80,16 +94,30 @@ export function Inicio() {
         <div className="anim-titulo">
           <TituloLab className="w-[min(86vw,640px)]" />
         </div>
-        <p className="font-display anim-entrar text-[10px] tracking-widest text-parchment sm:text-sm" style={{ animationDelay: "800ms" }}>
+        <p
+          className="font-display anim-entrar text-[10px] tracking-widest text-parchment sm:text-sm"
+          style={{ animationDelay: "800ms" }}
+        >
           CONSTRUTOR ATÔMICO
         </p>
-        <p className="anim-entrar max-w-md text-lg text-parchment-shade" style={{ animationDelay: "1000ms" }}>
+        <p
+          className="anim-entrar max-w-md text-lg text-parchment-shade"
+          style={{ animationDelay: "1000ms" }}
+        >
           Monte átomos, destrave os 118 elementos e acenda a tabela periódica.
         </p>
 
-        <div className="anim-entrar mt-2 flex flex-col items-center gap-3" style={{ animationDelay: "1300ms" }}>
+        <div
+          className="anim-entrar mt-2 flex flex-col items-center gap-3"
+          style={{ animationDelay: "1300ms" }}
+        >
           {/* desativado ate o progresso carregar, para nao mandar ao tutorial quem ja jogou */}
-          <button type="button" className="pixel-btn btn-gold px-10 py-5 text-base" onClick={jogar} disabled={!carregado}>
+          <button
+            type="button"
+            className="pixel-btn btn-gold px-10 py-5 text-base"
+            onClick={jogar}
+            disabled={!carregado}
+          >
             ▶ {jaJogou ? "CONTINUAR" : "JOGAR"}
           </button>
           <div className="flex flex-wrap justify-center gap-2">
@@ -109,7 +137,10 @@ export function Inicio() {
 
         {/* progresso: mini tabela e totais (118 elementos x 3 estrelas = 354) */}
         {jaJogou && (
-          <div className="anim-entrar flex flex-col items-center gap-2" style={{ animationDelay: "1600ms" }}>
+          <div
+            className="anim-entrar flex flex-col items-center gap-2"
+            style={{ animationDelay: "1600ms" }}
+          >
             <MiniTabela className="w-[min(80vw,420px)]" />
             <p className="font-display text-[9px] text-parchment sm:text-[10px]">
               {tot.elementos}/118 ELEMENTOS · {tot.estrelas}/354 ★
@@ -128,11 +159,22 @@ export function Inicio() {
           style={{ background: "color-mix(in oklab, var(--ink) 75%, transparent)" }}
           onClick={() => setConfirmando(false)}
         >
-          <div className="pixel-panel anim-pop w-full max-w-md p-4 text-left" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="pixel-panel anim-pop w-full max-w-md p-4 text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h2 className="font-display mb-3 text-sm">REINICIAR JOGO?</h2>
-            <p className="mb-4">Todo o progresso salvo neste navegador será apagado: elementos, estrelas, selos do quiz e tutorial. Não dá para desfazer.</p>
+            <p className="mb-4">
+              Todo o progresso salvo neste navegador será apagado: elementos, estrelas, selos do
+              quiz e tutorial. Não dá para desfazer.
+            </p>
             <div className="flex flex-wrap justify-end gap-2">
-              <button ref={cancelar} type="button" className="pixel-btn btn-parchment" onClick={() => setConfirmando(false)}>
+              <button
+                ref={cancelar}
+                type="button"
+                className="pixel-btn btn-parchment"
+                onClick={() => setConfirmando(false)}
+              >
                 CANCELAR
               </button>
               <button type="button" className="pixel-btn btn-gold" onClick={confirmarReinicio}>

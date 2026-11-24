@@ -17,7 +17,11 @@ function MiniTabela({ z }: { z: number }) {
   const alvo = elementoPorZ(z);
   if (!alvo) return null;
   return (
-    <div aria-hidden className="grid gap-px" style={{ gridTemplateColumns: "repeat(18, 1fr)", maxWidth: 360 }}>
+    <div
+      aria-hidden
+      className="grid gap-px"
+      style={{ gridTemplateColumns: "repeat(18, 1fr)", maxWidth: 360 }}
+    >
       {ELEMENTOS.map((el) => {
         // mesmo periodo, sem contar as linhas separadas de lantanideos e actinideos
         const linha = el.periodo === alvo.periodo && el.posicao.linha <= 7;
@@ -30,7 +34,12 @@ function MiniTabela({ z }: { z: number }) {
             style={{
               gridRow: el.posicao.linha,
               gridColumn: el.posicao.coluna,
-              background: el.z === z ? "var(--proton)" : linha || coluna ? "var(--gold)" : "var(--parchment-shade)",
+              background:
+                el.z === z
+                  ? "var(--proton)"
+                  : linha || coluna
+                    ? "var(--gold)"
+                    : "var(--parchment-shade)",
               opacity: el.z === z || linha || coluna ? 1 : 0.55,
               outline: el.z === z ? "2px solid var(--ink)" : undefined,
               zIndex: el.z === z ? 1 : undefined,
@@ -56,7 +65,11 @@ export function Dicas({ z, textos }: { z: number; textos?: string[] | undefined 
   const TITULOS = ["Lembrete", "Conta", "Resposta"];
   // missoes M2/M3 trazem os proprios textos; a M1 usa as dicas de localizacao do motor
   const todas = textos
-    ? textos.map((texto, i) => ({ nivel: (i + 2) as 2 | 3 | 4, titulo: TITULOS[i] ?? "Dica", texto }))
+    ? textos.map((texto, i) => ({
+        nivel: (i + 2) as 2 | 3 | 4,
+        titulo: TITULOS[i] ?? "Dica",
+        texto,
+      }))
     : gerarDicas(z).filter((d) => d.nivel > 1);
   const mostradas = todas.slice(0, aberto);
   const restam = todas.length - aberto;
@@ -64,19 +77,35 @@ export function Dicas({ z, textos }: { z: number; textos?: string[] | undefined 
   return (
     <div className="flex w-full flex-col gap-2">
       {mostradas.map((d) => (
-        <div key={d.nivel} className="anim-slide-up border-l-[6px] border-gold bg-parchment-shade p-2">
-          <p className="font-display text-[9px] text-wood-dark">DICA {d.nivel - 1}: {d.titulo.toUpperCase()}</p>
+        <div
+          key={d.nivel}
+          className="anim-slide-up border-l-[6px] border-gold bg-parchment-shade p-2"
+        >
+          <p className="font-display text-[9px] text-wood-dark">
+            DICA {d.nivel - 1}: {d.titulo.toUpperCase()}
+          </p>
           <p>{d.texto}</p>
           {/* mini tabela so na dica de posicao da M1 */}
-          {d.nivel === 2 && !textos && <div className="mt-2"><MiniTabela z={z} /></div>}
+          {d.nivel === 2 && !textos && (
+            <div className="mt-2">
+              <MiniTabela z={z} />
+            </div>
+          )}
         </div>
       ))}
       {restam > 0 ? (
-        <button type="button" className="pixel-btn btn-sky self-start" onClick={() => setAberto((a) => a + 1)}>
+        <button
+          type="button"
+          className="pixel-btn btn-sky self-start"
+          onClick={() => setAberto((a) => a + 1)}
+        >
           💡 PEDIR DICA ({restam})
         </button>
       ) : (
-        <p className="text-sm">Sem mais dicas. Dica de cientista: tente variar os prótons até o painel mostrar o nome certo.</p>
+        <p className="text-sm">
+          Sem mais dicas. Dica de cientista: tente variar os prótons até o painel mostrar o nome
+          certo.
+        </p>
       )}
     </div>
   );

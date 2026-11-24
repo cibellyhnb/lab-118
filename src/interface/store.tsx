@@ -4,7 +4,16 @@
  * carrega e salva no localStorage e oferece as acoes do jogo (construir,
  * ligar o som, concluir tutorial, registrar familia e quiz) para as telas.
  ******************************************************************************/
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   CHAVE,
   CHAVE_CORROMPIDO,
@@ -39,7 +48,11 @@ type Ctx = {
   concluirTutorial: (conceder: boolean) => void;
   tocar: (f: () => void) => void;
   registrarFamilia: (id: Categoria) => void;
-  registrarQuiz: (quiz: IdQuiz, acertos: number, total: number) => { selo: Selo; novoRecorde: boolean };
+  registrarQuiz: (
+    quiz: IdQuiz,
+    acertos: number,
+    total: number,
+  ) => { selo: Selo; novoRecorde: boolean };
 };
 
 // ultima montagem valida de cada elemento, salva separada do progresso
@@ -177,8 +190,34 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
 
   // useMemo evita redesenhar quem usa o contexto quando nada mudou
   const valor = useMemo(
-    () => ({ estado, carregado, avisoCorrompido, dispensarAviso, reiniciar, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz }),
-    [estado, carregado, avisoCorrompido, dispensarAviso, reiniciar, ultimoMontado, construir, alternarSom, concluirTutorial, tocar, registrarFamilia, registrarQuiz],
+    () => ({
+      estado,
+      carregado,
+      avisoCorrompido,
+      dispensarAviso,
+      reiniciar,
+      ultimoMontado,
+      construir,
+      alternarSom,
+      concluirTutorial,
+      tocar,
+      registrarFamilia,
+      registrarQuiz,
+    }),
+    [
+      estado,
+      carregado,
+      avisoCorrompido,
+      dispensarAviso,
+      reiniciar,
+      ultimoMontado,
+      construir,
+      alternarSom,
+      concluirTutorial,
+      tocar,
+      registrarFamilia,
+      registrarQuiz,
+    ],
   );
   return <ProgressoCtx.Provider value={valor}>{children}</ProgressoCtx.Provider>;
 }

@@ -21,7 +21,9 @@ export function audio(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (!ctx) {
     // Safari antigo so tem a versao com prefixo webkit
-    const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    const Ctor =
+      window.AudioContext ??
+      (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!Ctor) return null;
     ctx = new Ctor();
   }

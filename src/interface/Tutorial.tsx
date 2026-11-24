@@ -34,7 +34,11 @@ type Passo = {
 
 // confere se a ultima montagem construida tem exatamente p, n, e e foi valida
 const igual = (m: Montagem | null, p: number, n: number, e: number) =>
-  !!m && m.particulas.p === p && m.particulas.n === n && m.particulas.e === e && m.classificacao.valido;
+  !!m &&
+  m.particulas.p === p &&
+  m.particulas.n === n &&
+  m.particulas.e === e &&
+  m.classificacao.valido;
 
 /*******************************************************************************
  * PASSOS
@@ -43,22 +47,26 @@ const igual = (m: Montagem | null, p: number, n: number, e: number) =>
  ******************************************************************************/
 const PASSOS: Passo[] = [
   {
-    texto: "Este é o laboratório! No painel você acompanha o que está montando: nome, símbolo e os números do átomo. Por enquanto ele mostra '?', porque a bancada está vazia.",
+    texto:
+      "Este é o laboratório! No painel você acompanha o que está montando: nome, símbolo e os números do átomo. Por enquanto ele mostra '?', porque a bancada está vazia.",
     alvo: ["painel"],
   },
   {
-    texto: "Vamos começar pelo PRÓTON, a peça vermelha. Arraste-o até o átomo, ou aperte o botão +. Coloque exatamente 1.",
+    texto:
+      "Vamos começar pelo PRÓTON, a peça vermelha. Arraste-o até o átomo, ou aperte o botão +. Coloque exatamente 1.",
     alvo: ["col-p"],
     auto: (v) => v.p === 1 && v.n === 0 && v.e === 0,
     dica: (v) => (v.p > 1 ? "Passou um pouco! Aperte − até sobrar 1 próton." : null),
   },
   {
-    texto: "Olha só: apareceu HIDROGÊNIO! O número de prótons (Z) decide qual elemento é. 1 próton é hidrogênio, 2 é hélio, 3 é lítio... (O painel diz 'cátion' porque ainda não há elétron. Já já arrumamos isso!)",
+    texto:
+      "Olha só: apareceu HIDROGÊNIO! O número de prótons (Z) decide qual elemento é. 1 próton é hidrogênio, 2 é hélio, 3 é lítio... (O painel diz 'cátion' porque ainda não há elétron. Já já arrumamos isso!)",
     alvo: ["painel"],
     humor: "feliz",
   },
   {
-    texto: "Agora o ELÉTRON, a peça azul. Um átomo neutro tem tantos elétrons quanto prótons: as cargas + e − se anulam. Coloque 1 elétron.",
+    texto:
+      "Agora o ELÉTRON, a peça azul. Um átomo neutro tem tantos elétrons quanto prótons: as cargas + e − se anulam. Coloque 1 elétron.",
     alvo: ["col-e"],
     auto: (v) => v.p === 1 && v.n === 0 && v.e === 1,
     dica: (v) => (v.e > 1 ? "Elétrons demais! Aperte − até sobrar 1." : null),
@@ -69,19 +77,22 @@ const PASSOS: Passo[] = [
     auto: (_, m) => igual(m, 1, 0, 1),
   },
   {
-    texto: "DESCOBERTA! O hidrogênio entrou na sua tabela e você ganhou a primeira ESTRELA. Cada elemento tem 3 estrelas: átomo, isótopo e íon. Vamos atrás das outras duas!",
+    texto:
+      "DESCOBERTA! O hidrogênio entrou na sua tabela e você ganhou a primeira ESTRELA. Cada elemento tem 3 estrelas: átomo, isótopo e íon. Vamos atrás das outras duas!",
     alvo: [],
     humor: "feliz",
     confete: true,
   },
   {
-    texto: "Agora o NÊUTRON, a peça cinza. Ele fica no núcleo, não tem carga e muda a MASSA do átomo. Coloque 1 nêutron.",
+    texto:
+      "Agora o NÊUTRON, a peça cinza. Ele fica no núcleo, não tem carga e muda a MASSA do átomo. Coloque 1 nêutron.",
     alvo: ["col-n"],
     auto: (v) => v.p === 1 && v.n === 1 && v.e === 1,
     dica: (v) => (v.n > 1 ? "Só 1 nêutron por enquanto. Aperte − uma vez." : null),
   },
   {
-    texto: "Repare: a massa (A) virou 2. Continua sendo hidrogênio, só ficou mais pesado! Isso é um ISÓTOPO (este se chama deutério). Aperte CONSTRUIR.",
+    texto:
+      "Repare: a massa (A) virou 2. Continua sendo hidrogênio, só ficou mais pesado! Isso é um ISÓTOPO (este se chama deutério). Aperte CONSTRUIR.",
     alvo: ["construir"],
     auto: (_, m) => igual(m, 1, 1, 1),
   },
@@ -96,13 +107,16 @@ const PASSOS: Passo[] = [
     auto: (_, m) => !!m && m.classificacao.valido && m.particulas.p === 1 && m.particulas.e === 0,
   },
   {
-    texto: "Desafio final: monte o HÉLIO neutro! Ele tem 2 prótons, 2 nêutrons e 2 elétrons. Ajuste os contadores e aperte CONSTRUIR.",
+    texto:
+      "Desafio final: monte o HÉLIO neutro! Ele tem 2 prótons, 2 nêutrons e 2 elétrons. Ajuste os contadores e aperte CONSTRUIR.",
     alvo: ["particulas", "construir"],
     auto: (_, m) => igual(m, 2, 2, 2),
-    dica: (v) => (v.p === 2 && v.n === 2 && v.e === 2 ? "Isso! Agora é só apertar CONSTRUIR." : null),
+    dica: (v) =>
+      v.p === 2 && v.n === 2 && v.e === 2 ? "Isso! Agora é só apertar CONSTRUIR." : null,
   },
   {
-    texto: "Missão cumprida, Cientista-Chefe! Regra de ouro: PRÓTONS definem o elemento, NÊUTRONS o isótopo e ELÉTRONS o íon. Já deixei o hidrogênio e o hélio na sua tabela. Os outros 116 cadeados são seus!",
+    texto:
+      "Missão cumprida, Cientista-Chefe! Regra de ouro: PRÓTONS definem o elemento, NÊUTRONS o isótopo e ELÉTRONS o íon. Já deixei o hidrogênio e o hélio na sua tabela. Os outros 116 cadeados são seus!",
     alvo: [],
     humor: "feliz",
     confete: true,
@@ -185,21 +199,41 @@ function Foco({ alvos }: { alvos: string[] }) {
   }, [chave]);
 
   const escuro = "color-mix(in oklab, var(--ink) 72%, transparent)";
-  if (!ret) return <div aria-hidden className="fixed inset-0 z-[60]" style={{ background: escuro }} />;
+  if (!ret)
+    return <div aria-hidden className="fixed inset-0 z-[60]" style={{ background: escuro }} />;
   const fundo = ret.top + ret.h;
   const dir = ret.left + ret.w;
   return (
     <div aria-hidden>
       {/* faixas escuras: em cima, embaixo, a esquerda e a direita do buraco */}
-      <div className="fixed inset-x-0 top-0 z-[60]" style={{ height: ret.top, background: escuro }} />
-      <div className="fixed inset-x-0 z-[60]" style={{ top: fundo, bottom: 0, background: escuro }} />
-      <div className="fixed left-0 z-[60]" style={{ top: ret.top, height: ret.h, width: ret.left, background: escuro }} />
-      <div className="fixed right-0 z-[60]" style={{ top: ret.top, height: ret.h, left: dir, background: escuro }} />
+      <div
+        className="fixed inset-x-0 top-0 z-[60]"
+        style={{ height: ret.top, background: escuro }}
+      />
+      <div
+        className="fixed inset-x-0 z-[60]"
+        style={{ top: fundo, bottom: 0, background: escuro }}
+      />
+      <div
+        className="fixed left-0 z-[60]"
+        style={{ top: ret.top, height: ret.h, width: ret.left, background: escuro }}
+      />
+      <div
+        className="fixed right-0 z-[60]"
+        style={{ top: ret.top, height: ret.h, left: dir, background: escuro }}
+      />
       {/* moldura dourada e seta apontando para o alvo */}
-      <div className="anim-shine pointer-events-none fixed z-[61] border-[4px] border-gold" style={{ top: ret.top, left: ret.left, width: ret.w, height: ret.h }} />
+      <div
+        className="anim-shine pointer-events-none fixed z-[61] border-[4px] border-gold"
+        style={{ top: ret.top, left: ret.left, width: ret.w, height: ret.h }}
+      />
       <span
         className="font-display anim-arrow pointer-events-none fixed z-[61] text-xl text-gold"
-        style={{ top: Math.max(0, ret.top - 34), left: ret.left + ret.w / 2 - 10, textShadow: "2px 2px 0 var(--ink)" }}
+        style={{
+          top: Math.max(0, ret.top - 34),
+          left: ret.left + ret.w / 2 - 10,
+          textShadow: "2px 2px 0 var(--ink)",
+        }}
       >
         ▼
       </span>
@@ -272,7 +306,11 @@ function Guiado() {
           o SOM/MUDO fica sempre clicavel, a esquerda do PULAR, que nao mudou de lugar */}
       <div className="fixed right-3 top-3 z-[80] flex items-start gap-2">
         <SoundToggle />
-        <button type="button" className="pixel-btn btn-dark text-[9px]" onClick={() => terminar(false)}>
+        <button
+          type="button"
+          className="pixel-btn btn-dark text-[9px]"
+          onClick={() => terminar(false)}
+        >
           PULAR TUTORIAL
         </button>
       </div>

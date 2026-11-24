@@ -11,9 +11,7 @@
       "coluna": 1
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      1
-    ],
+    "camadas": [1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 1.008,
@@ -37,10 +35,7 @@
         "meia_vida": "12,32 anos"
       }
     ],
-    "ions_comuns": [
-      1,
-      -1
-    ],
+    "ions_comuns": [1, -1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "completa",
@@ -54,10 +49,7 @@
         "É o único elemento cujo isótopo mais comum não tem nenhum nêutron.",
         "Nas estrelas, núcleos de hidrogênio se fundem e formam hélio, liberando a energia que as faz brilhar."
       ],
-      "fontes": [
-        "CIAAW (massa atômica)",
-        "IAEA Live Chart of Nuclides (isótopos)"
-      ]
+      "fontes": ["CIAAW (massa atômica)", "IAEA Live Chart of Nuclides (isótopos)"]
     }
   },
   {
@@ -72,9 +64,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2
-    ],
+    "camadas": [2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 4.0026,
@@ -117,10 +107,7 @@
       "coluna": 1
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      1
-    ],
+    "camadas": [2, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 6.94,
@@ -144,9 +131,7 @@
         "meia_vida": "0,84 segundo"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -164,10 +149,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      2
-    ],
+    "camadas": [2, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 9.0122,
@@ -186,9 +168,7 @@
         "meia_vida": "1,39 milhão de anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -206,10 +186,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      3
-    ],
+    "camadas": [2, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 10.81,
@@ -251,10 +228,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      4
-    ],
+    "camadas": [2, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 12.011,
@@ -291,10 +265,7 @@
       "curiosidades": [
         "Diamante e grafite são feitos só de carbono, com arranjos diferentes dos átomos."
       ],
-      "fontes": [
-        "CIAAW (massa atômica)",
-        "IAEA Live Chart of Nuclides (isótopos)"
-      ]
+      "fontes": ["CIAAW (massa atômica)", "IAEA Live Chart of Nuclides (isótopos)"]
     }
   },
   {
@@ -309,10 +280,7 @@
       "coluna": 15
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      5
-    ],
+    "camadas": [2, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 14.007,
@@ -336,9 +304,7 @@
         "abundancia_pct": 0.364
       }
     ],
-    "ions_comuns": [
-      -3
-    ],
+    "ions_comuns": [-3],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -356,10 +322,7 @@
       "coluna": 16
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      6
-    ],
+    "camadas": [2, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 15.999,
@@ -388,9 +351,7 @@
         "abundancia_pct": 0.205
       }
     ],
-    "ions_comuns": [
-      -2
-    ],
+    "ions_comuns": [-2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
@@ -409,10 +370,7 @@
       "coluna": 17
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      7
-    ],
+    "camadas": [2, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 18.998,
@@ -431,9 +389,7 @@
         "abundancia_pct": 100
       }
     ],
-    "ions_comuns": [
-      -1
-    ],
+    "ions_comuns": [-1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -451,10 +407,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8
-    ],
+    "camadas": [2, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 20.18,
@@ -501,11 +454,7 @@
       "coluna": 1
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      1
-    ],
+    "camadas": [2, 8, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 22.99,
@@ -530,9 +479,7 @@
         "meia_vida": "15 h"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
@@ -551,11 +498,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 24.305,
@@ -590,15 +533,11 @@
         "meia_vida": "20,9 h"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -613,11 +552,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      3
-    ],
+    "camadas": [2, 8, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 26.982,
@@ -642,15 +577,11 @@
         "meia_vida": "6,56 min"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -665,11 +596,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      4
-    ],
+    "camadas": [2, 8, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 28.085,
@@ -708,9 +635,7 @@
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -725,11 +650,7 @@
       "coluna": 15
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      5
-    ],
+    "camadas": [2, 8, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 30.974,
@@ -754,15 +675,11 @@
         "meia_vida": "25,4 dias"
       }
     ],
-    "ions_comuns": [
-      -3
-    ],
+    "ions_comuns": [-3],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -777,11 +694,7 @@
       "coluna": 16
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      6
-    ],
+    "camadas": [2, 8, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 32.06,
@@ -821,15 +734,11 @@
         "meia_vida": "170 min"
       }
     ],
-    "ions_comuns": [
-      -2
-    ],
+    "ions_comuns": [-2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -844,11 +753,7 @@
       "coluna": 17
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8,
-      7
-    ],
+    "camadas": [2, 8, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 35.45,
@@ -866,9 +771,7 @@
         "abundancia_pct": 24.24
       }
     ],
-    "ions_comuns": [
-      -1
-    ],
+    "ions_comuns": [-1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -886,11 +789,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8,
-      8
-    ],
+    "camadas": [2, 8, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 39.95,
@@ -929,9 +828,7 @@
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -946,12 +843,7 @@
       "coluna": 1
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      8,
-      1
-    ],
+    "camadas": [2, 8, 8, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 39.098,
@@ -987,15 +879,11 @@
         "meia_vida": "22,3 h"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1010,12 +898,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 8, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 40.078,
@@ -1066,15 +949,11 @@
         "meia_vida": "2,9 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1089,12 +968,7 @@
       "coluna": 3
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 44.956,
@@ -1119,15 +993,11 @@
         "meia_vida": "3,35 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1142,12 +1012,7 @@
       "coluna": 4
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      10,
-      2
-    ],
+    "camadas": [2, 8, 10, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 47.867,
@@ -1192,15 +1057,11 @@
         "abundancia_pct": 5.18
       }
     ],
-    "ions_comuns": [
-      4
-    ],
+    "ions_comuns": [4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1215,12 +1076,7 @@
       "coluna": 5
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      11,
-      2
-    ],
+    "camadas": [2, 8, 11, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 50.942,
@@ -1251,15 +1107,11 @@
         "abundancia_pct": 99.75
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1274,12 +1126,7 @@
       "coluna": 6
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      13,
-      1
-    ],
+    "camadas": [2, 8, 13, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 51.996,
@@ -1319,15 +1166,11 @@
         "abundancia_pct": 2.365
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1342,12 +1185,7 @@
       "coluna": 7
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      13,
-      2
-    ],
+    "camadas": [2, 8, 13, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 54.938,
@@ -1372,15 +1210,11 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1395,12 +1229,7 @@
       "coluna": 8
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      14,
-      2
-    ],
+    "camadas": [2, 8, 14, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 55.845,
@@ -1428,10 +1257,7 @@
         "abundancia_pct": 0.282
       }
     ],
-    "ions_comuns": [
-      2,
-      3
-    ],
+    "ions_comuns": [2, 3],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
@@ -1450,12 +1276,7 @@
       "coluna": 9
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      15,
-      2
-    ],
+    "camadas": [2, 8, 15, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 58.933,
@@ -1480,15 +1301,11 @@
         "meia_vida": "5,27 anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1503,12 +1320,7 @@
       "coluna": 10
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      16,
-      2
-    ],
+    "camadas": [2, 8, 16, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 58.693,
@@ -1553,15 +1365,11 @@
         "abundancia_pct": 0.9256
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1576,12 +1384,7 @@
       "coluna": 11
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      1
-    ],
+    "camadas": [2, 8, 18, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 63.546,
@@ -1611,16 +1414,11 @@
         "meia_vida": "61,8 h"
       }
     ],
-    "ions_comuns": [
-      1,
-      2
-    ],
+    "ions_comuns": [1, 2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1635,12 +1433,7 @@
       "coluna": 12
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      2
-    ],
+    "camadas": [2, 8, 18, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 65.38,
@@ -1685,15 +1478,11 @@
         "meia_vida": "46,5 h"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1708,12 +1497,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      3
-    ],
+    "camadas": [2, 8, 18, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 69.723,
@@ -1743,15 +1527,11 @@
         "meia_vida": "14 h"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1766,12 +1546,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      4
-    ],
+    "camadas": [2, 8, 18, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 72.63,
@@ -1821,9 +1596,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1838,12 +1611,7 @@
       "coluna": 15
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      5
-    ],
+    "camadas": [2, 8, 18, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 74.922,
@@ -1872,9 +1640,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1889,12 +1655,7 @@
       "coluna": 16
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      6
-    ],
+    "camadas": [2, 8, 18, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 78.971,
@@ -1945,15 +1706,11 @@
         "meia_vida": "8,76 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [
-      -2
-    ],
+    "ions_comuns": [-2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -1968,12 +1725,7 @@
       "coluna": 17
     },
     "fase_ambiente": "liquido",
-    "camadas": [
-      2,
-      8,
-      18,
-      7
-    ],
+    "camadas": [2, 8, 18, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 79.904,
@@ -2003,15 +1755,11 @@
         "meia_vida": "35,3 h"
       }
     ],
-    "ions_comuns": [
-      -1
-    ],
+    "ions_comuns": [-1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2026,12 +1774,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8,
-      18,
-      8
-    ],
+    "camadas": [2, 8, 18, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 83.798,
@@ -2085,9 +1828,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2102,13 +1843,7 @@
       "coluna": 1
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      8,
-      1
-    ],
+    "camadas": [2, 8, 18, 8, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 85.468,
@@ -2139,15 +1874,11 @@
         "meia_vida": "49,7 bilhões de anos"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2162,13 +1893,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 8, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 87.62,
@@ -2208,15 +1933,11 @@
         "meia_vida": "28,9 anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2231,13 +1952,7 @@
       "coluna": 3
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 88.906,
@@ -2262,15 +1977,11 @@
         "meia_vida": "58,5 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2285,13 +1996,7 @@
       "coluna": 4
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      10,
-      2
-    ],
+    "camadas": [2, 8, 18, 10, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 91.222,
@@ -2337,15 +2042,11 @@
         "meia_vida": "2 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [
-      4
-    ],
+    "ions_comuns": [4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2360,13 +2061,7 @@
       "coluna": 5
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      12,
-      1
-    ],
+    "camadas": [2, 8, 18, 12, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 92.906,
@@ -2391,15 +2086,11 @@
         "meia_vida": "20,4 mil anos"
       }
     ],
-    "ions_comuns": [
-      5
-    ],
+    "ions_comuns": [5],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2414,13 +2105,7 @@
       "coluna": 6
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      13,
-      1
-    ],
+    "camadas": [2, 8, 18, 13, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 95.95,
@@ -2480,9 +2165,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2497,13 +2180,7 @@
       "coluna": 7
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      13,
-      2
-    ],
+    "camadas": [2, 8, 18, 13, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 97,
@@ -2533,9 +2210,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2550,13 +2225,7 @@
       "coluna": 8
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      15,
-      1
-    ],
+    "camadas": [2, 8, 18, 15, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 101.07,
@@ -2611,15 +2280,11 @@
         "meia_vida": "372 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2634,13 +2299,7 @@
       "coluna": 9
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      16,
-      1
-    ],
+    "camadas": [2, 8, 18, 16, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 102.91,
@@ -2665,15 +2324,11 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2688,12 +2343,7 @@
       "coluna": 10
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18
-    ],
+    "camadas": [2, 8, 18, 18],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 106.42,
@@ -2743,15 +2393,11 @@
         "abundancia_pct": 11.72
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2766,13 +2412,7 @@
       "coluna": 11
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      1
-    ],
+    "camadas": [2, 8, 18, 18, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 107.87,
@@ -2802,15 +2442,11 @@
         "meia_vida": "7,43 dias"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2825,13 +2461,7 @@
       "coluna": 12
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      2
-    ],
+    "camadas": [2, 8, 18, 18, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 112.41,
@@ -2893,15 +2523,11 @@
         "meia_vida": "3,3 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2916,13 +2542,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      3
-    ],
+    "camadas": [2, 8, 18, 18, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 114.82,
@@ -2953,15 +2573,11 @@
         "meia_vida": "4,41 × 10¹⁴ anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -2976,13 +2592,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      4
-    ],
+    "camadas": [2, 8, 18, 18, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 118.71,
@@ -3052,15 +2662,11 @@
         "meia_vida": "230 mil anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3075,13 +2681,7 @@
       "coluna": 15
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      5
-    ],
+    "camadas": [2, 8, 18, 18, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 121.76,
@@ -3111,15 +2711,11 @@
         "meia_vida": "2,76 anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3134,13 +2730,7 @@
       "coluna": 16
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      6
-    ],
+    "camadas": [2, 8, 18, 18, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 127.6,
@@ -3202,15 +2792,11 @@
         "meia_vida": "7,91 × 10²⁰ anos"
       }
     ],
-    "ions_comuns": [
-      -2
-    ],
+    "ions_comuns": [-2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3225,13 +2811,7 @@
       "coluna": 17
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      7
-    ],
+    "camadas": [2, 8, 18, 18, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 126.9,
@@ -3256,15 +2836,11 @@
         "meia_vida": "16,1 milhões de anos"
       }
     ],
-    "ions_comuns": [
-      -1
-    ],
+    "ions_comuns": [-1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3279,13 +2855,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      8
-    ],
+    "camadas": [2, 8, 18, 18, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 131.29,
@@ -3355,9 +2925,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3372,14 +2940,7 @@
       "coluna": 1
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      8,
-      1
-    ],
+    "camadas": [2, 8, 18, 18, 8, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 132.91,
@@ -3404,15 +2965,11 @@
         "meia_vida": "30 anos"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3427,14 +2984,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 18, 8, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 137.33,
@@ -3489,15 +3039,11 @@
         "meia_vida": "12,8 dias"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3512,14 +3058,7 @@
       "coluna": 3
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      18,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 18, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 138.91,
@@ -3550,15 +3089,11 @@
         "meia_vida": "40,3 h"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3573,14 +3108,7 @@
       "coluna": 4
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      19,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 19, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 140.12,
@@ -3620,16 +3148,11 @@
         "meia_vida": "285 dias"
       }
     ],
-    "ions_comuns": [
-      3,
-      4
-    ],
+    "ions_comuns": [3, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3644,14 +3167,7 @@
       "coluna": 5
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      21,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 21, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 140.91,
@@ -3676,15 +3192,11 @@
         "meia_vida": "13,6 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3699,14 +3211,7 @@
       "coluna": 6
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      22,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 22, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 144.24,
@@ -3763,15 +3268,11 @@
         "meia_vida": "9,3 × 10¹⁸ anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3786,14 +3287,7 @@
       "coluna": 7
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      23,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 23, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 145,
@@ -3819,15 +3313,11 @@
         "meia_vida": "2,62 anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3842,14 +3332,7 @@
       "coluna": 8
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      24,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 24, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 150.36,
@@ -3906,16 +3389,11 @@
         "abundancia_pct": 22.74
       }
     ],
-    "ions_comuns": [
-      2,
-      3
-    ],
+    "ions_comuns": [2, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3930,14 +3408,7 @@
       "coluna": 9
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      25,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 25, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 151.96,
@@ -3968,16 +3439,11 @@
         "abundancia_pct": 52.19
       }
     ],
-    "ions_comuns": [
-      2,
-      3
-    ],
+    "ions_comuns": [2, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -3992,14 +3458,7 @@
       "coluna": 10
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      25,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 25, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 157.25,
@@ -4055,15 +3514,11 @@
         "abundancia_pct": 21.86
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4078,14 +3533,7 @@
       "coluna": 11
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      27,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 27, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 158.93,
@@ -4110,15 +3558,11 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4133,14 +3577,7 @@
       "coluna": 12
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      28,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 28, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 162.5,
@@ -4195,15 +3632,11 @@
         "abundancia_pct": 28.26
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4218,14 +3651,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      29,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 29, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 164.93,
@@ -4250,15 +3676,11 @@
         "meia_vida": "26,8 h"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4273,14 +3695,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      30,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 30, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 167.26,
@@ -4330,15 +3745,11 @@
         "meia_vida": "49,3 h"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4353,14 +3764,7 @@
       "coluna": 15
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      31,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 31, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 168.93,
@@ -4385,15 +3789,11 @@
         "meia_vida": "1,92 anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4408,14 +3808,7 @@
       "coluna": 16
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 173.05,
@@ -4470,16 +3863,11 @@
         "abundancia_pct": 12.995
       }
     ],
-    "ions_comuns": [
-      2,
-      3
-    ],
+    "ions_comuns": [2, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4494,14 +3882,7 @@
       "coluna": 17
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 174.97,
@@ -4532,15 +3913,11 @@
         "meia_vida": "37 bilhões de anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4555,14 +3932,7 @@
       "coluna": 4
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      10,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 10, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 178.49,
@@ -4613,15 +3983,11 @@
         "meia_vida": "8,9 milhões de anos"
       }
     ],
-    "ions_comuns": [
-      4
-    ],
+    "ions_comuns": [4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4636,14 +4002,7 @@
       "coluna": 5
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      11,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 11, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 180.95,
@@ -4668,15 +4027,11 @@
         "meia_vida": "115 dias"
       }
     ],
-    "ions_comuns": [
-      5
-    ],
+    "ions_comuns": [5],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4691,14 +4046,7 @@
       "coluna": 6
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      12,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 12, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 183.84,
@@ -4748,9 +4096,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4765,14 +4111,7 @@
       "coluna": 7
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      13,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 13, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 186.21,
@@ -4807,9 +4146,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4824,14 +4161,7 @@
       "coluna": 8
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      14,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 14, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 190.23,
@@ -4892,9 +4222,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4909,14 +4237,7 @@
       "coluna": 9
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      15,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 15, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 192.22,
@@ -4946,15 +4267,11 @@
         "abundancia_pct": 62.7
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -4969,14 +4286,7 @@
       "coluna": 10
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      17,
-      1
-    ],
+    "camadas": [2, 8, 18, 32, 17, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 195.08,
@@ -5027,16 +4337,11 @@
         "abundancia_pct": 7.356
       }
     ],
-    "ions_comuns": [
-      2,
-      4
-    ],
+    "ions_comuns": [2, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5051,14 +4356,7 @@
       "coluna": 11
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      1
-    ],
+    "camadas": [2, 8, 18, 32, 18, 1],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 196.97,
@@ -5083,16 +4381,11 @@
         "abundancia_pct": 100.0
       }
     ],
-    "ions_comuns": [
-      1,
-      3
-    ],
+    "ions_comuns": [1, 3],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5107,14 +4400,7 @@
       "coluna": 12
     },
     "fase_ambiente": "liquido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 18, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 200.59,
@@ -5169,15 +4455,11 @@
         "abundancia_pct": 6.82
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5192,14 +4474,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      3
-    ],
+    "camadas": [2, 8, 18, 32, 18, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 204.38,
@@ -5229,16 +4504,11 @@
         "abundancia_pct": 70.485
       }
     ],
-    "ions_comuns": [
-      1,
-      3
-    ],
+    "ions_comuns": [1, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5253,14 +4523,7 @@
       "coluna": 14
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      4
-    ],
+    "camadas": [2, 8, 18, 32, 18, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 207.2,
@@ -5300,15 +4563,11 @@
         "abundancia_pct": 52.4
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5323,14 +4582,7 @@
       "coluna": 15
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      5
-    ],
+    "camadas": [2, 8, 18, 32, 18, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 208.98,
@@ -5356,15 +4608,11 @@
         "meia_vida": "2,01 × 10¹⁹ anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5379,14 +4627,7 @@
       "coluna": 16
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      6
-    ],
+    "camadas": [2, 8, 18, 32, 18, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 209,
@@ -5416,9 +4657,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5433,14 +4672,7 @@
       "coluna": 17
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      7
-    ],
+    "camadas": [2, 8, 18, 32, 18, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 210,
@@ -5466,15 +4698,11 @@
         "meia_vida": "7,21 h"
       }
     ],
-    "ions_comuns": [
-      -1
-    ],
+    "ions_comuns": [-1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5489,14 +4717,7 @@
       "coluna": 18
     },
     "fase_ambiente": "gasoso",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      8
-    ],
+    "camadas": [2, 8, 18, 32, 18, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 222,
@@ -5526,9 +4747,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5543,15 +4762,7 @@
       "coluna": 1
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      8,
-      1
-    ],
+    "camadas": [2, 8, 18, 32, 18, 8, 1],
     "eletrons_valencia": 1,
     "massa_atomica": {
       "valor": 223,
@@ -5577,15 +4788,11 @@
         "meia_vida": "22 min"
       }
     ],
-    "ions_comuns": [
-      1
-    ],
+    "ions_comuns": [1],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5600,15 +4807,7 @@
       "coluna": 2
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 18, 8, 2],
     "eletrons_valencia": 2,
     "massa_atomica": {
       "valor": 226,
@@ -5634,15 +4833,11 @@
         "meia_vida": "5,75 anos"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5657,15 +4852,7 @@
       "coluna": 3
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 18, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 227,
@@ -5691,15 +4878,11 @@
         "meia_vida": "21,8 anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5714,15 +4897,7 @@
       "coluna": 4
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      18,
-      10,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 18, 10, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 232.04,
@@ -5754,15 +4929,11 @@
         "meia_vida": "14 bilhões de anos"
       }
     ],
-    "ions_comuns": [
-      4
-    ],
+    "ions_comuns": [4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5777,15 +4948,7 @@
       "coluna": 5
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      20,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 20, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 231.04,
@@ -5815,9 +4978,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5832,15 +4993,7 @@
       "coluna": 6
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      21,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 21, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 238.03,
@@ -5878,15 +5031,11 @@
         "meia_vida": "4,46 bilhões de anos"
       }
     ],
-    "ions_comuns": [
-      4
-    ],
+    "ions_comuns": [4],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5901,15 +5050,7 @@
       "coluna": 7
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      22,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 22, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 237,
@@ -5939,9 +5080,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -5956,15 +5095,7 @@
       "coluna": 8
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      24,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 24, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 244,
@@ -5994,9 +5125,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6011,15 +5140,7 @@
       "coluna": 9
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      25,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 25, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 243,
@@ -6045,15 +5166,11 @@
         "meia_vida": "7,35 mil anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6068,15 +5185,7 @@
       "coluna": 10
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      25,
-      9,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 25, 9, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 247,
@@ -6102,15 +5211,11 @@
         "meia_vida": "348 mil anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6125,15 +5230,7 @@
       "coluna": 11
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      27,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 27, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 247,
@@ -6159,15 +5256,11 @@
         "meia_vida": "327 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6182,15 +5275,7 @@
       "coluna": 12
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      28,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 28, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 251,
@@ -6216,15 +5301,11 @@
         "meia_vida": "898 anos"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6239,15 +5320,7 @@
       "coluna": 13
     },
     "fase_ambiente": "solido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      29,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 29, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 252,
@@ -6273,15 +5346,11 @@
         "meia_vida": "39,8 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6296,15 +5365,7 @@
       "coluna": 14
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      30,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 30, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 257,
@@ -6330,15 +5391,11 @@
         "meia_vida": "100 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6353,15 +5410,7 @@
       "coluna": 15
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      31,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 31, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 258,
@@ -6387,15 +5436,11 @@
         "meia_vida": "31,8 dias"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6410,15 +5455,7 @@
       "coluna": 16
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      8,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 259,
@@ -6444,15 +5481,11 @@
         "meia_vida": "58 min"
       }
     ],
-    "ions_comuns": [
-      2
-    ],
+    "ions_comuns": [2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6467,15 +5500,7 @@
       "coluna": 17
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      8,
-      3
-    ],
+    "camadas": [2, 8, 18, 32, 32, 8, 3],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 266,
@@ -6501,15 +5526,11 @@
         "meia_vida": "11 h"
       }
     ],
-    "ions_comuns": [
-      3
-    ],
+    "ions_comuns": [3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6524,15 +5545,7 @@
       "coluna": 4
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      10,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 10, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 267,
@@ -6562,9 +5575,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6579,15 +5590,7 @@
       "coluna": 5
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      11,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 11, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 268,
@@ -6617,9 +5620,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6634,15 +5635,7 @@
       "coluna": 6
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      12,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 12, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 269,
@@ -6672,9 +5665,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6689,15 +5680,7 @@
       "coluna": 7
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      13,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 13, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 270,
@@ -6727,9 +5710,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6744,15 +5725,7 @@
       "coluna": 8
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      14,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 14, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 269,
@@ -6782,9 +5755,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6799,15 +5770,7 @@
       "coluna": 9
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      15,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 15, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 278,
@@ -6837,9 +5800,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6854,15 +5815,7 @@
       "coluna": 10
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      16,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 16, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 282,
@@ -6892,9 +5845,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6909,15 +5860,7 @@
       "coluna": 11
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      17,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 17, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 282,
@@ -6947,9 +5890,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -6964,15 +5905,7 @@
       "coluna": 12
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      2
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
       "valor": 286,
@@ -7002,9 +5935,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7019,15 +5950,7 @@
       "coluna": 13
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      3
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 3],
     "eletrons_valencia": 3,
     "massa_atomica": {
       "valor": 286,
@@ -7057,9 +5980,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7074,15 +5995,7 @@
       "coluna": 14
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      4
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
       "valor": 290,
@@ -7112,9 +6025,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7129,15 +6040,7 @@
       "coluna": 15
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      5
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 5],
     "eletrons_valencia": 5,
     "massa_atomica": {
       "valor": 290,
@@ -7167,9 +6070,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7184,15 +6085,7 @@
       "coluna": 16
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      6
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 6],
     "eletrons_valencia": 6,
     "massa_atomica": {
       "valor": 293,
@@ -7222,9 +6115,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7239,15 +6130,7 @@
       "coluna": 17
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      7
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
       "valor": 294,
@@ -7271,9 +6154,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   },
   {
@@ -7288,15 +6169,7 @@
       "coluna": 18
     },
     "fase_ambiente": "desconhecido",
-    "camadas": [
-      2,
-      8,
-      18,
-      32,
-      32,
-      18,
-      8
-    ],
+    "camadas": [2, 8, 18, 32, 32, 18, 8],
     "eletrons_valencia": 8,
     "massa_atomica": {
       "valor": 294,
@@ -7314,9 +6187,7 @@
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta",
-      "fontes": [
-        "Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"
-      ]
+      "fontes": ["Isótopos: NUBASE (conferir na IAEA Live Chart of Nuclides)"]
     }
   }
 ]

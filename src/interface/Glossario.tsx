@@ -24,7 +24,15 @@ const CATEGORIAS = Object.keys(NOME_CATEGORIA_GLOSSARIO) as CategoriaGlossario[]
  * recebe: t (o termo), destaque (realca o cartao) e onVer (abre outro termo).
  * retorna: o cartao.
  ******************************************************************************/
-function Cartao({ t, destaque, onVer }: { t: TermoGlossario; destaque: boolean; onVer: (id: string) => void }) {
+function Cartao({
+  t,
+  destaque,
+  onVer,
+}: {
+  t: TermoGlossario;
+  destaque: boolean;
+  onVer: (id: string) => void;
+}) {
   // troca os ids por termos, ignorando ids que nao existem
   const relacionados = (t.ver ?? []).flatMap((id) => {
     const r = termoPorId(id);
@@ -38,8 +46,12 @@ function Cartao({ t, destaque, onVer }: { t: TermoGlossario; destaque: boolean; 
     >
       <header className="mb-2 flex flex-wrap items-center gap-2">
         <h2 className="font-display text-xs leading-relaxed sm:text-sm">{t.termo.toUpperCase()}</h2>
-        {t.sigla && <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{t.sigla}</span>}
-        <span className="ml-auto text-sm text-wood-dark">{NOME_CATEGORIA_GLOSSARIO[t.categoria]}</span>
+        {t.sigla && (
+          <span className="font-display bg-ink px-2 py-1 text-[10px] text-gold">{t.sigla}</span>
+        )}
+        <span className="ml-auto text-sm text-wood-dark">
+          {NOME_CATEGORIA_GLOSSARIO[t.categoria]}
+        </span>
       </header>
       <p className="text-lg">{t.definicao}</p>
       {t.exemplo && (
@@ -58,7 +70,12 @@ function Cartao({ t, destaque, onVer }: { t: TermoGlossario; destaque: boolean; 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="font-display text-[10px] text-wood-dark">VEJA TAMBÉM</span>
           {relacionados.map((r) => (
-            <button key={r.id} type="button" className="pixel-btn btn-sky px-2 text-xs" onClick={() => onVer(r.id)}>
+            <button
+              key={r.id}
+              type="button"
+              className="pixel-btn btn-sky px-2 text-xs"
+              onClick={() => onVer(r.id)}
+            >
               {r.termo}
             </button>
           ))}
@@ -78,7 +95,9 @@ export function Glossario({ termoInicial }: { termoInicial?: string | undefined 
   const [consulta, setConsulta] = useState("");
   const [categoria, setCategoria] = useState<CategoriaGlossario | null>(null);
   // so destaca o termo da url se ele existir
-  const [destaque, setDestaque] = useState<string | null>(termoPorId(termoInicial ?? "") ? (termoInicial ?? null) : null);
+  const [destaque, setDestaque] = useState<string | null>(
+    termoPorId(termoInicial ?? "") ? (termoInicial ?? null) : null,
+  );
 
   const lista = useMemo(() => buscarGlossario(consulta, categoria), [consulta, categoria]);
 
@@ -86,7 +105,13 @@ export function Glossario({ termoInicial }: { termoInicial?: string | undefined 
   // o atraso espera a lista ser redesenhada
   useEffect(() => {
     if (!destaque) return;
-    const id = window.setTimeout(() => document.getElementById(`t-${destaque}`)?.scrollIntoView({ block: "center", behavior: "smooth" }), 60);
+    const id = window.setTimeout(
+      () =>
+        document
+          .getElementById(`t-${destaque}`)
+          ?.scrollIntoView({ block: "center", behavior: "smooth" }),
+      60,
+    );
     return () => window.clearTimeout(id);
   }, [destaque]);
 
@@ -118,7 +143,12 @@ export function Glossario({ termoInicial }: { termoInicial?: string | undefined 
             />
           </label>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por assunto">
-            <button type="button" aria-pressed={categoria === null} className={`pixel-btn px-2 text-[9px] sm:px-3 sm:text-xs ${categoria === null ? "btn-gold" : "btn-parchment"}`} onClick={() => setCategoria(null)}>
+            <button
+              type="button"
+              aria-pressed={categoria === null}
+              className={`pixel-btn px-2 text-[9px] sm:px-3 sm:text-xs ${categoria === null ? "btn-gold" : "btn-parchment"}`}
+              onClick={() => setCategoria(null)}
+            >
               TUDO ({GLOSSARIO.length})
             </button>
             {CATEGORIAS.map((c) => (

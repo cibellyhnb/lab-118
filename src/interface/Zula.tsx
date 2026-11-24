@@ -48,7 +48,13 @@ export function linhasZula(humor: Humor): string[] {
   return [...TOPO, ...ROSTO[humor], ...BASE];
 }
 
-const PALETA = { k: C.ink, w: C.cloud, s: "var(--parchment-shade)", c: "var(--sky-light)", r: "var(--proton)" };
+const PALETA = {
+  k: C.ink,
+  w: C.cloud,
+  s: "var(--parchment-shade)",
+  c: "var(--sky-light)",
+  r: "var(--proton)",
+};
 
 /*******************************************************************************
  * Zula
@@ -92,5 +98,13 @@ export function Zula({
 
   // prioridade: boca aberta, depois piscada, depois o humor pedido
   const atual: Humor = falando && boca ? "fala" : pisca ? "pisca" : humor;
-  return <PixelArt rows={linhasZula(atual)} palette={PALETA} scale={scale} className={className} title="ZULA, o robô-assistente" />;
+  return (
+    <PixelArt
+      rows={linhasZula(atual)}
+      palette={PALETA}
+      scale={scale}
+      className={className}
+      title="ZULA, o robô-assistente"
+    />
+  );
 }

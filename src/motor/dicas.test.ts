@@ -30,7 +30,8 @@ const contem = (texto: string, termo: string) => texto.toLowerCase().includes(te
  * positivo com "C" dentro de "Carbono".
  * recebe: texto e simbolo. retorna: boolean.
  ******************************************************************************/
-const temSimbolo = (texto: string, simbolo: string) => new RegExp(`(^|[^A-Za-zÀ-ÿ])${simbolo}([^a-zà-ÿ]|$)`).test(texto);
+const temSimbolo = (texto: string, simbolo: string) =>
+  new RegExp(`(^|[^A-Za-zÀ-ÿ])${simbolo}([^a-zà-ÿ]|$)`).test(texto);
 
 // regras de dificuldadeDe: facil, media, dificil e o campo que sobrescreve
 describe("dificuldade", () => {
@@ -70,7 +71,9 @@ describe("gerarDicas (função pura)", () => {
       expect(t).toContain(`período ${e.periodo}`);
     }
     // caso concreto: o cobre termina com a localizacao curta
-    expect(gerarDicas(29)[0]!.texto).toMatch(/conduz muito bem a eletricidade.* Metal de transição, período 4, grupo 11\.$/);
+    expect(gerarDicas(29)[0]!.texto).toMatch(
+      /conduz muito bem a eletricidade.* Metal de transição, período 4, grupo 11\.$/,
+    );
   });
   it("difícil: contém o nome e o símbolo", () => {
     for (const e of ELEMENTOS.filter((x) => dificuldadeDe(x) === "dificil")) {
@@ -79,14 +82,19 @@ describe("gerarDicas (função pura)", () => {
       expect(t).toContain(`(${e.simbolo})`);
     }
     // caso concreto: o osmio comeca com nome e simbolo e traz a curiosidade
-    expect(gerarDicas(76)[0]!.texto).toMatch(/^É o Ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/);
+    expect(gerarDicas(76)[0]!.texto).toMatch(
+      /^É o Ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/,
+    );
   });
   it("massa atômica só aparece quando o dado existe (nunca é inventada)", () => {
     // tres copias do osmio: sem massa, com massa convencional e com a massa do
     // isotopo mais longevo (189,5 arredonda para 190)
     const sem: Elemento = { ...el(76), massa_atomica: null };
     const com: Elemento = { ...el(76), massa_atomica: { valor: 190.23, tipo: "convencional" } };
-    const instavel: Elemento = { ...el(76), massa_atomica: { valor: 189.5, tipo: "isotopo_mais_longevo" } };
+    const instavel: Elemento = {
+      ...el(76),
+      massa_atomica: { valor: 189.5, tipo: "isotopo_mais_longevo" },
+    };
     expect(dicasDoElemento(sem)[0]!.texto).not.toMatch(/[Mm]assa/);
     expect(dicasDoElemento(com)[0]!.texto).toContain("Massa atômica aproximada: 190.");
     expect(dicasDoElemento(instavel)[0]!.texto).toContain("número de massa 190");

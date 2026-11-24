@@ -50,24 +50,65 @@ export function Atomo({
   // distancia entre camadas, limitada para caberem no desenho
   const passo = camadas.length > 1 ? Math.min(30, (rMax - r0) / (camadas.length - 1)) : 0;
   // nucleo radioativo ou fora do catalogo treme mais
-  const tremor = status === "radioativo" || status === "nao_catalogado" ? "anim-jitter" : total ? "anim-jitter-slow" : "";
+  const tremor =
+    status === "radioativo" || status === "nao_catalogado"
+      ? "anim-jitter"
+      : total
+        ? "anim-jitter-slow"
+        : "";
 
   return (
-    <svg viewBox={`0 0 ${VB} ${VB}`} className="h-full w-full" shapeRendering="crispEdges" role="img" aria-label={`Átomo com ${p} prótons, ${n} nêutrons e ${e} elétrons`}>
+    <svg
+      viewBox={`0 0 ${VB} ${VB}`}
+      className="h-full w-full"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-label={`Átomo com ${p} prótons, ${n} nêutrons e ${e} elétrons`}
+    >
       <ParticleDefs />
       {/* aneis tracejados das camadas */}
       {camadas.map((_, k) => (
-        <circle key={k} cx={CX} cy={CX} r={r0 + k * passo} fill="none" stroke="var(--parchment-shade)" strokeWidth={3} strokeDasharray="6 6" opacity={0.75} />
+        <circle
+          key={k}
+          cx={CX}
+          cy={CX}
+          r={r0 + k * passo}
+          fill="none"
+          stroke="var(--parchment-shade)"
+          strokeWidth={3}
+          strokeDasharray="6 6"
+          opacity={0.75}
+        />
       ))}
-      <circle cx={CX} cy={CX} r={raioNucleo} fill="color-mix(in oklab, var(--gold) 20%, var(--night))" stroke="var(--ink)" strokeWidth={3} />
+      <circle
+        cx={CX}
+        cy={CX}
+        r={raioNucleo}
+        fill="color-mix(in oklab, var(--gold) 20%, var(--night))"
+        stroke="var(--ink)"
+        strokeWidth={3}
+      />
       {/* nucleo: a key troca a cada montagem para repetir o balanco */}
-      <g key={wobbleKey} className="anim-wobble" style={{ transformOrigin: "center", transformBox: "view-box" }}>
+      <g
+        key={wobbleKey}
+        className="anim-wobble"
+        style={{ transformOrigin: "center", transformBox: "view-box" }}
+      >
         <g className={tremor} style={{ transformOrigin: "center", transformBox: "view-box" }}>
           {nucleons.map((t, i) => {
             // espiral com o angulo de ouro: as particulas ficam bem distribuidas num circulo
             const r = s * 0.62 * Math.sqrt(i);
             const a = i * 2.39996;
-            return <use key={i} href={`#part-${t}`} x={CX + r * Math.cos(a) - s / 2} y={CX + r * Math.sin(a) - s / 2} width={s} height={s} />;
+            return (
+              <use
+                key={i}
+                href={`#part-${t}`}
+                x={CX + r * Math.cos(a) - s / 2}
+                y={CX + r * Math.sin(a) - s / 2}
+                width={s}
+                height={s}
+              />
+            );
           })}
         </g>
       </g>
@@ -76,11 +117,27 @@ export function Atomo({
         const r = r0 + k * passo;
         const tam = 16;
         return (
-          <g key={`e${k}`} className="anim-orbit" style={{ ["--orbit-dur" as string]: `${10 + k * 5}s`, animationDirection: k % 2 ? "reverse" : "normal" }}>
+          <g
+            key={`e${k}`}
+            className="anim-orbit"
+            style={{
+              ["--orbit-dur" as string]: `${10 + k * 5}s`,
+              animationDirection: k % 2 ? "reverse" : "normal",
+            }}
+          >
             {Array.from({ length: qtd }, (_, j) => {
               // eletrons espalhados por igual na camada, com um deslocamento por camada
               const a = (j / qtd) * Math.PI * 2 + k * 0.4;
-              return <use key={j} href="#part-e" x={CX + r * Math.cos(a) - tam / 2} y={CX + r * Math.sin(a) - tam / 2} width={tam} height={tam} />;
+              return (
+                <use
+                  key={j}
+                  href="#part-e"
+                  x={CX + r * Math.cos(a) - tam / 2}
+                  y={CX + r * Math.sin(a) - tam / 2}
+                  width={tam}
+                  height={tam}
+                />
+              );
             })}
           </g>
         );

@@ -57,7 +57,11 @@ export function construir(
   const anterior = estado.elementos[chave];
   // copia o registro do elemento para nao alterar o estado antigo
   const atual: ProgressoElemento = anterior
-    ? { estrelas: [...anterior.estrelas], isotopos: [...anterior.isotopos], ions: [...anterior.ions] }
+    ? {
+        estrelas: [...anterior.estrelas],
+        isotopos: [...anterior.isotopos],
+        ions: [...anterior.ions],
+      }
     : { estrelas: [false, false, false], isotopos: [], ions: [] };
 
   // REG-08: registro de variantes (RF-02: vale mesmo antes da descoberta).

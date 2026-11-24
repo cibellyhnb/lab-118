@@ -11,7 +11,14 @@ import { Stars, catStyle } from "./comuns";
 import { useProgresso } from "./store";
 
 // cores dos papeizinhos do confete
-const CORES = ["var(--gold)", "var(--proton)", "var(--electron)", "var(--cat-nao_metal)", "var(--cat-gas_nobre)", "var(--cloud)"];
+const CORES = [
+  "var(--gold)",
+  "var(--proton)",
+  "var(--electron)",
+  "var(--cat-nao_metal)",
+  "var(--cat-gas_nobre)",
+  "var(--cloud)",
+];
 
 /*******************************************************************************
  * Confete
@@ -53,7 +60,15 @@ export function Confete() {
  * recebe: z (elemento descoberto), mensagem (texto da missao) e onFechar.
  * retorna: a janela por cima da tela, ou nada se o z nao existir.
  ******************************************************************************/
-export function Celebracao({ z, mensagem, onFechar }: { z: number; mensagem: string; onFechar: () => void }) {
+export function Celebracao({
+  z,
+  mensagem,
+  onFechar,
+}: {
+  z: number;
+  mensagem: string;
+  onFechar: () => void;
+}) {
   const el = elementoPorZ(z);
   const { estado } = useProgresso();
   const btn = useRef<HTMLButtonElement>(null);
@@ -62,10 +77,19 @@ export function Celebracao({ z, mensagem, onFechar }: { z: number; mensagem: str
   if (!el) return null;
   const est = estado.elementos[String(z)]?.estrelas ?? [false, false, false];
   return (
-    <div role="dialog" aria-modal="true" aria-label={`Descoberta: ${el.nome}`} className="fixed inset-0 z-40 flex items-center justify-center p-4" style={{ background: "color-mix(in oklab, var(--ink) 75%, transparent)" }}>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Descoberta: ${el.nome}`}
+      className="fixed inset-0 z-40 flex items-center justify-center p-4"
+      style={{ background: "color-mix(in oklab, var(--ink) 75%, transparent)" }}
+    >
       <Confete />
       <div className="anim-flip pixel-panel w-full max-w-sm overflow-hidden">
-        <div className="pixel-block block-open flex flex-col items-center gap-2 p-6" style={catStyle(el.categoria)}>
+        <div
+          className="pixel-block block-open flex flex-col items-center gap-2 p-6"
+          style={catStyle(el.categoria)}
+        >
           <p className="font-display text-[10px]">NOVO ELEMENTO!</p>
           <p className="font-display text-5xl">{el.simbolo}</p>
           <p className="font-display text-sm">{el.nome}</p>

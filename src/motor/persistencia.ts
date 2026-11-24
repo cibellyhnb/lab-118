@@ -53,7 +53,13 @@ export function carregar(arm: Armazenamento): { estado: Progresso; corrompido: b
     // migracao: so existe a versao 1; campos que faltam recebem o valor padrao
     const base = progressoInicial();
     return {
-      estado: { ...base, ...obj, versao: 1, config: { ...base.config, ...obj.config }, quiz: { ...base.quiz, ...obj.quiz } },
+      estado: {
+        ...base,
+        ...obj,
+        versao: 1,
+        config: { ...base.config, ...obj.config },
+        quiz: { ...base.quiz, ...obj.quiz },
+      },
       corrompido: false,
     };
   } catch {
