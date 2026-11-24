@@ -4,11 +4,10 @@
  * gerais, as telas de erro e 404 e os provedores que envolvem todas as
  * telas (progresso, musica e efeitos).
  ******************************************************************************/
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   useRouterState,
   HeadContent,
@@ -98,7 +97,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
  * tags de compartilhamento), o css global e quais componentes desenham o
  * shell, a tela normal, o 404 e o erro.
  ******************************************************************************/
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -185,21 +184,17 @@ function MusicaAmbiente() {
 
 /*******************************************************************************
  * RootComponent
- * funcao: envolve todas as telas com o cliente do react-query e o
- * ProgressoProvider, e liga a musica e os efeitos globais.
- * recebe: nada (le o queryClient do contexto da rota).
+ * funcao: envolve todas as telas com o ProgressoProvider e liga a musica
+ * e os efeitos globais.
+ * recebe: nada.
  * retorna: os provedores com a tela da rota atual no Outlet.
  ******************************************************************************/
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <ProgressoProvider>
-        <MusicaAmbiente />
-        <Efeitos />
-        <Outlet />
-      </ProgressoProvider>
-    </QueryClientProvider>
+    <ProgressoProvider>
+      <MusicaAmbiente />
+      <Efeitos />
+      <Outlet />
+    </ProgressoProvider>
   );
 }
