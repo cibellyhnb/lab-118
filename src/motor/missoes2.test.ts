@@ -23,12 +23,13 @@ import type { Missao, Particulas, Progresso } from "./tipos";
  * solucao
  * funcao: monta exatamente o que a missao pede.
  * recebe: m (Missao).
- * retorna: as Particulas: neutro com n = z (M1), neutro com o n pedido (M2)
- * ou com eletrons a menos pela carga, +1 se a missao nao fixar (M3).
+ * retorna: as Particulas: neutro com os neutrons sugeridos pela missao (M1,
+ * um nucleo do catalogo), neutro com o n pedido (M2) ou com eletrons a menos
+ * pela carga, +1 se a missao nao fixar (M3).
  ******************************************************************************/
 function solucao(m: Missao): Particulas {
   const c = m.criterio;
-  if (c.tipo === "DESCOBRIR") return { p: m.z, n: m.z, e: m.z };
+  if (c.tipo === "DESCOBRIR") return { p: m.z, n: c.n ?? m.z, e: m.z };
   if (c.tipo === "ISOTOPO") return { p: m.z, n: c.n ?? 0, e: m.z };
   return { p: m.z, n: m.z, e: m.z - (c.carga ?? 1) };
 }
@@ -176,20 +177,21 @@ describe("sequência de missões de um elemento no laboratório", () => {
     expect(proximoElemento(s, 15)).toBe(16);
   });
 
-  it("fósforo descoberto com P-30 (fora do catálogo): a estrela 2 pede dois isótopos", () => {
-    // regra: a descoberta so registra isotopo se o nucleo estiver no catalogo
-    let s = construir(antes(), { p: 15, n: 15, e: 15 }).estado;
-    expect(s.elementos["15"]?.isotopos).toEqual([]);
-    const primeiro = missaoParaElemento(s, 15)!;
-    expect(primeiro).toMatchObject({ tipo: "M2", criterio: { a: 31 } });
-    expect(primeiro.enunciado).toContain("Faltam 2 isótopos do catálogo para a estrela 2");
-    s = construir(s, solucao(primeiro)).estado;
+  it("fósforo montado com P-30 (fora do catálogo) não é descoberto", () => {
+    // regra: a descoberta pede um nucleo do catalogo; P-30 nao esta nele
+    const m1 = missaoParaElemento(antes(), 15)!;
+    expect(m1).toMatchObject({ tipo: "M1", criterio: { tipo: "DESCOBRIR", z: 15, n: 16 } });
+    const p30 = construir(antes(), { p: 15, n: 15, e: 15 });
+    expect(p30.eventos.map((e) => e.tipo)).not.toContain("ELEMENTO_DESCOBERTO");
+    expect(estrelas(p30.estado)).toBeUndefined();
+    expect(missaoParaElemento(p30.estado, 15)?.tipo).toBe("M1");
+    const av = avaliarMissao(m1, classificar({ p: 15, n: 15, e: 15 }));
+    expect(av.cumprida).toBe(false);
+    expect(av.mensagem).toContain("não está no catálogo");
+    // com os neutrons sugeridos (P-31) descobre
+    const s = construir(p30.estado, solucao(m1)).estado;
     expect(estrelas(s)).toEqual([true, false, false]);
-    const segundo = missaoParaElemento(s, 15)!;
-    expect(segundo).toMatchObject({ tipo: "M2", criterio: { a: 32 } });
-    expect(segundo.enunciado).toContain("Falta 1 isótopo do catálogo para a estrela 2");
-    s = construir(s, solucao(segundo)).estado;
-    expect(missaoParaElemento(s, 15)?.tipo).toBe("M3");
+    expect(s.elementos["15"]?.isotopos).toEqual([31]);
   });
 
   it("sem elemento na url, o sugerido é o de gerarMissao e depois o primeiro com estrela faltando", () => {

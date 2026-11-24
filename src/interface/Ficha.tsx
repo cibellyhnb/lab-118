@@ -105,7 +105,8 @@ export function Ficha({ z }: { z: number }) {
         <div className="pixel-panel p-6 text-center">
           <p className="font-display mb-4 text-sm">ELEMENTO BLOQUEADO</p>
           <p className="mb-4">
-            Monte o átomo neutro deste elemento no laboratório para abrir a ficha.
+            Monte o átomo neutro deste elemento, com um núcleo que existe, no laboratório para abrir
+            a ficha.
           </p>
           <Link to="/laboratorio" search={{ z }} className="pixel-btn btn-gold">
             IR PARA A MISSÃO

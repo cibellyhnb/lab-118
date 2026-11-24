@@ -77,8 +77,10 @@ export function construir(
     eventos.push({ tipo: "ION_REGISTRADO", z, carga });
   }
 
-  // RF-01: descoberta so com atomo neutro
-  if (classificacao.especie === "atomo_neutro" && !atual.estrelas[0]) {
+  // RF-01: descoberta so com atomo neutro e com um nucleo que existe (do catalogo):
+  // lítio com 0 neutrons (Li-3), por exemplo, nao descobre o litio
+  const nucleoReal = classificacao.nuclideo?.status !== "nao_catalogado";
+  if (classificacao.especie === "atomo_neutro" && nucleoReal && !atual.estrelas[0]) {
     atual.estrelas[0] = true;
     eventos.push({ tipo: "ELEMENTO_DESCOBERTO", z });
     eventos.push({ tipo: "ESTRELA_GANHA", z, estrela: 1 });

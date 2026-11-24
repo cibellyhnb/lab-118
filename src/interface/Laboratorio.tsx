@@ -502,19 +502,25 @@ export function Laboratorio({
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 3)
         l.push("Estrela do íon! Elétrons mudam a carga, não o elemento.");
     }
+    // o elemento continua sem descobrir depois deste construir
+    const naoDescobriu = !jaDescoberto && !eventos.some((x) => x.tipo === "ELEMENTO_DESCOBERTO");
+    const nucleoFora = cl.nuclideo?.status === "nao_catalogado";
+    // atomo neutro que nao descobriu porque o nucleo nao esta no catalogo (ex: Li-3)
+    const neutroForaDoCatalogo = cl.especie === "atomo_neutro" && naoDescobriu && nucleoFora;
     // ion de elemento ainda nao descoberto: lembra que a descoberta pede atomo neutro;
+    // neutro com nucleo fora do catalogo: explica que faltam os neutrons certos;
     // atomo neutro de outro elemento ja conhecido: repete a dica da missao
-    if (
-      cl.especie !== "atomo_neutro" &&
-      !jaDescoberto &&
-      !eventos.some((x) => x.tipo === "ELEMENTO_DESCOBERTO")
-    )
+    if (cl.especie !== "atomo_neutro" && naoDescobriu)
       l.push(
         `Isso é um íon de ${nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`,
       );
+    else if (neutroForaDoCatalogo)
+      l.push(
+        `Átomo neutro, mas ${artigoDoElemento(nome)} ${nome.toLowerCase()}-${cl.a} não está no catálogo de isótopos. Para descobrir o elemento, mude os nêutrons até o painel mostrar “Estável” ou “Radioativo”.`,
+      );
     else if (missao && cl.especie === "atomo_neutro" && cl.z !== missao.z && jaDescoberto)
       l.push(avaliarMissao(missao, cl).mensagem);
-    if (cl.nuclideo?.status === "nao_catalogado")
+    if (nucleoFora && !neutroForaDoCatalogo)
       l.push(
         "Esse isótopo não está no nosso catálogo. Pode nunca ter sido observado ou durar frações de segundo.",
       );

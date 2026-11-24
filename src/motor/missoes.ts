@@ -5,7 +5,7 @@
  * elemento com missao pendente e confere se uma montagem cumpre a missao,
  * com a mensagem que o jogador ve.
  ******************************************************************************/
-import { ELEMENTOS, artigoDoElemento, elementoPorZ } from "./dados";
+import { ELEMENTOS, artigoDoElemento, elementoPorZ, isotopoReferencia } from "./dados";
 import { Z_MAX, notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
 import { descoberto, isotoposNecessarios } from "./progresso";
@@ -31,13 +31,16 @@ export function pistaGerada(z: number): string {
 export function missaoDescoberta(z: number): Missao {
   const dicas = gerarDicas(z);
   const pista = dicas[0]?.texto ?? "";
+  // neutrons do isotopo de referencia: um nucleo que existe, o mesmo que a dica 4 sugere
+  const el = elementoPorZ(z);
+  const ref = el ? isotopoReferencia(el) : null;
   return {
     id: `M1-${z}`,
     tipo: "M1",
     z,
     enunciado: `Descubra o elemento: ${pista}`,
     dicas: dicas.map((d) => d.texto),
-    criterio: { tipo: "DESCOBRIR", z },
+    criterio: ref ? { tipo: "DESCOBRIR", z, n: ref.a - z } : { tipo: "DESCOBRIR", z },
   };
 }
 
@@ -274,9 +277,16 @@ export function avaliarMissao(
       mensagem: `A carga agora é ${sinal(c.carga)}, mas o alvo é ${sinal(alvoQ ?? 0)}. Ajuste os elétrons.`,
     };
   }
-  // M1: o elemento certo e neutro
-  const cumprida = c.z === m.z && c.especie === "atomo_neutro";
+  // M1: o elemento certo, neutro e com um nucleo do catalogo
+  const neutroCerto = c.z === m.z && c.especie === "atomo_neutro";
+  const cumprida = neutroCerto && c.nuclideo?.status !== "nao_catalogado";
   if (cumprida) return { cumprida, mensagem: `Isso! Você descobriu ${art} ${c.elemento.nome}!` };
+  if (neutroCerto) {
+    return {
+      cumprida,
+      mensagem: `Prótons e elétrons certos, mas ${art} ${nome.toLowerCase()}-${c.a} não está no catálogo de isótopos. Mude os nêutrons para montar um núcleo que existe.`,
+    };
+  }
   if (c.z === m.z) {
     return {
       cumprida,

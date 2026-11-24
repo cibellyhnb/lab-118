@@ -11,7 +11,9 @@ import {
   PERGUNTAS,
   TAMANHO_GERAL,
   construir,
+  elementoPorZ,
   familiaPendente,
+  isotopoReferencia,
   membros,
   montarRodada,
   perguntasDoQuiz,
@@ -29,13 +31,16 @@ import {
 /*******************************************************************************
  * descobrirTodos
  * funcao: descobre varios elementos de uma vez, montando cada um neutro
- * com n = z.
+ * com o isotopo de referencia (um nucleo do catalogo).
  * recebe: base (Progresso) e zs (numeros atomicos).
  * retorna: o Progresso depois de todas as montagens.
  ******************************************************************************/
 function descobrirTodos(base: Progresso, zs: number[]): Progresso {
   let s = base;
-  for (const z of zs) s = construir(s, { p: z, n: z, e: z }).estado;
+  for (const z of zs) {
+    const ref = isotopoReferencia(elementoPorZ(z)!)!;
+    s = construir(s, { p: z, n: ref.a - z, e: z }).estado;
+  }
   return s;
 }
 

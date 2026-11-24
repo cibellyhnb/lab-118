@@ -127,7 +127,7 @@ export type Dica = { nivel: 1 | 2 | 3 | 4; titulo: string; texto: string };
 
 // o que a montagem precisa ter para a missao contar como cumprida
 export type Criterio =
-  | { tipo: "DESCOBRIR"; z: number }
+  | { tipo: "DESCOBRIR"; z: number; n?: number }
   | { tipo: "ISOTOPO"; z: number; a?: number; n?: number; radioativo?: boolean }
   | { tipo: "ION"; z: number; carga?: number };
 

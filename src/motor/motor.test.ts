@@ -6,7 +6,7 @@
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
 import { classificar, distribuirCamadas } from "./classificar";
-import { ELEMENTOS } from "./dados";
+import { ELEMENTOS, isotopoReferencia } from "./dados";
 import { construir, progressoInicial } from "./progresso";
 import { avaliarMissao, gerarMissao, missaoDescoberta } from "./missoes";
 import { carregar, CHAVE, salvar } from "./persistencia";
@@ -171,11 +171,33 @@ describe("Progresso e estrelas (RF-01 a RF-03)", () => {
     const r3 = construir(r2.estado, { p: 1, n: 1, e: 1 });
     expect(r3.estado.elementos["1"]?.estrelas).toEqual([true, true, true]);
   });
-  it("não catalogado não registra isótopo", () => {
-    // C-36 descobre o carbono, mas nao entra na lista de isotopos
+  it("não catalogado não registra isótopo nem descobre o elemento", () => {
+    // C-36 nao esta no catalogo: nao descobre o carbono e nao entra na lista de isotopos
     const r = construir(progressoInicial(), { p: 6, n: 30, e: 6 });
-    expect(r.estado.elementos["6"]?.isotopos).toEqual([]);
-    expect(r.estado.elementos["6"]?.estrelas[0]).toBe(true);
+    expect(r.eventos).toEqual([]);
+    expect(r.estado.elementos["6"]).toBeUndefined();
+    // Li-3 (litio sem neutrons) tambem nao descobre
+    expect(construir(progressoInicial(), { p: 3, n: 0, e: 3 }).eventos).toEqual([]);
+    // com um nucleo do catalogo (C-12) descobre e registra o isotopo
+    const ok = construir(r.estado, { p: 6, n: 6, e: 6 });
+    expect(ok.estado.elementos["6"]?.estrelas[0]).toBe(true);
+    expect(ok.estado.elementos["6"]?.isotopos).toEqual([12]);
+  });
+  it("todo elemento tem um isótopo de referência no catálogo, e ele descobre o elemento", () => {
+    for (const el of ELEMENTOS) {
+      const ref = isotopoReferencia(el);
+      expect(ref, el.nome).not.toBeNull();
+      expect(el.isotopos.some((i) => i.a === ref!.a)).toBe(true);
+      const r = construir(progressoInicial(), { p: el.z, n: ref!.a - el.z, e: el.z });
+      expect(
+        r.eventos.map((e) => e.tipo),
+        el.nome,
+      ).toContain("ELEMENTO_DESCOBERTO");
+    }
+    // natural: o mais abundante; sintetico: o numero de massa da tabela
+    expect(isotopoReferencia(ELEMENTOS[0]!)?.a).toBe(1);
+    expect(isotopoReferencia(ELEMENTOS[91]!)?.a).toBe(238);
+    expect(isotopoReferencia(ELEMENTOS[42]!)?.a).toBe(97);
   });
   it("aplicar o mesmo build duas vezes não duplica nada", () => {
     const a = construir(progressoInicial(), { p: 6, n: 6, e: 6 });

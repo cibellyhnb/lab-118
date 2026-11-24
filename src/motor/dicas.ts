@@ -5,7 +5,7 @@
  * cada elemento, que muda o quanto a primeira dica entrega.
  ******************************************************************************/
 import { CURIOSIDADES } from "./curiosidades";
-import { NOME_CATEGORIA, artigoDoElemento, elementoPorZ } from "./dados";
+import { NOME_CATEGORIA, artigoDoElemento, elementoPorZ, isotopoReferencia } from "./dados";
 import type { Dica, Dificuldade, Elemento } from "./tipos";
 
 /*******************************************************************************
@@ -149,12 +149,22 @@ function dica3(z: number): string {
 
 /*******************************************************************************
  * dica4
- * funcao: texto da resposta (nivel 4), com o numero exato de protons.
- * recebe: z (numero atomico).
- * retorna: a frase com a quantidade de protons, no singular quando z = 1.
+ * funcao: texto da resposta (nivel 4), com o numero exato de protons e,
+ * como a descoberta pede um nucleo do catalogo, os eletrons e os neutrons
+ * do isotopo de referencia (ver isotopoReferencia em dados.ts).
+ * recebe: el (Elemento).
+ * retorna: a frase, no singular quando a quantidade for 1.
  ******************************************************************************/
-function dica4(z: number): string {
-  return `Esse elemento tem ${z} ${z === 1 ? "próton" : "prótons"}. Coloque essa quantidade no átomo.`;
+function dica4(el: Elemento): string {
+  const z = el.z;
+  const base = `Esse elemento tem ${z} ${z === 1 ? "próton" : "prótons"}.`;
+  // a descoberta pede um nucleo do catalogo, entao a resposta tambem diz os neutrons
+  const ref = isotopoReferencia(el);
+  if (!ref) return `${base} Coloque essa quantidade no átomo.`;
+  const n = ref.a - z;
+  const qual =
+    ref.abundancia_pct !== null ? "o isótopo mais comum na natureza" : "um isótopo do catálogo";
+  return `${base} Para o átomo neutro, use ${z} ${z === 1 ? "elétron" : "elétrons"} e ${n} ${n === 1 ? "nêutron" : "nêutrons"}: é ${artigoDoElemento(el.nome)} ${el.nome.toLowerCase()}-${ref.a}, ${qual}.`;
 }
 
 /*******************************************************************************
@@ -169,7 +179,7 @@ export function dicasDoElemento(el: Elemento): Dica[] {
     { nivel: 1, titulo: "Pista", texto: dica1(el) },
     { nivel: 2, titulo: "Posição na tabela", texto: dica2(el) },
     { nivel: 3, titulo: "Faixa de prótons", texto: dica3(el.z) },
-    { nivel: 4, titulo: "Resposta", texto: dica4(el.z) },
+    { nivel: 4, titulo: "Resposta", texto: dica4(el) },
   ];
 }
 
