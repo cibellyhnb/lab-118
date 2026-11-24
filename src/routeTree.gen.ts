@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as GlossarioRouteImport } from './routes/glossario'
 import { Route as LaboratorioRouteImport } from './routes/laboratorio'
 import { Route as MapaRouteImport } from './routes/mapa'
@@ -20,6 +21,11 @@ import { Route as ElementoZRouteImport } from './routes/elemento.$z'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GlossarioRoute = GlossarioRouteImport.update({
@@ -55,6 +61,7 @@ const ElementoZRoute = ElementoZRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/glossario': typeof GlossarioRoute
   '/laboratorio': typeof LaboratorioRoute
   '/mapa': typeof MapaRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/glossario': typeof GlossarioRoute
   '/laboratorio': typeof LaboratorioRoute
   '/mapa': typeof MapaRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/glossario': typeof GlossarioRoute
   '/laboratorio': typeof LaboratorioRoute
   '/mapa': typeof MapaRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
     | '/glossario'
     | '/laboratorio'
     | '/mapa'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/glossario'
     | '/laboratorio'
     | '/mapa'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$'
     | '/glossario'
     | '/laboratorio'
     | '/mapa'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   GlossarioRoute: typeof GlossarioRoute
   LaboratorioRoute: typeof LaboratorioRoute
   MapaRoute: typeof MapaRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/glossario': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   GlossarioRoute: GlossarioRoute,
   LaboratorioRoute: LaboratorioRoute,
   MapaRoute: MapaRoute,
