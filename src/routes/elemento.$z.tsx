@@ -4,27 +4,50 @@
  * numero atomico z.
  ******************************************************************************/
 import { createFileRoute } from "@tanstack/react-router";
-import { artigoDoElemento, elementoPorZ } from "@/motor";
+import { carregar, descoberto, elementoPorZ, nomeComArtigo } from "@/motor";
 import { Ficha } from "@/interface/Ficha";
+
+/*******************************************************************************
+ * liberado
+ * funcao: diz se o jogador ja descobriu o elemento, lendo o progresso salvo.
+ * fora do navegador ou com o armazenamento bloqueado, conta como bloqueado.
+ * recebe: z (number). retorna: boolean.
+ ******************************************************************************/
+function liberado(z: number): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return descoberto(carregar(window.localStorage).estado, z);
+  } catch {
+    return false;
+  }
+}
 
 /*******************************************************************************
  * Route
  * funcao: registra a rota /elemento/$z. o titulo e a descricao usam o nome
- * do elemento quando o z existe.
+ * do elemento so quando ele ja foi descoberto, para a aba do navegador nao
+ * entregar a resposta de um elemento bloqueado.
  ******************************************************************************/
 export const Route = createFileRoute("/elemento/$z")({
   head: ({ params }) => {
     // z vem da url como texto
-    const el = elementoPorZ(Number(params.z));
-    const t = el ? `${el.nome} (${el.simbolo}) - Ficha do elemento` : "Ficha do elemento";
+    const z = Number(params.z);
+    const el = elementoPorZ(z);
+    const aberto = el !== undefined && liberado(z);
+    const t = !el
+      ? "Ficha do elemento"
+      : aberto
+        ? `${el.nome} (${el.simbolo}) - Ficha do elemento`
+        : `Elemento ${z} bloqueado`;
     return {
       meta: [
         { title: `${t} - Lab 118` },
         {
           name: "description",
-          content: el
-            ? `Ficha d${artigoDoElemento(el.nome)} ${el.nome}: isótopos, massa atômica, família e suas variantes.`
-            : "Ficha do elemento.",
+          content:
+            el && aberto
+              ? `Ficha d${nomeComArtigo(el.nome)}: isótopos, massa atômica, família e suas variantes.`
+              : "Ficha do elemento.",
         },
         { property: "og:title", content: t },
         {
