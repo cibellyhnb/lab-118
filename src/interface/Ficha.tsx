@@ -22,12 +22,22 @@ import { useProgresso } from "./store";
 import { PixelArt } from "./PixelArt";
 import { PALETA_ILUS, ilustracaoDe } from "./ilus";
 
+/*******************************************************************************
+ * FONTES_GERAIS
+ * funcao: as referencias dos dados do elements.json, mostradas em toda ficha.
+ ******************************************************************************/
+const FONTES_GERAIS = [
+  "Massa atômica: CIAAW (Comissão de Abundâncias Isotópicas e Pesos Atômicos da IUPAC).",
+  "Isótopos (estabilidade, meia-vida e abundância na natureza): IAEA Live Chart of Nuclides e NUBASE2020, conferidos em novembro de 2026.",
+  "Alguns isótopos que o jogo chama de estáveis decaem tão devagar (muito mais que a idade do Universo) que certas tabelas os listam como radioativos.",
+];
+
 // fase do JSON escrita para a tela
 const FASE = {
   solido: "Sólido",
   liquido: "Líquido",
   gasoso: "Gasoso",
-  desconhecido: "Desconhecido",
+  desconhecido: "Desconhecido (nunca se juntou o bastante dele para ver)",
 } as const;
 // numero no formato brasileiro (virgula decimal), com ate 6 casas
 const fmt = (x: number) => x.toLocaleString("pt-BR", { maximumFractionDigits: 6 });
@@ -165,10 +175,10 @@ export function Ficha({ z }: { z: number }) {
             {NOME_CATEGORIA[el.categoria]} · Período {el.periodo}
             {el.grupo ? ` · Grupo ${el.grupo}` : ""}
           </p>
-          {/* do 104 em diante a fase e so prevista, nunca foi medida */}
+          {/* fase so prevista (astato e do 104 em diante): nunca foi vista em quantidade */}
           <p>
             Estado físico à temperatura ambiente:{" "}
-            {el.z >= 104 && el.fase_ambiente !== "desconhecido"
+            {el.fase_ambiente !== "desconhecido" && (el.fase_prevista || el.z >= 104)
               ? `${FASE[el.fase_ambiente]} (previsto)`
               : FASE[el.fase_ambiente]}
           </p>
@@ -307,6 +317,13 @@ export function Ficha({ z }: { z: number }) {
               );
             })}
           </ul>
+          {/* superpesados: poucos atomos observados, valores ainda incertos */}
+          {el.z >= 104 && (
+            <p className="mt-2 text-sm">
+              Valores aproximados: desses isótopos só se observaram alguns átomos, e as meias-vidas
+              ainda podem mudar. O jogo deixa de fora isótopos com pouquíssimas observações.
+            </p>
+          )}
           <p className="mt-2 text-sm">
             Estrela 2: registre {isotoposNecessarios(z)}{" "}
             {isotoposNecessarios(z) === 1 ? "isótopo" : "isótopos"} do catálogo.
@@ -334,7 +351,15 @@ export function Ficha({ z }: { z: number }) {
             Íons isolados não são o mesmo que íons em compostos.
           </p>
         )}
-        {el.ions_comuns.length === 0 && (
+        {/* superpesados: quase nada se sabe da quimica deles */}
+        {el.ions_comuns.length === 0 && el.z >= 104 && (
+          <p className="mt-2 text-sm">
+            A química deste elemento quase não é conhecida: só alguns átomos dele já foram feitos, e
+            ainda não se sabe que íons ele forma em compostos. Mesmo assim, dá para montar íons dele
+            no laboratório.
+          </p>
+        )}
+        {el.ions_comuns.length === 0 && el.z < 104 && (
           <p className="mt-2 text-sm">
             Este elemento não costuma formar íons simples em compostos. Mesmo assim, dá para montar
             íons dele no laboratório.
@@ -351,15 +376,14 @@ export function Ficha({ z }: { z: number }) {
           </ul>
         </Secao>
       )}
-      {f.fontes && f.fontes.length > 0 && (
-        <Secao titulo="FONTES">
-          <ul className="text-sm">
-            {f.fontes.map((u) => (
-              <li key={u}>{u}</li>
-            ))}
-          </ul>
-        </Secao>
-      )}
+      {/* as mesmas fontes valem para todas as fichas; o JSON pode acrescentar outras */}
+      <Secao titulo="FONTES">
+        <ul className="text-sm">
+          {[...FONTES_GERAIS, ...(f.fontes ?? [])].map((u) => (
+            <li key={u}>{u}</li>
+          ))}
+        </ul>
+      </Secao>
       <p className="pb-6 text-sm text-parchment-shade">
         Sobre este modelo: o átomo é desenhado com camadas. É uma metáfora visual; elétrons não
         orbitam como planetas.

@@ -46,6 +46,8 @@ export type Elemento = {
   periodo: number;
   posicao: { linha: number; coluna: number };
   fase_ambiente: "solido" | "liquido" | "gasoso" | "desconhecido";
+  // opcional: a fase nunca foi vista, so prevista (ex: astato); do 104 em diante e sempre prevista
+  fase_prevista?: boolean;
   massa_atomica: { valor: number; tipo: "convencional" | "isotopo_mais_longevo" } | null;
   camadas: number[];
   eletrons_valencia: number | null;

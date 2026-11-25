@@ -67,7 +67,10 @@ function descricaoBasica(el: Elemento): string {
   // grupo e fase so entram quando existem
   const grupo = el.grupo ? `, grupo ${el.grupo}` : "";
   const fase = FASE[el.fase_ambiente];
-  const faseTxt = fase ? `, ${fase} à temperatura ambiente` : "";
+  // fase so prevista (ex: astato) vem com "provavelmente"
+  const faseTxt = fase
+    ? `, ${el.fase_prevista ? "provavelmente " : ""}${fase} à temperatura ambiente`
+    : "";
   return `${NOME_CATEGORIA[el.categoria]} do período ${el.periodo}${grupo}${faseTxt}`;
 }
 
