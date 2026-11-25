@@ -510,12 +510,13 @@ export function Laboratorio({
     const nucleoFora = cl.nuclideo?.status === "nao_catalogado";
     // atomo neutro que nao descobriu porque o nucleo nao esta no catalogo (ex: Li-3)
     const neutroForaDoCatalogo = cl.especie === "atomo_neutro" && naoDescobriu && nucleoFora;
-    // ion de elemento ainda nao descoberto: lembra que a descoberta pede atomo neutro;
+    // ion de elemento ainda nao descoberto: nao e registrado; lembra que a descoberta pede
+    // atomo neutro;
     // neutro com nucleo fora do catalogo: explica que faltam os neutrons certos;
     // atomo neutro de outro elemento ja conhecido: repete a dica da missao
     if (cl.especie !== "atomo_neutro" && naoDescobriu)
       l.push(
-        `Isso é um íon de ${nome.toLowerCase()}. Monte o átomo neutro para descobrir o elemento.`,
+        `Isso é um íon de ${nome.toLowerCase()}, e íons só contam depois da descoberta. Primeiro monte o átomo neutro, com tantos elétrons quanto prótons.`,
       );
     else if (neutroForaDoCatalogo)
       l.push(

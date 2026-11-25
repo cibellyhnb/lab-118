@@ -482,7 +482,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     termo: "Estrelas",
     categoria: "jogo",
     definicao:
-      "Cada elemento vale 3 estrelas: 1) átomo neutro com um núcleo do catálogo (descobrir o elemento); 2) isótopo; 3) íon. São 118 × 3 = 354 estrelas no total.",
+      "Cada elemento vale 3 estrelas: 1) átomo neutro com um núcleo do catálogo (descobrir o elemento); 2) um segundo isótopo do catálogo; 3) um íon. Isótopos e íons só contam depois da descoberta. São 118 × 3 = 354 estrelas no total.",
     ver: ["missao", "atomo-neutro", "isotopo", "ion"],
   },
   {

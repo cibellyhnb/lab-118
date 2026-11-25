@@ -16,6 +16,7 @@ import { ELEMENTOS, isotopoReferencia } from "./dados";
 import { construir, progressoInicial } from "./progresso";
 import { avaliarMissao, gerarMissao, missaoDescoberta } from "./missoes";
 import { carregar, CHAVE, salvar } from "./persistencia";
+import type { Progresso } from "./tipos";
 
 /*******************************************************************************
  * c
@@ -181,20 +182,50 @@ describe("Regras", () => {
 
 // como construir() registra variantes e da estrelas
 describe("Progresso e estrelas (RF-01 a RF-03)", () => {
-  it("descoberta só com átomo neutro e variantes anteriores passam a contar", () => {
+  it("descoberta só com átomo neutro, e variantes só contam depois dela", () => {
     let s = progressoInicial();
-    // primeiro o ion H+: registra o ion, mas sem descobrir nao ha estrela
+    // primeiro o ion H+: o hidrogenio nao foi descoberto, entao nada e registrado
     const r1 = construir(s, { p: 1, n: 0, e: 0 });
-    s = r1.estado;
-    expect(s.elementos["1"]?.estrelas).toEqual([false, false, false]);
-    expect(s.elementos["1"]?.ions).toEqual([1]);
-    // depois o H neutro: descobre e o ion de antes ja vale a estrela 3
+    expect(r1.eventos).toEqual([]);
+    expect(r1.estado).toBe(s);
+    // depois o H neutro: descobre e registra so o proprio isotopo, sem estrela 3
     const r2 = construir(s, { p: 1, n: 0, e: 1 });
-    expect(r2.eventos.map((e) => e.tipo)).toContain("ELEMENTO_DESCOBERTO");
-    expect(r2.estado.elementos["1"]?.estrelas).toEqual([true, false, true]);
+    expect(r2.eventos.map((e) => e.tipo)).toEqual([
+      "ELEMENTO_DESCOBERTO",
+      "ESTRELA_GANHA",
+      "ISOTOPO_REGISTRADO",
+    ]);
+    expect(r2.estado.elementos["1"]).toEqual({
+      estrelas: [true, false, false],
+      isotopos: [1],
+      ions: [],
+    });
     // H-2 e o segundo isotopo: estrela 2
     const r3 = construir(r2.estado, { p: 1, n: 1, e: 1 });
-    expect(r3.estado.elementos["1"]?.estrelas).toEqual([true, true, true]);
+    expect(r3.estado.elementos["1"]?.estrelas).toEqual([true, true, false]);
+    // agora o ion H+ vale a estrela 3
+    s = construir(r3.estado, { p: 1, n: 0, e: 0 }).estado;
+    expect(s.elementos["1"]).toEqual({ estrelas: [true, true, true], isotopos: [1, 2], ions: [1] });
+  });
+  it("isótopo ou íon antes da descoberta não dá estrelas de uma vez", () => {
+    // Li-7 com 2 eletrons (Li+): nao conta
+    let s = construir(progressoInicial(), { p: 3, n: 4, e: 2 }).estado;
+    expect(s.elementos["3"]).toBeUndefined();
+    // Li-7 neutro: so a estrela 1
+    s = construir(s, { p: 3, n: 4, e: 3 }).estado;
+    expect(s.elementos["3"]?.estrelas).toEqual([true, false, false]);
+  });
+  it("save antigo com variantes registradas antes da descoberta: a contagem recomeça", () => {
+    const antigo = {
+      ...progressoInicial(),
+      elementos: { "3": { estrelas: [false, false, false], isotopos: [6, 7], ions: [1] } },
+    } as Progresso;
+    const r = construir(antigo, { p: 3, n: 4, e: 3 });
+    expect(r.estado.elementos["3"]).toEqual({
+      estrelas: [true, false, false],
+      isotopos: [7],
+      ions: [],
+    });
   });
   it("não catalogado não registra isótopo nem descobre o elemento", () => {
     // C-36 nao esta no catalogo: nao descobre o carbono e nao entra na lista de isotopos
