@@ -269,7 +269,7 @@ export function Ficha({ z }: { z: number }) {
           um número inteiro. Massa atômica é a média ponderada das massas dos isótopos naturais de
           um elemento, e por isso costuma ser decimal.
           {maisLongevo &&
-            " Este elemento não tem isótopo estável, então não existe uma massa atômica padrão: a tabela mostra o número de massa do isótopo que dura mais tempo."}
+            " Este elemento não tem uma mistura natural de isótopos que dê para medir, então não existe uma massa atômica padrão: a tabela mostra o número de massa do isótopo que dura mais tempo."}
         </p>
         {cMontado && el.massa_atomica && !maisLongevo && (
           <p className="mt-2">

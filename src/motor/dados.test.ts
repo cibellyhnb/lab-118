@@ -120,3 +120,15 @@ describe("Fase à temperatura ambiente", () => {
     expect(elementoPorZ(87)?.fase_ambiente).toBe("desconhecido");
   });
 });
+
+describe("Coerência entre glossário e catálogo", () => {
+  it("o glossário não dá isótopo estável a quem o catálogo diz não ter (ex: bismuto)", () => {
+    // todos do bismuto (83) em diante, alem do tecnecio e do promecio, so tem isotopos radioativos
+    const semEstavel = ELEMENTOS.filter((e) =>
+      e.isotopos.every((i) => i.estabilidade !== "estavel"),
+    ).map((e) => e.z);
+    expect(semEstavel).toEqual([43, 61, ...Array.from({ length: 118 - 82 }, (_, i) => 83 + i)]);
+    const radioativo = GLOSSARIO.find((g) => g.id === "radioativo");
+    expect(radioativo?.duvida).toContain("a partir do bismuto (Z ≥ 83)");
+  });
+});
