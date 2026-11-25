@@ -280,7 +280,7 @@ export const PERGUNTAS: Pergunta[] = [
     "Eles formam o grande bloco central, dos grupos 3 a 12.",
   ),
 
-  // ----- metais representativos -----
+  // ----- metais pos-transicao -----
   q(
     "metal_representativo",
     1,

@@ -62,7 +62,7 @@ export const FAMILIAS: FamiliaInfo[] = [
   },
   {
     id: "metal_representativo",
-    nome: "metais representativos",
+    nome: "metais pós-transição",
     titulo: "Os Construtores",
     onde: "à direita do bloco do meio, nos grupos 13 a 16",
     fatos: [

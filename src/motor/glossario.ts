@@ -418,13 +418,15 @@ export const GLOSSARIO: TermoGlossario[] = [
     ver: ["metal", "grupo"],
   },
   {
-    id: "metal-representativo",
-    termo: "Metal representativo",
+    id: "metal-pos-transicao",
+    termo: "Metal pós-transição",
     categoria: "tabela",
     definicao:
-      "Metais que ficam fora do bloco central e dos grupos 1 e 2, como o alumínio, o estanho e o chumbo.",
-    ver: ["metal"],
-    sinonimos: ["pos-transicao"],
+      "Metais dos grupos 13 a 16 que vêm logo depois do bloco central (os metais de transição), como o alumínio, o estanho e o chumbo.",
+    duvida:
+      "Alguns livros os chamam de metais representativos, mas esse nome vale para todos os elementos dos grupos 1, 2 e 13 a 18: o sódio e o cálcio também são metais representativos.",
+    ver: ["metal", "grupo"],
+    sinonimos: ["metal representativo", "outros metais"],
   },
   {
     id: "halogenio",
