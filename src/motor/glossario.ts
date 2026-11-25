@@ -471,7 +471,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     termo: "Elemento sintético",
     categoria: "tabela",
     definicao:
-      "Elemento que quase não existe na natureza e foi produzido em laboratório, colidindo núcleos em aceleradores. Os mais pesados duram frações de segundo.",
+      "Elemento que quase não existe na natureza e foi produzido pelos cientistas, em reatores nucleares ou colidindo núcleos em aceleradores. Os mais pesados duram frações de segundo.",
     exemplo:
       "O oganessônio (Z = 118) foi criado em laboratório, e só alguns átomos dele foram observados.",
     ver: ["radioativo", "meia-vida"],

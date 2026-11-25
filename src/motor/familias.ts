@@ -123,7 +123,7 @@ export const FAMILIAS: FamiliaInfo[] = [
     fatos: [
       "Os ímãs mais fortes que existem usam neodímio.",
       "Vários lantanídeos dão as cores das telas de TV e de celular.",
-      "Eles também são chamados de “terras raras”, mas não são tão raros assim: o difícil é separar um do outro.",
+      "Junto com o escândio e o ítrio, eles formam as “terras raras”, que não são tão raras assim: o difícil é separar uma da outra.",
     ],
   },
   {

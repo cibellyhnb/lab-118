@@ -8,6 +8,8 @@ import { ELEMENTOS, elementoPorZ } from "./dados";
 import { APLICACOES } from "./aplicacoes";
 import { CURIOSIDADES } from "./curiosidades";
 import { GLOSSARIO } from "./glossario";
+import { ILUSTRACOES } from "@/interface/ilus/mapa";
+import { PALETA_ILUS, ilustracaoDe } from "@/interface/ilus";
 
 describe("Dados do elements.json", () => {
   it("as abundâncias de cada elemento somam 100%", () => {
@@ -130,5 +132,21 @@ describe("Coerência entre glossário e catálogo", () => {
     expect(semEstavel).toEqual([43, 61, ...Array.from({ length: 118 - 82 }, (_, i) => 83 + i)]);
     const radioativo = GLOSSARIO.find((g) => g.id === "radioativo");
     expect(radioativo?.duvida).toContain("a partir do bismuto (Z ≥ 83)");
+  });
+});
+
+describe("Ilustrações", () => {
+  it("todo elemento ilustrado tem desenho 16 × 16 só com cores da paleta", () => {
+    for (let z = 1; z <= 118; z++) {
+      if (!ILUSTRACOES[z]) continue;
+      const il = ilustracaoDe(z);
+      expect(il, `Z ${z}: sprite ${ILUSTRACOES[z]?.sprite}`).not.toBeNull();
+      expect(il?.rows.length, `Z ${z}`).toBe(16);
+      for (const linha of il?.rows ?? []) {
+        expect(linha.length, `Z ${z}`).toBe(16);
+        for (const c of linha)
+          if (c !== ".") expect(PALETA_ILUS[c], `Z ${z}: cor ${c}`).toBeDefined();
+      }
+    }
   });
 });

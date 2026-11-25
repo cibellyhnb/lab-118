@@ -298,7 +298,7 @@ export const APLICACOES: Record<number, string[]> = {
   59: [
     "Vidros e cerâmicas: tom amarelo-esverdeado.",
     "Ímãs: ligas com neodímio.",
-    "Proteção: lentes para soldadores.",
+    "Proteção: óculos de vidreiros, que filtram o brilho amarelo do vidro quente.",
   ],
   60: [
     "Ímãs: fones, alto-falantes e discos rígidos.",
@@ -336,7 +336,7 @@ export const APLICACOES: Record<number, string[]> = {
   ],
   69: ["Raio X: fonte de aparelhos portáteis.", "Lasers: usados em cirurgia."],
   70: [
-    "Relógios atômicos: os mais precisos que existem.",
+    "Relógios atômicos: estão entre os mais precisos que existem.",
     "Lasers: fibras industriais.",
     "Aço: ajuda a refinar.",
   ],
@@ -413,7 +413,7 @@ export const APLICACOES: Record<number, string[]> = {
     "Raridade: só existem traços na crosta terrestre.",
   ],
   86: [
-    "Natureza: sai do solo e das rochas, e é chamado de radão.",
+    "Natureza: sai do solo e das rochas; em Portugal, é chamado de radão.",
     "Saúde: pode se acumular em casas e é monitorado.",
   ],
   87: [
@@ -422,7 +422,7 @@ export const APLICACOES: Record<number, string[]> = {
   ],
   88: [
     "História: tintas luminosas de relógios antigos.",
-    "Medicina: o rádio-223 é usado no tratamento de câncer ósseo.",
+    "Medicina: o rádio-223 trata metástases nos ossos do câncer de próstata.",
   ],
   89: [
     "Medicina: o actínio-225 é estudado em tratamentos de câncer.",
