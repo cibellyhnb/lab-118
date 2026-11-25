@@ -103,3 +103,52 @@ Os temas e as legendas das ilustrações dos elementos (`src/interface/ilus/mapa
 - **Disciplina:** Software Educativo
 - **Professor:** Gidevaldo Novais
 - **Semestre:** 6º semestre
+
+## Integrantes
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/ccaiomatos">
+<img src="https://github.com/ccaiomatos.png" width="80" alt="Caio Matos"/><br/>
+<sub><b>Caio Matos</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/carolinamor4es">
+<img src="https://github.com/carolinamor4es.png" width="80" alt="Carolina de Moraes"/><br/>
+<sub><b>Carolina de Moraes</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/cibellyhnb">
+<img src="https://github.com/cibellyhnb.png" width="80" alt="Cibelly Batista"/><br/>
+<sub><b>Cibelly Batista</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/gabrielmarcone">
+<img src="https://github.com/gabrielmarcone.png" width="80" alt="Gabriel Marcone"/><br/>
+<sub><b>Gabriel Marcone</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/Giovana-Fortunato">
+<img src="https://github.com/Giovana-Fortunato.png" width="80" alt="Giovana Fortunato"/><br/>
+<sub><b>Giovana Fortunato</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/joaoguilhermedss">
+<img src="https://github.com/joaoguilhermedss.png" width="80" alt="João Guilherme"/><br/>
+<sub><b>João Guilherme</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/KalelEzveither">
+<img src="https://github.com/KalelEzveither.png" width="80" alt="Kalel Ezveither"/><br/>
+<sub><b>Kalel Ezveither</b></sub>
+</a>
+</td>
+</tr>
+</table>
