@@ -5,7 +5,13 @@
  * elemento com missao pendente e confere se uma montagem cumpre a missao,
  * com a mensagem que o jogador ve.
  ******************************************************************************/
-import { ELEMENTOS, artigoDoElemento, elementoPorZ, isotopoReferencia } from "./dados";
+import {
+  ELEMENTOS,
+  artigoDoElemento,
+  elementoPorZ,
+  isotopoReferencia,
+  nomeComArtigo,
+} from "./dados";
 import { Z_MAX, notacaoIon } from "./classificar";
 import { gerarDicas } from "./dicas";
 import { descoberto, isotoposNecessarios } from "./progresso";
@@ -73,7 +79,7 @@ export function missaoIsotopo(estado: Progresso, z: number): Missao | null {
     id: `M2-${z}-${alvo.a}`,
     tipo: "M2",
     z,
-    enunciado: `Monte o isótopo ${el.nome}-${alvo.a}: o mesmo elemento, mas com número de massa ${alvo.a}. ${faltam === 1 ? "Falta 1 isótopo do catálogo" : `Faltam ${faltam} isótopos do catálogo`} para a estrela 2.`,
+    enunciado: `Monte o isótopo ${el.nome.toLowerCase()}-${alvo.a}: o mesmo elemento, mas com número de massa ${alvo.a}. ${faltam === 1 ? "Falta 1 isótopo do catálogo" : `Faltam ${faltam} isótopos do catálogo`} para a estrela 2.`,
     dicas: [
       "Isótopos de um mesmo elemento têm o mesmo número de prótons. O que muda é a quantidade de nêutrons.",
       `Número de massa = prótons + nêutrons. Aqui: ${alvo.a} − ${z} prótons = ? nêutrons.`,
@@ -215,7 +221,7 @@ export function retornoDesafioIsotopo(
   const nome = elementoPorZ(m.z)?.nome ?? "";
   // nucleo fora do catalogo nunca e registrado: o desafio pede um do catalogo
   if (c.nuclideo?.status === "nao_catalogado") {
-    return `Este desafio pede um isótopo do catálogo: monte ${artigoDoElemento(nome)} ${nome}-${m.criterio.a}.`;
+    return `Este desafio pede um isótopo do catálogo: monte ${artigoDoElemento(nome)} ${nome.toLowerCase()}-${m.criterio.a}.`;
   }
   // mesmo z e mesmo numero de massa (logo, mesmos neutrons) de um isotopo ja registrado
   const feitos = estado.elementos[String(m.z)]?.isotopos ?? [];
@@ -245,16 +251,16 @@ export function avaliarMissao(
     if (c.z !== m.z)
       return {
         cumprida: false,
-        mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
+        mensagem: `Isso é ${nomeComArtigo(c.elemento.nome)}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
       };
     if (c.a === m.criterio.a)
       return {
         cumprida: true,
-        mensagem: `Desafio cumprido! Você montou ${art} ${nome}-${c.a}: mesmo elemento, massa diferente.`,
+        mensagem: `Desafio cumprido! Você montou ${art} ${nome.toLowerCase()}-${c.a}: mesmo elemento, massa diferente.`,
       };
     return {
       cumprida: false,
-      mensagem: `Isso é ${nome}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.`,
+      mensagem: `Isso é ${art} ${nome.toLowerCase()}-${c.a}. O alvo tem número de massa ${m.criterio.a}: confira os nêutrons.`,
     };
   }
   // M3: qualquer carga diferente de zero, ou a carga exata quando a missao pede uma
@@ -262,7 +268,7 @@ export function avaliarMissao(
     if (c.z !== m.z)
       return {
         cumprida: false,
-        mensagem: `Isso é ${c.elemento.nome}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
+        mensagem: `Isso é ${nomeComArtigo(c.elemento.nome)}. Este desafio é com ${art} ${nome.toLowerCase()} (${m.z} prótons).`,
       };
     const alvoQ = m.criterio.carga;
     if (c.carga !== 0 && (alvoQ === undefined || c.carga === alvoQ)) {
@@ -284,7 +290,8 @@ export function avaliarMissao(
   // M1: o elemento certo, neutro e com um nucleo do catalogo
   const neutroCerto = c.z === m.z && c.especie === "atomo_neutro";
   const cumprida = neutroCerto && c.nuclideo?.status !== "nao_catalogado";
-  if (cumprida) return { cumprida, mensagem: `Isso! Você descobriu ${art} ${c.elemento.nome}!` };
+  if (cumprida)
+    return { cumprida, mensagem: `Isso! Você descobriu ${art} ${c.elemento.nome.toLowerCase()}!` };
   if (neutroCerto) {
     return {
       cumprida,
@@ -301,6 +308,6 @@ export function avaliarMissao(
   const direcao = m.z > c.z ? "mais" : "menos";
   return {
     cumprida,
-    mensagem: `Isso é ${c.elemento.nome}, com ${c.z} ${c.z === 1 ? "próton" : "prótons"}. A pista aponta para um elemento com ${direcao} prótons.`,
+    mensagem: `Isso é ${nomeComArtigo(c.elemento.nome)}, com ${c.z} ${c.z === 1 ? "próton" : "prótons"}. A pista aponta para um elemento com ${direcao} prótons.`,
   };
 }

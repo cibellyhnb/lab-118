@@ -107,6 +107,42 @@ export function ProgressoProvider({ children }: { children: ReactNode }) {
     setCarregado(true);
   }, []);
 
+  // outra aba do jogo salvou: adota o progresso dela, para uma aba nao apagar o
+  // que a outra registrou. o evento "storage" so chega nas outras abas, nunca na
+  // que salvou, e aqui so se le (sem salvar), entao nao ha vai e volta entre abas
+  useEffect(() => {
+    const aoMudar = (e: StorageEvent) => {
+      if (e.storageArea !== window.localStorage) return;
+      // key null: a outra aba limpou o armazenamento inteiro
+      if (e.key === CHAVE || e.key === null) {
+        try {
+          const r = carregar(window.localStorage);
+          // salvo corrompido na outra aba: fica com o que esta na tela
+          if (!r.corrompido) {
+            ref.current = r.estado;
+            setEstado(r.estado);
+          }
+        } catch {
+          /* armazenamento indisponivel: segue com o que esta na tela */
+        }
+      }
+      if (e.key === CHAVE_ULTIMO || e.key === null) {
+        try {
+          const bruto = window.localStorage.getItem(CHAVE_ULTIMO);
+          const obj: unknown = bruto ? JSON.parse(bruto) : {};
+          if (obj && typeof obj === "object") {
+            ultimoRef.current = obj as Record<number, Particulas>;
+            setUltimo(ultimoRef.current);
+          }
+        } catch {
+          /* ultimo atomo ilegivel: mantem o da tela */
+        }
+      }
+    };
+    window.addEventListener("storage", aoMudar);
+    return () => window.removeEventListener("storage", aoMudar);
+  }, []);
+
   // troca o estado na tela e grava no localStorage
   const persistir = (s: Progresso) => {
     ref.current = s;

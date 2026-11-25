@@ -85,15 +85,16 @@ export function Quiz({ familiaInicial }: { familiaInicial?: string | undefined }
     setJogo({ quiz, perguntas: montarRodada(quiz), i: 0, escolha: null, acertos: 0 });
   };
 
-  // link direto /quiz?familia=...: comeca sozinho, mas so se a familia ja estiver completa;
+  // link direto /quiz?familia=...: comeca sozinho, mas so se o quiz da familia ja estiver liberado;
   // familia que nao existe e ignorada
   useEffect(() => {
     if (!carregado || iniciouAuto.current || !familiaInicial) return;
     iniciouAuto.current = true;
     const fam = FAMILIAS.find((f) => f.id === familiaInicial);
     if (!fam) return;
-    if (progressoFamilia(estado, fam.id).completa) iniciar(fam.id);
-    else setAviso(`Descubra todos os ${fam.nome} para liberar este quiz.`);
+    const pr = progressoFamilia(estado, fam.id);
+    if (pr.quizLiberado) iniciar(fam.id);
+    else setAviso(`Descubra ${pr.paraQuiz} dos ${pr.total} ${fam.nome} para liberar este quiz.`);
   }, [carregado, familiaInicial, estado]);
 
   // depois de responder, foca o botao de proxima para o Enter avancar
@@ -306,9 +307,9 @@ export function Quiz({ familiaInicial }: { familiaInicial?: string | undefined }
 
         <h2 className="font-display text-[10px] text-parchment">QUIZ DAS FAMÍLIAS</h2>
         <p className="-mt-2 text-lg text-parchment">
-          Descubra todos os elementos de uma família para liberar o quiz dela.
+          Descubra 70% dos elementos de uma família para liberar o quiz dela.
         </p>
-        {/* um cartao por familia: liberado so com a familia completa */}
+        {/* um cartao por familia: o quiz libera com 70% da familia; o brasao acende com ela completa */}
         <div className="grid gap-3 sm:grid-cols-2">
           {FAMILIAS.map((f) => {
             const pr = progressoFamilia(estado, f.id);
@@ -320,7 +321,7 @@ export function Quiz({ familiaInicial }: { familiaInicial?: string | undefined }
                   <h3 className="font-display text-[10px] leading-relaxed">
                     {f.nome.toUpperCase()}
                   </h3>
-                  {pr.completa ? (
+                  {pr.quizLiberado ? (
                     <>
                       {selo > 0 ? (
                         <Stars estrelas={estrelasDoSelo(selo)} scale={2} />
@@ -339,7 +340,8 @@ export function Quiz({ familiaInicial }: { familiaInicial?: string | undefined }
                     </>
                   ) : (
                     <p className="text-lg">
-                      {pr.descobertos}/{pr.total} elementos descobertos
+                      {pr.descobertos}/{pr.total} elementos descobertos. O quiz libera com{" "}
+                      {pr.paraQuiz}.
                     </p>
                   )}
                 </div>

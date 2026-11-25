@@ -16,6 +16,7 @@ import {
   isotopoReferencia,
   membros,
   montarRodada,
+  paraQuiz,
   perguntasDoQuiz,
   prepararPergunta,
   progressoFamilia,
@@ -130,5 +131,23 @@ describe("quiz", () => {
     // ao subir de selo a marca antiga e trocada, nao acumulada
     expect(r.estado.conquistas.filter((c) => c.startsWith("quiz:halogenio:")).length).toBe(1);
     expect(r.estado.quiz.melhor).toBe(100);
+  });
+});
+
+describe("Liberação do quiz de família", () => {
+  it("libera com 70% da família (para baixo), antes da cerimônia de família completa", () => {
+    const hal = membros("halogenio").map((e) => e.z);
+    expect(paraQuiz(hal.length)).toBe(4);
+    let s = descobrirTodos(progressoInicial(), hal.slice(0, 3));
+    expect(progressoFamilia(s, "halogenio").quizLiberado).toBe(false);
+    s = descobrirTodos(s, hal.slice(3, 4));
+    expect(progressoFamilia(s, "halogenio")).toMatchObject({ quizLiberado: true, completa: false });
+  });
+  it("nenhum quiz de família depende dos superpesados (Z ≥ 104)", () => {
+    for (const f of FAMILIAS) {
+      const lista = membros(f.id);
+      const semSuperpesados = lista.filter((e) => e.z < 104).length;
+      expect(paraQuiz(lista.length), f.id).toBeLessThanOrEqual(semSuperpesados);
+    }
   });
 });

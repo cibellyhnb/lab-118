@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 const SIGLAS: [string, string][] = [
   ["Z", "número atômico: quantos prótons. É o que define o elemento."],
   ["N", "nêutrons: ficam no núcleo e mudam só a massa."],
-  ["E", "elétrons: giram em volta do núcleo e mudam a carga."],
+  ["E", "elétrons: ficam ao redor do núcleo e mudam a carga."],
   ["A", "número de massa: prótons + nêutrons."],
   ["q", "carga: prótons menos elétrons. Zero é átomo neutro."],
 ];

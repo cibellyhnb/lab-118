@@ -62,7 +62,7 @@ export const FAMILIAS: FamiliaInfo[] = [
   },
   {
     id: "metal_representativo",
-    nome: "metais representativos",
+    nome: "metais pós-transição",
     titulo: "Os Construtores",
     onde: "à direita do bloco do meio, nos grupos 13 a 16",
     fatos: [
@@ -110,7 +110,7 @@ export const FAMILIAS: FamiliaInfo[] = [
     titulo: "Os Nobres Solitários",
     onde: "no grupo 18, a última coluna da tabela",
     fatos: [
-      "O hélio faz os balões flutuarem e deixa a voz fininha.",
+      "O hélio faz os balões flutuarem e deixa a voz com som de desenho animado.",
       "O neônio brilha em vermelho-alaranjado nas placas luminosas.",
       "Eles se chamam “nobres” porque quase nunca se misturam com outros elementos.",
     ],
@@ -169,24 +169,48 @@ export function membros(id: Categoria): Elemento[] {
   return ELEMENTOS.filter((e) => e.categoria === id);
 }
 
+// parte da familia que libera o quiz dela: 70%, arredondado para baixo. assim
+// nenhum quiz depende dos superpesados (do 104 em diante), que so vem no fim
+export const FRACAO_QUIZ = 0.7;
+
+/*******************************************************************************
+ * paraQuiz
+ * funcao: quantos membros descobertos liberam o quiz de uma familia.
+ * recebe: total (number, tamanho da familia).
+ * retorna: 70% do total arredondado para baixo, no minimo 1.
+ ******************************************************************************/
+export function paraQuiz(total: number): number {
+  return Math.max(1, Math.floor(total * FRACAO_QUIZ));
+}
+
 /*******************************************************************************
  * progressoFamilia
  * funcao: conta quantos membros da familia o jogador ja descobriu.
  * recebe: estado (Progresso) e id (Categoria).
- * retorna: { descobertos, total, completa }; completa so e true quando
- * todos os membros foram descobertos.
+ * retorna: { descobertos, total, completa, paraQuiz, quizLiberado };
+ * completa so e true quando todos os membros foram descobertos (cerimonia);
+ * o quiz libera antes, com paraQuiz membros descobertos.
  ******************************************************************************/
 export function progressoFamilia(
   estado: Progresso,
   id: Categoria,
-): { descobertos: number; total: number; completa: boolean } {
+): {
+  descobertos: number;
+  total: number;
+  completa: boolean;
+  paraQuiz: number;
+  quizLiberado: boolean;
+} {
   const lista = membros(id);
   const descobertos = lista.filter((e) => descoberto(estado, e.z)).length;
+  const minimo = paraQuiz(lista.length);
   // lista.length > 0 evita dar uma familia vazia como completa
   return {
     descobertos,
     total: lista.length,
     completa: lista.length > 0 && descobertos === lista.length,
+    paraQuiz: minimo,
+    quizLiberado: lista.length > 0 && descobertos >= minimo,
   };
 }
 

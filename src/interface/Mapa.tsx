@@ -122,12 +122,13 @@ function Familias() {
         {FAMILIAS.map((f) => {
           const pr = progressoFamilia(estado, f.id);
           const selo = seloConquistado(estado, f.id);
-          // embaixo do brasao: contagem, "QUIZ" ou as estrelas do selo
+          // embaixo do brasao: contagem, "QUIZ" (liberado com 70% da familia) ou as estrelas
+          // do selo; o brasao so acende com a familia completa
           const corpo = (
             <>
               <Emblema familia={f.id} scale={2} apagado={!pr.completa} />
               <span className="font-display text-[8px] leading-none">
-                {pr.completa ? (
+                {pr.quizLiberado ? (
                   selo > 0 ? (
                     <Stars estrelas={[selo >= 1, selo >= 2, selo >= 3]} scale={1} />
                   ) : (
@@ -141,7 +142,7 @@ function Familias() {
           );
           return (
             <li key={f.id}>
-              {pr.completa ? (
+              {pr.quizLiberado ? (
                 <Link
                   to="/quiz"
                   search={{ familia: f.id }}
@@ -153,7 +154,7 @@ function Familias() {
               ) : (
                 <span
                   className="flex flex-col items-center gap-1"
-                  title={`${f.nome}: ${pr.descobertos} de ${pr.total} descobertos`}
+                  title={`${f.nome}: ${pr.descobertos} de ${pr.total} descobertos; o quiz libera com ${pr.paraQuiz}`}
                 >
                   {corpo}
                 </span>

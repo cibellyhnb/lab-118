@@ -75,6 +75,19 @@ describe("gerarDicas (função pura)", () => {
       /conduz muito bem a eletricidade.* Metal de transição, período 4, grupo 11\.$/,
     );
   });
+  it("fácil e média: as 2 primeiras dicas não trazem nem o começo do nome (ex: cromado)", () => {
+    // sem acento e em minuscula; 4 letras pegam "crom" em "cromado"
+    const norm = (t: string) =>
+      t
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    for (const e of ELEMENTOS.filter((x) => dificuldadeDe(x) !== "dificil")) {
+      const radical = norm(e.nome).slice(0, 4);
+      for (const d of gerarDicas(e.z).slice(0, 2))
+        expect(norm(d.texto), `${e.nome}: ${d.texto}`).not.toContain(radical);
+    }
+  });
   it("difícil: contém o nome e o símbolo", () => {
     for (const e of ELEMENTOS.filter((x) => dificuldadeDe(x) === "dificil")) {
       const t = gerarDicas(e.z)[0]!.texto;
@@ -83,7 +96,7 @@ describe("gerarDicas (função pura)", () => {
     }
     // caso concreto: o osmio comeca com nome e simbolo e traz a curiosidade
     expect(gerarDicas(76)[0]!.texto).toMatch(
-      /^É o Ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/,
+      /^É o ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/,
     );
   });
   it("massa atômica só aparece quando o dado existe (nunca é inventada)", () => {

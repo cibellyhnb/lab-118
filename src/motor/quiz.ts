@@ -280,7 +280,7 @@ export const PERGUNTAS: Pergunta[] = [
     "Eles formam o grande bloco central, dos grupos 3 a 12.",
   ),
 
-  // ----- metais representativos -----
+  // ----- metais pos-transicao -----
   q(
     "metal_representativo",
     1,
@@ -461,8 +461,8 @@ export const PERGUNTAS: Pergunta[] = [
     "gas_nobre",
     5,
     "O que o gás hélio faz com a sua voz?",
-    ["Deixa fininha", "Deixa mais grossa", "Faz sumir"],
-    "O som viaja mais rápido no hélio, então a voz sai aguda.",
+    ["Deixa com som de desenho animado", "Deixa mais grossa", "Faz sumir"],
+    "O som viaja quase 3 vezes mais rápido no hélio. Isso muda o timbre da voz (a ressonância da boca e da garganta), mas o tom das cordas vocais quase não muda.",
   ),
 
   // ----- lantanideos -----

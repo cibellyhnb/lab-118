@@ -56,6 +56,8 @@ describe("glossário", () => {
     expect(buscarGlossario("Z")[0]?.id).toBe("numero-atomico");
     // "familia" esta nos sinonimos do termo grupo
     expect(buscarGlossario("familia").some((t) => t.id === "grupo")).toBe(true);
+    // o nome antigo da familia continua achando o termo novo
+    expect(buscarGlossario("metal representativo")[0]?.id).toBe("metal-pos-transicao");
     expect(buscarGlossario("xyzxyz")).toEqual([]);
     // consulta vazia com categoria: devolve so a categoria
     expect(buscarGlossario("", "jogo").every((t) => t.categoria === "jogo")).toBe(true);

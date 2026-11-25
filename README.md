@@ -12,7 +12,7 @@ Jogo educativo em pixel art em que o jogador monta átomos com prótons, nêutro
 - **Estrelas:** cada elemento tem 3 estrelas: descobrir o elemento (átomo neutro com um núcleo do catálogo), montar outro isótopo e montar um íon (isótopos e íons só contam depois da descoberta). São 354 estrelas no total (118 x 3).
 - **Laboratório:** o jogador coloca prótons, nêutrons e elétrons na máquina (arrastando ou pelos botões). O jogo classifica o resultado (átomo neutro, cátion ou ânion, e se o núcleo é estável, radioativo ou não catalogado) e explica o que foi montado.
 - **Fichas dos elementos:** cada elemento tem uma ficha com dados da tabela, isótopos catalogados, curiosidades e ilustrações em pixel art de suas aplicações.
-- **Quiz:** um quiz geral, sempre liberado, com 8 perguntas sorteadas sobre átomos, isótopos, íons e a tabela, e um quiz por família, liberado quando todos os elementos da família são descobertos.
+- **Quiz:** um quiz geral, sempre liberado, com 8 perguntas sorteadas sobre átomos, isótopos, íons e a tabela, e um quiz por família, liberado quando 70% dos elementos da família são descobertos (nenhum depende dos superpesados).
 - **Glossário:** termos de química usados no jogo, com definição, exemplo e dúvidas comuns.
 - **Tutorial:** uma pequena história de abertura e um treino guiado pelo personagem Zula, o robô do laboratório, montando o hidrogênio.
 - **Final especial:** uma cena de encerramento quando a tabela é completada.

@@ -62,6 +62,17 @@ export function artigoDoElemento(nome: string): "o" | "a" {
 }
 
 /*******************************************************************************
+ * nomeComArtigo
+ * funcao: nome do elemento para o meio de uma frase: artigo + nome em
+ * minuscula, como pede o portugues (ex: "o lítio", "a prata").
+ * recebe: nome (string, como esta no JSON).
+ * retorna: o texto pronto, ex: "o lítio".
+ ******************************************************************************/
+export function nomeComArtigo(nome: string): string {
+  return `${artigoDoElemento(nome)} ${nome.toLowerCase()}`;
+}
+
+/*******************************************************************************
  * NOME_CATEGORIA
  * funcao: nome de cada familia do jeito que aparece para o jogador.
  ******************************************************************************/
@@ -69,7 +80,7 @@ export const NOME_CATEGORIA: Record<Categoria, string> = {
   metal_alcalino: "Metal alcalino",
   metal_alcalino_terroso: "Metal alcalino-terroso",
   metal_transicao: "Metal de transição",
-  metal_representativo: "Metal representativo",
+  metal_representativo: "Metal pós-transição",
   semimetal: "Semimetal",
   nao_metal: "Não metal",
   halogenio: "Halogênio",
@@ -86,7 +97,7 @@ export const SIGLA_CATEGORIA: Record<Categoria, string> = {
   metal_alcalino: "AL",
   metal_alcalino_terroso: "AT",
   metal_transicao: "MT",
-  metal_representativo: "MR",
+  metal_representativo: "PT",
   semimetal: "SM",
   nao_metal: "NM",
   halogenio: "HA",
