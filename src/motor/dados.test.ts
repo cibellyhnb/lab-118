@@ -5,6 +5,9 @@
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
 import { ELEMENTOS, elementoPorZ } from "./dados";
+import { APLICACOES } from "./aplicacoes";
+import { CURIOSIDADES } from "./curiosidades";
+import { GLOSSARIO } from "./glossario";
 
 describe("Dados do elements.json", () => {
   it("as abundâncias de cada elemento somam 100%", () => {
@@ -65,5 +68,29 @@ describe("Superpesados", () => {
     expect(elementoPorZ(110)?.massa_atomica?.valor).toBe(281);
     expect(elementoPorZ(112)?.massa_atomica?.valor).toBe(285);
     expect(elementoPorZ(114)?.massa_atomica?.valor).toBe(289);
+  });
+});
+
+describe("Isótopos citados nos textos", () => {
+  it("todo isótopo citado pelo nome (ex: iodo-131) está no catálogo", () => {
+    const porNome = new Map(ELEMENTOS.map((e) => [e.nome.toLowerCase(), e]));
+    const textos = [
+      ...Object.values(APLICACOES).flat(),
+      ...Object.values(CURIOSIDADES),
+      ...GLOSSARIO.map((g) => g.definicao),
+    ];
+    let citados = 0;
+    for (const t of textos)
+      for (const m of t.toLowerCase().matchAll(/([a-záéíóúâêôãõç]+)-(\d{1,3})(m?)\b/g)) {
+        const el = porNome.get(m[1] ?? "");
+        if (!el) continue;
+        citados++;
+        // "99m" e um estado excitado: o isotopo base (Tc-99) precisa estar no catalogo
+        expect(
+          el.isotopos.some((i) => i.a === Number(m[2])),
+          `${m[0]} em: ${t}`,
+        ).toBe(true);
+      }
+    expect(citados).toBeGreaterThan(10);
   });
 });

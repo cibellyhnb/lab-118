@@ -1901,6 +1901,12 @@
         "abundancia_pct": 82.58
       },
       {
+        "a": 89,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "50,6 dias"
+      },
+      {
         "a": 90,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
@@ -2793,6 +2799,12 @@
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "16,1 milhões de anos"
+      },
+      {
+        "a": 131,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "8,02 dias"
       }
     ],
     "ions_comuns": [-1],
@@ -3334,6 +3346,12 @@
         "abundancia_pct": 26.74
       },
       {
+        "a": 153,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "46,3 h"
+      },
+      {
         "a": 154,
         "estabilidade": "estavel",
         "abundancia_pct": 22.74
@@ -3852,6 +3870,12 @@
         "estabilidade": "radioativo",
         "abundancia_pct": 2.599,
         "meia_vida": "37 bilhões de anos"
+      },
+      {
+        "a": 177,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "6,64 dias"
       }
     ],
     "ions_comuns": [3],
@@ -4413,6 +4437,12 @@
     },
     "isotopos": [
       {
+        "a": 201,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "3,04 dias"
+      },
+      {
         "a": 202,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
@@ -4739,6 +4769,12 @@
     },
     "isotopos": [
       {
+        "a": 223,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "11,4 dias"
+      },
+      {
         "a": 225,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
@@ -5021,6 +5057,12 @@
     },
     "isotopos": [
       {
+        "a": 238,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "87,7 anos"
+      },
+      {
         "a": 239,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
@@ -5213,6 +5255,12 @@
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "898 anos"
+      },
+      {
+        "a": 252,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "2,65 anos"
       }
     ],
     "ions_comuns": [3],

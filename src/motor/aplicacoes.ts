@@ -222,7 +222,7 @@ export const APLICACOES: Record<number, string[]> = {
     "Corpo: faz parte de enzimas.",
   ],
   43: [
-    "Medicina nuclear: milhões de exames por ano usam tecnécio-99m.",
+    "Medicina nuclear: milhões de exames por ano usam o tecnécio-99m, um estado excitado do núcleo do tecnécio-99 (o “m” vem de metaestável). O jogo não monta esses estados.",
     "Origem: foi o primeiro elemento criado artificialmente.",
   ],
   44: [
@@ -273,6 +273,7 @@ export const APLICACOES: Record<number, string[]> = {
     "Sal de cozinha: o iodo adicionado previne o bócio.",
     "Antissépticos: tintura de iodo em ferimentos.",
     "Exames: contrastes de imagens médicas.",
+    "Medicina: o iodo-131 trata doenças da tireoide.",
   ],
   54: [
     "Faróis: lâmpadas de xênon de carros.",
@@ -447,7 +448,7 @@ export const APLICACOES: Record<number, string[]> = {
     "Produção: serve para fabricar plutônio-238.",
   ],
   94: [
-    "Espaço: baterias nucleares de sondas e do rover Curiosity.",
+    "Espaço: o plutônio-238 alimenta baterias nucleares de sondas e do rover Curiosity.",
     "Energia: combustível misturado em usinas.",
     "História: usado em armas nucleares.",
   ],
@@ -458,7 +459,7 @@ export const APLICACOES: Record<number, string[]> = {
     "Origem: criado em Berkeley, na Califórnia.",
   ],
   98: [
-    "Detecção: fonte de nêutrons para achar petróleo, ouro e explosivos.",
+    "Detecção: o califórnio-252 é fonte de nêutrons para achar petróleo, ouro e explosivos.",
     "Reatores: ajuda na partida.",
   ],
   99: [
