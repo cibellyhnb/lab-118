@@ -317,6 +317,13 @@ export function Ficha({ z }: { z: number }) {
               );
             })}
           </ul>
+          {/* superpesados: poucos atomos observados, valores ainda incertos */}
+          {el.z >= 104 && (
+            <p className="mt-2 text-sm">
+              Valores aproximados: desses isótopos só se observaram alguns átomos, e as meias-vidas
+              ainda podem mudar. O jogo deixa de fora isótopos com pouquíssimas observações.
+            </p>
+          )}
           <p className="mt-2 text-sm">
             Estrela 2: registre {isotoposNecessarios(z)}{" "}
             {isotoposNecessarios(z) === 1 ? "isótopo" : "isótopos"} do catálogo.

@@ -5720,7 +5720,7 @@
     "camadas": [2, 8, 18, 32, 32, 16, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
-      "valor": 282,
+      "valor": 281,
       "tipo": "isotopo_mais_longevo"
     },
     "isotopos": [
@@ -5731,16 +5731,16 @@
         "meia_vida": "210 ms"
       },
       {
+        "a": 280,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "7 ms"
+      },
+      {
         "a": 281,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "12 s"
-      },
-      {
-        "a": 282,
-        "estabilidade": "radioativo",
-        "abundancia_pct": null,
-        "meia_vida": "1,1 min"
       }
     ],
     "ions_comuns": [],
@@ -5808,10 +5808,16 @@
     "camadas": [2, 8, 18, 32, 32, 18, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
-      "valor": 286,
+      "valor": 285,
       "tipo": "isotopo_mais_longevo"
     },
     "isotopos": [
+      {
+        "a": 281,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "180 ms"
+      },
       {
         "a": 283,
         "estabilidade": "radioativo",
@@ -5823,12 +5829,6 @@
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "30 s"
-      },
-      {
-        "a": 286,
-        "estabilidade": "radioativo",
-        "abundancia_pct": null,
-        "meia_vida": "11 min"
       }
     ],
     "ions_comuns": [],
@@ -5857,6 +5857,12 @@
     },
     "isotopos": [
       {
+        "a": 284,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "970 ms"
+      },
+      {
         "a": 285,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
@@ -5867,12 +5873,6 @@
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "9,5 s"
-      },
-      {
-        "a": 290,
-        "estabilidade": "radioativo",
-        "abundancia_pct": null,
-        "meia_vida": "2 s"
       }
     ],
     "ions_comuns": [],
@@ -5896,10 +5896,16 @@
     "camadas": [2, 8, 18, 32, 32, 18, 4],
     "eletrons_valencia": 4,
     "massa_atomica": {
-      "valor": 290,
+      "valor": 289,
       "tipo": "isotopo_mais_longevo"
     },
     "isotopos": [
+      {
+        "a": 287,
+        "estabilidade": "radioativo",
+        "abundancia_pct": null,
+        "meia_vida": "400 ms"
+      },
       {
         "a": 288,
         "estabilidade": "radioativo",
@@ -5911,12 +5917,6 @@
         "estabilidade": "radioativo",
         "abundancia_pct": null,
         "meia_vida": "2,4 s"
-      },
-      {
-        "a": 290,
-        "estabilidade": "radioativo",
-        "abundancia_pct": null,
-        "meia_vida": "19 s"
       }
     ],
     "ions_comuns": [],

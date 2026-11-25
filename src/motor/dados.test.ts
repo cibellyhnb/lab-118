@@ -54,3 +54,16 @@ describe("Dados do elements.json", () => {
     }
   });
 });
+
+describe("Superpesados", () => {
+  it("isótopos vistos só em 2016 ficam fora; massas seguem o mais longevo confirmado", () => {
+    const as = (z: number) => elementoPorZ(z)?.isotopos.map((i) => i.a);
+    expect(as(110)).toEqual([279, 280, 281]);
+    expect(as(112)).toEqual([281, 283, 285]);
+    expect(as(113)).toEqual([284, 285, 286]);
+    expect(as(114)).toEqual([287, 288, 289]);
+    expect(elementoPorZ(110)?.massa_atomica?.valor).toBe(281);
+    expect(elementoPorZ(112)?.massa_atomica?.valor).toBe(285);
+    expect(elementoPorZ(114)?.massa_atomica?.valor).toBe(289);
+  });
+});
