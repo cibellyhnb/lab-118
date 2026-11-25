@@ -40,11 +40,6 @@
     "ficha": {
       "nivel": "completa",
       "pista": "Sou o elemento mais abundante do universo e o combustível das estrelas.",
-      "usos": [
-        "Combustível de foguetes, na forma líquida",
-        "Matéria-prima da amônia, usada em fertilizantes",
-        "Faz parte da água: cada molécula tem 2 átomos de hidrogênio"
-      ],
       "curiosidades": [
         "É o único elemento cujo isótopo mais comum não tem nenhum nêutron.",
         "Nas estrelas, núcleos de hidrogênio se fundem e formam hélio, liberando a energia que as faz brilhar."
@@ -84,7 +79,7 @@
         "a": 6,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "0,8 segundo"
+        "meia_vida": "0,8 s"
       }
     ],
     "ions_comuns": [],
@@ -127,7 +122,7 @@
         "a": 8,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "0,84 segundo"
+        "meia_vida": "0,84 s"
       }
     ],
     "ions_comuns": [1],
@@ -196,7 +191,7 @@
         "a": 8,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "0,77 segundo"
+        "meia_vida": "0,77 s"
       },
       {
         "a": 10,
@@ -256,11 +251,6 @@
     "ficha": {
       "nivel": "completa",
       "pista": "Estou no grafite do lápis e no diamante.",
-      "usos": [
-        "Base da química orgânica e dos seres vivos",
-        "Grafite de lápis",
-        "Datação de restos orgânicos antigos com carbono-14"
-      ],
       "curiosidades": [
         "Diamante e grafite são feitos só de carbono, com arranjos diferentes dos átomos."
       ]
@@ -289,7 +279,7 @@
         "a": 13,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "9,97 minutos"
+        "meia_vida": "9,97 min"
       },
       {
         "a": 14,
@@ -331,7 +321,7 @@
         "a": 15,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "122 segundos"
+        "meia_vida": "122 s"
       },
       {
         "a": 16,
@@ -379,7 +369,7 @@
         "a": 18,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "110 minutos"
+        "meia_vida": "110 min"
       },
       {
         "a": 19,
@@ -431,7 +421,7 @@
         "a": 24,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "3,38 minutos"
+        "meia_vida": "3,38 min"
       }
     ],
     "ions_comuns": [],
@@ -851,7 +841,7 @@
         "a": 40,
         "estabilidade": "radioativo",
         "abundancia_pct": 0.0117,
-        "meia_vida": "1,25 bilhões de anos"
+        "meia_vida": "1,25 bilhão de anos"
       },
       {
         "a": 41,
@@ -1153,7 +1143,7 @@
         "abundancia_pct": 2.365
       }
     ],
-    "ions_comuns": [3],
+    "ions_comuns": [3, 2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -1286,7 +1276,7 @@
         "meia_vida": "5,27 anos"
       }
     ],
-    "ions_comuns": [2],
+    "ions_comuns": [2, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -1349,7 +1339,7 @@
         "abundancia_pct": 0.9256
       }
     ],
-    "ions_comuns": [2],
+    "ions_comuns": [2, 3],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -1397,7 +1387,7 @@
         "meia_vida": "61,8 h"
       }
     ],
-    "ions_comuns": [1, 2],
+    "ions_comuns": [2, 1],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -2006,7 +1996,7 @@
         "a": 93,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,61 milhões de anos"
+        "meia_vida": "1,61 milhão de anos"
       },
       {
         "a": 94,
@@ -2630,7 +2620,7 @@
         "meia_vida": "230 mil anos"
       }
     ],
-    "ions_comuns": [2],
+    "ions_comuns": [2, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -3357,7 +3347,7 @@
         "abundancia_pct": 22.74
       }
     ],
-    "ions_comuns": [2, 3],
+    "ions_comuns": [3, 2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -3406,7 +3396,7 @@
         "abundancia_pct": 52.19
       }
     ],
-    "ions_comuns": [2, 3],
+    "ions_comuns": [3, 2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -3441,7 +3431,7 @@
         "a": 150,
         "estabilidade": "radioativo",
         "abundancia_pct": null,
-        "meia_vida": "1,79 milhões de anos"
+        "meia_vida": "1,79 milhão de anos"
       },
       {
         "a": 152,
@@ -3823,7 +3813,7 @@
         "abundancia_pct": 12.995
       }
     ],
-    "ions_comuns": [2, 3],
+    "ions_comuns": [3, 2],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -4523,7 +4513,7 @@
         "abundancia_pct": 52.4
       }
     ],
-    "ions_comuns": [2],
+    "ions_comuns": [2, 4],
     "trilha_essencial": true,
     "ficha": {
       "nivel": "enxuta"
@@ -5325,7 +5315,8 @@
       "linha": 10,
       "coluna": 14
     },
-    "fase_ambiente": "desconhecido",
+    "fase_ambiente": "solido",
+    "fase_prevista": true,
     "camadas": [2, 8, 18, 32, 30, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
@@ -5369,7 +5360,8 @@
       "linha": 10,
       "coluna": 15
     },
-    "fase_ambiente": "desconhecido",
+    "fase_ambiente": "solido",
+    "fase_prevista": true,
     "camadas": [2, 8, 18, 32, 31, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
@@ -5413,7 +5405,8 @@
       "linha": 10,
       "coluna": 16
     },
-    "fase_ambiente": "desconhecido",
+    "fase_ambiente": "solido",
+    "fase_prevista": true,
     "camadas": [2, 8, 18, 32, 32, 8, 2],
     "eletrons_valencia": null,
     "massa_atomica": {
@@ -5457,7 +5450,8 @@
       "linha": 10,
       "coluna": 17
     },
-    "fase_ambiente": "desconhecido",
+    "fase_ambiente": "solido",
+    "fase_prevista": true,
     "camadas": [2, 8, 18, 32, 32, 8, 3],
     "eletrons_valencia": null,
     "massa_atomica": {

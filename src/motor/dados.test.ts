@@ -150,3 +150,29 @@ describe("Ilustrações", () => {
     }
   });
 });
+
+describe("Padrões do catálogo", () => {
+  it("meias-vidas com unidades padronizadas e concordância certa", () => {
+    for (const el of ELEMENTOS)
+      for (const i of el.isotopos) {
+        const mv = i.meia_vida ?? "";
+        // segundos em "s", minutos em "min"
+        expect(mv, `${el.simbolo}-${i.a}`).not.toMatch(/segundo|minuto/);
+        // de 1 a 2 vai no singular: "1,25 bilhão", nao "1,25 bilhões"
+        expect(mv, `${el.simbolo}-${i.a}`).not.toMatch(/^1(,\d+)? (milhões|bilhões|trilhões)/);
+      }
+  });
+  it("íons comuns com a carga mais comum primeiro, que é a que o desafio pede", () => {
+    const q = (z: number) => elementoPorZ(z)?.ions_comuns;
+    expect(q(29)).toEqual([2, 1]);
+    expect(q(50)).toEqual([2, 4]);
+    expect(q(82)).toEqual([2, 4]);
+    for (const z of [62, 63, 70]) expect(q(z)).toEqual([3, 2]);
+  });
+  it("do férmio ao laurêncio a fase é sólido previsto", () => {
+    for (let z = 100; z <= 103; z++) {
+      expect(elementoPorZ(z)?.fase_ambiente).toBe("solido");
+      expect(elementoPorZ(z)?.fase_prevista).toBe(true);
+    }
+  });
+});
