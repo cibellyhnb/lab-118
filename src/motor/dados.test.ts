@@ -94,3 +94,20 @@ describe("Isótopos citados nos textos", () => {
     expect(citados).toBeGreaterThan(10);
   });
 });
+
+describe("Íons comuns", () => {
+  it("polônio, protactínio, netúnio e plutônio têm seus íons comuns", () => {
+    expect(elementoPorZ(84)?.ions_comuns).toEqual([2, 4]);
+    expect(elementoPorZ(91)?.ions_comuns).toEqual([5]);
+    expect(elementoPorZ(93)?.ions_comuns).toEqual([3, 4]);
+    expect(elementoPorZ(94)?.ions_comuns).toEqual([3, 4]);
+  });
+  // a ordem importa (o desafio do ion pede a primeira carga), entao so confere repeticao e zero
+  it("íons comuns sem repetição e sem carga 0", () => {
+    for (const el of ELEMENTOS) {
+      const q = el.ions_comuns;
+      expect(q.includes(0), el.simbolo).toBe(false);
+      expect(new Set(q).size, el.simbolo).toBe(q.length);
+    }
+  });
+});

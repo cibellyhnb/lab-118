@@ -4611,7 +4611,7 @@
         "meia_vida": "138 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [2, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -4931,7 +4931,7 @@
         "meia_vida": "27 dias"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [5],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -5031,7 +5031,7 @@
         "meia_vida": "2,14 milhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [3, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"
@@ -5081,7 +5081,7 @@
         "meia_vida": "81,3 milhões de anos"
       }
     ],
-    "ions_comuns": [],
+    "ions_comuns": [3, 4],
     "trilha_essencial": false,
     "ficha": {
       "nivel": "enxuta"

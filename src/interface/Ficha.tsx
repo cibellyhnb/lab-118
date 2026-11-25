@@ -351,7 +351,15 @@ export function Ficha({ z }: { z: number }) {
             Íons isolados não são o mesmo que íons em compostos.
           </p>
         )}
-        {el.ions_comuns.length === 0 && (
+        {/* superpesados: quase nada se sabe da quimica deles */}
+        {el.ions_comuns.length === 0 && el.z >= 104 && (
+          <p className="mt-2 text-sm">
+            A química deste elemento quase não é conhecida: só alguns átomos dele já foram feitos, e
+            ainda não se sabe que íons ele forma em compostos. Mesmo assim, dá para montar íons dele
+            no laboratório.
+          </p>
+        )}
+        {el.ions_comuns.length === 0 && el.z < 104 && (
           <p className="mt-2 text-sm">
             Este elemento não costuma formar íons simples em compostos. Mesmo assim, dá para montar
             íons dele no laboratório.
