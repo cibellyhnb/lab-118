@@ -237,7 +237,7 @@ describe("retorno do desafio de isótopo", () => {
   it("núcleo fora do catálogo lembra que o desafio pede um isótopo do catálogo", () => {
     // Li-13 (10 neutrons) nao esta no catalogo do litio
     expect(retornoDesafioIsotopo(s, m, classificar({ p: 3, n: 10, e: 3 }))).toBe(
-      "Este desafio pede um isótopo do catálogo: monte o Lítio-6.",
+      "Este desafio pede um isótopo do catálogo: monte o lítio-6.",
     );
   });
 
@@ -249,5 +249,24 @@ describe("retorno do desafio de isótopo", () => {
     const m3 = missaoParaElemento(s3, 3)!;
     expect(m3.tipo).toBe("M3");
     expect(retornoDesafioIsotopo(s3, m3, classificar({ p: 3, n: 3, e: 3 }))).toBeNull();
+  });
+});
+
+// nome de elemento no meio da frase vai em minuscula, como pede o portugues
+describe("nomes de elemento nas mensagens", () => {
+  it("descoberta, isótopo e elemento errado usam minúscula", () => {
+    const m1 = missaoParaElemento(progressoInicial(), 3)!;
+    expect(avaliarMissao(m1, classificar({ p: 3, n: 4, e: 3 })).mensagem).toBe(
+      "Isso! Você descobriu o lítio!",
+    );
+    expect(avaliarMissao(m1, classificar({ p: 6, n: 6, e: 6 })).mensagem).toMatch(
+      /^Isso é o carbono, com 6 prótons\./,
+    );
+    const s = construir(progressoInicial(), { p: 3, n: 4, e: 3 }).estado;
+    const m2 = missaoParaElemento(s, 3)!;
+    expect(m2.enunciado).toMatch(/^Monte o isótopo lítio-6:/);
+    expect(avaliarMissao(m2, classificar({ p: 3, n: 3, e: 3 })).mensagem).toBe(
+      "Desafio cumprido! Você montou o lítio-6: mesmo elemento, massa diferente.",
+    );
   });
 });

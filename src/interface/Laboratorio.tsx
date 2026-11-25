@@ -15,6 +15,7 @@ import {
   classificar,
   construir as construirMotor,
   artigoDoElemento,
+  nomeComArtigo,
   descoberto,
   elementoPorZ,
   elementoSugerido,
@@ -463,10 +464,10 @@ export function Laboratorio({
       tocar(sons.descoberta);
       if (navigator.vibrate) navigator.vibrate(60);
       const nome = r.classificacao.elemento?.nome ?? "";
-      let msg = `Você montou ${nome} com ${r.classificacao.z} ${r.classificacao.z === 1 ? "próton" : "prótons"}: o número de prótons define o elemento.`;
+      let msg = `Você montou ${nomeComArtigo(nome)} com ${r.classificacao.z} ${r.classificacao.z === 1 ? "próton" : "prótons"}: o número de prótons define o elemento.`;
       // descobriu outro elemento que nao era o da missao
       if (missao && missao.z !== desc.z)
-        msg = `Você descobriu ${nome} por acaso. O desafio ainda está de pé.`;
+        msg = `Você descobriu ${nomeComArtigo(nome)} por acaso. O desafio ainda está de pé.`;
       else if (missao) msg = avaliarMissao(missao, r.classificacao).mensagem + " " + msg;
       if (!guia) setCelebrar({ z: desc.z, msg });
     }
@@ -497,7 +498,8 @@ export function Laboratorio({
     const l: string[] = [];
     // uma frase para cada coisa nova registrada
     for (const ev of eventos) {
-      if (ev.tipo === "ISOTOPO_REGISTRADO") l.push(`Isótopo registrado: ${nome}-${ev.a}.`);
+      if (ev.tipo === "ISOTOPO_REGISTRADO")
+        l.push(`Isótopo registrado: ${nome.toLowerCase()}-${ev.a}.`);
       if (ev.tipo === "ION_REGISTRADO" && cl.elemento)
         l.push(`Íon registrado: ${notacaoIon(cl.elemento.simbolo, cl.carga)}.`);
       if (ev.tipo === "ESTRELA_GANHA" && ev.estrela === 2)
@@ -837,7 +839,7 @@ export function Laboratorio({
                     params={{ z: String(c.z) }}
                     className="mt-2 inline-block underline"
                   >
-                    Abrir ficha d{artigoDoElemento(c.elemento?.nome ?? "")} {c.elemento?.nome}
+                    Abrir ficha d{nomeComArtigo(c.elemento?.nome ?? "")}
                   </Link>
                 )}
               </section>

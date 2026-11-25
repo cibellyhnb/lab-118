@@ -96,7 +96,7 @@ describe("gerarDicas (função pura)", () => {
     }
     // caso concreto: o osmio comeca com nome e simbolo e traz a curiosidade
     expect(gerarDicas(76)[0]!.texto).toMatch(
-      /^É o Ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/,
+      /^É o ósmio \(Os\): metal de transição, período 6, grupo 8\. .*densos/,
     );
   });
   it("massa atômica só aparece quando o dado existe (nunca é inventada)", () => {

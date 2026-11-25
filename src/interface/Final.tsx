@@ -134,7 +134,7 @@ export function Final({ onFechar }: { onFechar: () => void }) {
 
   // falas do Zula, uma por pagina
   const paginas = [
-    "Você conseguiu! Os 118 elementos estão acesos, do Hidrogênio ao Oganessônio. Olha só como o laboratório ficou lindo!",
+    "Você conseguiu! Os 118 elementos estão acesos, do hidrogênio ao oganessônio. Olha só como o laboratório ficou lindo!",
     "Sabe o que você montou? A água, o ar, o seu celular, as estrelas e até você são feitos dessas mesmas peças. Tudo o que existe vem dessa tabelinha.",
     "Você começou sem saber nada e agora monta até átomos gigantes. Foi muito bom aprender com você por aqui.",
     "Obrigado por ajudar o Lab 118 a acender. Esse laboratório agora é todo seu!",

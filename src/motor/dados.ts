@@ -62,6 +62,17 @@ export function artigoDoElemento(nome: string): "o" | "a" {
 }
 
 /*******************************************************************************
+ * nomeComArtigo
+ * funcao: nome do elemento para o meio de uma frase: artigo + nome em
+ * minuscula, como pede o portugues (ex: "o lítio", "a prata").
+ * recebe: nome (string, como esta no JSON).
+ * retorna: o texto pronto, ex: "o lítio".
+ ******************************************************************************/
+export function nomeComArtigo(nome: string): string {
+  return `${artigoDoElemento(nome)} ${nome.toLowerCase()}`;
+}
+
+/*******************************************************************************
  * NOME_CATEGORIA
  * funcao: nome de cada familia do jeito que aparece para o jogador.
  ******************************************************************************/
