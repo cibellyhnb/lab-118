@@ -477,7 +477,7 @@ export const APLICACOES: Record<number, string[]> = {
   ],
   103: ["Pesquisa: estudo do fim da série dos actinídeos.", "Origem: homenagem a Ernest Lawrence."],
   104: [
-    "Pesquisa: só existe em laboratório. Seus átomos duram de minutos a poucas horas, e só alguns já foram feitos.",
+    "Pesquisa: só existe em laboratório. Seus isótopos mais duradouros vivem de minutos a pouco mais de uma hora, e só alguns átomos já foram feitos.",
     "Origem: homenagem a Ernest Rutherford.",
   ],
   105: ["Pesquisa: só existe em laboratório.", "Origem: homenagem à cidade russa de Dubna."],
