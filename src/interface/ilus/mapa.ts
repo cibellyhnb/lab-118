@@ -1,4 +1,8 @@
-/** Qual desenho e qual legenda aparecem na ficha de cada elemento. Elementos sem entrada (99 em diante) ficam sem ilustração. */
+/**
+ * Qual desenho e qual legenda aparecem na ficha de cada elemento. Elementos sem entrada (99 em diante) ficam sem ilustração.
+ * Os temas e as legendas foram adaptados de "The Periodic Table of the Elements, in Pictures", de Keith Enevoldsen
+ * (https://elements.wlonk.com), licença CC BY-SA 4.0; esta adaptação fica sob a mesma licença. O crédito aparece na ficha.
+ */
 export const ILUSTRACOES: Record<number, { sprite: string; rotulo: string }> = {
   1: { sprite: "sol", rotulo: "Sol e Estrelas" },
   2: { sprite: "baloes", rotulo: "Balões" },
@@ -58,7 +62,7 @@ export const ILUSTRACOES: Record<number, { sprite: string; rotulo: string }> = {
   56: { sprite: "raiox", rotulo: "Diagnósticos de Raios-X" },
   57: { sprite: "telescopio", rotulo: "Lentes de Telescópios" },
   58: { sprite: "isqueiro", rotulo: "Pedras de Isqueiros" },
-  59: { sprite: "oculos_solda", rotulo: "Óculos de Soldador" },
+  59: { sprite: "oculos_didimio", rotulo: "Óculos de Vidreiro" },
   60: { sprite: "carro_eletrico", rotulo: "Ímãs de Motores Elétricos" },
   61: { sprite: "mostrador", rotulo: "Mostradores Luminosos" },
   62: { sprite: "aviaozinho", rotulo: "Ímãs de Motores Elétricos" },
@@ -82,7 +86,7 @@ export const ILUSTRACOES: Record<number, { sprite: string; rotulo: string }> = {
   80: { sprite: "termometro_calor", rotulo: "Termômetros" },
   81: { sprite: "termometro_frio", rotulo: "Termômetros de Baixa Temperatura" },
   82: { sprite: "halter", rotulo: "Pesos" },
-  83: { sprite: "extintor", rotulo: "Extintores de Incêndio" },
+  83: { sprite: "sprinkler", rotulo: "Sprinklers de Incêndio" },
   84: { sprite: "escova", rotulo: "Escovas Antiestáticas" },
   85: { sprite: "seringa_radio", rotulo: "Medicina Radioativa" },
   86: { sprite: "implante", rotulo: "Implantes Cirúrgicos" },

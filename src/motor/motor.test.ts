@@ -379,3 +379,30 @@ describe("Persistência", () => {
     expect(carregar(a).estado.config.som).toBe(false);
   });
 });
+
+// N10: o ion de lantanideo ou actinideo perde os eletrons f, como o ion real
+describe("Camadas dos íons do bloco f", () => {
+  it("os íons comuns de Z 57–71 e 89–103 ficam com núcleo de gás nobre + elétrons f", () => {
+    for (const el of ELEMENTOS.filter(
+      (x) => x.categoria === "lantanideo" || x.categoria === "actinideo",
+    ))
+      for (const q of el.ions_comuns.filter((c) => c > 0)) {
+        // lantanideos: [Xe]4fⁿ = 2, 8, 18, 18+n, 8; actinideos: [Rn]5fⁿ = 2, 8, 18, 32, 18+n, 8
+        const lan = el.categoria === "lantanideo";
+        const f = el.z - (lan ? 54 : 86) - q;
+        const real = lan ? [2, 8, 18, 18 + f, 8] : [2, 8, 18, 32, 18 + f, 8];
+        expect(distribuirCamadas(el.z, el.z - q), `${el.simbolo}${q}+`).toEqual(real);
+      }
+  });
+  it("exemplos: Eu³⁺, Ce⁴⁺, U⁴⁺ e o ion que ainda tem elétron d (Gd³⁺)", () => {
+    expect(distribuirCamadas(63, 60)).toEqual([2, 8, 18, 24, 8]);
+    expect(distribuirCamadas(58, 54)).toEqual([2, 8, 18, 18, 8]);
+    expect(distribuirCamadas(92, 88)).toEqual([2, 8, 18, 32, 20, 8]);
+    expect(distribuirCamadas(64, 61)).toEqual([2, 8, 18, 25, 8]);
+  });
+  it("fora do bloco f nada muda (Fe³⁺, Pt⁴⁺, Nb⁵⁺)", () => {
+    expect(distribuirCamadas(26, 23)).toEqual([2, 8, 13]);
+    expect(distribuirCamadas(78, 74)).toEqual([2, 8, 18, 32, 14]);
+    expect(distribuirCamadas(41, 36)).toEqual([2, 8, 18, 8]);
+  });
+});

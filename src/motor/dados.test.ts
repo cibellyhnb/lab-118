@@ -8,6 +8,8 @@ import { ELEMENTOS, elementoPorZ } from "./dados";
 import { APLICACOES } from "./aplicacoes";
 import { CURIOSIDADES } from "./curiosidades";
 import { GLOSSARIO } from "./glossario";
+import { ILUSTRACOES } from "@/interface/ilus/mapa";
+import { PALETA_ILUS, ilustracaoDe } from "@/interface/ilus";
 
 describe("Dados do elements.json", () => {
   it("as abundâncias de cada elemento somam 100%", () => {
@@ -118,5 +120,59 @@ describe("Fase à temperatura ambiente", () => {
     expect(elementoPorZ(85)?.fase_ambiente).toBe("solido");
     expect(elementoPorZ(85)?.fase_prevista).toBe(true);
     expect(elementoPorZ(87)?.fase_ambiente).toBe("desconhecido");
+  });
+});
+
+describe("Coerência entre glossário e catálogo", () => {
+  it("o glossário não dá isótopo estável a quem o catálogo diz não ter (ex: bismuto)", () => {
+    // todos do bismuto (83) em diante, alem do tecnecio e do promecio, so tem isotopos radioativos
+    const semEstavel = ELEMENTOS.filter((e) =>
+      e.isotopos.every((i) => i.estabilidade !== "estavel"),
+    ).map((e) => e.z);
+    expect(semEstavel).toEqual([43, 61, ...Array.from({ length: 118 - 82 }, (_, i) => 83 + i)]);
+    const radioativo = GLOSSARIO.find((g) => g.id === "radioativo");
+    expect(radioativo?.duvida).toContain("a partir do bismuto (Z ≥ 83)");
+  });
+});
+
+describe("Ilustrações", () => {
+  it("todo elemento ilustrado tem desenho 16 × 16 só com cores da paleta", () => {
+    for (let z = 1; z <= 118; z++) {
+      if (!ILUSTRACOES[z]) continue;
+      const il = ilustracaoDe(z);
+      expect(il, `Z ${z}: sprite ${ILUSTRACOES[z]?.sprite}`).not.toBeNull();
+      expect(il?.rows.length, `Z ${z}`).toBe(16);
+      for (const linha of il?.rows ?? []) {
+        expect(linha.length, `Z ${z}`).toBe(16);
+        for (const c of linha)
+          if (c !== ".") expect(PALETA_ILUS[c], `Z ${z}: cor ${c}`).toBeDefined();
+      }
+    }
+  });
+});
+
+describe("Padrões do catálogo", () => {
+  it("meias-vidas com unidades padronizadas e concordância certa", () => {
+    for (const el of ELEMENTOS)
+      for (const i of el.isotopos) {
+        const mv = i.meia_vida ?? "";
+        // segundos em "s", minutos em "min"
+        expect(mv, `${el.simbolo}-${i.a}`).not.toMatch(/segundo|minuto/);
+        // de 1 a 2 vai no singular: "1,25 bilhão", nao "1,25 bilhões"
+        expect(mv, `${el.simbolo}-${i.a}`).not.toMatch(/^1(,\d+)? (milhões|bilhões|trilhões)/);
+      }
+  });
+  it("íons comuns com a carga mais comum primeiro, que é a que o desafio pede", () => {
+    const q = (z: number) => elementoPorZ(z)?.ions_comuns;
+    expect(q(29)).toEqual([2, 1]);
+    expect(q(50)).toEqual([2, 4]);
+    expect(q(82)).toEqual([2, 4]);
+    for (const z of [62, 63, 70]) expect(q(z)).toEqual([3, 2]);
+  });
+  it("do férmio ao laurêncio a fase é sólido previsto", () => {
+    for (let z = 100; z <= 103; z++) {
+      expect(elementoPorZ(z)?.fase_ambiente).toBe("solido");
+      expect(elementoPorZ(z)?.fase_prevista).toBe(true);
+    }
   });
 });

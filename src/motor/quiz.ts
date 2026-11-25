@@ -462,7 +462,7 @@ export const PERGUNTAS: Pergunta[] = [
     5,
     "O que o gás hélio faz com a sua voz?",
     ["Deixa com som de desenho animado", "Deixa mais grossa", "Faz sumir"],
-    "O som viaja quase 3 vezes mais rápido no hélio. Isso muda o timbre da voz (a ressonância da boca e da garganta), mas o tom das cordas vocais quase não muda.",
+    "O som viaja quase 3 vezes mais rápido no hélio. Isso muda o timbre da voz (a ressonância da boca e da garganta), mas o tom das cordas vocais quase não muda. Não tente em casa: respirar hélio no lugar do ar faz faltar oxigênio.",
   ),
 
   // ----- lantanideos -----
@@ -483,9 +483,9 @@ export const PERGUNTAS: Pergunta[] = [
   q(
     "lantanideo",
     3,
-    "Outro nome dos lantanídeos é…",
+    "Junto com o escândio e o ítrio, os lantanídeos formam as…",
     ["Terras raras", "Gases nobres", "Halogênios"],
-    "O nome engana: eles não são tão raros, só difíceis de separar.",
+    "O nome engana: as terras raras não são tão raras, só difíceis de separar.",
   ),
   q(
     "lantanideo",
@@ -536,7 +536,7 @@ export const PERGUNTAS: Pergunta[] = [
     5,
     "Muitos actinídeos só existem porque…",
     ["Cientistas os criam em laboratório", "Crescem nas plantas", "Vêm do fundo do mar"],
-    "Os mais pesados são feitos em aceleradores de partículas.",
+    "Eles são feitos em reatores nucleares ou, os mais pesados, em aceleradores de partículas.",
   ),
 ];
 

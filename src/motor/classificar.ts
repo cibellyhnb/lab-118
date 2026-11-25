@@ -171,7 +171,8 @@ export function classificar(p: Particulas): Classificacao {
  * distribuirCamadas
  * funcao: distribui os eletrons nas camadas para o desenho do atomo (REG-11).
  * no neutro usa as camadas do JSON; no cation tira da camada mais externa
- * primeiro; no anion poe na mais externa ate 8 (2 na primeira) e depois abre
+ * primeiro (nos lantanideos e actinideos, os eletrons f saem antes, como no
+ * ion real); no anion poe na mais externa ate 8 (2 na primeira) e depois abre
  * uma camada nova.
  * recebe: z (numero atomico) e e (quantidade de eletrons).
  * retorna: lista com quantos eletrons ficam em cada camada, de dentro para
@@ -183,6 +184,25 @@ export function distribuirCamadas(z: number, e: number): number[] {
   const camadas = [...el.camadas];
   // diff < 0: faltam eletrons (cation); diff > 0: sobram (anion)
   let diff = e - z;
+  // cation de lantanideo ou actinideo: os eletrons saem primeiro da ultima camada (s),
+  // depois da penultima ate sobrar 8 (os eletrons d) e so entao da antepenultima,
+  // a dos eletrons f, ate sobrar 18. ex: Eu³⁺ = [Xe]4f⁶ = 2, 8, 18, 24, 8 (e nao
+  // 2, 8, 18, 25, 7). o que faltar tirar depois segue a regra geral abaixo
+  if (diff < 0 && (el.categoria === "lantanideo" || el.categoria === "actinideo")) {
+    const n = camadas.length;
+    for (const [i, minimo] of [
+      [n - 1, 0],
+      [n - 2, 8],
+      [n - 3, 18],
+    ] as const) {
+      while (diff < 0 && i >= 0 && (camadas[i] ?? 0) > minimo) {
+        camadas[i] = (camadas[i] ?? 0) - 1;
+        diff++;
+      }
+    }
+    // a ultima camada pode ter esvaziado
+    while (camadas.length && camadas[camadas.length - 1] === 0) camadas.pop();
+  }
   // cation: tira um por vez da ultima camada e apaga a camada se ela esvaziar
   while (diff < 0 && camadas.length) {
     const i = camadas.length - 1;

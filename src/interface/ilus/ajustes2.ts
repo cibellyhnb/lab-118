@@ -288,18 +288,20 @@ export const AJUSTES2: Record<string, string[]> = {
     "...kMk.kMk.kMk..",
     "..kMk..kMk..kMk.",
   ],
-  oculos_solda: [
+  // oculos de didimio (praseodimio + neodimio), de quem trabalha vidro no macarico:
+  // as lentes lilas filtram o brilho amarelo do vidro quente
+  oculos_didimio: [
     "...y............",
     "..yYy........y..",
     "...y........y.y.",
     ".............y..",
     "....kkk...kkk...",
     "kkkkaaak.kaaakkk",
-    "mmmaeeeakaeeeamm",
-    "mmaegYeaaagYeeam",
-    "mmaeeeeaaaeeeeam",
-    "mmaeeeeeaeeeeeam",
-    "kkkaeeeakaeeeakk",
+    "mmmavvvakavvvamm",
+    "mmavpYvaaapYvvam",
+    "mmavvvvaaavvvvam",
+    "mmavvvvvavvvvvam",
+    "kkkavvvakavvvakk",
     "...kaaak.kaaak..",
     "....kkk...kkk...",
     "................",
@@ -540,6 +542,26 @@ export const AJUSTES2: Record<string, string[]> = {
     "..kwsssssaaadk..",
     "..kkkkkkkkkkkk..",
     "................",
+    "................",
+  ],
+  // sprinkler de incendio: a peca amarela e a liga de bismuto que derrete com o calor
+  // e solta a agua
+  sprinkler: [
+    "......kkkk......",
+    "......kddk......",
+    "......kddk......",
+    ".....kkddkk.....",
+    ".....kaaaak.....",
+    "......kssk......",
+    "......kyyk......",
+    "......kssk......",
+    "....kkkaakkk....",
+    "...kaaaaaaaak...",
+    "....kkkkkkkk....",
+    "..l...l..l...l..",
+    ".l..l...ll..l..l",
+    "..l..l.l..l..l..",
+    ".l..l..l..l..l..",
     "................",
   ],
 };

@@ -86,14 +86,17 @@ Cada push na branch `main` gera uma nova versão automaticamente.
 
 Os dados da tabela periódica vêm de `src/dados/elements.json`. As referências usadas são:
 
-- IUPAC (nomes, símbolos e organização da tabela)
+- IUPAC (símbolos e organização da tabela)
 - CIAAW (massas atômicas)
-- NIST (dados atômicos)
 - IAEA Live Chart of Nuclides e NUBASE2020 (isótopos: estabilidade, meia-vida e abundância), conferidos em novembro de 2026
 
 As mesmas referências aparecem no fim de cada ficha de elemento.
 
-Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) são autorais e estão em revisão.
+Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) são autorais e foram conferidos em novembro de 2026.
+
+### Ilustrações
+
+Os temas e as legendas das ilustrações dos elementos (`src/interface/ilus/mapa.ts`) foram adaptados de [The Periodic Table of the Elements, in Pictures](https://elements.wlonk.com/ElementsTable.htm), de Keith Enevoldsen, publicada sob a licença [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.pt_BR). Por isso, essa adaptação também fica sob a licença CC BY-SA 4.0. O crédito aparece na ficha de cada elemento que tem ilustração.
 
 ## 🎓 Contexto acadêmico
 

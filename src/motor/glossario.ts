@@ -301,7 +301,7 @@ export const GLOSSARIO: TermoGlossario[] = [
       "Núcleo instável que, depois de um tempo, se transforma em outro emitindo radiação. Esse processo se chama decaimento.",
     exemplo: "O carbono-14 é radioativo e é usado para datar fósseis e objetos antigos.",
     duvida:
-      "Radioativo não quer dizer perigoso o tempo todo: depende de quanto tempo ele dura e de quanta radiação emite. Alguns elementos, como o tecnécio (Z = 43), o promécio (Z = 61) e todos depois do bismuto (Z > 83), não têm nenhum isótopo estável.",
+      "Radioativo não quer dizer perigoso o tempo todo: depende de quanto tempo ele dura e de quanta radiação emite. Alguns elementos, como o tecnécio (Z = 43), o promécio (Z = 61) e todos a partir do bismuto (Z ≥ 83), não têm nenhum isótopo estável. O bismuto-209 decai tão devagar que, na prática, se comporta como estável.",
     ver: ["meia-vida", "estavel"],
     sinonimos: ["instavel", "decaimento"],
   },
@@ -471,7 +471,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     termo: "Elemento sintético",
     categoria: "tabela",
     definicao:
-      "Elemento que quase não existe na natureza e foi produzido em laboratório, colidindo núcleos em aceleradores. Os mais pesados duram frações de segundo.",
+      "Elemento que quase não existe na natureza e foi produzido pelos cientistas, em reatores nucleares ou colidindo núcleos em aceleradores. Os mais pesados duram frações de segundo.",
     exemplo:
       "O oganessônio (Z = 118) foi criado em laboratório, e só alguns átomos dele foram observados.",
     ver: ["radioativo", "meia-vida"],
