@@ -331,8 +331,8 @@ export const GLOSSARIO: TermoGlossario[] = [
     definicao:
       "Quando você monta uma combinação de prótons e nêutrons que não está na nossa lista de isótopos. Pode nunca ter sido observada, ou durar frações de segundo.",
     duvida:
-      "Não é erro seu: o jogo deixa você experimentar combinações incomuns, e só avisa que elas não estão no catálogo.",
-    ver: ["nuclideo"],
+      "Não é erro seu: o jogo deixa você experimentar combinações incomuns e só avisa que elas não estão no catálogo. Mas, para descobrir um elemento, o núcleo precisa estar no catálogo.",
+    ver: ["nuclideo", "descobrir"],
   },
 
   // ----- tabela periodica -----
@@ -482,7 +482,7 @@ export const GLOSSARIO: TermoGlossario[] = [
     termo: "Estrelas",
     categoria: "jogo",
     definicao:
-      "Cada elemento vale 3 estrelas: 1) átomo neutro (descobrir o elemento); 2) isótopo; 3) íon. São 118 × 3 = 354 estrelas no total.",
+      "Cada elemento vale 3 estrelas: 1) átomo neutro com um núcleo do catálogo (descobrir o elemento); 2) um segundo isótopo do catálogo; 3) um íon. Isótopos e íons só contam depois da descoberta. São 118 × 3 = 354 estrelas no total.",
     ver: ["missao", "atomo-neutro", "isotopo", "ion"],
   },
   {
@@ -500,8 +500,10 @@ export const GLOSSARIO: TermoGlossario[] = [
     termo: "Descobrir um elemento",
     categoria: "jogo",
     definicao:
-      "Montar um átomo neutro com o número certo de prótons e apertar CONSTRUIR. O bloco dele se abre na tabela do mapa e a ficha é liberada.",
-    ver: ["atomo-neutro", "estrela"],
+      "Montar um átomo neutro com o número certo de prótons e um núcleo que existe (um isótopo do catálogo) e apertar CONSTRUIR. O bloco dele se abre na tabela do mapa e a ficha é liberada.",
+    duvida:
+      "Só os prótons e os elétrons não bastam: lítio com 0 nêutrons, por exemplo, não existe. Se o painel mostrar “Não catalogado”, mude os nêutrons.",
+    ver: ["atomo-neutro", "estrela", "nao-catalogado"],
   },
   {
     id: "dica",

@@ -76,7 +76,9 @@ export function BotaoAjuda() {
             </ul>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">AS 3 ESTRELAS</h3>
             <p className="mb-3">
-              Cada elemento tem 3 estrelas: monte o átomo neutro, um isótopo e um íon.
+              Cada elemento tem 3 estrelas, nesta ordem: descubra o elemento montando o átomo neutro
+              (com um núcleo que existe), depois monte outro isótopo e um íon. Isótopos e íons só
+              contam depois da descoberta.
             </p>
             <h3 className="font-display mb-1 text-[10px] text-wood-dark">SIGLAS DO PAINEL</h3>
             <dl className="mb-4 grid grid-cols-[1.75rem_1fr] items-start gap-x-3 gap-y-2">

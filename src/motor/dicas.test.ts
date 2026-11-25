@@ -135,9 +135,14 @@ describe("gerarDicas (função pura)", () => {
       const m = missaoDescoberta(e.z);
       expect(m.dicas).toHaveLength(4);
       expect(m.enunciado).toContain(m.dicas[0]!);
-      // n = z sempre da um atomo neutro valido, mesmo que o nuclideo nao seja catalogado
-      const sol = classificar({ p: e.z, n: e.z, e: e.z });
+      // os neutrons sugeridos pela missao formam um nucleo do catalogo, aceito na hora
+      const n = m.criterio.tipo === "DESCOBRIR" ? m.criterio.n : undefined;
+      expect(n, e.nome).toBeDefined();
+      const sol = classificar({ p: e.z, n: n!, e: e.z });
+      expect(sol.nuclideo?.status).not.toBe("nao_catalogado");
       expect(avaliarMissao(m, sol).cumprida).toBe(true);
+      // a dica 4 (resposta) diz esses mesmos neutrons
+      expect(m.dicas[3]).toContain(` ${n} ${n === 1 ? "nêutron" : "nêutrons"}`);
     }
   });
   it("dicas não alteram o progresso (não existe penalidade no motor)", () => {

@@ -5,11 +5,18 @@
  * elements.json e salvar/carregar o progresso.
  ******************************************************************************/
 import { describe, expect, it } from "vitest";
-import { classificar, distribuirCamadas } from "./classificar";
-import { ELEMENTOS } from "./dados";
+import {
+  classificar,
+  distribuirCamadas,
+  notacaoIon,
+  notacaoNuclideo,
+  textoCarga,
+} from "./classificar";
+import { ELEMENTOS, isotopoReferencia } from "./dados";
 import { construir, progressoInicial } from "./progresso";
 import { avaliarMissao, gerarMissao, missaoDescoberta } from "./missoes";
 import { carregar, CHAVE, salvar } from "./persistencia";
+import type { Progresso } from "./tipos";
 
 /*******************************************************************************
  * c
@@ -36,13 +43,13 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     expect(r.valido).toBe(true);
     expect(r.especie).toBe("cation");
     expect(r.carga).toBe(1);
-    expect(r.notacao).toBe("H⁺");
+    expect(r.notacao).toBe("¹H⁺");
   });
   it("1,0,2 H⁻", () => {
     const r = c(1, 0, 2);
     expect(r.especie).toBe("anion");
     expect(r.carga).toBe(-1);
-    expect(r.notacao).toBe("H⁻");
+    expect(r.notacao).toBe("¹H⁻");
   });
   it("2,2,2 He-4", () => {
     const r = c(2, 2, 2);
@@ -55,13 +62,15 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
     const r = c(6, 6, 6);
     expect(r.especie).toBe("atomo_neutro");
     expect(r.nuclideo).toEqual({ rotulo: "C-12", status: "estavel" });
+    // notacao dos livros: massa sobrescrita a esquerda, sem carga no atomo neutro
+    expect(r.notacao).toBe("¹²C");
   });
   it("6,8,6 C-14 radioativo", () =>
     expect(c(6, 8, 6).nuclideo).toEqual({ rotulo: "C-14", status: "radioativo" }));
   it("6,6,5 C⁺", () => {
     const r = c(6, 6, 5);
     expect(r.especie).toBe("cation");
-    expect(r.notacao).toBe("C⁺");
+    expect(r.notacao).toBe("¹²C⁺");
   });
   // C-36 nao existe no catalogo, mas a montagem continua valida
   it("6,30,6 não catalogado", () => {
@@ -71,23 +80,23 @@ describe("classificação de montagens: elemento, espécie, nuclídeo e erros", 
   });
   it("8,8,10 O²⁻", () => {
     const r = c(8, 8, 10);
-    expect(r.notacao).toBe("O²⁻");
+    expect(r.notacao).toBe("¹⁶O²⁻");
     expect(r.carga).toBe(-2);
     expect(r.especie).toBe("anion");
   });
   it("11,12,10 Na⁺ Na-23 estável", () => {
     const r = c(11, 12, 10);
-    expect(r.notacao).toBe("Na⁺");
+    expect(r.notacao).toBe("²³Na⁺");
     expect(r.nuclideo).toEqual({ rotulo: "Na-23", status: "estavel" });
   });
   it("17,18,18 Cl⁻ Cl-35", () => {
     const r = c(17, 18, 18);
-    expect(r.notacao).toBe("Cl⁻");
+    expect(r.notacao).toBe("³⁵Cl⁻");
     expect(r.nuclideo).toEqual({ rotulo: "Cl-35", status: "estavel" });
   });
   it("26,30,24 Fe²⁺ Fe-56", () => {
     const r = c(26, 30, 24);
-    expect(r.notacao).toBe("Fe²⁺");
+    expect(r.notacao).toBe("⁵⁶Fe²⁺");
     expect(r.nuclideo).toEqual({ rotulo: "Fe-56", status: "estavel" });
   });
   // limite de cima da tabela
@@ -130,6 +139,16 @@ describe("Regras", () => {
           expect(r.carga === 0).toBe(e === z);
         }
   });
+  it("notação: carga, íon e nuclídeo", () => {
+    expect(textoCarga(0)).toBe("");
+    expect(textoCarga(1)).toBe("⁺");
+    expect(textoCarga(-2)).toBe("²⁻");
+    expect(textoCarga(10)).toBe("¹⁰⁺");
+    expect(notacaoIon("Na", 0)).toBe("Na");
+    expect(notacaoIon("Na", 1)).toBe("Na⁺");
+    expect(notacaoNuclideo("Og", 294, 0)).toBe("²⁹⁴Og");
+    expect(notacaoNuclideo("U", 238, 6)).toBe("²³⁸U⁶⁺");
+  });
   it("REG-10: carga rara", () => {
     // oxigenio com 3 eletrons tem carga +5, acima do maximo comum (+4); com 4 eletrons, +4 ainda vale
     expect(c(8, 8, 3).avisos).toContain("CARGA_RARA");
@@ -139,8 +158,15 @@ describe("Regras", () => {
   it("REG-10: Nb⁵⁺ não é carga rara porque está nos íons comuns", () => {
     const r = c(41, 52, 36);
     expect(r.carga).toBe(5);
-    expect(r.notacao).toBe("Nb⁵⁺");
+    expect(r.notacao).toBe("⁹³Nb⁵⁺");
     expect(r.avisos).not.toContain("CARGA_RARA");
+  });
+  it("gás nobre com elétron a mais ganha o aviso de ânion instável", () => {
+    expect(c(2, 2, 3).avisos).toContain("ANION_GAS_NOBRE");
+    expect(c(10, 10, 11).avisos).toContain("ANION_GAS_NOBRE");
+    // cation de gas nobre e anion de outro elemento: sem aviso
+    expect(c(2, 2, 1).avisos).not.toContain("ANION_GAS_NOBRE");
+    expect(c(17, 18, 18).avisos).not.toContain("ANION_GAS_NOBRE");
   });
   it("REG-11: camadas", () => {
     // neutro, cation que esvazia a camada, anion que completa 8, anion na primeira
@@ -156,26 +182,87 @@ describe("Regras", () => {
 
 // como construir() registra variantes e da estrelas
 describe("Progresso e estrelas (RF-01 a RF-03)", () => {
-  it("descoberta só com átomo neutro e variantes anteriores passam a contar", () => {
+  it("descoberta só com átomo neutro, e variantes só contam depois dela", () => {
     let s = progressoInicial();
-    // primeiro o ion H+: registra o ion, mas sem descobrir nao ha estrela
+    // primeiro o ion H+: o hidrogenio nao foi descoberto, entao nada e registrado
     const r1 = construir(s, { p: 1, n: 0, e: 0 });
-    s = r1.estado;
-    expect(s.elementos["1"]?.estrelas).toEqual([false, false, false]);
-    expect(s.elementos["1"]?.ions).toEqual([1]);
-    // depois o H neutro: descobre e o ion de antes ja vale a estrela 3
+    expect(r1.eventos).toEqual([]);
+    expect(r1.estado).toBe(s);
+    // depois o H neutro: descobre e registra so o proprio isotopo, sem estrela 3
     const r2 = construir(s, { p: 1, n: 0, e: 1 });
-    expect(r2.eventos.map((e) => e.tipo)).toContain("ELEMENTO_DESCOBERTO");
-    expect(r2.estado.elementos["1"]?.estrelas).toEqual([true, false, true]);
+    expect(r2.eventos.map((e) => e.tipo)).toEqual([
+      "ELEMENTO_DESCOBERTO",
+      "ESTRELA_GANHA",
+      "ISOTOPO_REGISTRADO",
+    ]);
+    expect(r2.estado.elementos["1"]).toEqual({
+      estrelas: [true, false, false],
+      isotopos: [1],
+      ions: [],
+    });
     // H-2 e o segundo isotopo: estrela 2
     const r3 = construir(r2.estado, { p: 1, n: 1, e: 1 });
-    expect(r3.estado.elementos["1"]?.estrelas).toEqual([true, true, true]);
+    expect(r3.estado.elementos["1"]?.estrelas).toEqual([true, true, false]);
+    // agora o ion H+ vale a estrela 3
+    s = construir(r3.estado, { p: 1, n: 0, e: 0 }).estado;
+    expect(s.elementos["1"]).toEqual({ estrelas: [true, true, true], isotopos: [1, 2], ions: [1] });
   });
-  it("não catalogado não registra isótopo", () => {
-    // C-36 descobre o carbono, mas nao entra na lista de isotopos
+  it("isótopo ou íon antes da descoberta não dá estrelas de uma vez", () => {
+    // Li-7 com 2 eletrons (Li+): nao conta
+    let s = construir(progressoInicial(), { p: 3, n: 4, e: 2 }).estado;
+    expect(s.elementos["3"]).toBeUndefined();
+    // Li-7 neutro: so a estrela 1
+    s = construir(s, { p: 3, n: 4, e: 3 }).estado;
+    expect(s.elementos["3"]?.estrelas).toEqual([true, false, false]);
+  });
+  it("save antigo com variantes registradas antes da descoberta: a contagem recomeça", () => {
+    const antigo = {
+      ...progressoInicial(),
+      elementos: { "3": { estrelas: [false, false, false], isotopos: [6, 7], ions: [1] } },
+    } as Progresso;
+    const r = construir(antigo, { p: 3, n: 4, e: 3 });
+    expect(r.estado.elementos["3"]).toEqual({
+      estrelas: [true, false, false],
+      isotopos: [7],
+      ions: [],
+    });
+  });
+  it("não catalogado não registra isótopo nem descobre o elemento", () => {
+    // C-36 nao esta no catalogo: nao descobre o carbono e nao entra na lista de isotopos
     const r = construir(progressoInicial(), { p: 6, n: 30, e: 6 });
-    expect(r.estado.elementos["6"]?.isotopos).toEqual([]);
-    expect(r.estado.elementos["6"]?.estrelas[0]).toBe(true);
+    expect(r.eventos).toEqual([]);
+    expect(r.estado.elementos["6"]).toBeUndefined();
+    // Li-3 (litio sem neutrons) tambem nao descobre
+    expect(construir(progressoInicial(), { p: 3, n: 0, e: 3 }).eventos).toEqual([]);
+    // com um nucleo do catalogo (C-12) descobre e registra o isotopo
+    const ok = construir(r.estado, { p: 6, n: 6, e: 6 });
+    expect(ok.estado.elementos["6"]?.estrelas[0]).toBe(true);
+    expect(ok.estado.elementos["6"]?.isotopos).toEqual([12]);
+  });
+  it("todo elemento tem um isótopo de referência no catálogo, e ele descobre o elemento", () => {
+    for (const el of ELEMENTOS) {
+      const ref = isotopoReferencia(el);
+      expect(ref, el.nome).not.toBeNull();
+      expect(el.isotopos.some((i) => i.a === ref!.a)).toBe(true);
+      const r = construir(progressoInicial(), { p: el.z, n: ref!.a - el.z, e: el.z });
+      expect(
+        r.eventos.map((e) => e.tipo),
+        el.nome,
+      ).toContain("ELEMENTO_DESCOBERTO");
+    }
+    // natural: o mais abundante; sintetico: o numero de massa da tabela
+    expect(isotopoReferencia(ELEMENTOS[0]!)?.a).toBe(1);
+    expect(isotopoReferencia(ELEMENTOS[91]!)?.a).toBe(238);
+    expect(isotopoReferencia(ELEMENTOS[42]!)?.a).toBe(97);
+  });
+  it("ânion de gás nobre não é registrado nem dá a estrela do íon", () => {
+    let s = construir(progressoInicial(), { p: 2, n: 2, e: 2 }).estado; // He-4
+    const r = construir(s, { p: 2, n: 2, e: 3 }); // He⁻
+    expect(r.eventos).toEqual([]);
+    expect(r.estado.elementos["2"]?.ions).toEqual([]);
+    s = construir(r.estado, { p: 2, n: 2, e: 1 }).estado; // He⁺
+    expect(s.elementos["2"]?.ions).toEqual([1]);
+    expect(s.elementos["2"]?.estrelas[2]).toBe(true);
   });
   it("aplicar o mesmo build duas vezes não duplica nada", () => {
     const a = construir(progressoInicial(), { p: 6, n: 6, e: 6 });

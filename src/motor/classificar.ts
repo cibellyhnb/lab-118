@@ -34,23 +34,50 @@ const SOBRESCRITO: Record<string, string> = {
 };
 
 /*******************************************************************************
+ * sobrescrito
+ * funcao: escreve um numero inteiro positivo com algarismos sobrescritos, ex: 23 -> "²³".
+ * recebe: n (number).
+ * retorna: o texto sobrescrito.
+ ******************************************************************************/
+function sobrescrito(n: number): string {
+  return String(n)
+    .split("")
+    .map((d) => SOBRESCRITO[d] ?? d)
+    .join("");
+}
+
+/*******************************************************************************
+ * textoCarga
+ * funcao: so a parte da carga na notacao da quimica, ex: "⁺", "²⁻".
+ * recebe: carga (number).
+ * retorna: "" para carga 0; senao o expoente (sem o 1) seguido do sinal.
+ ******************************************************************************/
+export function textoCarga(carga: number): string {
+  if (carga === 0) return "";
+  const mod = Math.abs(carga);
+  // carga 1 nao escreve o numero, so o sinal (Na⁺ e nao Na¹⁺)
+  return `${mod === 1 ? "" : sobrescrito(mod)}${carga > 0 ? "⁺" : "⁻"}`;
+}
+
+/*******************************************************************************
  * notacaoIon
  * funcao: monta o texto do ion no formato da quimica, ex: "Na⁺", "O²⁻".
  * recebe: simbolo (string) e carga (number, positiva ou negativa).
  * retorna: o simbolo sozinho se a carga for 0, ou simbolo + expoente + sinal.
  ******************************************************************************/
 export function notacaoIon(simbolo: string, carga: number): string {
-  if (carga === 0) return simbolo;
-  const mod = Math.abs(carga);
-  // carga 1 nao escreve o numero, so o sinal (Na⁺ e nao Na¹⁺)
-  const num =
-    mod === 1
-      ? ""
-      : String(mod)
-          .split("")
-          .map((d) => SOBRESCRITO[d])
-          .join("");
-  return `${simbolo}${num}${carga > 0 ? "⁺" : "⁻"}`;
+  return `${simbolo}${textoCarga(carga)}`;
+}
+
+/*******************************************************************************
+ * notacaoNuclideo
+ * funcao: notacao completa usada nos livros: numero de massa sobrescrito a
+ * esquerda e carga a direita, ex: "¹²C", "²³Na⁺", "¹⁶O²⁻".
+ * recebe: simbolo (string), a (number, numero de massa) e carga (number).
+ * retorna: o texto da notacao.
+ ******************************************************************************/
+export function notacaoNuclideo(simbolo: string, a: number, carga: number): string {
+  return `${sobrescrito(a)}${notacaoIon(simbolo, carga)}`;
 }
 
 /*******************************************************************************
@@ -120,6 +147,9 @@ export function classificar(p: Particulas): Classificacao {
   if (status === "nao_catalogado") avisos.push("NUCLIDEO_NAO_CATALOGADO");
   // nenhum eletron: so o nucleo
   if (e === 0) avisos.push("NUCLEO_NU");
+  // gases nobres ja tem a ultima camada cheia: o eletron a mais nao fica preso, entao
+  // eles nao formam ions negativos estaveis (He⁻, Ne⁻...)
+  if (carga < 0 && el.categoria === "gas_nobre") avisos.push("ANION_GAS_NOBRE");
 
   return {
     valido: true,
@@ -131,8 +161,8 @@ export function classificar(p: Particulas): Classificacao {
     elemento: { z: el.z, simbolo: el.simbolo, nome: el.nome, categoria: el.categoria },
     especie,
     nuclideo: { rotulo: `${el.simbolo}-${a}`, status },
-    // neutro aparece como "Na-23"; ion aparece como "Na⁺"
-    notacao: carga === 0 ? `${el.simbolo}-${a}` : notacaoIon(el.simbolo, carga),
+    // notacao dos livros: massa a esquerda e carga a direita, ex: "²³Na", "²³Na⁺"
+    notacao: notacaoNuclideo(el.simbolo, a, carga),
     avisos,
   };
 }

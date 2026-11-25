@@ -64,27 +64,37 @@ export function construir(
       }
     : { estrelas: [false, false, false], isotopos: [], ions: [] };
 
-  // REG-08: registro de variantes (RF-02: vale mesmo antes da descoberta).
-  // isotopo so conta se estiver no catalogo
-  if (classificacao.nuclideo?.status !== "nao_catalogado" && !atual.isotopos.includes(a)) {
-    atual.isotopos.push(a);
-    atual.isotopos.sort((x, y) => x - y);
-    eventos.push({ tipo: "ISOTOPO_REGISTRADO", z, a });
-  }
-  if (carga !== 0 && !atual.ions.includes(carga)) {
-    atual.ions.push(carga);
-    atual.ions.sort((x, y) => x - y);
-    eventos.push({ tipo: "ION_REGISTRADO", z, carga });
-  }
-
-  // RF-01: descoberta so com atomo neutro
-  if (classificacao.especie === "atomo_neutro" && !atual.estrelas[0]) {
+  // RF-01: descoberta so com atomo neutro e com um nucleo que existe (do catalogo):
+  // lítio com 0 neutrons (Li-3), por exemplo, nao descobre o litio
+  const nucleoReal = classificacao.nuclideo?.status !== "nao_catalogado";
+  if (classificacao.especie === "atomo_neutro" && nucleoReal && !atual.estrelas[0]) {
     atual.estrelas[0] = true;
+    // a contagem de variantes comeca na descoberta: o que um save antigo registrou
+    // antes dela (regra anterior) nao vale, para nao dar estrelas de uma vez
+    atual.isotopos = [];
+    atual.ions = [];
     eventos.push({ tipo: "ELEMENTO_DESCOBERTO", z });
     eventos.push({ tipo: "ESTRELA_GANHA", z, estrela: 1 });
   }
-  // estrelas 2 (isotopos) e 3 (ion) so depois de descobrir o elemento
+
+  // REG-08: registro de variantes, so com o elemento ja descoberto (a montagem que
+  // descobre ja registra o proprio isotopo). antes disso nada conta, assim as
+  // estrelas seguem a ordem das missoes: descobrir, isotopos, ion
   if (atual.estrelas[0]) {
+    // isotopo so conta se estiver no catalogo
+    if (nucleoReal && !atual.isotopos.includes(a)) {
+      atual.isotopos.push(a);
+      atual.isotopos.sort((x, y) => x - y);
+      eventos.push({ tipo: "ISOTOPO_REGISTRADO", z, a });
+    }
+    // anion de gas nobre (He⁻, Ne⁻...) nao e estavel: o jogo avisa e nao registra
+    const ionEstavel = !classificacao.avisos.includes("ANION_GAS_NOBRE");
+    if (carga !== 0 && ionEstavel && !atual.ions.includes(carga)) {
+      atual.ions.push(carga);
+      atual.ions.sort((x, y) => x - y);
+      eventos.push({ tipo: "ION_REGISTRADO", z, carga });
+    }
+    // estrelas 2 (isotopos) e 3 (ion)
     if (!atual.estrelas[1] && atual.isotopos.length >= isotoposNecessarios(z)) {
       atual.estrelas[1] = true;
       eventos.push({ tipo: "ESTRELA_GANHA", z, estrela: 2 });

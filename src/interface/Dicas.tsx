@@ -54,7 +54,7 @@ function MiniTabela({ z }: { z: number }) {
 // frase de quando as dicas acabam: no desafio de descobrir o elemento o jogador muda os
 // protons; nos de isotopo e de ion os protons ficam e mudam os neutrons ou os eletrons
 const DICA_FINAL: Record<Missao["tipo"], string> = {
-  M1: "Dica de cientista: tente variar os prótons até o painel mostrar o nome certo.",
+  M1: "Dica de cientista: varie os prótons até o painel mostrar o nome certo e depois os nêutrons até o núcleo aparecer como “Estável” ou “Radioativo”.",
   M2: "Dica de cientista: deixe os prótons como estão e mude só os nêutrons até o A do painel ficar igual ao pedido.",
   M3: "Dica de cientista: deixe os prótons como estão e mude só os elétrons, olhando a carga (q) no painel.",
 };
