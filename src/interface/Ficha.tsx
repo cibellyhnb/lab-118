@@ -17,7 +17,7 @@ import {
   isotoposNecessarios,
 } from "@/motor";
 import { Stars, TopBar, catStyle } from "./comuns";
-import { notacaoIon } from "@/motor";
+import { nomeComArtigo, notacaoIon } from "@/motor";
 import { useProgresso } from "./store";
 import { PixelArt } from "./PixelArt";
 import { PALETA_ILUS, ilustracaoDe } from "./ilus";
@@ -292,6 +292,16 @@ export function Ficha({ z }: { z: number }) {
       {!principal && (
         <Secao titulo="ELÉTRONS DE VALÊNCIA">
           <p>Varia: para este tipo de elemento o jogo não usa um número fixo.</p>
+          <p className="mt-2 text-sm">Camadas: {el.camadas.join(", ")}.</p>
+          {/* o numero de camadas costuma ser o periodo; o paladio e a excecao */}
+          {el.camadas.length !== el.periodo && (
+            <p className="mt-2 text-sm">
+              Exceção: {nomeComArtigo(el.nome)} está no período {el.periodo}, mas tem só{" "}
+              {el.camadas.length} camadas. Os elétrons de fora preferem completar a{" "}
+              {el.camadas.length}ª camada, que fica com {el.camadas[el.camadas.length - 1]}, em vez
+              de começar a {el.periodo}ª.
+            </p>
+          )}
         </Secao>
       )}
 

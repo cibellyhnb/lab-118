@@ -112,7 +112,7 @@ export const GLOSSARIO: TermoGlossario[] = [
       "Cada anel da eletrosfera, com um limite de elétrons. A primeira camada comporta no máximo 2, a segunda 8, a terceira 18 e assim por diante (2n²).",
     exemplo: "O neônio tem 10 elétrons: 2 na primeira camada e 8 na segunda, todas cheias.",
     duvida:
-      "Em geral, o número de camadas de um átomo neutro é igual ao período do elemento na tabela. A última camada é a que participa das ligações.",
+      "Em geral, o número de camadas de um átomo neutro é igual ao período do elemento na tabela; a exceção é o paládio, do período 5, que tem só 4 camadas. A última camada é a que participa das ligações.",
     ver: ["periodo", "eletrosfera"],
     sinonimos: ["nivel de energia", "camada de valencia"],
   },
