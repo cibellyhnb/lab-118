@@ -37,7 +37,7 @@ const FASE = {
   solido: "Sólido",
   liquido: "Líquido",
   gasoso: "Gasoso",
-  desconhecido: "Desconhecido",
+  desconhecido: "Desconhecido (nunca se juntou o bastante dele para ver)",
 } as const;
 // numero no formato brasileiro (virgula decimal), com ate 6 casas
 const fmt = (x: number) => x.toLocaleString("pt-BR", { maximumFractionDigits: 6 });
@@ -175,10 +175,10 @@ export function Ficha({ z }: { z: number }) {
             {NOME_CATEGORIA[el.categoria]} · Período {el.periodo}
             {el.grupo ? ` · Grupo ${el.grupo}` : ""}
           </p>
-          {/* do 104 em diante a fase e so prevista, nunca foi medida */}
+          {/* fase so prevista (astato e do 104 em diante): nunca foi vista em quantidade */}
           <p>
             Estado físico à temperatura ambiente:{" "}
-            {el.z >= 104 && el.fase_ambiente !== "desconhecido"
+            {el.fase_ambiente !== "desconhecido" && (el.fase_prevista || el.z >= 104)
               ? `${FASE[el.fase_ambiente]} (previsto)`
               : FASE[el.fase_ambiente]}
           </p>

@@ -111,3 +111,12 @@ describe("Íons comuns", () => {
     }
   });
 });
+
+describe("Fase à temperatura ambiente", () => {
+  it("astato é sólido só previsto; frâncio continua desconhecido", () => {
+    // ninguem viu astato em quantidade; para o francio as estimativas de fusao vao de 8 a 27 °C
+    expect(elementoPorZ(85)?.fase_ambiente).toBe("solido");
+    expect(elementoPorZ(85)?.fase_prevista).toBe(true);
+    expect(elementoPorZ(87)?.fase_ambiente).toBe("desconhecido");
+  });
+});

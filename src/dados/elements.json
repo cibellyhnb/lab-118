@@ -4629,6 +4629,7 @@
       "coluna": 17
     },
     "fase_ambiente": "solido",
+    "fase_prevista": true,
     "camadas": [2, 8, 18, 32, 18, 7],
     "eletrons_valencia": 7,
     "massa_atomica": {
