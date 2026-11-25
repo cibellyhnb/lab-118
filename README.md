@@ -89,9 +89,9 @@ Os dados da tabela periódica vêm de `src/dados/elements.json`. As referências
 - IUPAC (nomes, símbolos e organização da tabela)
 - CIAAW (massas atômicas)
 - NIST (dados atômicos)
-- IAEA Live Chart of Nuclides (isótopos)
+- IAEA Live Chart of Nuclides e NUBASE2020 (isótopos: estabilidade, meia-vida e abundância), conferidos em novembro de 2026
 
-Os isótopos partem da base NUBASE.
+As mesmas referências aparecem no fim de cada ficha de elemento.
 
 Os textos do jogo (curiosidades, aplicações, glossário, quiz e diálogos) são autorais e estão em revisão.
 
