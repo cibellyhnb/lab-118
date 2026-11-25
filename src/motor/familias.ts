@@ -169,24 +169,48 @@ export function membros(id: Categoria): Elemento[] {
   return ELEMENTOS.filter((e) => e.categoria === id);
 }
 
+// parte da familia que libera o quiz dela: 70%, arredondado para baixo. assim
+// nenhum quiz depende dos superpesados (do 104 em diante), que so vem no fim
+export const FRACAO_QUIZ = 0.7;
+
+/*******************************************************************************
+ * paraQuiz
+ * funcao: quantos membros descobertos liberam o quiz de uma familia.
+ * recebe: total (number, tamanho da familia).
+ * retorna: 70% do total arredondado para baixo, no minimo 1.
+ ******************************************************************************/
+export function paraQuiz(total: number): number {
+  return Math.max(1, Math.floor(total * FRACAO_QUIZ));
+}
+
 /*******************************************************************************
  * progressoFamilia
  * funcao: conta quantos membros da familia o jogador ja descobriu.
  * recebe: estado (Progresso) e id (Categoria).
- * retorna: { descobertos, total, completa }; completa so e true quando
- * todos os membros foram descobertos.
+ * retorna: { descobertos, total, completa, paraQuiz, quizLiberado };
+ * completa so e true quando todos os membros foram descobertos (cerimonia);
+ * o quiz libera antes, com paraQuiz membros descobertos.
  ******************************************************************************/
 export function progressoFamilia(
   estado: Progresso,
   id: Categoria,
-): { descobertos: number; total: number; completa: boolean } {
+): {
+  descobertos: number;
+  total: number;
+  completa: boolean;
+  paraQuiz: number;
+  quizLiberado: boolean;
+} {
   const lista = membros(id);
   const descobertos = lista.filter((e) => descoberto(estado, e.z)).length;
+  const minimo = paraQuiz(lista.length);
   // lista.length > 0 evita dar uma familia vazia como completa
   return {
     descobertos,
     total: lista.length,
     completa: lista.length > 0 && descobertos === lista.length,
+    paraQuiz: minimo,
+    quizLiberado: lista.length > 0 && descobertos >= minimo,
   };
 }
 
