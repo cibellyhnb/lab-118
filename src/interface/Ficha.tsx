@@ -32,6 +32,11 @@ const FONTES_GERAIS = [
   "Alguns isótopos que o jogo chama de estáveis decaem tão devagar (muito mais que a idade do Universo) que certas tabelas os listam como radioativos.",
 ];
 
+// credito exigido pela licenca CC BY-SA 4.0: os temas e as legendas das ilustracoes
+// foram adaptados da tabela ilustrada de Keith Enevoldsen
+const CREDITO_ILUSTRACAO =
+  "Ilustração: tema e legenda adaptados de “The Periodic Table of the Elements, in Pictures”, de Keith Enevoldsen (elements.wlonk.com), licença CC BY-SA 4.0.";
+
 // fase do JSON escrita para a tela
 const FASE = {
   solido: "Sólido",
@@ -389,9 +394,11 @@ export function Ficha({ z }: { z: number }) {
       {/* as mesmas fontes valem para todas as fichas; o JSON pode acrescentar outras */}
       <Secao titulo="FONTES">
         <ul className="text-sm">
-          {[...FONTES_GERAIS, ...(f.fontes ?? [])].map((u) => (
-            <li key={u}>{u}</li>
-          ))}
+          {[...FONTES_GERAIS, ...(ilus ? [CREDITO_ILUSTRACAO] : []), ...(f.fontes ?? [])].map(
+            (u) => (
+              <li key={u}>{u}</li>
+            ),
+          )}
         </ul>
       </Secao>
       <p className="pb-6 text-sm text-parchment-shade">

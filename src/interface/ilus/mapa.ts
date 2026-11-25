@@ -1,4 +1,8 @@
-/** Qual desenho e qual legenda aparecem na ficha de cada elemento. Elementos sem entrada (99 em diante) ficam sem ilustração. */
+/**
+ * Qual desenho e qual legenda aparecem na ficha de cada elemento. Elementos sem entrada (99 em diante) ficam sem ilustração.
+ * Os temas e as legendas foram adaptados de "The Periodic Table of the Elements, in Pictures", de Keith Enevoldsen
+ * (https://elements.wlonk.com), licença CC BY-SA 4.0; esta adaptação fica sob a mesma licença. O crédito aparece na ficha.
+ */
 export const ILUSTRACOES: Record<number, { sprite: string; rotulo: string }> = {
   1: { sprite: "sol", rotulo: "Sol e Estrelas" },
   2: { sprite: "baloes", rotulo: "Balões" },
