@@ -16,7 +16,7 @@ export const Route = createFileRoute("/tutorial")({
       { title: "Tutorial - Lab 118" },
       {
         name: "description",
-        content: "Conheça o ZETA e aprenda a montar seu primeiro átomo: o hidrogênio.",
+        content: "Conheça o Zula e aprenda a montar seu primeiro átomo: o hidrogênio.",
       },
     ],
   }),

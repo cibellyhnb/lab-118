@@ -110,7 +110,7 @@ export const FAMILIAS: FamiliaInfo[] = [
     titulo: "Os Nobres Solitários",
     onde: "no grupo 18, a última coluna da tabela",
     fatos: [
-      "O hélio faz os balões flutuarem e deixa a voz fininha.",
+      "O hélio faz os balões flutuarem e deixa a voz com som de desenho animado.",
       "O neônio brilha em vermelho-alaranjado nas placas luminosas.",
       "Eles se chamam “nobres” porque quase nunca se misturam com outros elementos.",
     ],

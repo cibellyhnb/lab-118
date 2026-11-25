@@ -417,8 +417,8 @@ export const APLICACOES: Record<number, string[]> = {
     "Saúde: pode se acumular em casas e é monitorado.",
   ],
   87: [
-    "Pesquisa: produzido só em laboratório, para estudar a estrutura atômica.",
-    "Raridade: cada átomo dura poucos minutos.",
+    "Natureza: existe em traços em minérios de urânio, mas para pesquisa é produzido em laboratório.",
+    "Raridade: até o isótopo mais duradouro tem meia-vida de só 22 minutos.",
   ],
   88: [
     "História: tintas luminosas de relógios antigos.",
@@ -455,7 +455,7 @@ export const APLICACOES: Record<number, string[]> = {
   95: ["Segurança: detectores de fumaça residenciais.", "Indústria: medidores de espessura."],
   96: ["Espaço: espectrômetros de rovers de Marte.", "Pesquisa: fonte de energia em experimentos."],
   97: [
-    "Pesquisa: alvo para produzir elementos superpesados, como o tennesso.",
+    "Pesquisa: alvo para produzir elementos superpesados, como o tenesso.",
     "Origem: criado em Berkeley, na Califórnia.",
   ],
   98: [
@@ -477,10 +477,10 @@ export const APLICACOES: Record<number, string[]> = {
   ],
   103: ["Pesquisa: estudo do fim da série dos actinídeos.", "Origem: homenagem a Ernest Lawrence."],
   104: [
-    "Pesquisa: só existe em laboratório, por poucos segundos.",
+    "Pesquisa: só existe em laboratório. Seus átomos duram de minutos a poucas horas, e só alguns já foram feitos.",
     "Origem: homenagem a Ernest Rutherford.",
   ],
-  105: ["Pesquisa: só existe em laboratório.", "Origem: batizado em Dubna, na Rússia."],
+  105: ["Pesquisa: só existe em laboratório.", "Origem: homenagem à cidade russa de Dubna."],
   106: ["Pesquisa: só existe em laboratório.", "Origem: homenagem a Glenn Seaborg."],
   107: ["Pesquisa: só existe em laboratório.", "Origem: homenagem a Niels Bohr."],
   108: [
@@ -496,7 +496,7 @@ export const APLICACOES: Record<number, string[]> = {
   112: ["Pesquisa: só existe em laboratório.", "Origem: homenagem a Nicolau Copérnico."],
   113: ["Pesquisa: só existe em laboratório.", "Origem: o nome vem de Nihon, 'Japão' em japonês."],
   114: ["Pesquisa: só existe em laboratório.", "Origem: homenagem ao laboratório russo Flerov."],
-  115: ["Pesquisa: só existe em laboratório.", "Origem: batizado por causa de Moscou."],
+  115: ["Pesquisa: só existe em laboratório.", "Origem: homenagem à região de Moscou."],
   116: [
     "Pesquisa: só existe em laboratório.",
     "Origem: homenagem ao Laboratório Lawrence Livermore.",
